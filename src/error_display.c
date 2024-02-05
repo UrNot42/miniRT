@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:03:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 06:22:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:08:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void	p_err_debug(unsigned int error_code)
 		ft_fprintf(2, DBM_C2);
 	if (error_code == DB_C3)
 		ft_fprintf(2, DBM_C3);
+	if (error_code == DB_FREE)
+		ft_fprintf(2, DBM_FREE);
 }

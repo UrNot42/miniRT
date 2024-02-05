@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:17:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 07:38:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:02:48 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int		ft_isispace(char c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_inr(int num, int a, int b);
+void	ft_skip_spaces(char *line, unsigned int *pos);
 int		ft_atoi(const char *nptr);
+int		ft_atoi_c(const char *nptr, unsigned int *i);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t	ft_strlen(const char *s);
@@ -55,5 +57,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+double	ft_atof(char *line);
+double	ft_atof_c(char *line, unsigned int *pos);
 
 #endif

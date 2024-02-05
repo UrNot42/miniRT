@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:48:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 06:49:17 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:01:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	p_err_file(unsigned int error_code)
 void	p_err_standard(unsigned int error_code)
 {
 	if (error_code == ERR_NO_PROMPT)
-		ft_fprintf(1, ERM_NO_PROMPT);
+		ft_printf(ERM_NO_PROMPT);
+	else if (error_code == ERR_UNSET)
+		ft_printf(ERM_UNSET);
 }
 
 /*

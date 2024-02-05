@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_print.c                                        :+:      :+:    :+:   */
+/*   ft_skip_spaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:12:13 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/02/05 09:53:11 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/02/05 09:53:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	print_scene(t_scene *scene)
+void	ft_skip_spaces(char *line, unsigned int *pos)
 {
-	printf("Scene {%p} : \n", scene);
+	while (line && line[*pos] && ft_isispace(line[*pos]))
+		(*pos)++;
 }
-// TODO

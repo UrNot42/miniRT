@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:46:35 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 07:28:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:00:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@
 
 enum e_rr_standard
 {
-	ERR_NO_PROMPT = 1
+	ERR_NO_PROMPT = 1,
+	ERR_UNSET
 };
 
 # define ERM_NO_PROMPT "Error: No file provided, please give a [name].rt file\n"
+# define ERM_UNSET "Error: Unset or NULL Value\n"
 
 # define ERR_MLX_LR 11
 # define ERR_MLX_RR 20
@@ -93,7 +95,7 @@ enum e_rr_parsing
 	ERR_PL,
 };
 
-# define ERM_EMPTY "Error Parsing File: Empty file found\n"
+# define ERM_EMPTY "Error Parsing File: Empty file\n"
 # define ERM_NUMBER "Error Parsing File: Number not Valid\n"
 # define ERM_COLOR "Error Parsing File: Color not Valid\n"
 # define ERM_IDENTIFIER "Error Parsing File: Invalid Identifier\n"
@@ -139,6 +141,7 @@ enum e_rr_debug
 	DB_C1,
 	DB_C2,
 	DB_C3,
+	DB_FREE,
 };
 
 # define DBM_START "======Start======\n"
@@ -149,6 +152,7 @@ enum e_rr_debug
 # define DBM_C1 "Inside Child level 1\n"
 # define DBM_C2 "Inside Child level 2\n"
 # define DBM_C3 "Inside Child level 3\n"
+# define DBM_FREE "Freed\n"
 
 # define ERR_CRIT_LR 61
 # define ERR_CRIT_RR 70

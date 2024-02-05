@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 08:03:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:47:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define ID_PLANE "pl"
 # define ID_CYLINDER "cy"
 
-# define O_SIZE_SET 1
+# define O_SIZE_SET 10
 # define O_SIZE_MAX 10000
 
 enum e_objects
@@ -34,7 +34,6 @@ enum e_objects
 };
 
 typedef struct s_pos		t_pos;
-typedef struct s_norm3d_vec	t_norm3d_vec;
 typedef struct s_size		t_size;
 typedef struct s_color		t_color;
 typedef struct s_light		t_light;
@@ -48,14 +47,6 @@ typedef struct s_scene		t_scene;
 
 /* x, y, z coordinates */
 struct s_pos
-{
-	long double	x;
-	long double	y;
-	long double	z;
-};
-
-/* 3d normalized orientation vector in [-1 ; 1] range */
-struct s_norm3d_vec
 {
 	double	x;
 	double	y;
@@ -100,18 +91,18 @@ struct s_sphere
 
 struct s_plane
 {
-	t_pos			point;
-	t_norm3d_vec	orientation;
-	t_color			color;
+	t_pos	point;
+	t_pos	orientation;
+	t_color	color;
 };
 
 struct s_cylinder
 {
-	t_pos			position;
-	t_norm3d_vec	orientation;
-	double			diameter;
-	double			height;
-	t_color			color;
+	t_pos	position;
+	t_pos	orientation;
+	double	diameter;
+	double	height;
+	t_color	color;
 };
 
 struct s_amb_light
@@ -124,7 +115,7 @@ struct s_amb_light
 struct s_camera
 {
 	t_pos			posistion;
-	t_norm3d_vec	orientation;
+	t_pos			orientation;
 	unsigned char	fov;
 	bool			defined;
 };
@@ -139,7 +130,7 @@ struct s_scene
 	t_size		sp_size;
 	t_plane		*plane;
 	t_size		pl_size;
-	t_light		*light;
+	t_src_light	*light;
 	t_size		l_size;
 };
 

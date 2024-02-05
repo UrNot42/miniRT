@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 07:03:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 07:23:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:34:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,17 @@ bool	scene_init(t_scene *scene)
 	sz_set(&scene->pl_size);
 	scene->camera.defined = false;
 	scene->ambient_light.defined = false;
+	scene->sphere = malloc(sizeof(t_sphere) * O_SIZE_SET);
+	if (!scene->sphere)
+		return (p_error(ERR_MEM), false);
+	scene->light = malloc(sizeof(t_light) * O_SIZE_SET);
+	if (!scene->light)
+		return (p_error(ERR_MEM), false);
+	scene->cylinder = malloc(sizeof(t_cylinder) * O_SIZE_SET);
+	if (!scene->cylinder)
+		return (p_error(ERR_MEM), false);
+	scene->plane = malloc(sizeof(t_plane) * O_SIZE_SET);
+	if (!scene->plane)
+		return (p_error(ERR_MEM), false);
 	return (true);
 }
