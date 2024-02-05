@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 03:40:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/04/14 09:53:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 07:31:43 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_next_line(int fd)
 	if (fd < 0)
 		return (free(head), NULL);
 	if (!head)
-		head = gnl_new_nd(head);
+		head = gnl_new_nd(head); // TODO SAVE GNL
 	node = head;
 	if (node->nwln <= 0)
 		node = gnl_new_nd(head);

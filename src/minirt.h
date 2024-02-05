@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/01/22 03:30:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 07:54:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@
 # include "../minilibx-linux/mlx.h"
 # include "../ft_printf/ft_printf.h"
 # include "../libft/libft.h"
+# include "rt_error.h"
+# include "rt_obj.h"
 
 /* --==--==--==--==--DEFINES--==--==--==--==-- */
+
+# define EXTENSION ".rt"
+# define EXT_SIZE 3
 
 /* -=-=-=-=-COLORS-=-=-=-=- */
 
@@ -51,5 +56,14 @@
 /* --==--==--==--==--STRUCTURES--==--==--==--==-- */
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
+
+bool	scene_fill(t_scene *scene, int fd);
+bool	scene_init(t_scene *scene);
+bool	scene_free(t_scene *scene);
+
+bool	read_file(char *file, t_scene *scene);
+
+void	sz_set(t_size *elmt);
+bool	sz_add(t_size *elemt);
 
 #endif

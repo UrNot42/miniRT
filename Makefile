@@ -1,6 +1,12 @@
 NAME		=	minirt
 
-SRC_LIST	=	main.c
+SRC_LIST	=	main.c \
+				error.c \
+				error_display.c \
+				file_management.c \
+				scene_fill.c \
+				scene_management.c \
+				size.c \
 
 SRCS_GNL	=	get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
