@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:12:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:13:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_pos	*get_pos(t_scene *scene, unsigned int id)
 {
 	if (id == OBJ_CAMERA)
-		return (&scene->camera.posistion);
+		return (&scene->camera.position);
 	if (id == OBJ_CYLINDER && scene->cy_size.use)
 		return (&scene->cylinder[scene->cy_size.use - 1].position);
 	if (id == OBJ_SPHERE && scene->sp_size.use)

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:03:09 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:13:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:12:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static double	get_result(char *str, unsigned int *pos)
 	scale = 1;
 	while (ft_isdigit(str[*pos]) || str[*pos] == '.')
 	{
-		if (!decimal)
-			result = result * 10 + (str[(*pos)++] - '0');
+		if (decimal)
+		{
+			scale /= 10;
+			result += (str[*pos] - '0') * scale;
+		}
 		else
 		{
 			if (str[*pos] == '.')
-				decimal = decimal + 1 + 0 * ((*pos)++);
+				decimal++;
 			else
-			{
-				scale /= 10;
-				result += (str[(*pos)++] - '0') * scale;
-			}
+				result = result * 10 + (str[*pos] - '0');
 		}
 		(*pos)++;
 	}

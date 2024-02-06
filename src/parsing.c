@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 14:56:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:41:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	parse_identifier(t_scene *scene, unsigned int id, char *line,
 	if (id == OBJ_CAMERA)
 		set_fov(NULL, line, pos); // TODO
 	if (id != OBJ_CAMERA)
-		set_color(get_color(scene, id), line, pos); // TODO
+		set_color(get_color(scene, id), line, pos);
 	return (false);
 }
 
@@ -74,6 +74,7 @@ unsigned int	parse_line(char *line, t_scene *scene)
 	if (!line[pos])
 		return (1);
 	identifier = check_for_identifier(&line[pos], &pos);
+	printf("%c\n", identifier);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
 	else if (parse_identifier(scene, identifier, line, &pos))

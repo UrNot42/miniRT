@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 14:57:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:40:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@
 # define BACK    "\033[F"
 # define PREV_LN "\033[A"
 
-/* --==--==--==--==--STRUCTURES--==--==--==--==-- */
-
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
 
 bool	scene_fill(t_scene *scene, int fd);
@@ -68,5 +66,7 @@ bool	read_file(char *file, t_scene *scene);
 void	sz_set(t_size *elmt);
 bool	sz_add(t_size *elemt);
 bool	sz_new_elemmt(void **ptr, t_size *elemt, size_t ptr_sz);
+
+void	print_scene(t_scene *scene);
 
 #endif

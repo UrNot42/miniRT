@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 10:47:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:39:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ struct s_amb_light
 
 struct s_camera
 {
-	t_pos			posistion;
+	t_pos			position;
 	t_pos			orientation;
 	unsigned char	fov;
 	bool			defined;

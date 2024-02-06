@@ -15,7 +15,9 @@ SRC_LIST	=	main.c \
 SRCS_GNL	=	get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
 
-HEADERS	=	src/minirt.h ft_printf/ft_printf.h src/get_next_line/get_next_line.h libft/libft.h
+HEADERS		=	src/minirt.h ft_printf/ft_printf.h src/get_next_line/get_next_line.h libft/libft.h
+
+DEPS		=	libft/ Makefile
 
 SRCS_ALL	=	$(SRC_LIST) $(SRCS_GNL)
 
@@ -29,7 +31,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 LDLIBS		=	-lm -L./obj -lmlx -lXext -lX11
 
-RM			=	rm -f
+RM			=	rm -rf
 
 SRC_DIR		=	src/
 
@@ -49,7 +51,7 @@ debug:			$(OBJS) $(HEADERS)
 				mv ft_printf/libftprintf.a obj/
 				$(CC) -o $(NAME) $(OBJS) -g3 -g $(LDLIBS) obj/libft.a obj/libftprintf.a
 
-$(NAME):		$(OBJS) $(HEADERS)
+$(NAME):		$(OBJS) $(HEADERS) $(DEPS)
 				make -C libft/
 				make -C ft_printf/
 				make -C minilibx-linux/
