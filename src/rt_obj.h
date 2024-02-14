@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 18:39:59 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:36:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ struct s_color
 /* Ratio in [0.0 ; 1.0] range */
 struct s_light
 {
-	double	light;
+	double	ratio;
 };
 
 /* Object Light Source */
 struct s_src_light
 {
 	t_pos	position;
-	t_light	brightness;
+	t_light	brgt;
 	t_color	color;
 };
 

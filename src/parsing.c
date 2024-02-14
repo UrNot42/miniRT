@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 18:41:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:42:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ bool	parse_identifier(t_scene *scene, unsigned int id, char *line,
 		&& set_pos(get_norm(scene, id), line, pos))
 		return (true);
 	if (id == OBJ_AMB_LIGHT || id == OBJ_LIGHT)
-		set_ratio(NULL, line, pos); // TODO
+		set_ratio((t_light *)((int)(&scene->ambient_light.ratio) * (id == OBJ_AMB_LIGHT)
+				+ (int)(&scene->light[scene->l_size.use].brgt.ratio) * (id == OBJ_LIGHT)), line, pos);
 	if (id == OBJ_CYLINDER)
-		set_cylinder(NULL, line, pos); // TODO
+		set_cylinder(&scene->cylinder[scene->cy_size.use], line, pos);
 	if (id == OBJ_SPHERE)
-		set_sphere(NULL, line, pos); // TODO
+		set_sphere(&scene->sphere[scene->sp_size.use], line, pos);
 	if (id == OBJ_CAMERA)
-		set_fov(NULL, line, pos); // TODO
+		set_fov(&scene->camera, line, pos);
 	if (id != OBJ_CAMERA)
 		set_color(get_color(scene, id), line, pos);
 	return (false);

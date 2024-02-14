@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:11:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:16:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:34:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,29 @@
 
 bool	set_ratio(t_light *light, char *line, unsigned int *idx)
 {
-	(void)light;
-	(void)line;
-	(void)idx;
+	light->ratio = ft_atof_c(line, idx);
+	if (light -> ratio < 0 || light -> ratio > 1)
+		return (true);
 	return (false);
 }
 
 bool	set_cylinder(t_cylinder *cy, char *line, unsigned int *idx)
 {
-	(void)cy;
-	(void)line;
-	(void)idx;
+	cy->diameter = ft_atof_c(line, idx);
+	cy->height = ft_atof_c(line, idx);
 	return (false);
 }
 
 bool	set_sphere(t_sphere *sp, char *line, unsigned int *idx)
 {
-	(void)sp;
-	(void)line;
-	(void)idx;
+	sp->diameter = ft_atof_c(line, idx);
 	return (false);
 }
 
 bool	set_fov(t_camera *cam, char *line, unsigned int *idx)
 {
-	(void)cam;
-	(void)line;
-	(void)idx;
+	cam->fov = ft_atoi_c(line, idx);
+	if (cam->fov < 0 || cam->fov > 180)
+		return (true);
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 18:26:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:36:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	print_scene(t_scene *scene)
 	for (size_t i = 0; i < scene->l_size.use; i++)
 	{
 		printf("\tLight source %ld: \n", i);
-		// printf("\tLight ratio: %lf\n", scene->light[i].brightness.light);
+		// printf("\tLight ratio: %lf\n", scene->light[i].brgt.light);
 		print_pos(&scene->light[i].position);
 		printf("\tColor: \t");
 		print_col(&scene->light[i].color);
