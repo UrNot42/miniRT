@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/12 10:36:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:41:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 
 enum e_objects
 {
+	OBJ_UNDEF = 0,
 	OBJ_AMB_LIGHT = 1,
 	OBJ_CAMERA,
-	OBJ_LIGHT,
+	OBJ_SRC_LIGHT,
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER
@@ -36,13 +37,8 @@ enum e_objects
 typedef struct s_pos		t_pos;
 typedef struct s_size		t_size;
 typedef struct s_color		t_color;
-typedef struct s_light		t_light;
-typedef struct s_src_light	t_src_light;
-typedef struct s_amb_light	t_amb_light;
-typedef struct s_sphere		t_sphere;
-typedef struct s_plane		t_plane;
-typedef struct s_cylinder	t_cylinder;
-typedef struct s_camera		t_camera;
+typedef struct s_bound		t_bound;
+typedef struct s_obj		t_obj;
 typedef struct s_scene		t_scene;
 
 /* x, y, z coordinates */
@@ -68,69 +64,38 @@ struct s_color
 	unsigned char	blu;
 };
 
-/* Ratio in [0.0 ; 1.0] range */
-struct s_light
+struct s_bound
 {
-	double	ratio;
+	bool	set;
+	double	left;
+	double	right;
 };
 
-/* Object Light Source */
-struct s_src_light
+struct s_obj
 {
-	t_pos	position;
-	t_light	brgt;
-	t_color	color;
-};
-
-struct s_sphere
-{
-	t_pos	position;
-	double	diameter;
-	t_color	color;
-};
-
-struct s_plane
-{
-	t_pos	point;
-	t_pos	orientation;
-	t_color	color;
-};
-
-struct s_cylinder
-{
-	t_pos	position;
-	t_pos	orientation;
-	double	diameter;
-	double	height;
-	t_color	color;
-};
-
-struct s_amb_light
-{
-	t_light	ratio;
-	t_color	color;
-	bool	defined;
-};
-
-struct s_camera
-{
-	t_pos			position;
-	t_pos			orientation;
+	unsigned int	type;
+	t_pos			pos;
+	t_pos			norm;
+	double			ratio;
+	double			diameter;
+	double			height;
 	unsigned char	fov;
+	t_color			col;
+	t_size			*size;
 	bool			defined;
 };
 
 struct s_scene
 {
-	t_camera	camera;
-	t_amb_light	ambient_light;
-	t_cylinder	*cylinder;
+	t_obj		camera;
+	t_obj		ambient_light;
+	t_obj		*cylinder;
 	t_size		cy_size;
-	t_sphere	*sphere;
+	t_obj		*sphere;
 	t_size		sp_size;
-	t_plane		*plane;
+	t_obj		*plane;
 	t_size		pl_size;
-	t_src_light	*light;
+	t_obj		*light;
 	t_size		l_size;
 };
 

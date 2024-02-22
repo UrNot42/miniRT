@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 14:28:41 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:34:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool	sz_add(t_size *elemt)
 	return (false);
 }
 
-bool	sz_new_elemmt(void **ptr, t_size *elemt, size_t ptr_sz)
+bool	sz_new_elemmt(t_obj *ptr, t_size *elemt)
 {
-	void			**new_ptr;
+	t_obj			*new_ptr;
 	unsigned int	i;
 
 	if (!sz_add(elemt))
@@ -35,7 +35,7 @@ bool	sz_new_elemmt(void **ptr, t_size *elemt, size_t ptr_sz)
 	if (elemt->max >= O_SIZE_MAX)
 		return (p_error(ERR_OBJ_MAX_SZ), true);
 	elemt->max *= 10;
-	new_ptr = malloc(ptr_sz * elemt->max);
+	new_ptr = malloc(sizeof(t_obj) * elemt->max);
 	if (!new_ptr)
 		return (p_error(ERR_MEM), true);
 	i = 0;

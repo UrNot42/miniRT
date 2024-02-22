@@ -6,25 +6,49 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:18:29 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 18:42:27 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:34:17 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/*
 bool	add_scene_obj(t_scene *scene, unsigned int id)
 {
+	t_obj	*object;
+	t_size	*size;
+
 	if (id == OBJ_CYLINDER
-		&& sz_new_elemmt((void **)&scene->cylinder, &scene->cy_size, sizeof(t_cylinder)))
+		&& sz_new_elemmt(&scene->cylinder[scene->cy_size.use], &scene->cy_size))
 		return (true);
-	if (id == OBJ_SPHERE
-		&& sz_new_elemmt((void **)&scene->sphere, &scene->sp_size, sizeof(t_sphere)))
+	else if (id == OBJ_SPHERE
+		&& sz_new_elemmt(&scene->sphere[scene->sp_size.use], &scene->sp_size))
 		return (true);
-	if (id == OBJ_PLANE
-		&& sz_new_elemmt((void **)&scene->plane, &scene->pl_size, sizeof(t_plane)))
+	else if (id == OBJ_PLANE
+		&& sz_new_elemmt(&scene->plane[scene->pl_size.use], &scene->pl_size))
 		return (true);
-	if (id == OBJ_LIGHT
-		&& sz_new_elemmt((void **)&scene->light, &scene->l_size, sizeof(t_light)))
+	else if (id == OBJ_SRC_LIGHT
+		&& sz_new_elemmt(&scene->light[scene->l_size.use], &scene->l_size))
+		return (true);
+	return (false);
+}
+
+(t_light *)((int)(&scene->ambient_light.ratio) * (id == OBJ_AMB_LIGHT)
+				+ (int)(&scene->light[scene->l_size.use].brgt.ratio) * (id == OBJ_SRC_LIGHT))
+
+	set_cylinder(&scene->cylinder[scene->cy_size.use], line, pos);
+	set_sphere(&scene->sphere[scene->sp_size.use], line, pos);
+	set_fov(&scene->camera, line, pos);
+
+*/
+
+bool	add_scene_obj(unsigned int id, t_obj *object, t_size *size)
+{
+	if ((id == OBJ_CYLINDER
+		|| id == OBJ_SPHERE
+		|| id == OBJ_PLANE
+		|| id == OBJ_SRC_LIGHT)
+		&& sz_new_elemmt(object, size))
 		return (true);
 	return (false);
 }

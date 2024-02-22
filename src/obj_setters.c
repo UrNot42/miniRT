@@ -6,52 +6,11 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 19:13:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:22:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_pos	*get_pos(t_scene *scene, unsigned int id)
-{
-	if (id == OBJ_CAMERA)
-		return (&scene->camera.position);
-	if (id == OBJ_CYLINDER && scene->cy_size.use)
-		return (&scene->cylinder[scene->cy_size.use - 1].position);
-	if (id == OBJ_SPHERE && scene->sp_size.use)
-		return (&scene->sphere[scene->sp_size.use - 1].position);
-	if (id == OBJ_PLANE && scene->pl_size.use)
-		return (&scene->plane[scene->pl_size.use - 1].point);
-	if (id == OBJ_LIGHT && scene->l_size.use)
-		return (&scene->light[scene->l_size.use - 1].position);
-	return (NULL);
-}
-
-t_pos	*get_norm(t_scene *scene, unsigned int id)
-{
-	if (id == OBJ_CAMERA)
-		return (&scene->camera.orientation);
-	if (id == OBJ_CYLINDER && scene->cy_size.use)
-		return (&scene->cylinder[scene->cy_size.use - 1].orientation);
-	if (id == OBJ_PLANE && scene->pl_size.use)
-		return (&scene->plane[scene->pl_size.use - 1].orientation);
-	return (NULL);
-}
-
-t_color	*get_color(t_scene *scene, unsigned int id)
-{
-	if (id == OBJ_AMB_LIGHT)
-		return (&scene->ambient_light.color);
-	if (id == OBJ_CYLINDER && scene->cy_size.use)
-		return (&scene->cylinder[scene->cy_size.use - 1].color);
-	if (id == OBJ_PLANE && scene->pl_size.use)
-		return (&scene->plane[scene->pl_size.use - 1].color);
-	if (id == OBJ_SPHERE && scene->sp_size.use)
-		return (&scene->sphere[scene->sp_size.use - 1].color);
-	if (id == OBJ_LIGHT && scene->l_size.use)
-		return (&scene->light[scene->l_size.use - 1].color);
-	return (NULL);
-}
 
 bool	set_color(t_color *color, char *line, unsigned int *idx)
 {
@@ -90,5 +49,25 @@ bool	set_pos(t_pos *pos, char *line, unsigned int *idx)
 	pos->z = ft_atof_c(line, idx);
 	if (!ft_isispace(line[*idx]))
 		return (p_error(ERR_NUMBER), true);
+	return (false);
+}
+
+bool	set_db_wbound(double *num, t_bound boundary,
+	char *line, unsigned int *idx)
+{
+	*num = ft_atof_c(line, idx);
+	if (boundary.set
+		&& (*num < (double)(boundary.right) || *num > (double)(boundary.right)))
+		return (true);
+	return (false);
+}
+
+bool	set_int_wbound(int *num, t_bound boundary,
+	char *line, unsigned int *idx)
+{
+	*num = ft_atoi_c(line, idx);
+	if (boundary.set
+		&& (*num < (int)(boundary.right) || *num > (int)(boundary.right)))
+		return (true);
 	return (false);
 }

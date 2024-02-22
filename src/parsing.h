@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 14:58:35 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:33:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 
 unsigned int	parse_line(char *line, t_scene *scene);
 bool			set_pos(t_pos *pos, char *line, unsigned int *idx);
-
-bool			set_ratio(t_light *light, char *line, unsigned int *idx);
-bool			set_cylinder(t_cylinder *cy, char *line, unsigned int *idx);
-bool			set_sphere(t_sphere *sp, char *line, unsigned int *idx);
-bool			set_fov(t_camera *cam, char *line, unsigned int *idx);
 bool			set_color(t_color *color, char *line, unsigned int *idx);
+bool			set_int_wbound(int *num, t_bound boundary,
+					char *line, unsigned int *idx);
+bool			set_db_wbound(double *num, t_bound boundary,
+					char *line, unsigned int *idx);
 
-t_pos			*get_norm(t_scene *scene, unsigned int id);
-t_pos			*get_pos(t_scene *scene, unsigned int id);
-t_color			*get_color(t_scene *scene, unsigned int id);
+bool	scene_fill(t_scene *scene, int fd);
+bool	scene_init(t_scene *scene);
+bool	scene_free(t_scene *scene);
+bool	add_scene_obj(unsigned int id, t_obj *object, t_size *size);
+
+bool	read_file(char *file, t_scene *scene);
+
+void	sz_set(t_size *elmt);
+bool	sz_add(t_size *elemt);
+bool	sz_new_elemmt(t_obj *ptr, t_size *elemt);
 
 #endif

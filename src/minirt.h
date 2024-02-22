@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 18:40:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:33:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,6 @@
 # define PREV_LN "\033[A"
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
-
-bool	scene_fill(t_scene *scene, int fd);
-bool	scene_init(t_scene *scene);
-bool	scene_free(t_scene *scene);
-bool	add_scene_obj(t_scene *scene, unsigned int id);
-
-bool	read_file(char *file, t_scene *scene);
-
-void	sz_set(t_size *elmt);
-bool	sz_add(t_size *elemt);
-bool	sz_new_elemmt(void **ptr, t_size *elemt, size_t ptr_sz);
 
 void	print_scene(t_scene *scene);
 
