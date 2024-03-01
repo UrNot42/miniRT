@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 15:45:22 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:46:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ unsigned int	parse_line(char *line, t_scene *scene)
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
 	tmp = get_obj(scene, identifier);
-	if (set_obj(scene, &tmp, identifier))
+	if (set_obj(scene, identifier))
 		return (4);
 	tmp->type = identifier;
 	if (parse_object(tmp, identifier, line, &pos))
