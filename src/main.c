@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 17:21:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:00:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (p_error(ERR_NO_PROMPT), EXIT_FAILURE);
+	scene = (t_scene){0};
 	if (read_file(av[1], &scene))
 		return (EXIT_FAILURE);
 	return (opening_window());

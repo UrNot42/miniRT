@@ -6,27 +6,27 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/19 14:46:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:45:22 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	check_for_identifier(char *possible_id, unsigned int *pos)
+unsigned int	check_for_identifier(char *possible_id, unsigned int *pos)
 {
-	if (ft_strncmp(possible_id, ID_AMB_LIGHT, 1))
+	if (!ft_strncmp(possible_id, ID_AMB_LIGHT, 1))
 		return ((*pos)++, OBJ_AMB_LIGHT);
-	else if (ft_strncmp(possible_id, ID_CAMERA, 1))
+	else if (!ft_strncmp(possible_id, ID_CAMERA, 1))
 		return ((*pos)++, OBJ_CAMERA);
-	else if (ft_strncmp(possible_id, ID_LIGHT, 1))
+	else if (!ft_strncmp(possible_id, ID_LIGHT, 1))
 		return ((*pos)++, OBJ_SRC_LIGHT);
-	else if (ft_strncmp(possible_id, ID_CYLINDER, 2))
+	else if (!ft_strncmp(possible_id, ID_CYLINDER, 2))
 		return ((*pos)++, (*pos)++, OBJ_CYLINDER);
-	else if (ft_strncmp(possible_id, ID_PLANE, 2))
+	else if (!ft_strncmp(possible_id, ID_PLANE, 2))
 		return ((*pos)++, (*pos)++, OBJ_PLANE);
-	else if (ft_strncmp(possible_id, ID_SPHERE, 2))
+	else if (!ft_strncmp(possible_id, ID_SPHERE, 2))
 		return ((*pos)++, (*pos)++, OBJ_SPHERE);
-	return (0);
+	return (p_error(ERR_IDENTIFIER), OBJ_UNDEF);
 }
 
 /*
@@ -46,49 +46,46 @@ t_obj	*get_obj(t_scene *scene, char id)
 		return (&scene->sphere[scene->sp_size.use]);
 	else if (id == OBJ_PLANE && scene->pl_size.use)
 		return (&scene->plane[scene->pl_size.use]);
-	else if (id == OBJ_SRC_LIGHT
-		&& sz_new_elemmt(&scene->light[scene->l_size.use], &scene->l_size))
-		return (true);
-	return (false);
-
-(t_light *)((int)(&scene->ambient_light.ratio) * (id == OBJ_AMB_LIGHT)
-				+ (int)(&scene->light[scene->l_size.use].brgt.ratio) * (id == OBJ_SRC_LIGHT))
-
-	set_cylinder(&scene->cylinder[scene->cy_size.use], line, pos);
-	set_sphere(&scene->sphere[scene->sp_size.use], line, pos);
-	set_fov(&scene->camera, line, pos);
+	else if (id == OBJ_SRC_LIGHT && scene->l_size.use)
+		return (&scene->light[scene->l_size.use]);
+	else if (id == OBJ_CAMERA)
+		return (&scene->camera);
+	else if (id == OBJ_AMB_LIGHT)
+		return (&scene->ambient_light);
+	else if (id == OBJ_UNDEF)
+		return (NULL);
+	return (NULL);
 }
+
+//TODO RM
+#include "tmp_print_src.h"
 
 bool	parse_object(t_obj *object, unsigned int id, char *line,
 	unsigned int *pos)
 {
-	ft_skip_spaces(line, pos);
+	printf("parsing new obj\n");
 	if (!line[*pos])
-		return (true);
-	if (id != OBJ_CAMERA && id != OBJ_AMB_LIGHT
-		&& add_scene_obj(id, object, object->size))
-		return (true);
+		return (p_error(ERR_LINE), true);
 	if (id != OBJ_AMB_LIGHT && set_pos(&object->pos, line, pos))
-		return (true);
+		return (p_error(ERR_POS), true);
 	if (id != OBJ_AMB_LIGHT && id != OBJ_SRC_LIGHT && id != OBJ_SPHERE
 		&& set_pos(&object->norm, line, pos))
-		return (true);
+		return (p_error(ERR_NORM), true);
 	if ((id == OBJ_AMB_LIGHT || id == OBJ_SRC_LIGHT)
 		&& set_db_wbound(&object->ratio, (t_bound){true, 0, 1}, line, pos))
-		return (true);
+		return (p_error(ERR_RATIO), true);
+	if ((id == OBJ_SPHERE || id == OBJ_CYLINDER)
+		&& set_db(&object->diameter, line, pos))
+		return (p_error(ERR_DIAMETER), true);
 	if (id == OBJ_CYLINDER
-		&& set_db_wbound(&object->diameter, (t_bound){false, 0, 0}, line, pos)
-		&& set_db_wbound(&object->height, (t_bound){false, 0, 0}, line, pos))
-		return (true);
-	if (id == OBJ_SPHERE
-		&& set_db_wbound(&object->diameter, (t_bound){false, 0, 0}, line, pos))
-		return (true);
+		&& set_db(&object->height, line, pos))
+		return (p_error(ERR_HEIGHT), true);
 	if (id == OBJ_CAMERA
-		&& set_int_wbound((int *)&object->fov,
-			(t_bound){0, 0, false}, line, pos))
-		return (true);
-	if (id != OBJ_CAMERA)
-		set_color(&object->col, line, pos);
+		&& set_int((int *)&object->fov, line, pos))
+		return (p_error(ERR_FOV), true);
+	if (id != OBJ_CAMERA && set_color(&object->col, line, pos))
+		return (p_error(ERR_COLOR), true);
+	print_obj(object);
 	return (false);
 }
 
@@ -96,17 +93,21 @@ unsigned int	parse_line(char *line, t_scene *scene)
 {
 	unsigned int	pos;
 	unsigned int	identifier;
+	t_obj			*tmp;
 
 	pos = 0;
 	ft_skip_spaces(line, &pos);
 	if (!line[pos])
 		return (1);
+	printf("line: %s\n", line);
 	identifier = check_for_identifier(&line[pos], &pos);
-	printf("%c\n", identifier);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
-	else if (parse_object(get_obj(scene, identifier),
-			identifier, line, &pos))
+	tmp = get_obj(scene, identifier);
+	if (set_obj(scene, &tmp, identifier))
+		return (4);
+	tmp->type = identifier;
+	if (parse_object(tmp, identifier, line, &pos))
 		return (3);
 	return (false);
 }

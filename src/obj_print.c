@@ -6,17 +6,19 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/12 10:36:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:10:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_pos(t_pos	*pos)
+void	print_pos(t_pos	*pos, bool tab)
 {
+	if (tab)
+		printf("\t\t");
 	printf("x: %f\n", pos -> x);
 	printf("\t\ty: %f\n", pos -> y);
-	printf("\t\tz: %f\n", pos -> z);
+	printf("\t\tz: %f\n\n", pos -> z);
 }
 
 void	print_col(t_color	*col)
@@ -26,6 +28,18 @@ void	print_col(t_color	*col)
 	printf("\t\tBlue : %d\n", col -> blu);
 }
 
+void	print_obj(t_obj *obj)
+{
+	printf("Type: %c(%u)\n", obj->type, obj->type);
+	print_pos(&obj->pos, 1);
+	print_pos(&obj->norm, 1);
+	printf("ratio: %lf\n", obj->ratio);
+	printf("diameter: %lf\n", obj->diameter);
+	printf("height: %lf\n", obj->height);
+	printf("fov: %u\n", obj->fov);
+	print_col(&obj->col);
+}
+
 void	print_scene(t_scene *scene)
 {
 	printf("Scene {%p} : \n", scene);
@@ -33,52 +47,52 @@ void	print_scene(t_scene *scene)
 	{
 		printf("\tCamera: \n");
 		printf("\tpos:\t");
-		print_pos(&scene->camera.position);
+		print_pos(&scene->camera.pos, 0);
 		printf("\tnorm:\t");
-		print_pos(&scene->camera.orientation);
+		print_pos(&scene->camera.norm, 0);
 		printf("\tfov: %d\n", (unsigned int)scene->camera.fov);
 	}
 	if (scene->ambient_light.defined)
 	{
 		printf("\tAmbient Light: \n");
-		printf("\tLight ratio: %lf\n", scene->ambient_light.ratio.light);
+		printf("\tLight ratio: %lf\n", scene->ambient_light.ratio);
 		printf("\tColor: \t");
-		print_col(&scene->ambient_light.color);
+		print_col(&scene->ambient_light.col);
 	}
 	for (size_t i = 0; i < scene->cy_size.use; i++)
 	{
 		printf("\tCylinder %ld: \n", i);
-		print_pos(&scene->cylinder[i].position);
+		print_pos(&scene->cylinder[i].pos, 1);
 		printf("\tnorm:\t");
-		print_pos(&scene->cylinder[i].orientation);
+		print_pos(&scene->cylinder[i].norm, 0);
 		printf("\tDiameter: %f\t", scene->cylinder[i].diameter);
 		printf("\tHeight: %f\t", scene->cylinder[i].height);
 		printf("\tColor: \t");
-		print_col(&scene->cylinder[i].color);
+		print_col(&scene->cylinder[i].col);
 	}
 	for (size_t i = 0; i < scene->sp_size.use; i++)
 	{
 		printf("\tSphere %ld: \n", i + 1);
-		print_pos(&scene->sphere[i].position);
+		print_pos(&scene->sphere[i].pos, 1);
 		printf("\tDiameter: %f\t", scene->sphere[i].diameter);
 		printf("\tColor: \t");
-		print_col(&scene->sphere[i].color);
+		print_col(&scene->sphere[i].col);
 	}
 	for (size_t i = 0; i < scene->pl_size.use; i++)
 	{
 		printf("\tPlane %ld: \n", i + 1);
-		print_pos(&scene->plane[i].point);
+		print_pos(&scene->plane[i].pos, 1);
 		printf("\tnorm:\t");
-		print_pos(&scene->plane[i].orientation);
+		print_pos(&scene->plane[i].norm, 0);
 		printf("\tColor: \t");
-		print_col(&scene->plane[i].color);
+		print_col(&scene->plane[i].col);
 	}
 	for (size_t i = 0; i < scene->l_size.use; i++)
 	{
 		printf("\tLight source %ld: \n", i);
 		// printf("\tLight ratio: %lf\n", scene->light[i].brgt.light);
-		print_pos(&scene->light[i].position);
+		print_pos(&scene->light[i].pos, 1);
 		printf("\tColor: \t");
-		print_col(&scene->light[i].color);
+		print_col(&scene->light[i].col);
 	}
 }

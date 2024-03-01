@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:48:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 11:01:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:37:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	p_err_standard(unsigned int error_code)
 		ft_printf(ERM_NO_PROMPT);
 	else if (error_code == ERR_UNSET)
 		ft_printf(ERM_UNSET);
+	else if (error_code == ERR_EMPTY)
+		ft_printf(ERM_EMPTY);
 }
 
 /*

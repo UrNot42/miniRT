@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 07:03:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/16 20:48:36 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:41:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ bool	scene_free(t_scene *scene)
 
 bool	scene_init(t_scene *scene)
 {
-	sz_set(&scene->sp_size);
-	sz_set(&scene->l_size);
-	sz_set(&scene->cy_size);
-	sz_set(&scene->pl_size);
 	scene->camera.defined = false;
 	scene->ambient_light.defined = false;
 	scene->sphere = malloc(sizeof(t_obj) * O_SIZE_SET);

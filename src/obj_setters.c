@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/19 14:22:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:38:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 bool	set_color(t_color *color, char *line, unsigned int *idx)
 {
+	ft_skip_spaces(line, idx);
 	if (!color)
 		return (p_error(ERR_UNSET), true);
 	color->red = ft_atof_c(line, idx);
 	if (line[*idx] && line[*idx] == ',')
 		(*idx)++;
 	else
-		return (p_error(ERR_COLOR), true);
+		return (true);
 	color->grn = ft_atof_c(line, idx);
 	if (line[*idx] && line[*idx] == ',')
 		(*idx)++;
 	else
-		return (p_error(ERR_COLOR), true);
+		return (true);
 	color->blu = ft_atof_c(line, idx);
 	if (!ft_isispace(line[*idx]))
-		return (p_error(ERR_COLOR), true);
+		return (true);
 	return (false);
 }
 
 bool	set_pos(t_pos *pos, char *line, unsigned int *idx)
 {
+	ft_skip_spaces(line, idx);
 	if (!pos)
 		return (p_error(ERR_UNSET), true);
 	pos->x = ft_atof_c(line, idx);
@@ -52,22 +54,21 @@ bool	set_pos(t_pos *pos, char *line, unsigned int *idx)
 	return (false);
 }
 
-bool	set_db_wbound(double *num, t_bound boundary,
-	char *line, unsigned int *idx)
+bool	set_obj(t_scene *scene, t_obj **object, int id)
 {
-	*num = ft_atof_c(line, idx);
-	if (boundary.set
-		&& (*num < (double)(boundary.right) || *num > (double)(boundary.right)))
-		return (true);
-	return (false);
-}
+	t_size	*size_tmp;
 
-bool	set_int_wbound(int *num, t_bound boundary,
-	char *line, unsigned int *idx)
-{
-	*num = ft_atoi_c(line, idx);
-	if (boundary.set
-		&& (*num < (int)(boundary.right) || *num > (int)(boundary.right)))
+	if (id == OBJ_CAMERA || id == OBJ_AMB_LIGHT)
+		return (false);
+	if (id == OBJ_CYLINDER)
+		size_tmp = &scene->cy_size;
+	if (id == OBJ_PLANE)
+		size_tmp = &scene->pl_size;
+	if (id == OBJ_SPHERE)
+		size_tmp = &scene->sp_size;
+	if (id == OBJ_SRC_LIGHT)
+		size_tmp = &scene->l_size;
+	if (sz_new_elemmt(object, size_tmp))
 		return (true);
 	return (false);
 }

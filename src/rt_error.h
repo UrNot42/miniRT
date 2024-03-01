@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:46:35 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 11:00:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:50:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@
 enum e_rr_standard
 {
 	ERR_NO_PROMPT = 1,
-	ERR_UNSET
+	ERR_UNSET,
+	ERR_EMPTY
 };
 
 # define ERM_NO_PROMPT "Error: No file provided, please give a [name].rt file\n"
 # define ERM_UNSET "Error: Unset or NULL Value\n"
+# define ERM_EMPTY "Error: Empty file\n"
 
 # define ERR_MLX_LR 11
 # define ERR_MLX_RR 20
@@ -83,28 +85,28 @@ enum e_rr_minilibx
 
 enum e_rr_parsing
 {
-	ERR_EMPTY = 21,
+	ERR_LINE = 21,
 	ERR_NUMBER,
-	ERR_COLOR,
 	ERR_IDENTIFIER,
-	ERR_AL,
-	ERR_CAM,
-	ERR_LIGHT,
-	ERR_SP,
-	ERR_CY,
-	ERR_PL,
+	ERR_COLOR,
+	ERR_POS,
+	ERR_NORM,
+	ERR_RATIO,
+	ERR_HEIGHT,
+	ERR_DIAMETER,
+	ERR_FOV,
 };
 
-# define ERM_EMPTY "Error Parsing File: Empty file\n"
+# define ERM_LINE "Error Parsing File: Bad line format in file\n"
 # define ERM_NUMBER "Error Parsing File: Number not Valid\n"
-# define ERM_COLOR "Error Parsing File: Color not Valid\n"
-# define ERM_IDENTIFIER "Error Parsing File: Invalid Identifier\n"
-# define ERM_AL "Parsing Object: Ambient lighting couldn't be set\n"
-# define ERM_CAM "Parsing Object: Camera couldn't be set\n"
-# define ERM_LIGHT "Parsing Object: Light Source couldn't be set\n"
-# define ERM_SP "Parsing Object: Sphere couldn't be set\n"
-# define ERM_CY "Parsing Object: Cylinder couldn't be set\n"
-# define ERM_PL "Parsing Object: Plane couldn't be defined\n"
+# define ERM_IDENTIFIER "Error Parsing Object: Invalid Identifier\n"
+# define ERM_COLOR "Error Parsing Object: Color not Valid\n"
+# define ERM_POS "Error Parsing Object: Position couldn't be set\n"
+# define ERM_NORM "Error Parsing Object: Norm vector couldn't be set\n"
+# define ERM_RATIO "Error Parsing Object: Ratio couldn't be set\n"
+# define ERM_HEIGHT "Error Parsing Object: Height couldn't be set\n"
+# define ERM_DIAMETER "Error Parsing Object: Diameter couldn't be set\n"
+# define ERM_FOV "Error Parsing Object: Fov couldn't be defined\n"
 
 # define ERR_ENGN_LR 31
 # define ERR_ENGN_RR 40

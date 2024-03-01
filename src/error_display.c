@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:03:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 09:08:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:35:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,26 @@ void	p_err_minilibx(unsigned int error_code)
 
 void	p_err_parsing(unsigned int error_code)
 {
-	if (error_code == ERR_EMPTY)
-		ft_fprintf(2, ERM_EMPTY);
+	if (error_code == ERR_LINE)
+		ft_fprintf(2, ERM_LINE);
 	if (error_code == ERR_NUMBER)
 		ft_fprintf(2, ERM_NUMBER);
 	if (error_code == ERR_COLOR)
 		ft_fprintf(2, ERM_COLOR);
 	if (error_code == ERR_IDENTIFIER)
 		ft_fprintf(2, ERM_IDENTIFIER);
-	if (error_code == ERR_AL)
-		ft_fprintf(2, ERM_AL);
-	if (error_code == ERR_CAM)
-		ft_fprintf(2, ERM_CAM);
-	if (error_code == ERR_LIGHT)
-		ft_fprintf(2, ERM_LIGHT);
-	if (error_code == ERR_SP)
-		ft_fprintf(2, ERM_SP);
-	if (error_code == ERR_CY)
-		ft_fprintf(2, ERM_CY);
-	if (error_code == ERR_PL)
-		ft_fprintf(2, ERM_PL);
+	if (error_code == ERR_POS)
+		ft_fprintf(2, ERM_POS);
+	if (error_code == ERR_FOV)
+		ft_fprintf(2, ERM_FOV);
+	if (error_code == ERR_RATIO)
+		ft_fprintf(2, ERM_RATIO);
+	if (error_code == ERR_HEIGHT)
+		ft_fprintf(2, ERM_HEIGHT);
+	if (error_code == ERR_DIAMETER)
+		ft_fprintf(2, ERM_DIAMETER);
+	if (error_code == ERR_NORM)
+		ft_fprintf(2, ERM_NORM);
 }
 
 void	p_err_engine(unsigned int error_code)
