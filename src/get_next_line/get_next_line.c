@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 03:40:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:23:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:29:53 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ int	gnl_nwln(t_buff_list *node, int skip)
 	return (0);
 }
 
+static int	save_gnl(t_buff_list **head)
+{
+	*head = gnl_new_nd(*head);
+	if (!(*head))
+		return (false);
+	return (true);
+}
+
 char	*get_next_line(int fd)
 {
 	static t_buff_list	*head = NULL;
@@ -58,12 +66,13 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (free(head), NULL);
-	if (!head)
-		head = gnl_new_nd(head); // TODO SAVE GNL
+	if (!head && !save_gnl(&head))
+		return (NULL);
 	node = head;
 	if (node->nwln <= 0)
 		node = gnl_new_nd(head);
-	while (node->nwln <= 0)
+	rd_size = BUFFER_SIZE;
+	while (node->nwln <= 0 && rd_size >= BUFFER_SIZE)
 	{
 		rd_size = read(fd, node->buff, BUFFER_SIZE);
 		if (rd_size <= 0 || fd < 0)

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:53:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2023/03/23 06:30:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:30:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
