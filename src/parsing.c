@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 15:46:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:09:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ bool	parse_object(t_obj *object, unsigned int id, char *line,
 		return (p_error(ERR_FOV), true);
 	if (id != OBJ_CAMERA && set_color(&object->col, line, pos))
 		return (p_error(ERR_COLOR), true);
+	object->type = id;
 	print_obj(object);
 	return (false);
 }
@@ -93,7 +94,6 @@ unsigned int	parse_line(char *line, t_scene *scene)
 {
 	unsigned int	pos;
 	unsigned int	identifier;
-	t_obj			*tmp;
 
 	pos = 0;
 	ft_skip_spaces(line, &pos);
@@ -103,11 +103,9 @@ unsigned int	parse_line(char *line, t_scene *scene)
 	identifier = check_for_identifier(&line[pos], &pos);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
-	tmp = get_obj(scene, identifier);
 	if (set_obj(scene, identifier))
 		return (4);
-	tmp->type = identifier;
-	if (parse_object(tmp, identifier, line, &pos))
+	if (parse_object(get_obj(scene, identifier), identifier, line, &pos))
 		return (3);
 	return (false);
 }

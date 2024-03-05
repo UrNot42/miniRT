@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 15:54:27 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:05:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ bool	sz_new_elemmt(t_obj **ptr, t_size *size)
 
 	if (sz_add(size))
 		return (false);
-	if (size->max >= O_SIZE_MAX)
+	if (size->max * 2 >= O_SIZE_MAX)
 		return (p_error(ERR_OBJ_MAX_SZ), true);
-	size->max *= 10;
+	size->max *= 2;
 	if (size->max < 1)
 		sz_set(size);
-	new_ptr = malloc(sizeof(t_obj) * size->max);
+	new_ptr = ft_calloc(sizeof(t_obj), size->max);
 	if (!new_ptr)
 		return (p_error(ERR_MEM), true);
 	i = 0;
@@ -63,8 +63,11 @@ bool	sz_new_elemmt(t_obj **ptr, t_size *size)
 	}
 	new_ptr[i] = (t_obj){0, (t_pos){0, 0, 0}, (t_pos){0, 0, 0}, 0, 0, 0, 0,
 		(t_color){0, 0, 0}, size, 0};
-	free(*ptr);
+	// free(*ptr);
+	printf("ptr(mom): %p\n", ptr);
+	printf("\tptr(son): %p\n", *ptr);
 	(*ptr) = new_ptr;
+	printf("\tptr(new): %p\n", *ptr);
 	size->use++;
 	return (false);
 }

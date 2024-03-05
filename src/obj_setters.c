@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 15:57:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:04:23 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,6 @@ t_obj	**get_flex_array(t_scene *scene, int id)
 	return (NULL);
 }
 
-void	set_flex_array(t_scene *scene, t_obj **new_obj, int id)
-{
-	if (id == OBJ_CYLINDER)
-		scene->cylinder = *new_obj;
-	else if (id == OBJ_SPHERE)
-		scene->sphere = *new_obj;
-	else if (id == OBJ_PLANE)
-		scene->plane = *new_obj;
-	else if (id == OBJ_SRC_LIGHT)
-		scene->light = *new_obj;
-}
-
 bool	set_obj(t_scene *scene, int id)
 {
 	t_obj	**obj_tmp;
@@ -87,6 +75,8 @@ bool	set_obj(t_scene *scene, int id)
 	if (id == OBJ_CAMERA || id == OBJ_AMB_LIGHT)
 		return (false);
 	obj_tmp = get_flex_array(scene, id);
+	if (!obj_tmp)
+		return (true);
 	if (id == OBJ_CYLINDER)
 		size_tmp = &scene->cy_size;
 	if (id == OBJ_PLANE)
@@ -97,6 +87,5 @@ bool	set_obj(t_scene *scene, int id)
 		size_tmp = &scene->l_size;
 	if (sz_new_elemmt(obj_tmp, size_tmp))
 		return (true);
-	set_flex_array(scene, obj_tmp, id);
 	return (false);
 }
