@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:18:29 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 13:21:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:34:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ bool	scene_fill(t_scene *scene, int fd)
 	unsigned int	tmp;
 
 	if (!scene_init(scene))
-		return (false);
+		return (true);
 	count = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (p_error(ERR_EMPTY), false);
+		return (p_error(ERR_EMPTY), true);
 	while (line)
 	{
 		tmp = parse_line(line, scene);
@@ -31,10 +31,10 @@ bool	scene_fill(t_scene *scene, int fd)
 		if (!tmp)
 			count++;
 		else if (tmp > 1)
-			return (get_next_line(-1), false);
+			return (get_next_line(-1), true);
 		line = get_next_line(fd);
 	}
 	if (!count)
-		return (p_error(ERR_EMPTY), false);
-	return (true);
+		return (p_error(ERR_EMPTY), true);
+	return (false);
 }
