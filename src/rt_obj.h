@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 11:09:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:19:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define ID_PLANE "pl"
 # define ID_CYLINDER "cy"
 
-# define O_SIZE_SET 1
-# define O_SIZE_MAX 10000
+# define O_SIZE_SET 2
+# define O_SIZE_MAX 8096
 
 enum e_objects
 {

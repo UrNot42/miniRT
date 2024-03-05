@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 03:40:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 07:31:43 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:23:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,3 @@ char	*get_next_line(int fd)
 	}
 	return (gnl_lst_str(&head));
 }
-/*
-//#include "time_files/nl_time.h"
-
-int	main(int ac, char **av)
-{
-	char	*test;
-	int		fd;
-
-	if (ac != 2)
-		fd = open("bible4.txt", O_RDONLY);
-	else
-		fd = open(av[1], O_RDONLY);
-	// nl_time(NLT_START);
-	// test = get_next_line(fd);
-	// nl_time(NLT_PRINT | NLT_MICRO);
-	test = get_next_line(fd);
-	while (test)
-	{
-		printf("%s", test);
-		free(test);
-		test = get_next_line(fd);
-	}
-	free(test);
-}
-*/

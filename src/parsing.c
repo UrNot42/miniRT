@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 11:09:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:23:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,16 @@ unsigned int	check_for_identifier(char *possible_id, unsigned int *pos)
 	return (p_error(ERR_IDENTIFIER), OBJ_UNDEF);
 }
 
-/*
-C	Pos{-5,0,0} 		Norm[1,0,0]						FOV 70
-A									Ratio[0.2]					Col(255,255,255)
-L	Pos{-2,0,-7}					Ratio[0.7]					Col(255,255,255)
-sp	Pos{0,-0.9,-2}								Diam(0.2)		Col( 87, 42,  5)
-pl	Pos{0,-1,0}			Norm[0,0,1]								Col(110, 37,152)
-cy	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45)
-*/
-
 t_obj	*get_obj(t_scene *scene, char id)
 {
 	if (id == OBJ_CYLINDER && scene->cy_size.use)
-		return (&scene->cylinder[scene->cy_size.use]);
+		return (&scene->cylinder[scene->cy_size.use - 1]);
 	else if (id == OBJ_SPHERE && scene->sp_size.use)
-		return (&scene->sphere[scene->sp_size.use]);
+		return (&scene->sphere[scene->sp_size.use - 1]);
 	else if (id == OBJ_PLANE && scene->pl_size.use)
-		return (&scene->plane[scene->pl_size.use]);
+		return (&scene->plane[scene->pl_size.use - 1]);
 	else if (id == OBJ_SRC_LIGHT && scene->l_size.use)
-		return (&scene->light[scene->l_size.use]);
+		return (&scene->light[scene->l_size.use - 1]);
 	else if (id == OBJ_CAMERA)
 		return (&scene->camera);
 	else if (id == OBJ_AMB_LIGHT)
@@ -60,10 +51,18 @@ t_obj	*get_obj(t_scene *scene, char id)
 //TODO RM
 #include "tmp_print_src.h"
 
+/*
+Object use of elements and formats:
+C	Pos{-5,0,0}			Norm[1,0,0]									FOV 70
+A									Ratio[0.2]					Col(255,255,255)
+L	Pos{-2,0,-7}					Ratio[0.7]					Col(255,255,255)
+sp	Pos{0,-0.9,-2}								Diam(0.2)		Col( 87, 42,  5)
+pl	Pos{0,-1,0}			Norm[0,0,1]								Col(110, 37,152)
+cy	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45)
+*/
 bool	parse_object(t_obj *object, unsigned int id, char *line,
 	unsigned int *pos)
 {
-	printf("parsing new obj\n");
 	if (!line[*pos])
 		return (p_error(ERR_LINE), true);
 	if (id != OBJ_AMB_LIGHT && set_pos(&object->pos, line, pos))
@@ -86,7 +85,7 @@ bool	parse_object(t_obj *object, unsigned int id, char *line,
 	if (id != OBJ_CAMERA && set_color(&object->col, line, pos))
 		return (p_error(ERR_COLOR), true);
 	object->type = id;
-	print_obj(object);
+	print_obj(object); // TODO RM
 	return (false);
 }
 
@@ -99,7 +98,6 @@ unsigned int	parse_line(char *line, t_scene *scene)
 	ft_skip_spaces(line, &pos);
 	if (!line[pos])
 		return (1);
-	printf("line: %s\n", line);
 	identifier = check_for_identifier(&line[pos], &pos);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);

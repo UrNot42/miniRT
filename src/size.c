@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 10:05:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:20:37 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	sz_new_elemmt(t_obj **ptr, t_size *size)
 
 	if (sz_add(size))
 		return (false);
-	if (size->max * 2 >= O_SIZE_MAX)
+	if (size->max * 2 > O_SIZE_MAX)
 		return (p_error(ERR_OBJ_MAX_SZ), true);
 	size->max *= 2;
 	if (size->max < 1)
@@ -61,13 +61,8 @@ bool	sz_new_elemmt(t_obj **ptr, t_size *size)
 		copy_element(&new_ptr[i], (*ptr)[i]);
 		i++;
 	}
-	new_ptr[i] = (t_obj){0, (t_pos){0, 0, 0}, (t_pos){0, 0, 0}, 0, 0, 0, 0,
-		(t_color){0, 0, 0}, size, 0};
-	// free(*ptr);
-	printf("ptr(mom): %p\n", ptr);
-	printf("\tptr(son): %p\n", *ptr);
+	free(*ptr);
 	(*ptr) = new_ptr;
-	printf("\tptr(new): %p\n", *ptr);
 	size->use++;
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 14:10:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	print_pos(t_pos	*pos, bool tab)
 	printf("\t\tz: %f\n\n", pos -> z);
 }
 
-void	print_col(t_color	*col)
+void	print_col(t_color	*col, bool tab)
 {
+	if (tab)
+		printf("\t\t");
 	printf("Red  : %d\n", col -> red);
 	printf("\t\tGreen: %d\n", col -> grn);
 	printf("\t\tBlue : %d\n", col -> blu);
@@ -37,7 +39,7 @@ void	print_obj(t_obj *obj)
 	printf("diameter: %lf\n", obj->diameter);
 	printf("height: %lf\n", obj->height);
 	printf("fov: %u\n", obj->fov);
-	print_col(&obj->col);
+	print_col(&obj->col, 1);
 }
 
 void	print_scene(t_scene *scene)
@@ -57,7 +59,7 @@ void	print_scene(t_scene *scene)
 		printf("\tAmbient Light: \n");
 		printf("\tLight ratio: %lf\n", scene->ambient_light.ratio);
 		printf("\tColor: \t");
-		print_col(&scene->ambient_light.col);
+		print_col(&scene->ambient_light.col, 0);
 	}
 	for (size_t i = 0; i < scene->cy_size.use; i++)
 	{
@@ -68,7 +70,7 @@ void	print_scene(t_scene *scene)
 		printf("\tDiameter: %f\t", scene->cylinder[i].diameter);
 		printf("\tHeight: %f\t", scene->cylinder[i].height);
 		printf("\tColor: \t");
-		print_col(&scene->cylinder[i].col);
+		print_col(&scene->cylinder[i].col, 0);
 	}
 	for (size_t i = 0; i < scene->sp_size.use; i++)
 	{
@@ -76,7 +78,7 @@ void	print_scene(t_scene *scene)
 		print_pos(&scene->sphere[i].pos, 1);
 		printf("\tDiameter: %f\t", scene->sphere[i].diameter);
 		printf("\tColor: \t");
-		print_col(&scene->sphere[i].col);
+		print_col(&scene->sphere[i].col, 0);
 	}
 	for (size_t i = 0; i < scene->pl_size.use; i++)
 	{
@@ -85,7 +87,7 @@ void	print_scene(t_scene *scene)
 		printf("\tnorm:\t");
 		print_pos(&scene->plane[i].norm, 0);
 		printf("\tColor: \t");
-		print_col(&scene->plane[i].col);
+		print_col(&scene->plane[i].col, 0);
 	}
 	for (size_t i = 0; i < scene->l_size.use; i++)
 	{
@@ -93,6 +95,6 @@ void	print_scene(t_scene *scene)
 		// printf("\tLight ratio: %lf\n", scene->light[i].brgt.light);
 		print_pos(&scene->light[i].pos, 1);
 		printf("\tColor: \t");
-		print_col(&scene->light[i].col);
+		print_col(&scene->light[i].col, 0);
 	}
 }
