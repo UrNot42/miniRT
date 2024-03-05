@@ -8,7 +8,9 @@ CC			:=	gcc
 
 CFLAGS		:=	-Wall -Wextra -Werror
 
-LDLIBS		=	-lm -L./obj -lmlx -lXext -lX11 -I$(INCLUDE_DIR)
+DBFLAGS		:=	-g -g3
+
+LDLIBS		=	-lm -L./$(LIB_DIR)$(MLX_DIR) -lmlx -lXext -lX11 -I$(INCLUDE_DIR)
 
 RM			:=	rm -rf
 
@@ -17,6 +19,14 @@ MV			:=	mv
 ECHO		:=	/bin/echo -e
 
 MAKE_SUB	:=	make --no-print-directory -s -C
+
+QUIET		:=	 > /dev/null 2>&1
+
+#######
+# VAR #
+#######
+
+IS_DEBUG	:=	0
 
 #########
 # FILES #
@@ -35,9 +45,6 @@ SRC_PARSING	:=	file_management.c \
 				obj_print.c \
 				obj_setters.c \
 				num_setters.c
-
-SRC_GNL		:=	get_next_line.c \
-				get_next_line_utils.c
 
 ############
 # INCLUDED #
@@ -58,13 +65,10 @@ SRCS		=	$(addprefix $(SRC_DIR), $(SRC_ALL))
 SRC_ALL		=	$(SRC_LIST) \
 				$(SRCL_ERR) \
 				$(SRCL_PARS) \
-				$(SRCL_GNL) \
 
 SRCL_ERR	=	$(addprefix $(ERR_DIR), $(SRC_ERROR))
 
 SRCL_PARS	=	$(addprefix $(PARS_DIR), $(SRC_PARSING))
-
-SRCL_GNL	=	$(addprefix $(GNL_DIR), $(SRC_GNL))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -78,23 +82,29 @@ INCLUDE_DIR	:=	includes/
 
 LIB_DIR		:=	lib/
 
+LIBS_DIR	:=	$(dirname $(LIBS))
+
 ERR_DIR		:=	errors/
 
 PARS_DIR	:=	parsing/
 
-GNL_DIR		:=	get_next_line/
+OBJ_DIR		:=	.build/
 
-OBJ_DIR		:=	obj/
+MLX_DIR		=	minilibx-linux/
 
 #############
 # LIBRARIES #
 #############
 
-LIBS		=	$(addprefix $(LIB_DIR), $(SRC_LIB))
+LIBS		=	$(MY_LIBS) $(addprefix $(LIB_DIR), $(WRAPPED_LIB))
 
-SRC_LIB		:=	libft/ \
-				ft_printf/ \
-				minilibx-linux/ \
+MY_LIBS		=	$(addprefix $(LIB_DIR), $(SRC_LIB))
+
+SRC_LIB		:=	libft/libft.a \
+				get_next_line/libgnl.a \
+				ft_printf/libftprintf.a \
+
+WRAPPED_LIB	=	$(MLX_DIR)libmlx.a
 
 #########
 # RULES #
@@ -105,35 +115,49 @@ all:	$(NAME)
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(dir $@)
-				$(CC) $(CFLAGS) -g -c $< $(LDLIBS) -o $@
+				@if [ $(IS_DEBUG) -eq 1 ]; then \
+					$(CC) $(CFLAGS) $(DBFLAGS) -c $< $(LDLIBS) -o $@; \
+				else \
+					$(CC) $(CFLAGS) -c $< $(LDLIBS) -o $@; \
+				fi
 
-lib:			$(OBJ_DIR) $(LIBS)
+
+$(LIBS):
 				@for lib in $(LIBS); do \
-					$(MAKE_SUB) $$lib; \
+					$(MAKE_SUB) $$(dirname $$lib) $(QUIET); \
 				done
-				$(MV) $(LIB_DIR)minilibx-linux/libmlx.a $(OBJ_DIR)
-				$(MV) $(LIB_DIR)libft/libft.a $(OBJ_DIR)
-				$(MV) $(LIB_DIR)ft_printf/libftprintf.a $(OBJ_DIR)
 
-debug:			$(OBJS) lib $(HEADERS)
-				$(CC) -o $(NAME) $(OBJS) -g3 -g $(LDLIBS) $(OBJ_DIR)libft.a $(OBJ_DIR)libftprintf.a
+debug:			$(eval IS_DEBUG := 1) $(OBJS) $(LIBS) $(HEADERS)
+				$(CC) -o $(NAME) $(OBJS) $(DBFLAGS) $(LDLIBS) $(MY_LIBS)
+				@if [ ! -d $(NAME) ]; then \
+					$(ECHO) "$(_IRED)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_IRED)$(_BOLD) with $(_ICYAN)db flags!$(_END)"; \
+				fi
 
-$(NAME):		$(OBJS) lib $(HEADERS) $(DEPS)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(OBJ_DIR)libft.a $(OBJ_DIR)libftprintf.a
+no-flags:		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
+				@$(CC) -o $(NAME) $(OBJS) $(LDLIBS) $(MY_LIBS)
+				@if [ ! -d $(NAME) ]; then \
+					$(ECHO) "$(_YELLOW)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_YELLOW)$(_BOLD) with no flags ! $(_RED)/!\\ $(_END)"; \
+				fi
+
+$(NAME):		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
+				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(MY_LIBS)
+				@if [ ! -d $(NAME) ]; then \
+					$(ECHO) "$(_BLUE)$(_BOLD)Successfuly built $(_UNDER)$(NAME)!$(_END)"; \
+				fi
 
 clean:
 				@for lib in $(LIBS); do \
-					$(MAKE_SUB) $$lib clean; \
+					$(MAKE_SUB) $$(dirname $$lib) clean $(QUIET); \
 				done
 				@$(RM) $(OBJ_DIR)
 				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_RED)$(_BOLD)Successfuly removed OBJECT files!$(_END)$(_WHITE)"; \
+					$(ECHO) "$(_RED)$(_BOLD)Successfuly removed OBJECT files!$(_END)"; \
 				fi
 
 fclean:			clean
 				@$(RM) $(NAME)
 				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_GREEN)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)$(_WHITE)"; \
+					$(ECHO) "$(_GREEN)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)"; \
 				fi
 
 
@@ -141,7 +165,7 @@ re:				fclean all
 
 bonus:			all
 
-.PHONY:			all clean fclean re debug bonus
+.PHONY:			all clean fclean re debug bonus no-flags
 
 ################################
 #            COLORS            #
