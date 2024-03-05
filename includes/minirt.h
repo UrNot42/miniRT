@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 13:12:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:28:22 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # include <math.h>
 # include <stdbool.h>
 # include "../src/get_next_line/get_next_line.h"
-# include "../minilibx-linux/mlx.h"
-# include "../ft_printf/ft_printf.h"
-# include "../libft/libft.h"
+# include "../lib/minilibx-linux/mlx.h"
+# include "../lib/ft_printf/ft_printf.h"
+# include "../lib/libft/libft.h"
 # include "rt_error.h"
 # include "rt_obj.h"
 # include "parsing.h"

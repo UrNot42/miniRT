@@ -1,25 +1,33 @@
-# BASICS
+##########
+# BASICS #
+##########
 
-NAME		=	minirt
+NAME		:=	minirt
 
-CC			=	gcc
+CC			:=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror
 
 LDLIBS		=	-lm -L./obj -lmlx -lXext -lX11 -I$(INCLUDE_DIR)
 
-RM			=	rm -rf
+RM			:=	rm -rf
 
-MAKE_SUB	=	make -C
+MV			:=	mv
 
-# FILES
+ECHO		:=	/bin/echo -e
 
-SRC_LIST	=	main.c \
+MAKE_SUB	:=	make --no-print-directory -s -C
 
-SRC_ERROR	=	error.c \
+#########
+# FILES #
+#########
+
+SRC_LIST	:=	main.c \
+
+SRC_ERROR	:=	error.c \
 				error_display.c
 
-SRC_PARSING	=	file_management.c \
+SRC_PARSING	:=	file_management.c \
 				scene_fill.c \
 				scene_management.c \
 				size.c \
@@ -28,18 +36,22 @@ SRC_PARSING	=	file_management.c \
 				obj_setters.c \
 				num_setters.c
 
-SRC_GNL		=	get_next_line.c \
+SRC_GNL		:=	get_next_line.c \
 				get_next_line_utils.c
 
-# INCLUDED
+############
+# INCLUDED #
+############
 
-HEADERS		=	$(addprefix, $(INCLUDE_DIR), $(HEADER_LIST))
+HEADERS		=	$(addprefix $(INCLUDE_DIR), $(HEADER_LIST))
 
-HEADER_LIST	=	minirt.h
+HEADER_LIST	:=	minirt.h
 
-DEPS		=	libft/ Makefile
+DEPS		=	$(INCLUDE_DIR) Makefile
 
-# SOURCES
+###########
+# SOURCES #
+###########
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_ALL))
 
@@ -56,56 +68,108 @@ SRCL_GNL	=	$(addprefix $(GNL_DIR), $(SRC_GNL))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
-# DIRECTORIES
+###############
+# DIRECTORIES #
+###############
 
-SRC_DIR		=	src/
+SRC_DIR		:=	src/
 
-INCLUDE_DIR	=	includes/
+INCLUDE_DIR	:=	includes/
 
-ERR_DIR		=	errors/
+LIB_DIR		:=	lib/
 
-PARS_DIR	=	parsing/
+ERR_DIR		:=	errors/
 
-GNL_DIR		=	get_next_line/
+PARS_DIR	:=	parsing/
 
-OBJ_DIR		=	obj/
+GNL_DIR		:=	get_next_line/
+
+OBJ_DIR		:=	obj/
+
+#############
+# LIBRARIES #
+#############
+
+LIBS		=	$(addprefix $(LIB_DIR), $(SRC_LIB))
+
+SRC_LIB		:=	libft/ \
+				ft_printf/ \
+				minilibx-linux/ \
+
+#########
+# RULES #
+#########
 
 all:	$(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
-				mkdir -p $(OBJ_DIR)
-				mkdir -p $(dir $@)
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
+				@mkdir -p $(OBJ_DIR)
+				@mkdir -p $(dir $@)
 				$(CC) $(CFLAGS) -g -c $< $(LDLIBS) -o $@
 
-debug:			$(OBJS) $(HEADERS)
-				$(MAKE_SUB) libft/
-				$(MAKE_SUB) ft_printf/
-				$(MAKE_SUB) minilibx-linux/
-				mv minilibx-linux/libmlx.a obj/
-				mv libft/libft.a obj/
-				mv ft_printf/libftprintf.a obj/
-				$(CC) -o $(NAME) $(OBJS) -g3 -g $(LDLIBS) obj/libft.a obj/libftprintf.a
+lib:			$(OBJ_DIR) $(LIBS)
+				@for lib in $(LIBS); do \
+					$(MAKE_SUB) $$lib; \
+				done
+				$(MV) $(LIB_DIR)minilibx-linux/libmlx.a $(OBJ_DIR)
+				$(MV) $(LIB_DIR)libft/libft.a $(OBJ_DIR)
+				$(MV) $(LIB_DIR)ft_printf/libftprintf.a $(OBJ_DIR)
 
-$(NAME):		$(OBJS) $(HEADERS) $(DEPS)
-				$(MAKE_SUB) libft/
-				$(MAKE_SUB) ft_printf/
-				$(MAKE_SUB) minilibx-linux/
-				mv minilibx-linux/libmlx.a obj/
-				mv libft/libft.a obj/
-				mv ft_printf/libftprintf.a obj/
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) obj/libft.a obj/libftprintf.a
+debug:			$(OBJS) lib $(HEADERS)
+				$(CC) -o $(NAME) $(OBJS) -g3 -g $(LDLIBS) $(OBJ_DIR)libft.a $(OBJ_DIR)libftprintf.a
+
+$(NAME):		$(OBJS) lib $(HEADERS) $(DEPS)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(OBJ_DIR)libft.a $(OBJ_DIR)libftprintf.a
 
 clean:
-				$(RM) $(OBJ_DIR)
-				$(MAKE_SUB) libft/ clean
-				$(MAKE_SUB) ft_printf/ clean
-				$(MAKE_SUB) minilibx-linux/ clean
+				@for lib in $(LIBS); do \
+					$(MAKE_SUB) $$lib clean; \
+				done
+				@$(RM) $(OBJ_DIR)
+				@if [ ! -d $(OBJ_DIR) ]; then \
+					$(ECHO) "$(_RED)$(_BOLD)Successfuly removed OBJECT files!$(_END)$(_WHITE)"; \
+				fi
 
 fclean:			clean
-				$(RM) $(NAME)
+				@$(RM) $(NAME)
+				@if [ ! -d $(OBJ_DIR) ]; then \
+					$(ECHO) "$(_GREEN)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)$(_WHITE)"; \
+				fi
+
 
 re:				fclean all
 
 bonus:			all
 
 .PHONY:			all clean fclean re debug bonus
+
+################################
+#            COLORS            #
+################################
+
+_GREY			=	\x1b[30m
+_RED			=	\x1b[31m
+_GREEN			=	\x1b[32m
+_YELLOW			=	\x1b[33m
+_BLUE			=	\x1b[34m
+_PURPLE			=	\x1b[35m
+_CYAN			=	\x1b[36m
+_WHITE			=	\x1b[37m
+
+# ANSI/VT100 COLOR CODES
+
+_END			=	\x1b[0m
+_BOLD			=	\x1b[1m
+_UNDER			=	\x1b[4m
+_REV			=	\x1b[7m
+
+# BACKGROUND
+
+_IGREY			=	\x1b[40m
+_IRED			=	\x1b[41m
+_IGREEN			=	\x1b[42m
+_IYELLOW		=	\x1b[43m
+_IBLUE			=	\x1b[44m
+_IPURPLE		=	\x1b[45m
+_ICYAN			=	\x1b[46m
+_IWHITE			=	\x1b[47m
