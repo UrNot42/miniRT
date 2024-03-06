@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:29:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:41:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ t_obj	*get_obj(t_scene *scene, char id)
 	return (NULL);
 }
 
-//TODO RM
-#include "tmp_print_src.h"
-
 /*
 Object use of elements and formats:
 C	Pos{-5,0,0}			Norm[1,0,0]									FOV 70
@@ -85,7 +82,6 @@ bool	parse_object(t_obj *object, unsigned int id, char *line,
 	if (id != OBJ_CAMERA && set_color(&object->col, line, pos))
 		return (p_error(ERR_COLOR), true);
 	object->type = id;
-	print_obj(object); // TODO RM
 	return (false);
 }
 

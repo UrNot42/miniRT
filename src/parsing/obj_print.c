@@ -6,11 +6,15 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:18:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:44:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void *a; // WARNING
+// THIS IS A DEBUG FILE IT OUGHT TO BE REMOVED
+// TODO RM
 
 void	print_pos(t_pos	*pos, bool tab)
 {
@@ -92,7 +96,7 @@ void	print_scene(t_scene *scene)
 	for (size_t i = 0; i < scene->l_size.use; i++)
 	{
 		printf("\tLight source %ld: \n", i);
-		// printf("\tLight ratio: %lf\n", scene->light[i].brgt.light);
+		printf("\tLight ratio: %lf\n", scene->light[i].ratio);
 		print_pos(&scene->light[i].pos, 1);
 		printf("\tColor: \t");
 		print_col(&scene->light[i].col, 0);
