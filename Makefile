@@ -4,13 +4,13 @@
 
 NAME		:=	minirt
 
-CC			:=	gcc
+CC			:=	cc
 
 CFLAGS		:=	-Wall -Wextra -Werror
 
 DBFLAGS		:=	-g -g3
 
-LDLIBS		=	-lm -L./$(LIB_DIR)$(MLX_DIR) -lmlx -lXext -lX11 -I$(INCLUDE_DIR)
+LDLIBS		=	-lm -L./$(LIB_DIR)$(MLX_DIR) -lmlx -lXext -lX11
 
 RM			:=	rm -rf
 
@@ -21,12 +21,6 @@ ECHO		:=	/bin/echo -e
 MAKE_SUB	:=	make --no-print-directory -s -C
 
 QUIET		:=	 > /dev/null 2>&1
-
-#######
-# VAR #
-#######
-
-IS_DEBUG	:=	0
 
 #########
 # FILES #
@@ -49,6 +43,8 @@ SRC_PARSING	:=	file_management.c \
 ############
 # INCLUDED #
 ############
+
+INCLUDE		=	-I$(INCLUDE_DIR)
 
 HEADERS		=	$(addprefix $(INCLUDE_DIR), $(HEADER_LIST))
 
@@ -115,51 +111,71 @@ all:	$(NAME)
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(dir $@)
-				@if [ $(IS_DEBUG) -eq 1 ]; then \
-					$(CC) $(CFLAGS) $(DBFLAGS) -c $< $(LDLIBS) -o $@; \
-				else \
-					$(CC) $(CFLAGS) -c $< $(LDLIBS) -o $@; \
-				fi
-
+				@$(CC) $(CFLAGS) $(DBFLAGS) -c $< $(INCLUDE) -o $@;
 
 $(LIBS):
 				@for lib in $(LIBS); do \
+					$(ECHO) "$(_CYAN)..making $(_UNDER)$$lib$(_END)"; \
 					$(MAKE_SUB) $$(dirname $$lib) $(QUIET); \
+					if [ -f "$$lib" ]; then \
+						$(ECHO) "$(_CYAN)$(_BOLD)Built $(_UNDER)$$lib$(_END)"; \
+					else \
+						$(ECHO) "$(_RED)$(_BOLD)Failed to build $(_UNDER)$$lib$(_END)"; \
+					fi \
 				done
 
-debug:			$(eval IS_DEBUG := 1) $(OBJS) $(LIBS) $(HEADERS)
-				$(CC) -o $(NAME) $(OBJS) $(DBFLAGS) $(LDLIBS) $(MY_LIBS)
+debug:			$(OBJS) $(LIBS) $(HEADERS)
+				$(CC) -o $(NAME) $(OBJS) $(DBFLAGS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
 				@if [ ! -d $(NAME) ]; then \
 					$(ECHO) "$(_IRED)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_IRED)$(_BOLD) with $(_ICYAN)db flags!$(_END)"; \
+				else \
+					$(ECHO) "$(_IRED)$(_BOLD)Error while building $(_IBLUE)$(NAME)$(_END)"; \
 				fi
 
 no-flags:		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
-				@$(CC) -o $(NAME) $(OBJS) $(LDLIBS) $(MY_LIBS)
+				@$(CC) -o $(NAME) $(OBJS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
 				@if [ ! -d $(NAME) ]; then \
 					$(ECHO) "$(_YELLOW)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_YELLOW)$(_BOLD) with no flags ! $(_RED)/!\\ $(_END)"; \
+				else \
+					$(ECHO) "$(_RED)$(_BOLD)Error while building $(_IRED)$(NAME)$(_END)"; \
 				fi
 
 $(NAME):		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
-				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(MY_LIBS)
+				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
 				@if [ ! -d $(NAME) ]; then \
 					$(ECHO) "$(_BLUE)$(_BOLD)Successfuly built $(_UNDER)$(NAME)!$(_END)"; \
+				else \
+					$(ECHO) "$(_PURPLE)$(_BOLD)Error while building $(_UNDER)$(NAME)!$(_END)"; \
 				fi
 
 clean:
-				@for lib in $(LIBS); do \
-					$(MAKE_SUB) $$(dirname $$lib) clean $(QUIET); \
-				done
 				@$(RM) $(OBJ_DIR)
 				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_RED)$(_BOLD)Successfuly removed OBJECT files!$(_END)"; \
+					$(ECHO) "$(_GREEN)$(_BOLD)Successfuly removed OBJECT files!$(_END)"; \
+				else \
+					$(ECHO) "$(_RED)$(_BOLD)Failed to remove OBJECT files!$(_END)"; \
 				fi
+				@for lib in $(LIBS); do \
+					$(ECHO) "$(_CYAN)..cleaning $(_UNDER)$$lib$(_END)"; \
+					$(MAKE_SUB) $$(dirname $$lib) clean $(QUIET); \
+					$(MAKE_SUB) $$(dirname $$lib) fclean $(QUIET); \
+					if [ -f "$$lib" ]; then \
+						$(ECHO) "$(_RED)$(_BOLD)Failed to clean $(_UNDER)$$lib$(_END)"; \
+					else \
+						$(ECHO) "$(_CYAN)$(_BOLD)Cleaned $(_UNDER)$$lib$(_END)"; \
+					fi \
+				done
 
 fclean:			clean
 				@$(RM) $(NAME)
 				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_GREEN)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)"; \
+					$(ECHO) "$(_IBLUE)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)"; \
+				else \
+					$(ECHO) "$(_IPURPLE)$(_BOLD)Failed to remove $(_UNDER)$(NAME)$(_END)"; \
 				fi
-
+				@$(ECHO) "$(_GREEN)$(_BOLD)====================$(_END)"
+				@$(ECHO) "$(_GREEN)$(_BOLD)Full Clean complete!$(_END)"
+				@$(ECHO) "$(_GREEN)$(_BOLD)====================$(_END)"; \
 
 re:				fclean all
 

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:17:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/02/05 15:02:48 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:19:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-double	ft_atof(char *line);
-double	ft_atof_c(char *line, unsigned int *pos);
+double	ft_atolf(char *line);
+double	ft_atolf_c(char *line, unsigned int *pos);
+float	ft_atof(char *line);
+float	ft_atof_c(char *line, unsigned int *pos);
 
 #endif

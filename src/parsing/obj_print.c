@@ -1,20 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   obj_print.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 08:01:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/06 10:44:58 by ulevallo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minirt.h"
 
-void *a; // WARNING
-// THIS IS A DEBUG FILE IT OUGHT TO BE REMOVED
-// TODO RM
+/*
+	WARNING ->
+	THIS IS A DEBUG FILE IT OUGHT TO BE REMOVED
+	TODO RM WHOLE FILE
+
+	The purpose of the global variable is to keep a norm error here
+
+*/
+
+void	*a;
 
 void	print_pos(t_pos	*pos, bool tab)
 {

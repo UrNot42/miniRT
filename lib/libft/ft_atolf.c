@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   ft_atolf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:03:09 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/06 14:27:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:27:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static float	get_result(char *str, unsigned int *pos)
+static double	get_result(char *str, unsigned int *pos)
 {
-	float	result;
-	float	scale;
+	double	result;
+	double	scale;
 	int		decimal;
 
 	decimal = 0;
@@ -40,10 +40,10 @@ static float	get_result(char *str, unsigned int *pos)
 	return (result);
 }
 
-float	ft_atof_c(char *nptr, unsigned int *pos)
+double	ft_atolf_c(char *nptr, unsigned int *pos)
 {
 	int		sign;
-	float	result;
+	double	result;
 
 	ft_skip_spaces(nptr, pos);
 	sign = 1;
@@ -53,9 +53,9 @@ float	ft_atof_c(char *nptr, unsigned int *pos)
 	return (result * sign);
 }
 
-float	ft_atof(char *nptr)
+double	ft_atolf(char *nptr)
 {
-	float			result;
+	long double		result;
 	int				sign;
 	unsigned int	i;
 
