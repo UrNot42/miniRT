@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   rt_parsing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 15:53:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:49:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef RT_PARSING_H
+# define RT_PARSING_H
 
 # include "minirt.h"
 
