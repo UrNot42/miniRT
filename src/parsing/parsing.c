@@ -6,13 +6,13 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:07:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-unsigned int	check_for_identifier(char *possible_id, unsigned int *pos)
+t_unt	check_for_identifier(char *possible_id, t_unt *pos)
 {
 	if (!ft_strncmp(possible_id, ID_AMB_LIGHT, 1))
 		return ((*pos)++, OBJ_AMB_LIGHT);
@@ -57,8 +57,8 @@ sp	Pos{0,-0.9,-2}								Diam(0.2)		Col( 87, 42,  5)
 pl	Pos{0,-1,0}			Norm[0,0,1]								Col(110, 37,152)
 cy	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45)
 */
-bool	parse_object(t_obj *object, unsigned int id, char *line,
-	unsigned int *pos)
+bool	parse_object(t_obj *object, t_unt id, char *line,
+	t_unt *pos)
 {
 	if (!line[*pos])
 		return (p_error(ERR_LINE), true);
@@ -85,10 +85,10 @@ bool	parse_object(t_obj *object, unsigned int id, char *line,
 	return (false);
 }
 
-unsigned int	parse_line(char *line, t_scene *scene)
+t_unt	parse_line(char *line, t_scene *scene)
 {
-	unsigned int	pos;
-	unsigned int	identifier;
+	t_unt	pos;
+	t_unt	identifier;
 
 	pos = 0;
 	ft_skip_spaces(line, &pos);

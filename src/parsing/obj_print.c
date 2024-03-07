@@ -51,7 +51,7 @@ void	print_scene(t_scene *scene)
 		print_pos(&scene->camera.pos, 0);
 		printf("\tnorm:\t");
 		print_pos(&scene->camera.norm, 0);
-		printf("\tfov: %d\n", (unsigned int)scene->camera.fov);
+		printf("\tfov: %d\n", (t_unt)scene->camera.fov);
 	}
 	if (scene->ambient_light.defined)
 	{

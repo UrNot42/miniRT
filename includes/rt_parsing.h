@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:07:55 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 # include "minirt.h"
 
-unsigned int	parse_line(char *line, t_scene *scene);
-bool			set_pos(t_pos *pos, char *line, unsigned int *idx);
-bool			set_color(t_color *color, char *line, unsigned int *idx);
+t_unt	parse_line(char *line, t_scene *scene);
+bool			set_pos(t_pos *pos, char *line, t_unt *idx);
+bool			set_color(t_color *color, char *line, t_unt *idx);
 bool			set_int_wbound(int *num, t_bound boundary,
-					char *line, unsigned int *idx);
+					char *line, t_unt *idx);
 bool			set_f_wbound(float *num, t_bound boundary,
-					char *line, unsigned int *idx);
-bool			set_float(float *num, char *line, unsigned int *idx);
-bool			set_int(int *num, char *line, unsigned int *idx);
+					char *line, t_unt *idx);
+bool			set_float(float *num, char *line, t_unt *idx);
+bool			set_int(int *num, char *line, t_unt *idx);
 bool			set_obj(t_scene *scene, int id);
 
 bool			scene_fill(t_scene *scene, int fd);

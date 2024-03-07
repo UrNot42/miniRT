@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:04:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	scenario_start(char *scenario_name)
 	ft_printf("Scenario: %s\n", scenario_name);
 }
 
-unsigned int	scenario_end(char *scenario_name, unsigned int errors)
+t_unt	scenario_end(char *scenario_name, t_unt errors)
 {
 	if (errors)
 		ft_printf("=> Finished %s with %d Errors\n\n", scenario_name, errors);

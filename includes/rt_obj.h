@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:08:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:17:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ struct s_pos
 /* use for dynamic filling of elements */
 struct s_size
 {
-	unsigned int	max;
-	unsigned int	use;
+	t_unt	max;
+	t_unt	use;
 };
 
 /* RGB values in [0 ; 255] range */
@@ -75,7 +75,7 @@ struct s_bound
 
 struct s_obj
 {
-	unsigned int	type;
+	t_unt	type;
 	t_pos			pos;
 	t_pos			norm;
 	float			ratio;

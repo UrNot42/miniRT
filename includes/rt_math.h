@@ -6,13 +6,15 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 11:29:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:16:48 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_MATH_H
 # define RT_MATH_H
 
-typedef float	t_tuple	__attribute__((ext_vector_type(4)));
+typedef unsigned int	t_unt;
+
+typedef float			t_tuple	__attribute__((ext_vector_type(4)));
 
 #endif

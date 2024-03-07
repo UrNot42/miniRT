@@ -6,13 +6,13 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:21:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	set_color(t_color *color, char *line, unsigned int *idx)
+bool	set_color(t_color *color, char *line, t_unt *idx)
 {
 	ft_skip_spaces(line, idx);
 	if (!color)
@@ -33,7 +33,7 @@ bool	set_color(t_color *color, char *line, unsigned int *idx)
 	return (false);
 }
 
-bool	set_pos(t_pos *pos, char *line, unsigned int *idx)
+bool	set_pos(t_pos *pos, char *line, t_unt *idx)
 {
 	ft_skip_spaces(line, idx);
 	if (!pos)

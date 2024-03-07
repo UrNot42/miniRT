@@ -6,19 +6,19 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:48:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/01 13:37:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	p_err_file(unsigned int error_code)
+void	p_err_file(t_unt error_code)
 {
 	if (error_code == ERR_FILEEXT)
 		ft_fprintf(2, ERM_FILEEXT);
 }
 
-void	p_err_standard(unsigned int error_code)
+void	p_err_standard(t_unt error_code)
 {
 	if (error_code == ERR_NO_PROMPT)
 		ft_printf(ERM_NO_PROMPT);
@@ -37,7 +37,7 @@ the correct printing function
 
 In this function LR and RR stand for Left Range and Right Range respectively
 */
-void	p_error(unsigned int error_code)
+void	p_error(t_unt error_code)
 {
 	if (!error_code)
 		printf(ERM_DEF);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:02:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:12:37 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 bool	test_tuple(void)
 {
 	t_tuple	a;
+	unsingederr
 
-	scenario_start("Tuple_init");
+	scenario_start("A tuple with w=1.0 is a point");
 	set_tuple(&a, (t_tuple){4.3, -4.2, 3.1, 1.0});
-	test("x val", a.x == 4.3);
-	test("y val", a.y == -4.2);
-	test("z val", a.z == 3.1);
-	test("w val", a.w == 1.0);
-	test("is point", is_point(a));
-	test("is not vector", is_point(a));
+	test("A.x = 4.3", a.x == 4.3);
+	test("A.y = -4.2", a.y == -4.2);
+	test("A.z = 3.1", a.z == 3.1);
+	test("A.w = 1.0", a.w == 1.0);
+	test("A is point", is_point(a));
+	test("A is not vector", is_point(a));
 }
