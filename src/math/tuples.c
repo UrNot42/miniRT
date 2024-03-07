@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_math.h                                          :+:      :+:    :+:   */
+/*   tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:12:13 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/03/07 12:32:10 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/03/07 12:43:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_MATH_H
-# define RT_MATH_H
+#include "minirt.h"
 
-typedef unsigned int	t_unt;
-typedef unsigned char	t_uchar;
+void	set_tuple(t_tuple *a, t_tuple b)
+{
+	a->x = b.x;
+	a->y = b.y;
+	a->z = b.z;
+	a->w = b.w;
+}
 
-typedef float			t_tuple	__attribute__((ext_vector_type(4)));
+bool	is_point(t_tuple a)
+{
+	if (a.w == 1.0)
+		return (true);
+	else
+		return (false);
+}
 
-/* Tuples */
-void	set_tuple(t_tuple *a, t_tuple b);
-bool	is_point(t_tuple a);
-bool	is_vector(t_tuple a);
-
-#endif
+bool	is_vector(t_tuple a)
+{
+	if (a.w == 0)
+		return (true);
+	else
+		return (false);
+}

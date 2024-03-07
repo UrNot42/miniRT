@@ -6,14 +6,12 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:22:00 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:15:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_OBJ_H
 # define RT_OBJ_H
-
-# include "rt_math.h"
 
 # define ID_AMB_LIGHT "A"
 # define ID_CAMERA "C"
@@ -35,6 +33,9 @@ enum e_objects
 	OBJ_PLANE,
 	OBJ_CYLINDER
 };
+
+typedef unsigned int		t_unt;
+typedef unsigned char		t_uchar;
 
 typedef struct s_pos		t_pos;
 typedef struct s_size		t_size;

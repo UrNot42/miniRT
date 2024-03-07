@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:22:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:26:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ bool	test_tuple(void)
 	t_unt	err;
 
 	scenario_start("A tuple with w=1.0 is a point");
+	given("a ← tuple(4.3, -4.2, 3.1, 1.0)");
 	set_tuple(&a, (t_tuple){4.3, -4.2, 3.1, 1.0});
-	test("A.x = 4.3", a.x == 4.3);
-	test("A.y = -4.2", a.y == -4.2);
-	test("A.z = 3.1", a.z == 3.1);
-	test("A.w = 1.0", a.w == 1.0);
-	test("A is point", is_point(a));
-	test("A is not vector", is_point(a));
+	err = 0;
+	err += test_print("a.x = 4.3", a.x == 4.3);
+	err += test_print("a.y = -4.2", a.y == -4.2);
+	err += test_print("a.z = 3.1", a.z == 3.1);
+	err += test_print("a.w = 1.0", a.w == 1.0);
+	err += test_print("a is point", is_point(a));
+	err += test_print("a is not vector", !is_vector(a));
+	scenario_end(err);
+	return (err);
 }

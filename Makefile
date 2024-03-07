@@ -41,7 +41,9 @@ SRC_PARSING	:=	file_management.c \
 				num_setters.c
 
 SRC_TEST	:=	tuples.c \
-				test_print.c \
+				print.c \
+
+SRC_MATH	:=	tuples.c \
 
 ############
 # INCLUDED #
@@ -66,10 +68,16 @@ SRCS		=	$(addprefix $(SRC_DIR), $(SRC_ALL))
 SRC_ALL		=	$(SRC_LIST) \
 				$(SRCL_ERR) \
 				$(SRCL_PARS) \
+				$(SRCL_MATH) \
+				$(SRCL_TEST) \
 
 SRCL_ERR	=	$(addprefix $(ERR_DIR), $(SRC_ERROR))
 
 SRCL_PARS	=	$(addprefix $(PARS_DIR), $(SRC_PARSING))
+
+SRCL_TEST	=	$(addprefix $(TEST_DIR), $(SRC_TEST))
+
+SRCL_MATH	=	$(addprefix $(MATH_DIR), $(SRC_MATH))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -90,6 +98,8 @@ ERR_DIR		:=	errors/
 PARS_DIR	:=	parsing/
 
 TEST_DIR	:=	test/
+
+MATH_DIR	:=	math/
 
 OBJ_DIR		:=	.build/
 
@@ -134,7 +144,7 @@ $(LIBS):
 
 debug:			$(OBJS) $(LIBS) $(HEADERS)
 				$(CC) -o $(NAME) $(OBJS) $(DBFLAGS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
-				@if [ ! -d $(NAME) ]; then \
+				@if [ -f $(NAME) ]; then \
 					$(ECHO) "$(_IRED)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_IRED)$(_BOLD) with $(_ICYAN)db flags!$(_END)"; \
 				else \
 					$(ECHO) "$(_IRED)$(_BOLD)Error while building $(_IBLUE)$(NAME)$(_END)"; \
@@ -142,7 +152,7 @@ debug:			$(OBJS) $(LIBS) $(HEADERS)
 
 no-flags:		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
 				@$(CC) -o $(NAME) $(OBJS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
-				@if [ ! -d $(NAME) ]; then \
+				@if [ -f $(NAME) ]; then \
 					$(ECHO) "$(_YELLOW)$(_BOLD)Successfuly built $(_UNDER)$(NAME)$(_END)$(_YELLOW)$(_BOLD) with no flags ! $(_RED)/!\\ $(_END)"; \
 				else \
 					$(ECHO) "$(_RED)$(_BOLD)Error while building $(_IRED)$(NAME)$(_END)"; \
@@ -150,7 +160,7 @@ no-flags:		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
 
 $(NAME):		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
 				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDLIBS) $(INCLUDE) $(MY_LIBS)
-				@if [ ! -d $(NAME) ]; then \
+				@if [ -f $(NAME) ]; then \
 					$(ECHO) "$(_BLUE)$(_BOLD)Successfuly built $(_UNDER)$(NAME)!$(_END)"; \
 				else \
 					$(ECHO) "$(_PURPLE)$(_BOLD)Error while building $(_UNDER)$(NAME)!$(_END)"; \
