@@ -178,9 +178,9 @@ clean:
 					$(MAKE_SUB) $$(dirname $$lib) clean $(QUIET); \
 					$(MAKE_SUB) $$(dirname $$lib) fclean $(QUIET); \
 					if [ -f "$$lib" ]; then \
-						$(ECHO) "$(_RED)$(_BOLD)Failed to clean $(_UNDER)$$lib$(_END)"; \
+						$(ECHO) "$(_RED)$(_BOLD) Failed to clean $(_UNDER)$$lib$(_END)"; \
 					else \
-						$(ECHO) "$(_CYAN)$(_BOLD)Cleaned $(_UNDER)$$lib$(_END)"; \
+						$(ECHO) "$(_CYAN)$(_BOLD) Cleaned $(_UNDER)$$lib$(_END)"; \
 					fi \
 				done
 
@@ -233,7 +233,7 @@ _ICYAN			=	\x1b[46m
 _IWHITE			=	\x1b[47m
 
 banner:
-				@$(ECHO) "$(_BLUE)                                           ▒▒░░░░░░░░░░░░                "
+				@$(ECHO) "$(_BLUE)                                         ▒▒░░░░░░░░░░░░                  "
 				@$(ECHO) "$(_YELLOW)            _       _______ _____    $(_BLUE)▒▒▒▒▒▒▒░░░░░░░░░░░░     ░░          "
 				@$(ECHO) "$(_YELLOW)           (_)     (_) ___ \\_   _| $(_BLUE)▒▒▒▒▒▒▒▒░░░░░░░░░░░         ░░        "
 				@$(ECHO) "$(_YELLOW)  _ __ ___  _ _ __  _| |_/ / | |$(_BLUE)░▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░            ░░      "
