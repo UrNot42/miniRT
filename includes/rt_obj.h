@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:17:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:22:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ struct s_size
 /* RGB values in [0 ; 255] range */
 struct s_color
 {
-	unsigned char	red;
-	unsigned char	grn;
-	unsigned char	blu;
+	t_uchar	red;
+	t_uchar	grn;
+	t_uchar	blu;
 };
 
 struct s_bound
@@ -75,16 +75,16 @@ struct s_bound
 
 struct s_obj
 {
-	t_unt	type;
-	t_pos			pos;
-	t_pos			norm;
-	float			ratio;
-	float			diameter;
-	float			height;
-	unsigned char	fov;
-	t_color			col;
-	t_size			*size;
-	bool			defined;
+	t_unt		type;
+	t_pos		pos;
+	t_pos		norm;
+	float		ratio;
+	float		diameter;
+	float		height;
+	t_uchar		fov;
+	t_color		col;
+	t_size		*size;
+	bool		defined;
 };
 
 struct s_scene

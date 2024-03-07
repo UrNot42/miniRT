@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:12:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:22:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	test_tuple(void)
 {
 	t_tuple	a;
-	unsingederr
+	t_unt	err;
 
 	scenario_start("A tuple with w=1.0 is a point");
 	set_tuple(&a, (t_tuple){4.3, -4.2, 3.1, 1.0});

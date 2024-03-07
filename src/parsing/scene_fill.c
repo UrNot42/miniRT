@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:18:29 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:23:22 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	scene_fill(t_scene *scene, int fd)
 {
-	char			*line;
+	char	*line;
 	t_unt	count;
 	t_unt	tmp;
 
