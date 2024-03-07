@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/06 10:41:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:07:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ bool	parse_object(t_obj *object, unsigned int id, char *line,
 		&& set_pos(&object->norm, line, pos))
 		return (p_error(ERR_NORM), true);
 	if ((id == OBJ_AMB_LIGHT || id == OBJ_SRC_LIGHT)
-		&& set_db_wbound(&object->ratio, (t_bound){true, 0, 1}, line, pos))
+		&& set_f_wbound(&object->ratio, (t_bound){true, 0, 1}, line, pos))
 		return (p_error(ERR_RATIO), true);
 	if ((id == OBJ_SPHERE || id == OBJ_CYLINDER)
-		&& set_db(&object->diameter, line, pos))
+		&& set_float(&object->diameter, line, pos))
 		return (p_error(ERR_DIAMETER), true);
 	if (id == OBJ_CYLINDER
-		&& set_db(&object->height, line, pos))
+		&& set_float(&object->height, line, pos))
 		return (p_error(ERR_HEIGHT), true);
 	if (id == OBJ_CAMERA
 		&& set_int((int *)&object->fov, line, pos))

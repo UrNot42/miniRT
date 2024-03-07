@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_math.h                                          :+:      :+:    :+:   */
+/*   tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 11:29:15 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/03/07 12:02:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_MATH_H
-# define RT_MATH_H
+#include "minirt.h"
 
-typedef float	t_tuple	__attribute__((ext_vector_type(4)));
+bool	test_tuple(void)
+{
+	t_tuple	a;
 
-#endif
+	scenario_start("Tuple_init");
+	set_tuple(&a, (t_tuple){4.3, -4.2, 3.1, 1.0});
+	test("x val", a.x == 4.3);
+	test("y val", a.y == -4.2);
+	test("z val", a.z == 3.1);
+	test("w val", a.w == 1.0);
+	test("is point", is_point(a));
+	test("is not vector", is_point(a));
+}

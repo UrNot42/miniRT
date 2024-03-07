@@ -6,12 +6,14 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/05 12:19:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:08:38 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_OBJ_H
 # define RT_OBJ_H
+
+# include "rt_math.h"
 
 # define ID_AMB_LIGHT "A"
 # define ID_CAMERA "C"
@@ -44,9 +46,9 @@ typedef struct s_scene		t_scene;
 /* x, y, z coordinates */
 struct s_pos
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 };
 
 /* use for dynamic filling of elements */
@@ -67,8 +69,8 @@ struct s_color
 struct s_bound
 {
 	bool	set;
-	double	left;
-	double	right;
+	float	left;
+	float	right;
 };
 
 struct s_obj
@@ -76,9 +78,9 @@ struct s_obj
 	unsigned int	type;
 	t_pos			pos;
 	t_pos			norm;
-	double			ratio;
-	double			diameter;
-	double			height;
+	float			ratio;
+	float			diameter;
+	float			height;
 	unsigned char	fov;
 	t_color			col;
 	t_size			*size;

@@ -40,6 +40,9 @@ SRC_PARSING	:=	file_management.c \
 				obj_setters.c \
 				num_setters.c
 
+SRC_TEST	:=	tuples.c \
+				test_print.c \
+
 ############
 # INCLUDED #
 ############
@@ -49,6 +52,8 @@ INCLUDE		=	-I$(INCLUDE_DIR)
 HEADERS		=	$(addprefix $(INCLUDE_DIR), $(HEADER_LIST))
 
 HEADER_LIST	:=	minirt.h
+
+# HEADER_LIB	=	$(LIBS:.a=.h)
 
 DEPS		=	$(INCLUDE_DIR) Makefile
 
@@ -84,9 +89,12 @@ ERR_DIR		:=	errors/
 
 PARS_DIR	:=	parsing/
 
+TEST_DIR	:=	test/
+
 OBJ_DIR		:=	.build/
 
 MLX_DIR		=	minilibx-linux/
+
 
 #############
 # LIBRARIES #
