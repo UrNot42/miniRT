@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_test.h                                          :+:      :+:    :+:   */
+/*   tuples_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:37:12 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/03/08 14:58:47 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/03/08 15:01:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_TEST_H
-# define RT_TEST_H
+#include "minirt.h"
 
-void	scenario_start(char *scenario_name);
-t_unt	scenario_end(t_unt errors);
-void	given(char *state);
-bool	test_print(char *test_name, bool status);
-
-// Cucumber tests
-bool	test_tuple(void);
-bool	test_point_vec(void);
-
-#endif
+t_tuple	tup_add(t_tuple a, t_tuple b)
+{
+	return ((t_tuple){a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w});
+}

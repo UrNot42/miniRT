@@ -43,7 +43,9 @@ SRC_PARSING	:=	file_management.c \
 SRC_TEST	:=	tuples.c \
 				print.c \
 
-SRC_MATH	:=	tuples.c \
+SRC_MATH	:=	tuples_set.c \
+				bool_tuples.c \
+				float_operation.c \
 
 ############
 # INCLUDED #

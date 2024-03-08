@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:31:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:42:38 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ bool	test_print(char *test_name, bool status)
 		ft_printf("Passed [OK]\n");
 	else
 		ft_printf("Failed [KO]\n");
-	return (status);
+	return (!status);
 }
