@@ -8,6 +8,8 @@ CC			:=	cc
 
 CFLAGS		:=	-Wall -Wextra -Werror
 
+PRINT_HEAD	:=	 -H -fsyntax-only
+
 DBFLAGS		:=	-g -g3
 
 LDLIBS		=	-lm -L./$(LIB_DIR)$(MLX_DIR) -lmlx -lXext -lX11
@@ -42,11 +44,14 @@ SRC_PARSING	:=	file_management.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
+				launch.c \
+				vectors.c \
 
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				tuples_operation.c \
+				vector_operation.c \
 
 ############
 # INCLUDED #

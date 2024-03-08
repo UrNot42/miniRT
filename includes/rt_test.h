@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 16:07:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:06:38 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,24 @@ void	given(char *state, t_unt a);
 bool	test_print(char *test_name, bool status);
 
 // Cucumber tests
-t_unt	launch_tup_pts_vec_test(void);
-bool	test_tuple(void);
-bool	test_point_vec(void);
-bool	test_tuple_add(void);
-bool	test_sub_pts(void);
-bool	test_sub_pt_vec(void);
-bool	test_sub_vects(void);
-bool	test_sub_zero_vec(void);
-bool	test_neg_tuple(void);
+t_unt	launch_tests(void);
+
+// Tuples
+t_unt	launch_tuple_test(void);
+t_unt	test_tuple(void);
+t_unt	test_point_vec(void);
+t_unt	test_tuple_add(void);
+t_unt	test_sub_pts(void);
+t_unt	test_sub_pt_vec(void);
+t_unt	test_sub_vects(void);
+t_unt	test_sub_zero_vec(void);
+t_unt	test_neg_tuple(void);
+t_unt	test_multiply_tuple(void);
+t_unt	test_divide_tuple(void);
+
+// Vectors
+t_unt	launch_vec_test(void);
+t_unt	test_magnitude_vector(void);
+t_unt	test_vector_normalization(void);
 
 #endif
