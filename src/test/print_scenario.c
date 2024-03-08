@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:09:14 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:30:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	given(char *state, t_unt a)
 
 bool	test_print(char *test_name, bool status)
 {
-	ft_printf(" - Test %s: ", test_name);
+	ft_printf(" + Test %s: ", test_name);
 	if (status)
 		ft_printf("Passed [OK]\n");
 	else

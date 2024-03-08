@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:11:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:27:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,5 @@ int	main(int ac, char **av)
 // tests
 int	main(void)
 {
-	test_tuple();
-	test_point_vec();
-	test_tuple_add();
+	launch_tup_pts_vec_test();
 }

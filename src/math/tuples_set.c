@@ -6,32 +6,23 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:32:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:58:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:23:48 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	set_tuple(t_tuple *a, t_tuple b)
+t_tuple	set_tuple(t_tuple a)
 {
-	a->x = b.x;
-	a->y = b.y;
-	a->z = b.z;
-	a->w = b.w;
+	return ((t_tuple){a.x, a.y, a.z, a.w});
 }
 
-void	set_point(t_tuple *a, t_pos b)
+t_tuple	set_point(t_pos a)
 {
-	a->x = b.x;
-	a->y = b.y;
-	a->z = b.z;
-	a->w = 1.0;
+	return ((t_tuple){a.x, a.y, a.z, 1.0});
 }
 
-void	set_vec(t_tuple *a, t_pos b)
+t_tuple	set_vec(t_pos a)
 {
-	a->x = b.x;
-	a->y = b.y;
-	a->z = b.z;
-	a->w = 0;
+	return ((t_tuple){a.x, a.y, a.z, 0});
 }
