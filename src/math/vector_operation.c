@@ -6,13 +6,13 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:18:06 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 18:15:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:21:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-float	vec_magnitude(t_tuple vec)
+float	vec_magn(t_tuple vec)
 {
 	float	magnitude;
 
@@ -22,7 +22,7 @@ float	vec_magnitude(t_tuple vec)
 	return (magnitude);
 }
 
-t_tuple	vec_normalize(t_tuple vec)
+t_tuple	vec_norm(t_tuple vec)
 {
-	return (tup_div(vec, vec_magnitude(vec)));
+	return (tup_div(vec, vec_magn(vec)));
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:58:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 17:41:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:21:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_tuple	tup_neg(t_tuple a)
 	return ((t_tuple){-a.x, -a.y, -a.z, -a.w});
 }
 
-t_tuple	tup_scale(t_tuple a, float scalar)
+t_tuple	tup_mult(t_tuple a, float scalar)
 {
 	return ((t_tuple){a.x * scalar, a.y * scalar, a.z * scalar, a.w * scalar});
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 18:03:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:21:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ bool	is_same_tuple(t_tuple a, t_tuple b);
 t_tuple	tup_add(t_tuple a, t_tuple b);
 t_tuple	tup_sub(t_tuple a, t_tuple b);
 t_tuple	tup_neg(t_tuple a);
-t_tuple	tup_scale(t_tuple a, float scalar);
+t_tuple	tup_mult(t_tuple a, float scalar);
 t_tuple	tup_div(t_tuple a, float scalar);
 
 /* Vectors */
-float	vec_magnitude(t_tuple vec);
-t_tuple	vec_normalize(t_tuple vec);
+float	vec_magn(t_tuple vec);
+t_tuple	vec_norm(t_tuple vec);
 
 #endif
