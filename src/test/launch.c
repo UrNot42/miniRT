@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 18:17:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 20:27:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_unt	launch_vec_test(void)
 
 	err = test_magnitude_vector();
 	err += test_vector_normalization();
+	err += test_dot_product();
+	err += test_cross_product();
 	ft_printf("==> Finished Vector tests with %d Errors ", err);
 	if (!err)
 		ft_printf("[OK]\n#########\n");

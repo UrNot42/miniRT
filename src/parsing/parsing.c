@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 21:06:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ bool	parse_object(t_obj *object, t_unt id, char *line,
 {
 	if (!line[*pos])
 		return (p_error(ERR_LINE), true);
-	if (id != OBJ_AMB_LIGHT && set_pos(&object->pos, line, pos))
+	if (id != OBJ_AMB_LIGHT && parse_pos(&object->pos, line, pos))
 		return (p_error(ERR_POS), true);
 	if (id != OBJ_AMB_LIGHT && id != OBJ_SRC_LIGHT && id != OBJ_SPHERE
-		&& set_pos(&object->norm, line, pos))
+		&& parse_pos(&object->norm, line, pos))
 		return (p_error(ERR_NORM), true);
 	if ((id == OBJ_AMB_LIGHT || id == OBJ_SRC_LIGHT)
 		&& set_f_wbound(&object->ratio, (t_bound){true, 0, 1}, line, pos))
@@ -79,7 +79,7 @@ bool	parse_object(t_obj *object, t_unt id, char *line,
 	if (id == OBJ_CAMERA
 		&& set_int((int *)&object->fov, line, pos))
 		return (p_error(ERR_FOV), true);
-	if (id != OBJ_CAMERA && set_color(&object->col, line, pos))
+	if (id != OBJ_CAMERA && parse_color(&object->col, line, pos))
 		return (p_error(ERR_COLOR), true);
 	object->type = id;
 	return (false);
@@ -97,7 +97,7 @@ t_unt	parse_line(char *line, t_scene *scene)
 	identifier = check_for_identifier(&line[pos], &pos);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
-	if (set_obj(scene, identifier))
+	if (parse_obj(scene, identifier))
 		return (4);
 	if (parse_object(get_obj(scene, identifier), identifier, line, &pos))
 		return (3);

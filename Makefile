@@ -46,6 +46,7 @@ SRC_TEST	:=	tuples.c \
 				print_scenario.c \
 				launch.c \
 				vectors.c \
+				firing_projectiles.c # TODO RM
 
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
