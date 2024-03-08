@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   print_scenario.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:42:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:09:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ t_unt	scenario_end(t_unt errors)
 	return (errors);
 }
 
-void	given(char *state)
+void	given(char *state, t_unt a)
 {
-	ft_printf("> Given %s\n", state);
+	if (!a)
+		ft_printf("> Given %s\n", state);
+	else
+		ft_printf(">   And %s\n", state);
 }
 
 bool	test_print(char *test_name, bool status)

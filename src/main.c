@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:39:00 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:11:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ int	main(void)
 {
 	test_tuple();
 	test_point_vec();
+	test_tuple_add();
 }

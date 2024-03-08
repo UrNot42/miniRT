@@ -41,11 +41,12 @@ SRC_PARSING	:=	file_management.c \
 				num_setters.c
 
 SRC_TEST	:=	tuples.c \
-				print.c \
+				print_scenario.c \
 
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
+				tuples_operation.c \
 
 ############
 # INCLUDED #
