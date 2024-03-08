@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:59:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:12:35 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ t_unt	launch_tup_pts_vec_test(void)
 	err += test_sub_pts();
 	err += test_sub_pt_vec();
 	err += test_sub_vects();
+	err += test_sub_zero_vec();
+	err += test_neg_tuple();
+	ft_printf("==> Finished Tuple_tests with %d Errors ", err);
+	if (err)
+		ft_printf("[OK]\n");
+	else
+		ft_printf("[KO]\n");
 	return (err);
 }
 
@@ -73,8 +80,8 @@ bool	test_tuple_add(void)
 
 	scenario_start("Adding two tuples");
 	given("a1 ← tuple(3, -2, 5, 1)", 0);
-	a1 = set_tuple((t_tuple){3, -2, 5, 1});
 	given("a2 ← tuple(-2, 3, 1, 0)", 1);
+	a1 = set_tuple((t_tuple){3, -2, 5, 1});
 	a2 = set_tuple((t_tuple){-2, 3, 1, 0});
 	err = test_print("a1 + a2 = tuple(1, 1, 6, 1)",
 			is_same_tuple(tup_add(a1, a2), (t_tuple){1, 1, 6, 1}));
@@ -90,8 +97,8 @@ bool	test_sub_pts(void)
 
 	scenario_start("Subtracting two points");
 	given("p1 ← point(3, 2, 1)", 0);
-	p1 = set_point((t_pos){3, 2, 1});
 	given("p2 ← point(5, 6, 7)", 1);
+	p1 = set_point((t_pos){3, 2, 1});
 	p2 = set_point((t_pos){5, 6, 7});
 	err = test_print("p1 - p2 = vector(-2, -4, -6)",
 			is_same_tuple(tup_sub(p1, p2), set_vec((t_pos){-2, -4, -6})));
@@ -109,7 +116,7 @@ bool	test_sub_pt_vec(void)
 
 	scenario_start("Subtracting a vector from a point");
 	given("p ← point(3, 2, 1)", 0);
-	given("v ← vector(5, 6, 7)", 0);
+	given("v ← vector(5, 6, 7)", 1);
 	p = set_point((t_pos){3, 2, 1});
 	v = set_vec((t_pos){5, 6, 7});
 	result = tup_sub(p, v);
@@ -130,12 +137,51 @@ bool	test_sub_vects(void)
 
 	scenario_start("Subtracting two vectors");
 	given("v1 ← vector(3, 2, 1)", 0);
-	given("v2 ← vector(5, 6, 7)", 0);
+	given("v2 ← vector(5, 6, 7)", 1);
 	v1 = set_vec((t_pos){3, 2, 1});
 	v2 = set_vec((t_pos){5, 6, 7});
 	result = tup_sub(v1, v2);
 	expected = set_vec((t_pos){-2, -4, -6});
 	err = test_print("v1 - v2 = vector(-2, -4, -6)",
+			is_same_tuple(result, expected));
+	scenario_end(err);
+	return (err);
+}
+
+bool	test_sub_zero_vec(void)
+{
+	t_tuple	zero;
+	t_tuple	v;
+	t_tuple	result;
+	t_tuple	expected;
+	t_unt	err;
+
+	scenario_start("Subtracting a vector from the zero vector");
+	given("zero ← vector(0, 0, 0)", 0);
+	given("v ← vector(1, -2, 3)", 0);
+	zero = set_vec((t_pos){0, 0, 0});
+	v = set_vec((t_pos){1, -2, 3});
+	result = tup_sub(zero, v);
+	expected = set_vec((t_pos){-1, 2, -3});
+	err = test_print("zero - v = vector(-1, 2, -3)",
+			is_same_tuple(result, expected));
+	scenario_end(err);
+	return (err);
+}
+
+bool	test_neg_tuple(void)
+{
+	t_tuple	a;
+	t_tuple	result;
+	t_tuple	expected;
+	t_unt	err;
+
+	scenario_start("Negating a tuple");
+	given("a ← tuple(1, -2, 3, -4)", 0);
+	a = set_tuple((t_tuple){1, -2, 3, -4});
+	expected = set_tuple((t_tuple){-1, 2, -3, 4});
+	result = tup_neg(a);
+	err = test_print("-a = tuple(-1, 2, -3, 4)",
 			is_same_tuple(result, expected));
 	scenario_end(err);
 	return (err);

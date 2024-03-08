@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:25:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:10:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ bool	is_vec(t_tuple a);
 bool	is_same_tuple(t_tuple a, t_tuple b);
 t_tuple	tup_add(t_tuple a, t_tuple b);
 t_tuple	tup_sub(t_tuple a, t_tuple b);
+t_tuple	tup_neg(t_tuple a);
 
 #endif

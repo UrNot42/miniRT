@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:59:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:07:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ bool	test_tuple_add(void);
 bool	test_sub_pts(void);
 bool	test_sub_pt_vec(void);
 bool	test_sub_vects(void);
+bool	test_sub_zero_vec(void);
+bool	test_neg_tuple(void);
 
 #endif
