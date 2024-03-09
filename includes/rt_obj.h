@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:15:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:31:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum e_objects
 
 typedef unsigned int		t_unt;
 typedef unsigned char		t_uchar;
+typedef float				t_tuple	__attribute__((ext_vector_type(4)));
 
 typedef struct s_pos		t_pos;
 typedef struct s_size		t_size;
@@ -60,11 +61,24 @@ struct s_size
 };
 
 /* RGB values in [0 ; 255] range */
+/*struct s_color
+{
+	t_tuple	tuple;
+	float	*r;
+	float	*g;
+	float	*b;
+};*/
+// TODO MAYBE USE PRIOR CODE IMPLEMENTATION ????????
 struct s_color
 {
-	t_uchar	red;
-	t_uchar	grn;
-	t_uchar	blu;
+	union {
+		struct {
+			float	red;
+			float	green;
+			float	blue;
+		};
+		t_tuple	tuple;
+	};
 };
 
 struct s_bound

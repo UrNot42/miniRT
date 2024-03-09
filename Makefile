@@ -40,19 +40,21 @@ SRC_PARSING	:=	file_management.c \
 				parsing.c \
 				obj_print.c \
 				obj_setters.c \
-				num_setters.c
+				num_setters.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
 				launch.c \
 				vectors.c \
-				firing_projectiles.c # TODO RM
+				colors.c \
+				# firing_projectiles.c # TODO RM
 
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				tuples_operation.c \
 				vector_operation.c \
+				color_operation.c \
 
 ############
 # INCLUDED #

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 20:27:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:01:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,31 @@
 
 t_unt	launch_tests(void)
 {
-	t_unt	err = 0;
+	t_unt	err;
 
-	err += launch_tuple_test();
+	err = launch_tuple_test();
 	err += launch_vec_test();
+	err += launch_col_test();
 	ft_printf("===> All test finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
 	else
 		ft_printf(": %d Errors [KO]\n", err);
+	return (err);
+}
+
+t_unt	launch_col_test(void)
+{
+	t_unt	err;
+
+	err = test_color_tuple();
+	err += test_color_operations();
+	err += test_multiply_colors();
+	ft_printf("==> Finished Color tests with %d Errors ", err);
+	if (!err)
+		ft_printf("[OK]\n#########\n");
+	else
+		ft_printf("[KO]\nXXXXXXXXX\n");
 	return (err);
 }
 

@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tuples_set.c                                       :+:      :+:    :+:   */
+/*   color_operation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 12:32:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 13:03:13 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/03/09 12:57:43 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/03/09 13:00:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_tuple	set_tuple(float x, float y, float z, float w)
+t_color	hadamard_product(t_color c1, t_color c2)
 {
-	return ((t_tuple){x, y, z, w});
-}
+	float	r;
+	float	g;
+	float	b;
 
-t_tuple	set_point(float x, float y, float z)
-{
-	return ((t_tuple){x, y, z, 1.0});
-}
-
-t_tuple	set_vec(float x, float y, float z)
-{
-	return ((t_tuple){x, y, z, 0});
-}
-
-t_color	set_col(float r, float g, float b)
-{
-	t_color	a;
-
-	a.red = r;
-	a.green = g;
-	a.blue = b;
-	a.tuple.w = 0;
-	return (a);
+	r = c1.red * c2.red;
+	g = c1.green * c2.green;
+	b = c1.blue * c2.blue;
+	return (set_col(r, g, b));
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 21:15:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:00:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ bool	f_eq(float a, float b);
 t_tuple	set_tuple(float x, float y, float z, float w);
 t_tuple	set_point(float x, float y, float z);
 t_tuple	set_vec(float x, float y, float z);
-t_tuple	set_col(float r, float g, float b);
+t_color	set_col(float r, float g, float b);
 bool	is_point(t_tuple a);
 bool	is_vec(t_tuple a);
 bool	is_same_tuple(t_tuple a, t_tuple b);
 t_tuple	tup_add(t_tuple a, t_tuple b);
 t_tuple	tup_sub(t_tuple a, t_tuple b);
 t_tuple	tup_neg(t_tuple a);
-t_tuple	tup_mult(t_tuple a, float scalar);
+t_tuple	tup_scale(t_tuple a, float scalar);
 t_tuple	tup_div(t_tuple a, float scalar);
 
 /* Vectors */
@@ -44,5 +44,8 @@ float	vec_magn(t_tuple vec);
 t_tuple	vec_norm(t_tuple vec);
 float	vec_dot(t_tuple a, t_tuple b);
 t_tuple	vec_cross(t_tuple a, t_tuple b);
+
+/* Colors */
+t_color	hadamard_product(t_color c1, t_color c2);
 
 #endif

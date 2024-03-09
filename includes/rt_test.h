@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 18:34:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:01:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,11 @@ t_unt	test_magnitude_vector(void);
 t_unt	test_vector_normalization(void);
 t_unt	test_dot_product(void);
 t_unt	test_cross_product(void);
+
+//color
+t_unt	launch_col_test(void);
+t_unt	test_color_tuple(void);
+t_unt	test_color_operations(void);
+t_unt	test_multiply_colors(void);
 
 #endif

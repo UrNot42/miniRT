@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:25:38 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:25:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:44:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	print_col(t_color	*col, bool tab)
 {
 	if (tab)
 		printf("\t\t");
-	printf("Red  : %d\n", col -> red);
-	printf("\t\tGreen: %d\n", col -> grn);
-	printf("\t\tBlue : %d\n", col -> blu);
+	printf("Red  : %f\n", col -> red);
+	printf("\t\tGreen: %f\n", col -> grn);
+	printf("\t\tBlue : %f\n", col -> blu);
 }
 
 void	print_obj(t_obj *obj)

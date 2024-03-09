@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 20:27:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:56:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ t_unt	test_multiply_tuple(void)
 	scenario_start("Multiplying a tuple by a scalar");
 	given("a ← tuple(1, -2, 3, -4)", 0);
 	a = set_tuple(1, -2, 3, -4);
-	result = tup_mult(a, 3.5);
+	result = tup_scale(a, 3.5);
 	err[0] = test_print("a * 3.5 = tuple(3.5, -7, 10.5, -14)",
 			is_same_tuple(result, (t_tuple){3.5, -7, 10.5, -14}));
 	scenario_end(err[0]);
@@ -192,7 +192,7 @@ t_unt	test_multiply_tuple(void)
 	scenario_start("Multiplying a tuple by a fraction");
 	given("a ← tuple(1, -2, 3, -4)", 0);
 	a = set_tuple(1, -2, 3, -4);
-	result = tup_mult(a, 0.5);
+	result = tup_scale(a, 0.5);
 	err[1] = test_print("a * 0.5 = tuple(0.5, -1, 1.5, -2)",
 			is_same_tuple(result, (t_tuple){0.5, -1, 1.5, -2}));
 	scenario_end(err[1]);

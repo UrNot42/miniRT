@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:39:57 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 19:33:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:04:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_unt	test_vector_normalization(void)
 	given("v ← vector(1, 2, 3)", 0);
 	v = set_vec(1, 2, 3);
 	norm = vec_norm(v);
-	err[1] += test_print("normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)",
+	err[1] = test_print("normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)",
 			is_same_tuple(norm, set_vec(0.26726, 0.53452, 0.801780)));
 	scenario_end(err[1]);
 
@@ -90,7 +90,7 @@ t_unt	test_vector_normalization(void)
 	v = set_vec(1, 2, 3);
 	norm = vec_norm(v);
 	magnitude_norm = vec_magn(norm);
-	err[2] += test_print("magnitude(norm) = 1", f_eq(magnitude_norm, 1.0));
+	err[2] = test_print("magnitude(norm) = 1", f_eq(magnitude_norm, 1.0));
 	scenario_end(err[2]);
 
 	return (err[0] + err[1] + err[2]);
