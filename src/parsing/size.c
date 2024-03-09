@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:26:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:23:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	copy_element(t_obj *obj_1, t_obj obj_2)
 		obj_2.diameter,
 		obj_2.height,
 		obj_2.fov,
-		(t_color){obj_2.col.red, obj_2.col.grn, obj_2.col.blu},
+		set_col(obj_2.col.red, obj_2.col.green, obj_2.col.blue),
 		obj_2.size,
 		obj_2.defined};
 }

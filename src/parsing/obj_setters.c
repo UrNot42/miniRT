@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 21:06:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:24:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ bool	parse_color(t_color *color, char *line, t_unt *idx)
 		(*idx)++;
 	else
 		return (true);
-	color->grn = ft_atof_c(line, idx);
+	color->green = ft_atof_c(line, idx);
 	if (line[*idx] && line[*idx] == ',')
 		(*idx)++;
 	else
 		return (true);
-	color->blu = ft_atof_c(line, idx);
+	color->blue = ft_atof_c(line, idx);
 	if (!ft_isispace(line[*idx]))
 		return (true);
 	return (false);

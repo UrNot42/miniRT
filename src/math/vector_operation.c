@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:18:06 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 19:25:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:28:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	vec_magn(t_tuple vec)
 
 t_tuple	vec_norm(t_tuple vec)
 {
-	return (tup_div(vec, vec_magn(vec)));
+	return (vec / vec_magn(vec));
 }
 
 float	vec_dot(t_tuple a, t_tuple b)

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:14:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 13:04:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:29:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_unt	test_color_operations(void)
 	given("c2 ← color(0.7, 0.1, 0.25)", 0);
 	c1 = set_col(0.9, 0.6, 0.75);
 	c2 = set_col(0.7, 0.1, 0.25);
-	result.tuple = tup_add(c1.tuple, c2.tuple);
+	result.tuple = c1.tuple + c2.tuple;
 	expected = set_col(1.6, 0.7, 1.0);
 	err[0] = test_print("c1 + c2 = color(1.6, 0.7, 1.0)",
 			is_same_tuple(result.tuple, expected.tuple));
@@ -55,7 +55,7 @@ t_unt	test_color_operations(void)
 	given("c2 ← color(0.7, 0.1, 0.25)", 0);
 	c1 = set_col(0.9, 0.6, 0.75);
 	c2 = set_col(0.7, 0.1, 0.25);
-	result.tuple = tup_sub(c1.tuple, c2.tuple);
+	result.tuple = c1.tuple - c2.tuple;
 	expected = set_col(0.2, 0.5, 0.5);
 	err[1] = test_print("c1 - c2 = color(0.2, 0.5, 0.5)",
 			is_same_tuple(result.tuple, expected.tuple));
@@ -74,7 +74,7 @@ t_unt	test_multiply_colors(void)
 	scenario_start("Multiplying a color by a scalar");
 	given("c ← color(0.2, 0.3, 0.4)", 0);
 	c1 = set_col(0.2, 0.3, 0.4);
-	result.tuple = tup_scale(c1.tuple, 2);
+	result.tuple = c1.tuple * 2;
 	expected = set_col(0.4, 0.6, 0.8);
 	err[1] = test_print("c * 2 = color(0.4, 0.6, 0.8)",
 			is_same_tuple(result.tuple, expected.tuple));

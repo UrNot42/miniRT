@@ -52,7 +52,6 @@ SRC_TEST	:=	tuples.c \
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
-				tuples_operation.c \
 				vector_operation.c \
 				color_operation.c \
 

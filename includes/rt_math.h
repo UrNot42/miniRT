@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 13:00:08 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:27:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ t_color	set_col(float r, float g, float b);
 bool	is_point(t_tuple a);
 bool	is_vec(t_tuple a);
 bool	is_same_tuple(t_tuple a, t_tuple b);
-t_tuple	tup_add(t_tuple a, t_tuple b);
-t_tuple	tup_sub(t_tuple a, t_tuple b);
-t_tuple	tup_neg(t_tuple a);
-t_tuple	tup_scale(t_tuple a, float scalar);
-t_tuple	tup_div(t_tuple a, float scalar);
 
 /* Vectors */
 float	vec_magn(t_tuple vec);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:26:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:19:33 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # include "rt_parsing.h"
 # include "rt_math.h"
 # include "rt_test.h"
+# include "rt_graphic.h"
 
 /* --==--==--==--==--DEFINES--==--==--==--==-- */
 
