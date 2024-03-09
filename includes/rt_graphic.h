@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:29:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:59:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct	s_canvas
 
 // Functions
 t_canvas	canvas(t_unt width, t_unt height);
+void		print_screen(t_canvas screen);
 
 // Creation
 bool		init_canvas(t_canvas *screen);

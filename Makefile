@@ -48,7 +48,7 @@ SRC_TEST	:=	tuples.c \
 				vectors.c \
 				colors.c \
 				canvas.c \
-				# firing_projectiles.c # TODO RM
+				firing_projectiles.c # TODO RM
 
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
@@ -60,6 +60,7 @@ SRC_GRAPH	:=	canvas.c \
 				image.c \
 				window.c \
 				pixel.c \
+				printing.c \
 
 ############
 # INCLUDED #
