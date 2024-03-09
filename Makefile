@@ -47,6 +47,7 @@ SRC_TEST	:=	tuples.c \
 				launch.c \
 				vectors.c \
 				colors.c \
+				canvas.c \
 				# firing_projectiles.c # TODO RM
 
 SRC_MATH	:=	tuples_set.c \
@@ -54,6 +55,11 @@ SRC_MATH	:=	tuples_set.c \
 				float_operation.c \
 				vector_operation.c \
 				color_operation.c \
+
+SRC_GRAPH	:=	canvas.c \
+				image.c \
+				window.c \
+				pixel.c \
 
 ############
 # INCLUDED #
@@ -63,7 +69,13 @@ INCLUDE		=	-I$(INCLUDE_DIR)
 
 HEADERS		=	$(addprefix $(INCLUDE_DIR), $(HEADER_LIST))
 
-HEADER_LIST	:=	minirt.h
+HEADER_LIST	:=	minirt.h \
+				rt_error.h \
+				rt_graphic.h \
+				rt_math.h \
+				rt_obj.h \
+				rt_parsing.h \
+				rt_test.h \
 
 # HEADER_LIB	=	$(LIBS:.a=.h)
 
@@ -79,6 +91,7 @@ SRC_ALL		=	$(SRC_LIST) \
 				$(SRCL_ERR) \
 				$(SRCL_PARS) \
 				$(SRCL_MATH) \
+				$(SRCL_GRAPH) \
 				$(SRCL_TEST) \
 
 SRCL_ERR	=	$(addprefix $(ERR_DIR), $(SRC_ERROR))
@@ -88,6 +101,8 @@ SRCL_PARS	=	$(addprefix $(PARS_DIR), $(SRC_PARSING))
 SRCL_TEST	=	$(addprefix $(TEST_DIR), $(SRC_TEST))
 
 SRCL_MATH	=	$(addprefix $(MATH_DIR), $(SRC_MATH))
+
+SRCL_GRAPH	=	$(addprefix $(GRAPH_DIR), $(SRC_GRAPH))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -110,6 +125,8 @@ PARS_DIR	:=	parsing/
 TEST_DIR	:=	test/
 
 MATH_DIR	:=	math/
+
+GRAPH_DIR	:=	graphic/
 
 OBJ_DIR		:=	.build/
 

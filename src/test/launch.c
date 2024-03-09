@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 13:01:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:18:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_unt	launch_tests(void)
 	err = launch_tuple_test();
 	err += launch_vec_test();
 	err += launch_col_test();
+	err += test_create_canvas();
+	err += test_write_pixel_to_canvas();
 	ft_printf("===> All test finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");

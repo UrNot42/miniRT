@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 14:27:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:16:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef unsigned int	t_unt;
 typedef unsigned char	t_uchar;
 typedef struct s_pos	t_pos;
+typedef uint32_t		t_hxcol;
 
 typedef float			t_tuple	__attribute__((ext_vector_type(4)));
 
@@ -42,5 +43,8 @@ t_tuple	vec_cross(t_tuple a, t_tuple b);
 
 /* Colors */
 t_color	hadamard_product(t_color c1, t_color c2);
+float	uchar_to_float(t_uchar color);
+t_uchar	float_to_uchar(float color);
+t_hxcol	t_color_to_hex(t_color color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 13:01:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:17:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ t_unt	launch_col_test(void);
 t_unt	test_color_tuple(void);
 t_unt	test_color_operations(void);
 t_unt	test_multiply_colors(void);
+
+// Graphic
+t_unt	test_create_canvas(void);
+t_unt	test_write_pixel_to_canvas(void);
 
 #endif

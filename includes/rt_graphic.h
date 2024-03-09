@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 14:22:04 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:29:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define RT_GRAPHIC_H
 
 # define WINDOW_NAME  "Mini Roaaaaaaaaaad Trip"
+
+# define HEX_RED_OFFS 0
+# define HEX_GREEN_OFFS 8
+# define HEX_BLUE_OFFS 16
+# define HEX_ALPHA_OFFS 24
+
+# define COL_SCALE 255
 
 typedef struct s_canvas	t_canvas;
 typedef struct s_data	t_data;
@@ -26,6 +33,8 @@ struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	t_unt	height;
+	t_unt	width;
 };
 
 struct	s_canvas
@@ -33,9 +42,26 @@ struct	s_canvas
 	void		*ptr;
 	void		*win;
 	char		*name;
-	t_data		*data;
+	t_data		*picture;
 	t_unt		height;
 	t_unt		width;
+	bool		defined;
 };
+
+// Functions
+t_canvas	canvas(t_unt width, t_unt height);
+
+// Creation
+bool		init_canvas(t_canvas *screen);
+void		close_canvas(t_canvas screen);
+bool		open_window(t_canvas *screen);
+bool		close_window(t_canvas screen);
+bool		create_image(t_data **picture, t_dim size, void *data_ptr);
+void		set_image(t_canvas screen);
+
+// Reading
+t_color		pixel_at(t_canvas screen, t_unt x, t_unt y);
+void		pixel_put(t_data *pic, int x, int y, t_hxcol color);
+void		write_pixel(t_data *pic, int x, int y, t_color color);
 
 #endif
