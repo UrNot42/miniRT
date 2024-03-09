@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:59:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:21:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # define WINDOW_NAME  "Mini Roaaaaaaaaaad Trip"
 
-# define HEX_RED_OFFS 0
+# define HEX_RED_OFFS 16
 # define HEX_GREEN_OFFS 8
-# define HEX_BLUE_OFFS 16
+# define HEX_BLUE_OFFS 0
 # define HEX_ALPHA_OFFS 24
 
 # define COL_SCALE 255

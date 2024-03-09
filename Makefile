@@ -6,7 +6,7 @@ NAME		:=	minirt
 
 CC			:=	cc
 
-CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror -fenable-matrix
 
 PRINT_HEAD	:=	 -H -fsyntax-only
 
@@ -42,25 +42,28 @@ SRC_PARSING	:=	file_management.c \
 				obj_setters.c \
 				num_setters.c \
 
-SRC_TEST	:=	tuples.c \
-				print_scenario.c \
-				launch.c \
-				vectors.c \
-				colors.c \
-				canvas.c \
-				firing_projectiles.c # TODO RM
-
 SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				vector_operation.c \
+				matrix.c \
 				color_operation.c \
+				matrix_set.c \
 
 SRC_GRAPH	:=	canvas.c \
 				image.c \
 				window.c \
 				pixel.c \
 				printing.c \
+
+SRC_TEST	:=	tuples.c \
+				print_scenario.c \
+				launch.c \
+				vectors.c \
+				colors.c \
+				canvas.c \
+				matrix.c \
+				firing_projectiles.c # TODO RM
 
 ############
 # INCLUDED #

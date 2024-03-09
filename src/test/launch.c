@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:18:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:11:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,26 @@ t_unt	launch_tests(void)
 	err += launch_col_test();
 	err += test_create_canvas();
 	err += test_write_pixel_to_canvas();
+	err += launch_matrix_test();
 	ft_printf("===> All test finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
 	else
 		ft_printf(": %d Errors [KO]\n", err);
+	return (err);
+}
+
+t_unt	launch_matrix_test(void)
+{
+	t_unt	err;
+
+	err = test_matrix_init();
+	// err += test_color_operations();
+	ft_printf("==> Finished Matrix tests with %d Errors ", err);
+	if (!err)
+		ft_printf("[OK]\n#########\n");
+	else
+		ft_printf("[KO]\nXXXXXXXXX\n");
 	return (err);
 }
 
