@@ -53,6 +53,9 @@ t_unt	test_write_pixel_to_canvas(void);
 
 // Matrix
 t_unt	launch_matrix_test(void);
-t_unt	test_matrix_init(void);
+t_unt	test_matrix_4_init(void);
+t_unt	test_matrix_2_3_init(void);
+t_unt	test_matrix_equality(void);
+t_unt	test_matrix_mult(void);
 
 #endif

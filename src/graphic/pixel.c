@@ -20,9 +20,9 @@ t_color	pixel_at(t_canvas screen, t_unt x, t_unt y)
 
 	offset = (y * screen.width * 4) + (x * 4);
 	img = screen.picture->addr;
-	pixel.red = uchar_to_float(img[offset]);
+	pixel.red = uchar_to_float(img[offset + 2]);
 	pixel.green = uchar_to_float(img[offset + 1]);
-	pixel.blue = uchar_to_float(img[offset + 2]);
+	pixel.blue = uchar_to_float(img[offset]);
 	pixel.tuple.w = 0;
 	return (pixel);
 }

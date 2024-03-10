@@ -34,8 +34,10 @@ t_unt	launch_matrix_test(void)
 {
 	t_unt	err;
 
-	err = test_matrix_init();
-	// err += test_color_operations();
+	err = test_matrix_4_init();
+	err += test_matrix_2_3_init();
+	err += test_matrix_equality();
+	err += test_matrix_mult();
 	ft_printf("==> Finished Matrix tests with %d Errors ", err);
 	if (!err)
 		ft_printf("[OK]\n#########\n");

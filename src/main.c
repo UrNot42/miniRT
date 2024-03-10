@@ -34,7 +34,7 @@ bool	opening_window(void)
 	free(context);
 	return (0);
 }
-/*
+
 int	main(int ac, char **av)
 {
 	t_scene	scene;
@@ -48,4 +48,4 @@ int	main(int ac, char **av)
 	scene_free(&scene);
 	printf("Code ran acordingly\n");
 	return (opening_window());
-}*/
+}

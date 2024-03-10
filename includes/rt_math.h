@@ -58,5 +58,6 @@ t_hxcol	t_color_to_hex(t_color color);
 t_4mtrx	set_4mtrx(t_i4mtr a);
 t_3mtrx	set_3mtrx(t_i3mtr a);
 t_2mtrx	set_2mtrx(t_i2mtr a);
+bool    matr_4_eq(t_4mtrx a, t_4mtrx b);
 
 #endif

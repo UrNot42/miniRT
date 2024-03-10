@@ -16,7 +16,7 @@
 #define COL_OFS 0.01
 #define SLOWING 0.07
 #define WIND_X -0.00012
-#define PERSPECTIVE 0.4
+#define PERSPECTIVE 0.25
 #define TIME_RESOL 8000
 
 typedef struct s_proj	t_proj;
@@ -100,7 +100,7 @@ void	safe_wait(long time_goal)
 		gettimeofday(&now, NULL);
 	}
 }
-
+/*
 int	main(int ac, char **av)
 {
 	t_canvas	screen;
@@ -118,9 +118,9 @@ int	main(int ac, char **av)
 	else
 		ball.vel = set_vec(1.1, 15, 0);
 	rainbow = set_col(0, 0, 1);
-	world.gravity = set_vec(0, -0.1, 0);
+	world.gravity = set_vec(0, -0.03, 0);
 	world.wind = set_vec(WIND_X, 0, 0);
-	screen = canvas(2000, 1200);
+	screen = canvas(1000, 600);
 	printf("\n");
 	usleep(100000);
 	while (ball.pos.y >= (ball.pos.x * PERSPECTIVE) + 5
@@ -141,8 +141,9 @@ int	main(int ac, char **av)
 		printf("\033[FV={%f, %f} X: | %d Y:%d (R:%f, G:%f, B:%f)   \n",
 			ball.vel.x, ball.vel.y, x, y,
 			rainbow.red, rainbow.green, rainbow.blue);
-		usleep(8000);
+		usleep(10000);
 		// safe_wait(goal);
 	}
 	close_canvas(screen);
 }
+*/
