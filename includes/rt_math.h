@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 15:48:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:39:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,8 @@ float	minor_3mtrx(t_3mtrx a, t_unt i, t_unt j);
 float	minor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
 float	cofactor_3mtrx(t_3mtrx a, t_unt i, t_unt j);
 float	cofactor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
+
+// Transform
+t_4mtrx	translation_mtrx(float x, float y, float z);
 
 #endif

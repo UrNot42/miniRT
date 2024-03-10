@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 17:00:14 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:32:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ t_unt	test_matrix_inverse_third(void);
 t_unt	test_matrix_multiply_inverse(void);
 t_unt	test_inverse_identity_matrix(void);
 t_unt	test_matrix_mult_inverse(void);
+
+// Transform
+t_unt	launch_matrix_transform_test(void);
+t_unt	test_translation_multiplication(void);
 
 #endif

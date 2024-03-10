@@ -42,16 +42,19 @@ SRC_PARSING	:=	file_management.c \
 				obj_setters.c \
 				num_setters.c \
 
-SRC_MATH	:=	tuples_set.c \
+SRC_MATH	=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				vector_operation.c \
 				color_operation.c \
-				matrix.c \
+				$(addprefix $(MATRIX_DIR), $(SRC_MATRIX)) \
+
+SRC_MATRIX	:=	matrix.c \
 				matrix_set.c \
 				matrix_bool.c \
 				matrix_determinant.c \
 				matrix_minor_and_cofactor.c \
+				transform.c \
 
 SRC_GRAPH	:=	canvas.c \
 				image.c \
@@ -66,6 +69,7 @@ SRC_TEST	:=	tuples.c \
 				colors.c \
 				canvas.c \
 				matrix.c \
+				transform.c \
 				firing_projectiles.c # TODO RM
 
 ############
@@ -132,6 +136,8 @@ PARS_DIR	:=	parsing/
 TEST_DIR	:=	test/
 
 MATH_DIR	:=	math/
+
+MATRIX_DIR	:=	matrix/
 
 GRAPH_DIR	:=	graphic/
 
