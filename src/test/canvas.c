@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 14:34:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:36:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:24:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_unt	test_create_canvas(void)
 	scenario_start("Creating a canvas");
 	given("c ← canvas(10, 20)", 0);
 	c = canvas(10, 20);
-	err[0] = test_print("c.width = 10", c.width == 10);
-	err[0] += test_print("c.height = 20", c.height == 20);
+	err[0] = then("c.width = 10", c.width == 10, 0);
+	err[0] += then("c.height = 20", c.height == 20, 1);
 	err[1] = 0;
 	for (t_unt y = 0; y < c.height; y++) {
 		for (t_unt x = 0; x < c.width; x++) {
@@ -34,7 +34,7 @@ t_unt	test_create_canvas(void)
 			}
 		}
 	}
-	err[0] += test_print("every pixel of c is color(0, 0, 0)", err[1] == 0);
+	err[0] += then("every pixel of c is color(0, 0, 0)", err[1] == 0, 2);
 	close_canvas(c);
 	scenario_end(err[0]);
 	return (err[0]);
@@ -54,8 +54,8 @@ t_unt	test_write_pixel_to_canvas(void)
 	red = set_col(1, 0, 0);
 	write_pixel(c.picture, 2, 3, red);
 	pixel = pixel_at(c, 2, 3);
-	err = test_print("pixel_at(c, 2, 3) = red",
-			is_same_tuple(pixel.tuple, red.tuple));
+	err = then("pixel_at(c, 2, 3) = red",
+			is_same_tuple(pixel.tuple, red.tuple), 0);
 	close_canvas(c);
 	scenario_end(err);
 

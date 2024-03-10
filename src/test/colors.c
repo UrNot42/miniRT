@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:14:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:22:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:24:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_unt	test_color_tuple(void)
 	given("c ← color(-0.5, 0.4, 1.7)", 0);
 	c = set_col(-0.5, 0.4, 1.7);
 
-	err = test_print("c.red = -0.5", f_eq(c.red, -0.5));
-	err += test_print("c.green = 0.4", f_eq(c.green, 0.4));
-	err += test_print("c.blue = 1.7", f_eq(c.blue, 1.7));
+	err = then("c.red = -0.5", f_eq(c.red, -0.5), 0);
+	err += then("c.green = 0.4", f_eq(c.green, 0.4), 1);
+	err += then("c.blue = 1.7", f_eq(c.blue, 1.7), 2);
 
 	scenario_end(err);
 
@@ -46,8 +46,8 @@ t_unt	test_color_operations(void)
 	c2 = set_col(0.7, 0.1, 0.25);
 	result.tuple = c1.tuple + c2.tuple;
 	expected = set_col(1.6, 0.7, 1.0);
-	err[0] = test_print("c1 + c2 = color(1.6, 0.7, 1.0)",
-			is_same_tuple(result.tuple, expected.tuple));
+	err[0] = then("c1 + c2 = color(1.6, 0.7, 1.0)",
+			is_same_tuple(result.tuple, expected.tuple), 0);
 	scenario_end(err[0]);
 
 	scenario_start("Subtracting colors");
@@ -57,8 +57,8 @@ t_unt	test_color_operations(void)
 	c2 = set_col(0.7, 0.1, 0.25);
 	result.tuple = c1.tuple - c2.tuple;
 	expected = set_col(0.2, 0.5, 0.5);
-	err[1] = test_print("c1 - c2 = color(0.2, 0.5, 0.5)",
-			is_same_tuple(result.tuple, expected.tuple));
+	err[1] = then("c1 - c2 = color(0.2, 0.5, 0.5)",
+			is_same_tuple(result.tuple, expected.tuple), 0);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }
@@ -76,8 +76,8 @@ t_unt	test_multiply_colors(void)
 	c1 = set_col(0.2, 0.3, 0.4);
 	result.tuple = c1.tuple * 2;
 	expected = set_col(0.4, 0.6, 0.8);
-	err[1] = test_print("c * 2 = color(0.4, 0.6, 0.8)",
-			is_same_tuple(result.tuple, expected.tuple));
+	err[1] = then("c * 2 = color(0.4, 0.6, 0.8)",
+			is_same_tuple(result.tuple, expected.tuple), 0);
 	scenario_end(err[1]);
 
 	scenario_start("Multiplying colors");
@@ -87,8 +87,8 @@ t_unt	test_multiply_colors(void)
 	c2 = set_col(0.9, 1, 0.1);
 	result = hadamard_product(c1, c2);
 	expected = set_col(0.9, 0.2, 0.04);
-	err[0] = test_print("c1 * c2 = color(0.9, 0.2, 0.04)",
-			is_same_tuple(result.tuple, expected.tuple));
+	err[0] = then("c1 * c2 = color(0.9, 0.2, 0.04)",
+			is_same_tuple(result.tuple, expected.tuple), 0);
 	scenario_end(err[0]);
 	return (err[0] + err[1]);
 }

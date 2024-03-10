@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 20:56:43 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:48:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef float			t_tuple	__attribute__((ext_vector_type(4)));
 typedef float			t_2mtrx	__attribute__((matrix_type(2, 2)));
 typedef float			t_3mtrx	__attribute__((matrix_type(3, 3)));
 typedef float			t_4mtrx	__attribute__((matrix_type(4, 4)));
+typedef float			t_tpmtx	__attribute__((matrix_type(4, 1)));
 
 /* float */
 float	my_fabs(float a);
@@ -54,10 +55,34 @@ float	uchar_to_float(t_uchar color);
 t_uchar	float_to_uchar(float color);
 t_hxcol	t_color_to_hex(t_color color);
 
-/* Matrix */
+/*============== Matrix ==============*/
+// Initialisation
 t_4mtrx	set_4mtrx(t_i4mtr a);
 t_3mtrx	set_3mtrx(t_i3mtr a);
 t_2mtrx	set_2mtrx(t_i2mtr a);
-bool    matr_4_eq(t_4mtrx a, t_4mtrx b);
+
+// Comparison
+bool	matr_2_eq(t_2mtrx a, t_2mtrx b);
+bool	matr_3_eq(t_3mtrx *a, t_3mtrx *b);
+bool	matr_4_eq(t_4mtrx a, t_4mtrx b);
+
+// Conversion
+t_tpmtx	vec2mtrx(t_tuple a);
+t_tuple	mtrx2vec(t_tpmtx a);
+t_tuple	tup_mtrx(t_4mtrx a, t_tuple b);
+t_4mtrx	get_id4mtrx(void);
+t_4mtrx	transpose(t_4mtrx a);
+t_2mtrx	sub_3mtrx(t_3mtrx a, t_unt x, t_unt y);
+t_3mtrx	sub_4mtrx(t_4mtrx a, t_unt x, t_unt y);
+t_4mtrx	inverse_4mtrx(t_4mtrx a);
+
+// Operations
+float	det_2mtrx(t_2mtrx a);
+float	det_3mtrx(t_3mtrx a);
+float	det_4mtrx(t_4mtrx a);
+float	minor_3mtrx(t_3mtrx a, t_unt i, t_unt j);
+float	minor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
+float	cofactor_3mtrx(t_3mtrx a, t_unt i, t_unt j);
+float	cofactor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
 
 #endif

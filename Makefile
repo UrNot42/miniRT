@@ -46,9 +46,12 @@ SRC_MATH	:=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				vector_operation.c \
-				matrix.c \
 				color_operation.c \
+				matrix.c \
 				matrix_set.c \
+				matrix_bool.c \
+				matrix_determinant.c \
+				matrix_minor_and_cofactor.c \
 
 SRC_GRAPH	:=	canvas.c \
 				image.c \
@@ -132,10 +135,9 @@ MATH_DIR	:=	math/
 
 GRAPH_DIR	:=	graphic/
 
-OBJ_DIR		:=	.build/
+OBJ_DIR		:=	build/
 
 MLX_DIR		=	minilibx-linux/
-
 
 #############
 # LIBRARIES #

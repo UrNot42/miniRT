@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 16:05:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:20:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,22 @@ void	given(char *state, t_unt a)
 		ft_printf(">   And %s\n", state);
 }
 
-bool	test_print(char *test_name, bool status)
+void	when(char *state, t_unt a)
 {
-	ft_printf(" + Test %s: ", test_name);
+	if (a)
+		ft_printf(" And");
+	else
+		ft_printf("When");
+	ft_printf(" %s\n", state);
+}
+
+bool	then(char *test_name, bool status, t_unt a)
+{
+	if (a)
+		ft_printf(" And");
+	else
+		ft_printf("Then");
+	ft_printf(" %s: ", test_name);
 	if (status)
 		ft_printf("Passed [OK]\n");
 	else

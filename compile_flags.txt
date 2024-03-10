@@ -1,0 +1,1 @@
+-Wall -Wextra -Werror -fenable-matrix -H -fsyntax-only -g -g3
