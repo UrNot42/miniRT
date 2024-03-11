@@ -71,6 +71,7 @@ SRC_TEST	:=	tuples.c \
 				canvas.c \
 				matrix.c \
 				transform.c \
+				clock.c \
 				firing_projectiles.c # TODO RM
 
 ############
