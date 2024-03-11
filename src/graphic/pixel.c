@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:11:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 09:38:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:46:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	pixel_put(t_data *pic, int x, int y, t_hxcol color)
 {
 	char	*pixel;
 
+	if (!ft_inr(x, 0, pic->width - 1) || !ft_inr(y, 0, pic->height - 1))
+		return ;
 	pixel = pic->addr
 		+ (y * pic->line_length
 			+ x * (pic->bits_per_pixel / 8));

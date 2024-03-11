@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 14:17:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:54:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 # define LAUNCH_TEST_OK "[OK]\n##################\n\n"
 # define LAUNCH_TEST_KO "[KO]\nXXXXXXXXXXXXXXXXXX\n\n"
 
-void	tests_start(char *tests_name, t_unt a);
+void	tests_start(char *tests_name, t_unt count);
 void	scenario_start(char *scenario_name);
 t_unt	scenario_end(t_unt errors);
-void	given(char *state, t_unt a);
-void	when(char *state, t_unt a);
-bool	then(char *test_name, bool status, t_unt a);
+void	given(char *state, t_unt count);
+void	when(char *state, t_unt count);
+bool	then(char *test_name, bool status, t_unt count);
 
 // prints
 void	print_m(t_4mtrx a, char name);
-void	print_tup(t_tuple p, char name);
+void	print_tup(t_tuple a, bool tab);
 
 // Cucumber tests
 t_unt	launch_tests(void);
@@ -102,4 +102,21 @@ t_unt	test_shearing(void);
 t_unt	test_sequence_transformations(void);
 t_unt	test_rev_sequence_transformations(void);
 
+// Rays
+t_unt	launch_rays_test(void);
+t_unt	test_creating_ray(void);
+t_unt	test_position_ray(void);
+t_unt	test_intersect_sphere(void);
+
 #endif
+
+/* t_unt	test_(void)
+{
+	t_unt	err;
+
+	scenario_start("");
+	given("", 0);
+	err = then("", test(), 0);
+	scenario_end(err);
+	return (err);
+} */

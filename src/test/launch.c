@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 14:18:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:36:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	tests_start(char *tests_name, t_unt a)
 	if (a)
 		ft_printf(">");
 	ft_printf("Starting %s \\/\n", tests_name);
+}
+
+void	tests_end(char *name, t_unt err)
+{
+	ft_printf("==> Finished %s tests with %d Errors ", name, err);
 }
 
 t_unt	launch_tests(void)
@@ -30,11 +35,27 @@ t_unt	launch_tests(void)
 	err += launch_canvas_test();
 	err += launch_matrix_test();
 	err += launch_matrix_transform_test();
+	err += launch_rays_test();
 	ft_printf("===> All test finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
 	else
 		ft_printf(": %d Errors "LAUNCH_TEST_KO, err);
+	return (err);
+}
+
+t_unt	launch_rays_test(void)
+{
+	t_unt	err;
+
+	tests_start("Rays tests", 0);
+	err = test_creating_ray();
+	err += test_position_ray();
+	tests_end("Rays tests", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
 	return (err);
 }
 
@@ -57,7 +78,7 @@ t_unt	launch_matrix_transform_test(void)
 	err += test_shearing();
 	err += test_sequence_transformations();
 	err += test_rev_sequence_transformations();
-	ft_printf("==> Finished Matrix Transform tests with %d Errors ", err);
+	tests_end("Matrix Transform tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -91,7 +112,7 @@ t_unt	launch_matrix_test(void)
 	err += test_matrix_multiply_inverse();
 	err += test_inverse_identity_matrix();
 	err += test_matrix_mult_inverse();
-	ft_printf("==> Finished Matrix tests with %d Errors ", err);
+	tests_end("Matrix tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -106,7 +127,7 @@ t_unt	launch_canvas_test(void)
 	tests_start("Canvas tests", 1);
 	err = test_create_canvas();
 	err += test_write_pixel_to_canvas();
-	ft_printf("==> Finished Canvas tests with %d Errors ", err);
+	tests_end("Canvas tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -122,7 +143,7 @@ t_unt	launch_col_test(void)
 	err = test_color_tuple();
 	err += test_color_operations();
 	err += test_multiply_colors();
-	ft_printf("==> Finished Color tests with %d Errors ", err);
+	tests_end("Color tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -139,7 +160,7 @@ t_unt	launch_vec_test(void)
 	err += test_vector_normalization();
 	err += test_dot_product();
 	err += test_cross_product();
-	ft_printf("==> Finished Vector tests with %d Errors ", err);
+	tests_end("Vector tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -162,7 +183,7 @@ t_unt	launch_tuple_test(void)
 	err += test_neg_tuple();
 	err += test_multiply_tuple();
 	err += test_divide_tuple();
-	ft_printf("==> Finished Tuple tests with %d Errors ", err);
+	tests_end("Tuple tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else

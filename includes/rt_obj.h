@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 09:37:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:56:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,11 @@ typedef unsigned int		t_unt;
 typedef unsigned char		t_uchar;
 typedef float				t_tuple	__attribute__((ext_vector_type(4)));
 
-typedef struct s_pos		t_pos;
 typedef struct s_size		t_size;
 typedef struct s_color		t_color;
 typedef struct s_bound		t_bound;
 typedef struct s_obj		t_obj;
 typedef struct s_scene		t_scene;
-
-/* x, y, z coordinates */
-struct s_pos
-{
-	float	x;
-	float	y;
-	float	z;
-};
 
 /* use for dynamic filling of elements */
 struct s_size
@@ -91,8 +82,8 @@ struct s_bound
 struct s_obj
 {
 	t_unt		type;
-	t_pos		pos;
-	t_pos		norm;
+	t_tuple		pos;
+	t_tuple		norm;
 	float		ratio;
 	float		diameter;
 	float		height;
@@ -115,5 +106,7 @@ struct s_scene
 	t_obj		*light;
 	t_size		l_size;
 };
+
+t_obj	*sphere(void);
 
 #endif

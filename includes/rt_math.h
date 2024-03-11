@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 12:40:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:11:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef float			t_shear[6];
 
 typedef unsigned int	t_unt;
 typedef unsigned char	t_uchar;
-typedef struct s_pos	t_pos;
 typedef uint32_t		t_hxcol;
 
 typedef float			t_tuple	__attribute__((ext_vector_type(4)));
@@ -31,6 +30,16 @@ typedef float			t_2mtrx	__attribute__((matrix_type(2, 2)));
 typedef float			t_3mtrx	__attribute__((matrix_type(3, 3)));
 typedef float			t_4mtrx	__attribute__((matrix_type(4, 4)));
 typedef float			t_tpmtx	__attribute__((matrix_type(4, 1)));
+
+typedef struct s_ray	t_ray;
+
+struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+};
+
+/* ================= Basic Objet =================*/
 
 /* float */
 float	my_fabs(float a);
@@ -94,5 +103,10 @@ t_4mtrx	shearing(t_shear rel);
 t_4mtrx	rotation_x(float r);
 t_4mtrx	rotation_y(float r);
 t_4mtrx	rotation_z(float r);
+
+/* ============== Rays ================*/
+// Initialising
+t_ray	ray(t_tuple origin, t_tuple direction);
+t_tuple	position(t_ray beam, float time);
 
 #endif

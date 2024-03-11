@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 14:23:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:00:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	sz_add(t_size *elemt)
 void	copy_element(t_obj *obj_1, t_obj obj_2)
 {
 	*obj_1 = (t_obj){obj_2.type,
-		(t_pos){obj_2.pos.x, obj_2.pos.y, obj_2.pos.z},
-		(t_pos){obj_2.norm.x, obj_2.norm.y, obj_2.norm.z},
+		(t_tuple){obj_2.pos.x, obj_2.pos.y, obj_2.pos.z},
+		(t_tuple){obj_2.norm.x, obj_2.norm.y, obj_2.norm.z},
 		obj_2.ratio,
 		obj_2.diameter,
 		obj_2.height,

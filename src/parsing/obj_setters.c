@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 14:24:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:00:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	parse_color(t_color *color, char *line, t_unt *idx)
 	return (false);
 }
 
-bool	parse_pos(t_pos *pos, char *line, t_unt *idx)
+bool	parse_pos(t_tuple *pos, char *line, t_unt *idx)
 {
 	ft_skip_spaces(line, idx);
 	if (!pos)

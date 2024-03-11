@@ -63,6 +63,9 @@ SRC_GRAPH	:=	canvas.c \
 				pixel.c \
 				printing.c \
 
+SRC_ENGINE	:=	ray.c \
+				objects.c \
+
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
 				launch.c \
@@ -71,8 +74,8 @@ SRC_TEST	:=	tuples.c \
 				canvas.c \
 				matrix.c \
 				transform.c \
-				clock.c \
-				firing_projectiles.c # TODO RM
+				ray.c \
+				clock.c
 
 ############
 # INCLUDED #
@@ -105,6 +108,7 @@ SRC_ALL		=	$(SRC_LIST) \
 				$(SRCL_PARS) \
 				$(SRCL_MATH) \
 				$(SRCL_GRAPH) \
+				$(SRCL_ENGINE) \
 				$(SRCL_TEST) \
 
 SRCL_ERR	=	$(addprefix $(ERR_DIR), $(SRC_ERROR))
@@ -116,6 +120,8 @@ SRCL_TEST	=	$(addprefix $(TEST_DIR), $(SRC_TEST))
 SRCL_MATH	=	$(addprefix $(MATH_DIR), $(SRC_MATH))
 
 SRCL_GRAPH	=	$(addprefix $(GRAPH_DIR), $(SRC_GRAPH))
+
+SRCL_ENGINE	=	$(addprefix $(ENGINE_DIR), $(SRC_ENGINE))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -143,7 +149,9 @@ MATRIX_DIR	:=	matrix/
 
 GRAPH_DIR	:=	graphic/
 
-OBJ_DIR		:=	build/
+ENGINE_DIR	:=	engine/
+
+OBJ_DIR		:=	.build/
 
 MLX_DIR		=	minilibx-linux/
 

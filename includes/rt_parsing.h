@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 21:06:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:00:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef unsigned int	t_unt;
 typedef unsigned char	t_uchar;
 
 t_unt	parse_line(char *line, t_scene *scene);
-bool	parse_pos(t_pos *pos, char *line, t_unt *idx);
+bool	parse_pos(t_tuple *pos, char *line, t_unt *idx);
 bool	parse_color(t_color *color, char *line, t_unt *idx);
 bool	set_int_wbound(int *num, t_bound boundary,
 			char *line, t_unt *idx);

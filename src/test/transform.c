@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:50:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 14:21:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:07:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,15 @@ t_unt	test_reflection_point(void)
 	return (err);
 }
 
-void	print_tup(t_tuple a, char name)
+void	print_tup(t_tuple a, bool tab)
 {
-	printf("Tuple %c: {x: %f, y: %f, z: %f}\n", name, a.x, a.y, a.z);
+	if (tab)
+		printf("\t\t");
+	if (is_point(a))
+		printf("Point");
+	else if (is_vec(a))
+		printf("Vector");
+	printf(": {x: %f, y: %f, z: %f}\n", a.x, a.y, a.z);
 }
 
 t_unt	test_rotation_x(void)
