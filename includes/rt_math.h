@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 19:39:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:40:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define RT_MATH_H
 
 # define EPSILON 0.0001
+# define M_PI 3.14159265358979323846
 
 typedef float			t_i2mtr[4];
 typedef float			t_i3mtr[9];
 typedef float			t_i4mtr[16];
+typedef float			t_shear[6];
 
 typedef unsigned int	t_unt;
 typedef unsigned char	t_uchar;
@@ -87,5 +89,10 @@ float	cofactor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
 
 // Transform
 t_4mtrx	translation_mtrx(float x, float y, float z);
+t_4mtrx	scale_mtrx(float x, float y, float z);
+t_4mtrx	shearing(t_shear rel);
+t_4mtrx	rotation_x(float r);
+t_4mtrx	rotation_y(float r);
+t_4mtrx	rotation_z(float r);
 
 #endif

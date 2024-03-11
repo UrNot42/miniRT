@@ -55,6 +55,7 @@ SRC_MATRIX	:=	matrix.c \
 				matrix_determinant.c \
 				matrix_minor_and_cofactor.c \
 				transform.c \
+				rotation.c \
 
 SRC_GRAPH	:=	canvas.c \
 				image.c \

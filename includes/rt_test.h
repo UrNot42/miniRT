@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 19:32:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:51:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ t_unt	scenario_end(t_unt errors);
 void	given(char *state, t_unt a);
 void	when(char *state, t_unt a);
 bool	then(char *test_name, bool status, t_unt a);
+
+// prints
+void	print_m(t_4mtrx a, char name);
+void	print_tup(t_tuple p, char name);
 
 // Cucumber tests
 t_unt	launch_tests(void);
@@ -84,5 +88,16 @@ t_unt	test_matrix_mult_inverse(void);
 // Transform
 t_unt	launch_matrix_transform_test(void);
 t_unt	test_translation_multiplication(void);
+t_unt	test_translation_inverse(void);
+t_unt	test_translation_vector(void);
+t_unt	test_scaling_matrix_point(void);
+t_unt	test_scaling_matrix_vect(void);
+t_unt	test_scaling_matrix_inv_vect(void);
+t_unt	test_reflection_point(void);
+t_unt	test_rotation_x(void);
+t_unt	test_rotation_x_inv(void);
+t_unt	test_rotation_y(void);
+t_unt	test_rotation_z(void);
+t_unt	test_shearing(void);
 
 #endif

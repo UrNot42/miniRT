@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 19:35:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:51:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ t_unt	launch_matrix_transform_test(void)
 
 	tests_start("Matrix tests", 1);
 	err = test_translation_multiplication();
+	err += test_translation_inverse();
+	err += test_translation_vector();
+	err += test_scaling_matrix_point();
+	err += test_scaling_matrix_vect();
+	err += test_scaling_matrix_inv_vect();
+	err += test_reflection_point();
+	err += test_rotation_x();
+	err += test_rotation_x_inv();
+	err += test_rotation_y();
+	err += test_rotation_z();
+	err += test_shearing();
+	// err += ();
 	ft_printf("==> Finished Matrix Transform tests with %d Errors ", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
