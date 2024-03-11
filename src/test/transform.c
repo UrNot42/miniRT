@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:50:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 12:56:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:21:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,64 @@ t_unt	test_shearing(void)
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(2, 3, 7)",
 			is_same_tuple(tup_mtrx(transform, p), set_point(2, 3, 7)), 0);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_sequence_transformations(void)
+{
+	t_4mtrx	a;
+	t_4mtrx	b;
+	t_4mtrx	c;
+	t_tuple	p[4];
+	t_unt	err;
+
+	scenario_start("Individual transformations are applied in sequence");
+	given("p ← point(1, 0, 1)", 0);
+	p[0] = set_point(1, 0, 1);
+	given("A ← rotation_x(π / 2)", 1);
+	a = rotation_x(M_PI / 2);
+	given("B ← scaling(5, 5, 5)", 2);
+	b = scale_mtrx(5, 5, 5);
+	given("C ← translation(10, 5, 7)", 3);
+	c = translation_mtrx(10, 5, 7);
+	when("p2 ← A * p", 0);
+	p[1] = tup_mtrx(a, p[0]);
+	err = then("p2 = point(1, -1, 0)",
+			is_same_tuple(p[1], set_point(1, -1, 0)), 0);
+	when("p3 ← B * p2", 0);
+	p[2] = tup_mtrx(b, p[1]);
+	err += then("p3 = point(5, -5, 0)",
+			is_same_tuple(p[2], set_point(5, -5, 0)), 0);
+	when("p4 ← C * p3", 0);
+	p[3] = tup_mtrx(c, p[2]);
+	err += then("p4 = point(15, 0, 7)",
+			is_same_tuple(p[3], set_point(15, 0, 7)), 0);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_rev_sequence_transformations(void)
+{
+	t_4mtrx	a;
+	t_4mtrx	b;
+	t_4mtrx	c;
+	t_tuple	p;
+	t_unt	err;
+
+	scenario_start("Chained transformations must be applied in reverse order");
+	given("p ← point(1, 0, 1)", 0);
+	p = set_point(1, 0, 1);
+	given("A ← rotation_x(π / 2)", 1);
+	a = rotation_x(M_PI / 2);
+	given("B ← scaling(5, 5, 5)", 2);
+	b = scale_mtrx(5, 5, 5);
+	given("C ← translation(10, 5, 7)", 3);
+	c = translation_mtrx(10, 5, 7);
+	when("T ← C * B * A", 0);
+	a = c * b * a;
+	err = then("T * p = point(15, 0, 7)",
+			is_same_tuple(tup_mtrx(a, p), set_point(15, 0, 7)), 0);
 	scenario_end(err);
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 12:51:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:17:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ t_unt	test_rotation_x_inv(void);
 t_unt	test_rotation_y(void);
 t_unt	test_rotation_z(void);
 t_unt	test_shearing(void);
+t_unt	test_sequence_transformations(void);
+t_unt	test_rev_sequence_transformations(void);
 
 #endif
