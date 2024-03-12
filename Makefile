@@ -75,7 +75,6 @@ SRC_TEST	:=	tuples.c \
 				matrix.c \
 				transform.c \
 				ray.c \
-				clock.c
 
 ############
 # INCLUDED #
@@ -88,6 +87,7 @@ HEADERS		=	$(addprefix $(INCLUDE_DIR), $(HEADER_LIST))
 HEADER_LIST	:=	minirt.h \
 				rt_error.h \
 				rt_graphic.h \
+				rt_math_obj.h \
 				rt_math.h \
 				rt_obj.h \
 				rt_parsing.h \

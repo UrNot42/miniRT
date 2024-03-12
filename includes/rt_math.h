@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:11:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:14:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ typedef float			t_2mtrx	__attribute__((matrix_type(2, 2)));
 typedef float			t_3mtrx	__attribute__((matrix_type(3, 3)));
 typedef float			t_4mtrx	__attribute__((matrix_type(4, 4)));
 typedef float			t_tpmtx	__attribute__((matrix_type(4, 1)));
-
-typedef struct s_ray	t_ray;
-
-struct s_ray
-{
-	t_tuple	origin;
-	t_tuple	direction;
-};
 
 /* ================= Basic Objet =================*/
 
@@ -108,5 +100,9 @@ t_4mtrx	rotation_z(float r);
 // Initialising
 t_ray	ray(t_tuple origin, t_tuple direction);
 t_tuple	position(t_ray beam, float time);
+t_hit	intersect(t_obj *sphere, t_ray ray);
+
+/* ================ Objects ================*/
+t_obj	*sphere(void);
 
 #endif

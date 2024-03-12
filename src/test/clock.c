@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:22:30 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:56:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:24:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define SIZE 1050
 #define CENTER SIZE / 2
-#define POINT ((SIZE * 3) / 8) * M_PI / 2
+#define POINT ((SIZE * 3) / 8) * M_PI / 4
 
 int	main(void)
 {
@@ -24,9 +24,9 @@ int	main(void)
 	t_unt		x;
 	t_unt		y;
 
-	screen = canvas(SIZE, SIZE - 100);
+	screen = canvas(SIZE, SIZE);
 	transform = scale_mtrx((SIZE * 3) / 8, 1, 1);
-	for (t_unt i = 0; i < POINT; i++)
+	for (t_unt i = 0; i < POINT * 2; i++)
 	{
 		transform = rotation_z(M_PI / (POINT / 2)) * transform;
 		p = tup_mtrx(transform, set_point(1, 0, 0));
@@ -35,6 +35,6 @@ int	main(void)
 		pixel_put(screen.picture, x, y, 0xFFFFFF);
 	}
 	print_screen(screen);
-	usleep(1000000);
+	usleep(100000000);
 	close_canvas(screen);
 }

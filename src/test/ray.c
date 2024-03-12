@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:09:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:56:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:15:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_unt	test_intersect_sphere(void)
 {
 	t_ray	r;
 	t_obj	*s;
+	t_hit	xs;
 	t_unt	err;
 
 	scenario_start("A ray intersects a sphere at two points");
@@ -65,9 +66,92 @@ t_unt	test_intersect_sphere(void)
 	given("s ← sphere()", 1);
 	s = sphere();
 	when("xs ← intersect(s, r)", 0);
-	err = then("xs.count = 2", 1, 0);
-	err += then("xs[0] = 4.0", 1, 1);
-	err += then("xs[1] = 6.0", 1, 2);
+	xs = intersect(s, r);
+	err = then("xs.count = 2", xs.count == 2, 0);
+	err += then("xs[0] = 4.0", f_eq(xs.t[0], 4), 1);
+	err += then("xs[1] = 6.0", f_eq(xs.t[1], 6), 2);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_sphere_tangent(void)
+{
+	t_ray	r;
+	t_obj	*s;
+	t_hit	xs;
+	t_unt	err;
+
+	scenario_start("A ray intersects a sphere at a tangent");
+	given("r ← ray(point(0, 1, -5), vector(0, 0, 1))", 0);
+	r = ray(set_point(0, 1, -5), set_vec(0, 0, 1));
+	given("s ← sphere()", 1);
+	s = sphere();
+	when("xs ← intersect(s, r)", 0);
+	xs = intersect(s, r);
+	err = then("xs.count = 2", xs.count == 2, 0);
+	err += then("xs[0] = 4.0", f_eq(xs.t[0], 5), 1);
+	err += then("xs[1] = 6.0", f_eq(xs.t[1], 5), 2);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_ray_miss_sphere(void)
+{
+	t_ray	r;
+	t_obj	*s;
+	t_hit	xs;
+	t_unt	err;
+
+	scenario_start("A ray misses a sphere");
+	given("r ← ray(point(0, 2, -5), vector(0, 0, 1))", 0);
+	r = ray(set_point(0, 2, -5), set_vec(0, 0, 1));
+	given("s ← sphere()", 1);
+	s = sphere();
+	when("xs ← intersect(s, r)", 0);
+	xs = intersect(s, r);
+	err = then("xs.count = 0", xs.count == 0, 0);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_ray_inside_sphere(void)
+{
+	t_ray	r;
+	t_obj	*s;
+	t_hit	xs;
+	t_unt	err;
+
+	scenario_start("A ray originates inside a sphere");
+	given("r ← ray(point(0, 0, 0), vector(0, 0, 1))", 0);
+	r = ray(set_point(0, 0, 0), set_vec(0, 0, 1));
+	given("s ← sphere()", 1);
+	s = sphere();
+	when("xs ← intersect(s, r)", 0);
+	xs = intersect(s, r);
+	err = then("xs.count = 2", xs.count == 2, 0);
+	err += then("xs[0] = 4.0", f_eq(xs.t[0], -1), 1);
+	err += then("xs[1] = 6.0", f_eq(xs.t[1], 1), 2);
+	scenario_end(err);
+	return (err);
+}
+
+t_unt	test_sphere_behind_ray(void)
+{
+	t_ray	r;
+	t_obj	*s;
+	t_hit	xs;
+	t_unt	err;
+
+	scenario_start("A sphere is behind a ray");
+	given("r ← ray(point(0, 0, 5), vector(0, 0, 1))", 0);
+	r = ray(set_point(0, 0, 5), set_vec(0, 0, 1));
+	given("s ← sphere()", 1);
+	s = sphere();
+	when("xs ← intersect(s, r)", 0);
+	xs = intersect(s, r);
+	err = then("xs.count = 2", xs.count == 2, 0);
+	err += then("xs[0] = 4.0", f_eq(xs.t[0], -6), 1);
+	err += then("xs[1] = 6.0", f_eq(xs.t[1], -4), 2);
 	scenario_end(err);
 	return (err);
 }
