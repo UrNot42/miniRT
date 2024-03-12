@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:42:27 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 11:56:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 #define COL_OFS 0.01
 #define SLOWING 0.2
 #define WIND_X 0
-#define PERSPECTIVE 0.25
+#define PERSPECTIVE 0.3
 #define TIME_RESOL 8000
+#define SCREEN_X 1200
+#define SCREEN_Y 800
+
 
 typedef struct s_proj	t_proj;
 typedef struct s_env	t_env;
@@ -56,7 +59,9 @@ t_color	color_update(t_color rainbow)
 			rainbow.green -= COL_OFS;
 		rainbow.blue += COL_OFS;
 	}
-	if (rainbow.red > 1 - COL_OFS || rainbow.green > 1 - COL_OFS || rainbow.blue > 1 - COL_OFS)
+	if (rainbow.red >= 1 - COL_OFS
+		|| rainbow.green >= 1 - COL_OFS
+		|| rainbow.blue >= 1 - COL_OFS)
 		a = (a + 1) % 3;
 	return (rainbow);
 }
@@ -68,7 +73,8 @@ t_proj	tick(t_env env, t_proj proj)
 
 	position = proj.pos + proj.vel;
 	velocity = proj.vel + env.wind + env.gravity;
-	if (position.y <= (position.x * PERSPECTIVE) && velocity.y < 0)
+	if (position.y <= (position.x * -PERSPECTIVE + PERSPECTIVE * SCREEN_X)
+		&& velocity.y < 0)
 	{
 		velocity.y = (-velocity.y);
 		velocity = velocity * (1 - SLOWING);
@@ -76,73 +82,42 @@ t_proj	tick(t_env env, t_proj proj)
 	return ((t_proj){position, velocity});
 }
 
-long	convert_time(struct timeval time)
-{
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-long	set_time_goal(int time_to_wait)
-{
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	return (convert_time(now) + time_to_wait);
-}
-
-void	safe_wait(long time_goal)
-{
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	while (convert_time(now) <= time_goal)
-	{
-		usleep(TIME_RESOL);
-		gettimeofday(&now, NULL);
-	}
-}
-/*
 int	main(int ac, char **av)
 {
 	t_canvas	screen;
 	t_proj		ball;
 	t_env		world;
-	t_color		rainbow;
 	int			x;
 	int			y;
-	float		val;
-	long		goal;
+	t_color		pixel;
 
-	ball.pos = set_point(0, 1, 0);
+	ball.pos = set_point(0, SCREEN_X * PERSPECTIVE, 0);
 	if (ac >= 3)
 		ball.vel = set_vec(ft_atof(av[1]), ft_atof(av[2]), 0);
 	else
 		ball.vel = set_vec(3, 12, 0);
-	rainbow = set_col(0, 0, 1);
-	world.gravity = set_vec(0, -1, 0);
+	world.gravity = set_vec(0, -0.1, 0);
 	world.wind = set_vec(WIND_X, 0, 0);
-	screen = canvas(2000, 1200);
+	screen = canvas(SCREEN_X, SCREEN_Y);
+	pixel = set_col(0, 0.9, 0);
 	printf("\n");
-	usleep(100000);
 	while (ball.pos.y >= (ball.pos.x * PERSPECTIVE) + 5
-			|| fabs(ball.vel.y) > (SLOWING + fabs(world.wind.y) * 10 + fabs(world.gravity.y))
-			|| fabs(ball.vel.x) > (SLOWING + fabs(world.wind.x) * 10))
+		|| fabs(ball.vel.y) > (SLOWING + fabs(world.wind.y) + fabs(world.gravity.y))
+		|| fabs(ball.vel.x) > (SLOWING + fabs(world.wind.x)))
 	{
 		ball = tick(world, ball);
-		print_screen(screen);
-		goal = set_time_goal(TIME_RESOL / 1000);
+		print_canvas(screen);
 		x = (int)ball.pos.x;
 		y = (t_unt)(screen.height - ball.pos.y);
-		val = ball.pos.y / screen.height;
-		rainbow = color_update(rainbow);
-		// rainbow = set_col(val, 1 - val, 0);
-		rainbow.tuple = vec_norm(rainbow.tuple);
-		if (ft_inr(x, 0, screen.width) && ft_inr(y, 0, screen.height))
-			write_pixel(screen.picture, x, y, rainbow);
-		printf("\033[FV={% 4f, % 4f}\tX: | %d Y:%d (R:%f, G:%f, B:%f)   \n",
-			ball.vel.x, ball.vel.y, x, y,
-			rainbow.red, rainbow.green, rainbow.blue);
-		// usleep(10000);
-		safe_wait(goal);
+		pixel = color_update(pixel);
+		for (t_unt i = 0; i < 10; i++)
+		{
+			for (t_unt j = 0; j < 10; j++)
+			{
+				safe_pixel(screen.picture, x+ i, y + j, pixel);
+			}
+		}
+		usleep(10000);
 	}
 	close_canvas(screen);
-}*/
+}

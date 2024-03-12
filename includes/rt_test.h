@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 10:04:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:26:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,15 @@ t_unt	test_sphere_tangent(void);
 t_unt	test_ray_miss_sphere(void);
 t_unt	test_ray_inside_sphere(void);
 t_unt	test_sphere_behind_ray(void);
+
+t_unt	test_inter_struct(void);
+t_unt	test_agregating_inter(void);
+t_unt	test_intersect_obj(void);
+t_unt	test_hits(void);
+
+t_unt	test_translate_ray(void);
+t_unt	test_sphere_transformation(void);
+t_unt	test_ray_sphere_transform(void);
 
 #endif
 

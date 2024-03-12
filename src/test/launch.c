@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 10:06:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:26:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ t_unt	launch_rays_test(void)
 	err += test_ray_miss_sphere();
 	err += test_ray_inside_sphere();
 	err += test_sphere_behind_ray();
+	err += test_inter_struct();
+	err += test_agregating_inter();
+	err += test_intersect_obj();
+	err += test_hits();
+	err += test_translate_ray();
+	err += test_sphere_transformation();
+	err += test_ray_sphere_transform();
 	tests_end("Rays tests", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:11:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:46:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:54:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ t_color	pixel_at(t_canvas screen, t_unt x, t_unt y)
 	return (pixel);
 }
 
+void	safe_pixel(t_data *pic, int x, int y, t_color color)
+{
+	if (ft_inr(x, 0, pic->width) && ft_inr(y, 0, pic->height))
+		write_pixel(pic, x, y, color);
+}
+
 void	write_pixel(t_data *pic, int x, int y, t_color color)
 {
 	t_hxcol	pixel_col;
@@ -39,8 +45,6 @@ void	pixel_put(t_data *pic, int x, int y, t_hxcol color)
 {
 	char	*pixel;
 
-	if (!ft_inr(x, 0, pic->width - 1) || !ft_inr(y, 0, pic->height - 1))
-		return ;
 	pixel = pic->addr
 		+ (y * pic->line_length
 			+ x * (pic->bits_per_pixel / 8));

@@ -65,6 +65,7 @@ SRC_GRAPH	:=	canvas.c \
 
 SRC_ENGINE	:=	ray.c \
 				objects.c \
+				intersection.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
@@ -75,7 +76,7 @@ SRC_TEST	:=	tuples.c \
 				matrix.c \
 				transform.c \
 				ray.c \
-
+				test_cast_sphere.c \
 ############
 # INCLUDED #
 ############

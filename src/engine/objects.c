@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 11:14:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:29:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ t_obj	*sphere(void)
 	sphere->defined = true;
 	sphere->diameter = 1;
 	sphere->pos = set_point(0, 0, 0);
-	sphere->col = set_col(1, 1, 1);
+	sphere->transform = get_id4mtrx();
 	return (sphere);
+}
+
+void	set_transform(t_obj *o, t_4mtrx m)
+{
+	o->transform = m;
 }

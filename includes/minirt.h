@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 10:15:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:08:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
 # include "rt_math_obj.h"
+# include "rt_math.h"
 # include "rt_obj.h"
 # include "rt_parsing.h"
-# include "rt_math.h"
 # include "rt_test.h"
 # include "rt_graphic.h"
 # include "rt_error.h"

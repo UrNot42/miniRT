@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 11:14:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:30:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,15 @@ t_4mtrx	rotation_z(float r);
 // Initialising
 t_ray	ray(t_tuple origin, t_tuple direction);
 t_tuple	position(t_ray beam, float time);
-t_hit	intersect(t_obj *sphere, t_ray ray);
+
+// Intersections
+t_intrs	intersect(t_obj *sphere, t_ray ray);
+t_inter	intersection(float time, t_obj *obj);
+t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX]);
+t_inter	find_hit(t_intrs inters);
+bool	is_same_inter(t_inter a, t_inter b);
+t_ray	ray_transform(t_ray r, t_4mtrx m);
+void	set_transform(t_obj *o, t_4mtrx m);
 
 /* ================ Objects ================*/
 t_obj	*sphere(void);

@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clock.c                                            :+:      :+:    :+:   */
+/*   test_cast_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:22:30 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
+/*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
+/*   Updated: 2024/03/12 18:33:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-#define SIZE 1050
-#define CENTER SIZE / 2
-#define POINT ((SIZE * 3) / 8) * M_PI * 2
+#define SIZE 1000
+#define SCALE 1.5
 
 int	main(void)
 {
 	t_canvas	screen;
-	t_4mtrx		transform;
-	t_tuple		p;
-	t_unt		x;
-	t_unt		y;
+	t_ray		r;
+	t_inter		hit;
+	t_obj		*s;
+	float		x;
+	float		y;
 
 	screen = canvas(SIZE, SIZE);
-	transform = scale_mtrx((SIZE * 3) / 8, 1, 1);
-	for (t_unt i = 0; i < POINT; i++)
+	s = sphere();
+	for (int i = 0; i < SIZE; i++)
 	{
-		transform = rotation_z(M_PI / (POINT / 2)) * transform;
-		p = tup_mtrx(transform, set_point(1, 0, 0));
-		x = CENTER + p.x;
-		y = CENTER + p.y;
-		pixel_put(screen.picture, x, y, 0xFFFFFF);
+		y = (i - (SIZE / 2)) * 2 *SCALE;
+		for (int j = 0; j < SIZE; j++)
+		{
+			x = (j - (SIZE / 2)) * 2 * SCALE;
+			r = ray(set_point(x / SIZE, y / SIZE, -5), set_vec(0, 0, 1));
+			hit = find_hit(intersect(s, r));
+			// Elle est BISQUE
+			if (hit.def)
+				pixel_put(screen.picture, i, j, 0xffe4c4);
+			else
+				pixel_put(screen.picture, i, j, 0);
+		}
 	}
+	printf("Done!\n");
 	print_canvas(screen);
-	usleep(100000000);
+	usleep(50000000);
 	close_canvas(screen);
 }

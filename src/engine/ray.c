@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:00:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 11:17:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:15:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,11 @@ t_tuple	position(t_ray beam, float time)
 	return (beam.origin + beam.direction * time);
 }
 
-t_hit	intersect(t_obj *sphere, t_ray ray)
+t_ray	ray_transform(t_ray r, t_4mtrx m)
 {
-	t_hit	x;
-	t_tuple	sphere_to_ray;
-	float	a;
-	float	b;
-	float	c;
+	t_ray	new_r;
 
-	sphere_to_ray = ray.origin - sphere->pos;
-	a = vec_dot(ray.direction, ray.direction);
-	b = 2 * vec_dot(ray.direction, sphere_to_ray);
-	c = vec_dot(sphere_to_ray, sphere_to_ray) - 1;
-	c = (b * b) - 4 * a * c;
-	if (c >= 0)
-	{
-		x.t[0] = (-b - sqrtf(c)) / (2 * a);
-		x.t[1] = (-b + sqrtf(c)) / (2 * a);
-		x.count = 2;
-	}
-	else
-		x.count = 0;
-	return (x);
+	new_r.origin = tup_mtrx(m, r.origin);
+	new_r.direction = tup_mtrx(m, r.direction);
+	return (new_r);
 }

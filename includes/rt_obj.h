@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 11:13:13 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:10:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ enum e_objects
 	OBJ_CYLINDER
 };
 
-typedef struct s_ray		t_ray;
-typedef struct s_color		t_color;
-typedef struct s_size		t_size;
-typedef struct s_bound		t_bound;
-typedef struct s_obj		t_obj;
-typedef struct s_scene		t_scene;
-
 /* use for dynamic filling of elements */
 struct s_size
 {
@@ -66,6 +59,7 @@ struct s_obj
 	t_uchar		fov;
 	t_color		col;
 	t_size		*size;
+	t_4mtrx		transform;
 	bool		defined;
 };
 

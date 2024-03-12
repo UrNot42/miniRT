@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 09:35:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct	s_canvas
 
 // Functions
 t_canvas	canvas(t_unt width, t_unt height);
-void		print_screen(t_canvas screen);
+void		print_canvas(t_canvas screen);
 
 // Creation
 bool		init_canvas(t_canvas *screen);
@@ -64,5 +64,6 @@ void		set_image(t_canvas screen);
 t_color		pixel_at(t_canvas screen, t_unt x, t_unt y);
 void		pixel_put(t_data *pic, int x, int y, t_hxcol color);
 void		write_pixel(t_data *pic, int x, int y, t_color color);
+void		safe_pixel(t_data *pic, int x, int y, t_color color);
 
 #endif
