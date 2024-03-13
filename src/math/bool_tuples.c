@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:27:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:54:02 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:41:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ bool	is_vec(t_tuple a)
 bool	is_same_tuple(t_tuple a, t_tuple b)
 {
 	if (f_eq(a.x, b.x) && f_eq(a.y, b.y) && f_eq(a.z, b.z) && f_eq(a.w, b.w))
+		return (true);
+	else
+		return (false);
+}
+
+bool	is_same_col(t_color a, t_color b)
+{
+	if (f_eq(a.red, b.red) && f_eq(a.green, b.green) && f_eq(a.blue, b.blue))
+		return (true);
+	else
+		return (false);
+}
+
+bool	is_same_mat(t_mater a, t_mater b)
+{
+	if (is_same_col(a.color, b.color)
+		&& f_eq(a.ambient, b.ambient) && f_eq(a.diffuse, b.diffuse)
+		&& f_eq(a.specular, b.specular) && f_eq(a.shininess, b.shininess))
 		return (true);
 	else
 		return (false);

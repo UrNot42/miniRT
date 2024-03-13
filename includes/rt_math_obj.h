@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:49:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:54:48 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef unsigned char		t_uchar;
 typedef float				t_tuple	__attribute__((ext_vector_type(4)));
 typedef struct s_inter		t_inter;
 typedef struct s_intrs		t_intrs;
+typedef struct s_mater		t_mater;
 
 typedef struct s_ray		t_ray;
 typedef struct s_color		t_color;
@@ -28,15 +29,6 @@ typedef struct s_bound		t_bound;
 typedef struct s_obj		t_obj;
 typedef struct s_scene		t_scene;
 
-/* RGB values in [0 ; 255] range */
-/*struct s_color
-{
-	t_tuple	tuple;
-	float	*r;
-	float	*g;
-	float	*b;
-};*/
-// TODO MAYBE USE PRIOR CODE IMPLEMENTATION ????????
 struct s_color
 {
 	union {
@@ -67,5 +59,15 @@ struct s_intrs
 	t_inter	i[INTER_MAX];
 	t_unt	count;
 };
+
+struct s_mater
+{
+	t_color	color;
+	float	ambient;
+	float	diffuse;
+	float	specular;
+	float	shininess;
+};
+
 
 #endif

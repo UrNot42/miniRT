@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:10:29 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:45:38 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ struct s_obj
 	t_uchar		fov;
 	t_color		col;
 	t_size		*size;
+	t_mater		m;
 	t_4mtrx		transform;
 	bool		defined;
 };

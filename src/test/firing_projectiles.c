@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:42:27 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:58:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 	if (ac >= 3)
 		ball.vel = set_vec(ft_atof(av[1]), ft_atof(av[2]), 0);
 	else
-		ball.vel = set_vec(3, 12, 0);
+		ball.vel = set_vec(1.4, 6.5, 0);
 	world.gravity = set_vec(0, -0.1, 0);
 	world.wind = set_vec(WIND_X, 0, 0);
 	screen = canvas(SCREEN_X, SCREEN_Y);

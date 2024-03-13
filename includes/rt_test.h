@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:26:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:47:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,15 +121,40 @@ t_unt	test_translate_ray(void);
 t_unt	test_sphere_transformation(void);
 t_unt	test_ray_sphere_transform(void);
 
+// Normal
+t_unt	launch_normal_test(void);
+t_unt	test_sphere_normal(void);
+t_unt	test_norm_normal_vec(void);
+t_unt	test_normal_on_transformed(void);
+t_unt	test_reflect_45(void);
+t_unt	test_reflect_slanted(void);
+t_unt	test_point_init(void);
+t_unt	test_material(void);
+t_unt	test_default_mater(void);
+t_unt	test_light_eye_between(void);
+t_unt	test_light_eye_between_ofst_45(void);
+t_unt	test_light_eye_opposite_ofst_45(void);
+t_unt	test_light_eye_in_path(void);
+t_unt	test_light_behind_surface(void);
+
 #endif
 
 /* t_unt	test_(void)
 {
+	t_mater	m;
+	t_tuple	p;
 	t_unt	err;
 
 	scenario_start("");
+	given("m ← material()", 0);
+	m = material();
+	given("position ← point(0, 0, 0)", 1);
+	p = origin();
 	given("", 0);
-	err = then("", test(), 0);
+	given("", 1);
+	given("", 2);
+	when("", 0);
+	err = then("", 0, 0);
 	scenario_end(err);
 	return (err);
 } */

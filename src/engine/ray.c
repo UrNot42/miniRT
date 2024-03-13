@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:00:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:15:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:54:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_ray	ray(t_tuple origin, t_tuple direction)
 	return (new_beam);
 }
 
-t_tuple	position(t_ray beam, float time)
+t_tuple	ray_pos(t_ray beam, float time)
 {
 	return (beam.origin + beam.direction * time);
 }

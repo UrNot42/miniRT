@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:05:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_intrs	intersect(t_obj *sphere, t_ray ray)
 	float	c;
 
 	ray = ray_transform(ray, inverse_4mtrx(sphere->transform));
-	sphere_to_ray = ray.origin - set_point(0, 0, 0);
+	sphere_to_ray = ray.origin - origin();
 	a = vec_dot(ray.direction, ray.direction);
 	b = 2 * vec_dot(ray.direction, sphere_to_ray);
 	c = vec_dot(sphere_to_ray, sphere_to_ray) - 1;

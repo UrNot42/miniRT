@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:26:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:47:53 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ void	tests_start(char *tests_name, t_unt a)
 
 void	tests_end(char *name, t_unt err)
 {
-	ft_printf("==> Finished %s tests with %d Errors ", name, err);
+	ft_printf("==> Finished %s ", name);
+	if (err)
+	{
+		ft_printf("with %d Error", err);
+		if (err > 1)
+			ft_printf("s");
+	}
 }
 
 t_unt	launch_tests(void)
@@ -36,11 +42,45 @@ t_unt	launch_tests(void)
 	err += launch_matrix_test();
 	err += launch_matrix_transform_test();
 	err += launch_rays_test();
+	err += launch_normal_test();
 	ft_printf("===> All test finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
 	else
-		ft_printf(": %d Errors "LAUNCH_TEST_KO, err);
+	{
+		if (err)
+		{
+			ft_printf(": %d Error", err);
+			if (err > 1)
+				ft_printf("s");
+			ft_printf(" "LAUNCH_TEST_KO);
+		}
+	}
+	return (err);
+}
+
+t_unt	launch_normal_test(void)
+{
+	t_unt	err;
+
+	tests_start("Normal tests", 1);
+	err = test_sphere_normal();
+	err += test_norm_normal_vec();
+	err += test_normal_on_transformed();
+	err += test_reflect_45();
+	err += test_reflect_slanted();
+	err += test_material();
+	err += test_default_mater();
+	err += test_light_eye_between();
+	err += test_light_eye_between_ofst_45();
+	err += test_light_eye_opposite_ofst_45();
+	err += test_light_eye_in_path();
+	err += test_light_behind_surface();
+	tests_end("Normal tests", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
 	return (err);
 }
 
@@ -48,7 +88,7 @@ t_unt	launch_rays_test(void)
 {
 	t_unt	err;
 
-	tests_start("Rays tests", 0);
+	tests_start("Rays tests", 1);
 	err = test_creating_ray();
 	err += test_position_ray();
 	err += test_intersect_sphere();

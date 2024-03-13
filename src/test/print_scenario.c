@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 17:21:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:47:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	scenario_start(char *scenario_name)
 t_unt	scenario_end(t_unt errors)
 {
 	if (errors)
-		ft_printf("=> Finished Scenario with %d Errors\n\n", errors);
+	{
+		ft_printf("=> Failed Scenario with %d Error", errors);
+		if (errors > 1)
+			ft_printf("s");
+		ft_printf("\n\n");
+	}
 	else
 		ft_printf("=> Validated Scenario\n\n");
 	return (errors);

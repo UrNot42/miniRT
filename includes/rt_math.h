@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 17:30:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:54:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_color	set_col(float r, float g, float b);
 bool	is_point(t_tuple a);
 bool	is_vec(t_tuple a);
 bool	is_same_tuple(t_tuple a, t_tuple b);
+bool	is_same_col(t_color a, t_color b);
+bool	is_same_mat(t_mater a, t_mater b);
+t_tuple	origin(void);
 
 /* Vectors */
 float	vec_magn(t_tuple vec);
@@ -57,6 +60,7 @@ t_color	hadamard_product(t_color c1, t_color c2);
 float	uchar_to_float(t_uchar color);
 t_uchar	float_to_uchar(float color);
 t_hxcol	t_color_to_hex(t_color color);
+t_color	tup_col(t_tuple a);
 
 /*============== Matrix ==============*/
 // Initialisation
@@ -99,7 +103,10 @@ t_4mtrx	rotation_z(float r);
 /* ============== Rays ================*/
 // Initialising
 t_ray	ray(t_tuple origin, t_tuple direction);
-t_tuple	position(t_ray beam, float time);
+t_tuple	ray_pos(t_ray beam, float time);
+t_ray	ray_transform(t_ray r, t_4mtrx m);
+void	set_transform(t_obj *o, t_4mtrx m);
+t_color	lighting(t_mater m, t_obj o, t_tuple p, t_ray v);
 
 // Intersections
 t_intrs	intersect(t_obj *sphere, t_ray ray);
@@ -107,10 +114,12 @@ t_inter	intersection(float time, t_obj *obj);
 t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX]);
 t_inter	find_hit(t_intrs inters);
 bool	is_same_inter(t_inter a, t_inter b);
-t_ray	ray_transform(t_ray r, t_4mtrx m);
-void	set_transform(t_obj *o, t_4mtrx m);
+t_tuple	normal_at(t_obj o, t_tuple point);
+t_tuple	reflect(t_tuple v, t_tuple reflex);
 
 /* ================ Objects ================*/
-t_obj	*sphere(void);
+t_obj	sphere(void);
+t_obj	point_light(t_tuple pos, t_color intensity);
+t_mater	material(void);
 
 #endif

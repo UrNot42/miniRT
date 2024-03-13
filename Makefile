@@ -47,6 +47,7 @@ SRC_MATH	=	tuples_set.c \
 				float_operation.c \
 				vector_operation.c \
 				color_operation.c \
+				basics.c \
 				$(addprefix $(MATRIX_DIR), $(SRC_MATRIX)) \
 
 SRC_MATRIX	:=	matrix.c \
@@ -66,6 +67,8 @@ SRC_GRAPH	:=	canvas.c \
 SRC_ENGINE	:=	ray.c \
 				objects.c \
 				intersection.c \
+				normal.c \
+				light.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
@@ -76,7 +79,10 @@ SRC_TEST	:=	tuples.c \
 				matrix.c \
 				transform.c \
 				ray.c \
-				test_cast_sphere.c \
+				normals.c \
+				lights.c \
+				ray_cast_sphere.c \
+
 ############
 # INCLUDED #
 ############
