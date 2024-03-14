@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 10:15:08 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:38:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	set_int(int *num, char *line, t_unt *idx);
 bool	parse_obj(t_scene *scene, int id);
 
 bool	scene_fill(t_scene *scene, int fd);
-bool	scene_init(t_scene *scene);
+t_scene	scene_init(void);
 bool	scene_free(t_scene *scene);
 
 bool	read_file(char *file, t_scene *scene);

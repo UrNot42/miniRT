@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 19:03:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:24:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	opening_window(void)
 	return (0);
 }
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_scene	scene;
 
@@ -48,4 +48,4 @@ bool	opening_window(void)
 	scene_free(&scene);
 	printf("Code ran acordingly\n");
 	return (opening_window());
-} */
+}

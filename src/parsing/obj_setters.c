@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:00:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:45:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,11 @@ bool	parse_pos(t_tuple *pos, char *line, t_unt *idx)
 
 t_obj	**get_flex_array(t_scene *scene, int id)
 {
-	if (id == OBJ_CYLINDER)
-		return (&scene->cylinder);
-	else if (id == OBJ_SPHERE)
-		return (&scene->sphere);
-	else if (id == OBJ_PLANE)
-		return (&scene->plane);
-	else if (id == OBJ_SRC_LIGHT)
-		return (&scene->light);
+	if (id == OBJ_CYLINDER
+		|| id == OBJ_SPHERE
+		|| id == OBJ_PLANE
+		|| id == OBJ_SRC_LIGHT)
+		return (&scene->objects);
 	return (NULL);
 }
 
@@ -77,14 +74,13 @@ bool	parse_obj(t_scene *scene, int id)
 	obj_tmp = get_flex_array(scene, id);
 	if (!obj_tmp)
 		return (true);
-	if (id == OBJ_CYLINDER)
-		size_tmp = &scene->cy_size;
-	if (id == OBJ_PLANE)
-		size_tmp = &scene->pl_size;
-	if (id == OBJ_SPHERE)
-		size_tmp = &scene->sp_size;
-	if (id == OBJ_SRC_LIGHT)
-		size_tmp = &scene->l_size;
+	if (id == OBJ_CYLINDER
+		|| id == OBJ_PLANE
+		|| id == OBJ_SPHERE
+		|| id == OBJ_SRC_LIGHT)
+		size_tmp = &scene->obj_size;
+	else
+		size_tmp = NULL;
 	if (sz_new_elemmt(obj_tmp, size_tmp))
 		return (true);
 	return (false);

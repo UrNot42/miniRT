@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:25:38 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:43:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,40 +62,5 @@ void	print_scene(t_scene *scene)
 		printf("\tColor: \t");
 		print_col(&scene->ambient_light.col, 0);
 	}
-	for (size_t i = 0; i < scene->cy_size.use; i++)
-	{
-		printf("\tCylinder %ld: \n", i);
-		print_tup(scene->cylinder[i].pos, 1);
-		printf("\tnorm:\t");
-		print_tup(scene->cylinder[i].norm, 0);
-		printf("\tDiameter: %f\t", scene->cylinder[i].diameter);
-		printf("\tHeight: %f\t", scene->cylinder[i].height);
-		printf("\tColor: \t");
-		print_col(&scene->cylinder[i].col, 0);
-	}
-	for (size_t i = 0; i < scene->sp_size.use; i++)
-	{
-		printf("\tSphere %ld: \n", i + 1);
-		print_tup(scene->sphere[i].pos, 1);
-		printf("\tDiameter: %f\t", scene->sphere[i].diameter);
-		printf("\tColor: \t");
-		print_col(&scene->sphere[i].col, 0);
-	}
-	for (size_t i = 0; i < scene->pl_size.use; i++)
-	{
-		printf("\tPlane %ld: \n", i + 1);
-		print_tup(scene->plane[i].pos, 1);
-		printf("\tnorm:\t");
-		print_tup(scene->plane[i].norm, 0);
-		printf("\tColor: \t");
-		print_col(&scene->plane[i].col, 0);
-	}
-	for (size_t i = 0; i < scene->l_size.use; i++)
-	{
-		printf("\tLight source %ld: \n", i);
-		printf("\tLight ratio: %lf\n", scene->light[i].ratio);
-		print_tup(scene->light[i].pos, 1);
-		printf("\tColor: \t");
-		print_col(&scene->light[i].col, 0);
-	}
+	// TODO print objects
 }

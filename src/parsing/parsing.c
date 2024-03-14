@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/08 21:06:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,9 @@ t_unt	check_for_identifier(char *possible_id, t_unt *pos)
 
 t_obj	*get_obj(t_scene *scene, char id)
 {
-	if (id == OBJ_CYLINDER && scene->cy_size.use)
-		return (&scene->cylinder[scene->cy_size.use - 1]);
-	else if (id == OBJ_SPHERE && scene->sp_size.use)
-		return (&scene->sphere[scene->sp_size.use - 1]);
-	else if (id == OBJ_PLANE && scene->pl_size.use)
-		return (&scene->plane[scene->pl_size.use - 1]);
-	else if (id == OBJ_SRC_LIGHT && scene->l_size.use)
-		return (&scene->light[scene->l_size.use - 1]);
+	if ((id == OBJ_CYLINDER || id == OBJ_SPHERE || id == OBJ_PLANE
+			|| id == OBJ_SRC_LIGHT) && scene->obj_size.use)
+		return (&scene->objects[scene->obj_size.use - 1]);
 	else if (id == OBJ_CAMERA)
 		return (&scene->camera);
 	else if (id == OBJ_AMB_LIGHT)

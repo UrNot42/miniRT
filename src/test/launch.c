@@ -6,29 +6,11 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:47:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:46:37 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	tests_start(char *tests_name, t_unt a)
-{
-	if (a)
-		ft_printf(">");
-	ft_printf("Starting %s \\/\n", tests_name);
-}
-
-void	tests_end(char *name, t_unt err)
-{
-	ft_printf("==> Finished %s ", name);
-	if (err)
-	{
-		ft_printf("with %d Error", err);
-		if (err > 1)
-			ft_printf("s");
-	}
-}
 
 t_unt	launch_tests(void)
 {
@@ -43,7 +25,8 @@ t_unt	launch_tests(void)
 	err += launch_matrix_transform_test();
 	err += launch_rays_test();
 	err += launch_normal_test();
-	ft_printf("===> All test finished");
+	err += launch_world_test();
+	ft_printf("===> All tests finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
 	else
@@ -59,11 +42,25 @@ t_unt	launch_tests(void)
 	return (err);
 }
 
+t_unt	launch_world_test(void)
+{
+	t_unt	err;
+
+	tests_start("World", 1);
+	err = test_world();
+	tests_end("World", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
+	return (err);
+}
+
 t_unt	launch_normal_test(void)
 {
 	t_unt	err;
 
-	tests_start("Normal tests", 1);
+	tests_start("Normal", 1);
 	err = test_sphere_normal();
 	err += test_norm_normal_vec();
 	err += test_normal_on_transformed();
@@ -76,7 +73,7 @@ t_unt	launch_normal_test(void)
 	err += test_light_eye_opposite_ofst_45();
 	err += test_light_eye_in_path();
 	err += test_light_behind_surface();
-	tests_end("Normal tests", err);
+	tests_end("Normal", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -88,7 +85,7 @@ t_unt	launch_rays_test(void)
 {
 	t_unt	err;
 
-	tests_start("Rays tests", 1);
+	tests_start("Rays", 1);
 	err = test_creating_ray();
 	err += test_position_ray();
 	err += test_intersect_sphere();
@@ -103,7 +100,7 @@ t_unt	launch_rays_test(void)
 	err += test_translate_ray();
 	err += test_sphere_transformation();
 	err += test_ray_sphere_transform();
-	tests_end("Rays tests", err);
+	tests_end("Rays", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -115,7 +112,7 @@ t_unt	launch_matrix_transform_test(void)
 {
 	t_unt	err;
 
-	tests_start("Matrix tests", 1);
+	tests_start("Matrix", 1);
 	err = test_translation_multiplication();
 	err += test_translation_inverse();
 	err += test_translation_vector();
@@ -130,7 +127,7 @@ t_unt	launch_matrix_transform_test(void)
 	err += test_shearing();
 	err += test_sequence_transformations();
 	err += test_rev_sequence_transformations();
-	tests_end("Matrix Transform tests", err);
+	tests_end("Matrix Transform", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -142,7 +139,7 @@ t_unt	launch_matrix_test(void)
 {
 	t_unt	err;
 
-	tests_start("Matrix tests", 1);
+	tests_start("Matrix", 1);
 	err = test_matrix_4_init();
 	err += test_matrix_2_3_init();
 	err += test_matrix_equality();
@@ -164,7 +161,7 @@ t_unt	launch_matrix_test(void)
 	err += test_matrix_multiply_inverse();
 	err += test_inverse_identity_matrix();
 	err += test_matrix_mult_inverse();
-	tests_end("Matrix tests", err);
+	tests_end("Matrix", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else
@@ -176,10 +173,10 @@ t_unt	launch_canvas_test(void)
 {
 	t_unt	err;
 
-	tests_start("Canvas tests", 1);
+	tests_start("Canvas", 1);
 	err = test_create_canvas();
 	err += test_write_pixel_to_canvas();
-	tests_end("Canvas tests", err);
+	tests_end("Canvas", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);
 	else

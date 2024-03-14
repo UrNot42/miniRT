@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:45:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:40:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,8 @@ struct s_scene
 {
 	t_obj		camera;
 	t_obj		ambient_light;
-	t_obj		*cylinder;
-	t_size		cy_size;
-	t_obj		*sphere;
-	t_size		sp_size;
-	t_obj		*plane;
-	t_size		pl_size;
-	t_obj		*light;
-	t_size		l_size;
+	t_obj		*objects;
+	t_size		obj_size;
 };
 
 #endif

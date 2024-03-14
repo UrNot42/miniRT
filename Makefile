@@ -81,6 +81,7 @@ SRC_TEST	:=	tuples.c \
 				ray.c \
 				normals.c \
 				lights.c \
+				world.c \
 				ray_cast_sphere.c \
 
 ############

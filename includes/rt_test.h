@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:47:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:53:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_unt	scenario_end(t_unt errors);
 void	given(char *state, t_unt count);
 void	when(char *state, t_unt count);
 bool	then(char *test_name, bool status, t_unt count);
+void	tests_start(char *tests_name, t_unt a);
+void	tests_end(char *name, t_unt err);
 
 // prints
 void	print_m(t_4mtrx a, char name);
@@ -137,22 +139,19 @@ t_unt	test_light_eye_opposite_ofst_45(void);
 t_unt	test_light_eye_in_path(void);
 t_unt	test_light_behind_surface(void);
 
+// World
+t_unt	launch_world_test(void);
+t_unt	test_world(void);
+
 #endif
 
 /* t_unt	test_(void)
 {
-	t_mater	m;
-	t_tuple	p;
 	t_unt	err;
 
 	scenario_start("");
-	given("m ← material()", 0);
-	m = material();
-	given("position ← point(0, 0, 0)", 1);
-	p = origin();
 	given("", 0);
 	given("", 1);
-	given("", 2);
 	when("", 0);
 	err = then("", 0, 0);
 	scenario_end(err);

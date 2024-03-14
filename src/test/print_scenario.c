@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 10:47:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:26:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ bool	then(char *test_name, bool status, t_unt a)
 	else
 		ft_printf("Failed [KO]\n");
 	return (!status);
+}
+
+void	tests_start(char *tests_name, t_unt a)
+{
+	if (a)
+		ft_printf(">");
+	ft_printf("Starting %s tests \\/\n", tests_name);
+}
+
+void	tests_end(char *name, t_unt err)
+{
+	ft_printf("==> Finished %s tests", name);
+	if (err)
+	{
+		ft_printf("with %d Error", err);
+		if (err > 1)
+			ft_printf("s");
+	}
 }
