@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:00:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 18:54:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:06:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,5 @@ t_tuple	ray_pos(t_ray beam, float time)
 
 t_ray	ray_transform(t_ray r, t_4mtrx m)
 {
-	t_ray	new_r;
-
-	new_r.origin = tup_mtrx(m, r.origin);
-	new_r.direction = tup_mtrx(m, r.direction);
-	return (new_r);
+	return ((t_ray){tup_mtrx(m, r.origin), tup_mtrx(m, r.direction)});
 }

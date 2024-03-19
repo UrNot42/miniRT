@@ -36,7 +36,6 @@ SRC_ERROR	:=	error.c \
 SRC_PARSING	:=	file_management.c \
 				scene_fill.c \
 				scene_management.c \
-				size.c \
 				parsing.c \
 				obj_print.c \
 				obj_setters.c \
@@ -65,10 +64,14 @@ SRC_GRAPH	:=	canvas.c \
 				printing.c \
 
 SRC_ENGINE	:=	ray.c \
-				objects.c \
 				intersection.c \
 				normal.c \
 				light.c \
+				sort.c \
+
+SRC_SHAPES	:=	world.c \
+				size.c \
+				initializing.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
@@ -117,6 +120,7 @@ SRC_ALL		=	$(SRC_LIST) \
 				$(SRCL_MATH) \
 				$(SRCL_GRAPH) \
 				$(SRCL_ENGINE) \
+				$(SRCL_SHAPES) \
 				$(SRCL_TEST) \
 
 SRCL_ERR	=	$(addprefix $(ERR_DIR), $(SRC_ERROR))
@@ -130,6 +134,8 @@ SRCL_MATH	=	$(addprefix $(MATH_DIR), $(SRC_MATH))
 SRCL_GRAPH	=	$(addprefix $(GRAPH_DIR), $(SRC_GRAPH))
 
 SRCL_ENGINE	=	$(addprefix $(ENGINE_DIR), $(SRC_ENGINE))
+
+SRCL_SHAPES	=	$(addprefix $(SHAPES_DIR), $(SRC_SHAPES))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -158,6 +164,8 @@ MATRIX_DIR	:=	matrix/
 GRAPH_DIR	:=	graphic/
 
 ENGINE_DIR	:=	engine/
+
+SHAPES_DIR	:=	objects/
 
 OBJ_DIR		:=	.build/
 

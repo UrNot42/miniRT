@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:30:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,5 @@
 # define PREV_LN "\033[A"
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
-
 void	print_scene(t_scene *scene); // TODO RM
-
 #endif

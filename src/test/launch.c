@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:46:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:48:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_unt	launch_world_test(void)
 
 	tests_start("World", 1);
 	err = test_world();
+	err += test_world_default();
+	err += test_inter_world();
 	tests_end("World", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);

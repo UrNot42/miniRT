@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:53:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:48:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ t_unt	test_light_behind_surface(void);
 // World
 t_unt	launch_world_test(void);
 t_unt	test_world(void);
+t_unt	test_world_default(void);
+t_unt	test_inter_world(void);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:45:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:09:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	copy_element(t_obj *obj_1, t_obj obj_2)
 		obj_2.size,
 		obj_2.m,
 		obj_2.transform,
+		obj_2.inverse,
+		obj_2.trans_inv,
 		obj_2.defined};
 }
 
-bool	sz_new_elemmt(t_obj **ptr, t_size *size)
+bool	add_obj_sz(t_obj **ptr, t_size *size)
 {
 	t_obj	*new_ptr;
 	t_unt	i;

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:45:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:00:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	parse_obj(t_scene *scene, int id)
 		size_tmp = &scene->obj_size;
 	else
 		size_tmp = NULL;
-	if (sz_new_elemmt(obj_tmp, size_tmp))
+	if (add_obj_sz(obj_tmp, size_tmp))
 		return (true);
 	return (false);
 }

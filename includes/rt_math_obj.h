@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:54:48 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:57:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ struct s_mater
 	float	specular;
 	float	shininess;
 };
-
 
 #endif

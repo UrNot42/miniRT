@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:09:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 18:54:21 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:47:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ t_unt	test_inter_struct(void)
 	given("s ← sphere()", 0);
 	s = sphere();
 	when("i ← intersection(3.5, s)", 0);
-	i = intersection(3.5, &s);
+	i = get_inter(3.5, &s);
 	err = then("i.t = 3.5", f_eq(i.t, 3.5), 0);
 	err += then("i.object = s", i.obj == &s, 1);
 	scenario_end(err);
@@ -184,9 +184,9 @@ t_unt	test_agregating_inter(void)
 	given("s ← sphere()", 0);
 	s = sphere();
 	given("i ← intersection(1, s)", 0);
-	i[0] = intersection(1, &s);
+	i[0] = get_inter(1, &s);
 	given("i ← intersection(2, s)", 1);
-	i[1] = intersection(2, &s);
+	i[1] = get_inter(2, &s);
 	when("xs ← intersections(i1, i2)", 0);
 	xs = intersections(2, (t_inter[2]){i[0], i[1]});
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -229,9 +229,9 @@ t_unt	test_hits(void)
 	scenario_start("The hit, when all intersections have positive t");
 	given("s ← sphere()", 0);
 	given("i1 ← intersection(1, s)", 1);
-	i[0] = intersection(1, &s);
+	i[0] = get_inter(1, &s);
 	given("i2 ← intersection(2, s)", 2);
-	i[1] = intersection(2, &s);
+	i[1] = get_inter(2, &s);
 	given("xs ← intersections(i2, i1)", 3);
 	xs = intersections(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
@@ -242,9 +242,9 @@ t_unt	test_hits(void)
 	scenario_start("The hit, when some intersections have negative t");
 	given("s ← sphere()", 0);
 	given("i1 ← intersection(-1, s)", 1);
-	i[0] = intersection(-1, &s);
+	i[0] = get_inter(-1, &s);
 	given("i2 ← intersection(1, s)", 2);
-	i[1] = intersection(1, &s);
+	i[1] = get_inter(1, &s);
 	given("xs ← intersections(i2, i1)", 3);
 	xs = intersections(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
@@ -255,9 +255,9 @@ t_unt	test_hits(void)
 	scenario_start("The hit, when all intersections have negative t");
 	given("s ← sphere()", 0);
 	given("i1 ← intersection(-2, s)", 1);
-	i[0] = intersection(-2, &s);
+	i[0] = get_inter(-2, &s);
 	given("i2 ← intersection(-1, s)", 2);
-	i[1] = intersection(-1, &s);
+	i[1] = get_inter(-1, &s);
 	given("xs ← intersections(i2, i1)", 3);
 	xs = intersections(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
@@ -268,13 +268,13 @@ t_unt	test_hits(void)
 	scenario_start("The hit is always the lowest nonnegative intersection");
 	given("s ← sphere()", 0);
 	given("i1 ← intersection(5, s)", 1);
-	i[0] = intersection(5, &s);
+	i[0] = get_inter(5, &s);
 	given("i2 ← intersection(7, s)", 2);
-	i[1] = intersection(7, &s);
+	i[1] = get_inter(7, &s);
 	given("i3 ← intersection(-3, s)", 2);
-	i[2] = intersection(-3, &s);
+	i[2] = get_inter(-3, &s);
 	given("i4 ← intersection(2, s)", 2);
-	i[3] = intersection(2, &s);
+	i[3] = get_inter(2, &s);
 	given("xs ← intersections(i1, i2, i3, i4)", 3);
 	xs = intersections(4, (t_inter[4]){i[0], i[1], i[2], i[3]});
 	when("i ← hit(xs)", 0);
@@ -375,7 +375,7 @@ t_unt	test_ray_sphere_transform(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	given("s ← sphere()", 1);
 	when("set_transform(s, translation(5, 0, 0))", 0);
-	s.transform = translation_mtrx(5, 0, 0);
+	set_transform(&s, translation_mtrx(5, 0, 0));
 	when("xs ← intersect(s, r)", 1);
 	xs = intersect(&s, r);
 	err[1] = then("xs.count = 0", xs.count == 0, 0);

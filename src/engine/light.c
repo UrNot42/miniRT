@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 13:25:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:15:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,25 @@
 
 t_color	lighting(t_mater m, t_obj light, t_tuple p, t_ray v)
 {
-	t_color	effective;
 	t_color	ambient;
 	t_color	diffuse;
 	t_color	specular;
 	t_tuple	lightv;
-	float	reflect_dot_eye;
-	float	light_dot_normal;
+	float	dot_normal;
 
-	effective.tuple = m.color.tuple * light.col.tuple;
+	ambient.tuple = m.color.tuple * light.col.tuple;
 	lightv = vec_norm(light.pos - p);
-	ambient.tuple = effective.tuple * m.ambient;
-	light_dot_normal = vec_dot(lightv, v.direction);
-	if (light_dot_normal < 0)
+	dot_normal = vec_dot(lightv, v.direction);
+	diffuse = set_col(0, 0, 0);
+	specular = set_col(0, 0, 0);
+	if (dot_normal >= 0)
 	{
-		diffuse = set_col(0, 0, 0);
-		specular = set_col(0, 0, 0);
-	}
-	else
-	{
-		diffuse.tuple = effective.tuple * m.diffuse * light_dot_normal;
-		reflect_dot_eye = vec_dot(reflect(-lightv, v.direction), v.origin);
-		if (reflect_dot_eye > 0)
+		diffuse.tuple = ambient.tuple * m.diffuse * dot_normal;
+		dot_normal = vec_dot(reflect(-lightv, v.direction), v.origin);
+		if (dot_normal > 0)
 			specular.tuple = light.col.tuple * m.specular
-				* powf(reflect_dot_eye, m.shininess);
-		else
-			specular = set_col(0, 0, 0);
+				* powf(dot_normal, m.shininess);
 	}
+	ambient.tuple = m.color.tuple * light.col.tuple * m.ambient;
 	return (tup_col(ambient.tuple + diffuse.tuple + specular.tuple));
 }

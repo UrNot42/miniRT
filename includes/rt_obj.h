@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:40:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:09:38 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ struct s_obj
 	t_size		*size;
 	t_mater		m;
 	t_4mtrx		transform;
+	t_4mtrx		inverse;
+	t_4mtrx		trans_inv;
 	bool		defined;
 };
 
@@ -70,6 +72,8 @@ struct s_scene
 	t_obj		ambient_light;
 	t_obj		*objects;
 	t_size		obj_size;
+	t_obj		*light;
+	t_size		li_size;
 };
 
 #endif

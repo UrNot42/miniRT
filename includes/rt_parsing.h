@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:38:27 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:09:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ bool	read_file(char *file, t_scene *scene);
 
 bool	sz_set(t_size *elmt);
 bool	sz_add(t_size *elemt);
-bool	sz_new_elemmt(t_obj **ptr, t_size *size);
+bool	add_obj_sz(t_obj **ptr, t_size *size);
 
 #endif

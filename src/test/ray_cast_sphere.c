@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 13:24:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:14:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(void)
 #define HALF SIZE / 2
 #define WALL_POS 10
 
-/* int	main(void)
+int	main(void)
 {
 	t_inter		hit;
 	t_ray		r;
@@ -64,11 +64,11 @@ int	main(void)
 	t_canvas	screen = canvas(SIZE, SIZE);
 	t_obj		light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 
-	// s.transform = scale_mtrx(0.4, 0.5, 1.1);
-	// s.transform = scale_mtrx(0.5, 1, 1);
-	// s.transform = rotation_y(M_PI / 4) * rotation_z(M_PI / 4) * scale_mtrx(0.5, 1, 1);
-	// s.transform = shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(0.5, 1, 1);
-	s.m.color = set_col(0.2, 1, 0.2);
+	// set_transform(&s, scale_mtrx(0.4, 0.5, 1.1));
+	// set_transform(&s, scale_mtrx(0.5, 1, 1));
+	set_transform(&s, scale_mtrx(1, 0.3, 1));
+	// set_transform(&s, shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(0.5, 1, 1));
+	s.m.color = set_col(1, 0.2, 0.2);
 	world.z = WALL_POS;
 	for (int y = 0; y < SIZE ; y++)
 	{
@@ -92,4 +92,4 @@ int	main(void)
 	usleep(200005000);
 	close_canvas(screen);
 }
- */
+

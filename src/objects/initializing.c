@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
+/*   initializing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:36:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:10:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_obj	sphere(void)
 	sphere.defined = true;
 	sphere.diameter = 1;
 	sphere.pos = origin();
-	sphere.transform = get_id4mtrx();
+	set_transform(&sphere, get_id4mtrx());
 	sphere.m = material();
 	return (sphere);
 }
@@ -28,6 +28,7 @@ t_obj	point_light(t_tuple pos, t_color intensity)
 {
 	t_obj	light;
 
+	light.defined = true;
 	light.pos = pos;
 	light.col = intensity;
 	return (light);
@@ -48,4 +49,6 @@ t_mater	material(void)
 void	set_transform(t_obj *o, t_4mtrx m)
 {
 	o->transform = m;
+	o->inverse = inverse_4mtrx(m);
+	o->trans_inv = transpose(o->inverse);
 }
