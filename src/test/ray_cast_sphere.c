@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:14:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:22:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	main(void)
 
 	// set_transform(&s, scale_mtrx(0.4, 0.5, 1.1));
 	// set_transform(&s, scale_mtrx(0.5, 1, 1));
-	set_transform(&s, scale_mtrx(1, 0.3, 1));
-	// set_transform(&s, shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(0.5, 1, 1));
-	s.m.color = set_col(1, 0.2, 0.2);
+	// set_transform(&s, rotation_x(M_PI / 4) * scale_mtrx(1, 0.3, 1));
+	set_transform(&s, shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(0.5, 1, 1));
+	s.m.color = set_col(0.1, 0.2, 0.5);
 	world.z = WALL_POS;
 	for (int y = 0; y < SIZE ; y++)
 	{
