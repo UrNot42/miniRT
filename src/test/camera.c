@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:47:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:01:08 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,42 +154,70 @@ t_unt	test_cam_pix_size(void)
 t_unt	test_cam_ray_construction(void)
 {
 	t_unt	err[3];
+	t_cam	c;
+	t_ray	r;
 
 	scenario_start("Constructing a ray through the center of the canvas");
 	given("c ← camera(201, 101, π/2)", 0);
+	c = camera(201, 101, M_PI / 2);
 	when("r ← ray_for_pixel(c, 100, 50)", 0);
-	err[0] = then("r.origin = point(0, 0, 0)", 0, 0);
-	err[0] += then("r.direction = vector(0, 0, -1)", 0, 1);
+	r = ray_for_pixel(c, 100, 50);
+	err[0] = then("r.origin = point(0, 0, 0)",
+			is_same_tuple(r.origin, origin()), 0);
+	err[0] += then("r.direction = vector(0, 0, -1)",
+			is_same_tuple(r.direction, set_vec(0, 0, -1)), 1);
 	scenario_end(err[0]);
 	scenario_start("Constructing a ray through a corner of the canvas");
 	given("c ← camera(201, 101, π/2)", 0);
 	when("r ← ray_for_pixel(c, 0, 0)", 0);
-	err[1] = then("r.origin = point(0, 0, 0)", 0, 0);
-	err[1] += then("r.direction = vector(0.66519, 0.33259, -0.66851)", 0, 1);
+	r = ray_for_pixel(c, 0, 0);
+	err[1] = then("r.origin = point(0, 0, 0)",
+			is_same_tuple(r.origin, origin()), 0);
+	err[1] += then("r.direction = vector(0.66519, 0.33259, -0.66851)",
+			is_same_tuple(r.direction, set_vec(0.66519, 0.33259, -0.66851)), 1);
 	scenario_end(err[1]);
 	scenario_start("Constructing a ray when the camera is transformed");
 	given("c ← camera(201, 101, π/2)", 0);
 	when("c.transform ← rotation_y(π/4) * translation(0, -2, 5)", 0);
+	set_transform(&c.o, rotation_y(M_PI / 4) * translation_mtrx(0, -2, 5));
 	when("r ← ray_for_pixel(c, 100, 50)", 1);
-	err[2] = then("r.origin = point(0, 2, -5)", 0, 0);
-	err[2] += then("r.direction = vector(√2/2, 0, -√2/2)", 0, 1);
+	r = ray_for_pixel(c, 100, 50);
+	err[2] = then("r.origin = point(0, 2, -5)",
+			is_same_tuple(r.origin, set_point(0, 2, -5)), 0);
+	err[2] += then("r.direction = vector(√2/2, 0, -√2/2)",
+			is_same_tuple(r.direction, set_vec(sqrtf(2) / 2, 0, -sqrtf(2) / 2)), 1);
 	scenario_end(err[2]);
 	return (err[0] + err[1] + err[2]);
 }
 
 t_unt	test_cam_rendering(void)
 {
-	t_unt	err;
+	t_unt		err;
+	t_scene		w;
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_cam		c;
+	t_canvas	image;
 
 	scenario_start("Rendering a world with a camera");
 	given("w ← default_world()", 0);
+	w = default_world();
 	given("c ← camera(11, 11, π/2)", 1);
+	c = camera(11, 11, M_PI / 2);
 	given("from ← point(0, 0, -5)", 2);
 	given("to ← point(0, 0, 0)", 3);
 	given("up ← vector(0, 1, 0)", 4);
+	from = set_point(0, 0, -5);
+	to = origin();
+	up = set_vec(0, 1, 0);
 	given("c.transform ← view_transform(from, to, up)", 5);
+	set_transform(&c.o, view_transform(from, to, up));
 	when("image ← render(c, w)", 0);
-	err = then("pixel_at(image, 5, 5) = color(0.38066, 0.47583, 0.2855)", 0, 0);
+	image = render(c, w);
+	err = then("pixel_at(image, 5, 5) = color(0.38066, 0.47583, 0.2855)",
+			is_same_col(pixel_at(image, 5, 5),
+				set_col(0.38066, 0.47583, 0.2855)), 0);
 	scenario_end(err);
 	return (err);
 }
