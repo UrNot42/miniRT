@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:14:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:43:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void	copy_element(t_obj *obj_1, t_obj obj_2)
 		obj_2.ratio,
 		obj_2.diameter,
 		obj_2.height,
-		obj_2.fov,
-		obj_2.col,
 		obj_2.size,
+		obj_2.fov,
 		obj_2.m,
 		obj_2.transform, obj_2.inverse, obj_2.trans_inv,
 		obj_2.defined};

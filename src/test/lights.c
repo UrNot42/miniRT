@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:52:18 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:53:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:30:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_unt	test_point_init(void)
 	err = then("light.position = position",
 			is_same_tuple(light.pos, position), 0);
 	err += then("light.intensity = intensity",
-			is_same_tuple(light.col.tuple, intensity.tuple), 0);
+			is_same_tuple(light.m.col.tuple, intensity.tuple), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -81,7 +81,7 @@ t_unt	test_material(void)
 	given("m ← material()", 0);
 	m = material();
 	err = then("m.color = color(1, 1, 1)",
-			is_same_col(m.color, set_col(1, 1, 1)), 0);
+			is_same_col(m.col, set_col(1, 1, 1)), 0);
 	err += then("m.ambient = 0.1", f_eq(m.ambient, 0.1), 1);
 	err += then("m.diffuse = 0.9", f_eq(m.diffuse, 0.9), 2);
 	err += then("m.specular = 0.9", f_eq(m.specular, 0.9), 3);

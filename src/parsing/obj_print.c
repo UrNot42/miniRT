@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:25:38 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:43:09 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:45:04 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	print_obj(t_obj *obj)
 	printf("ratio: %lf\n", obj->ratio);
 	printf("diameter: %lf\n", obj->diameter);
 	printf("height: %lf\n", obj->height);
-	printf("fov: %u\n", obj->fov);
-	print_col(&obj->col, 1);
+	printf("fov: %f\n", obj->fov);
+	print_col(&obj->m.col, 1);
 }
 
 void	print_scene(t_scene *scene)
@@ -60,7 +60,7 @@ void	print_scene(t_scene *scene)
 		printf("\tAmbient Light: \n");
 		printf("\tLight ratio: %lf\n", scene->ambient_light.ratio);
 		printf("\tColor: \t");
-		print_col(&scene->ambient_light.col, 0);
+		print_col(&scene->ambient_light.m.col, 0);
 	}
 	// TODO print objects
 }

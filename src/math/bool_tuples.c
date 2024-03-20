@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:27:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 16:41:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:28:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	is_same_col(t_color a, t_color b)
 
 bool	is_same_mat(t_mater a, t_mater b)
 {
-	if (is_same_col(a.color, b.color)
+	if (is_same_col(a.col, b.col)
 		&& f_eq(a.ambient, b.ambient) && f_eq(a.diffuse, b.diffuse)
 		&& f_eq(a.specular, b.specular) && f_eq(a.shininess, b.shininess))
 		return (true);

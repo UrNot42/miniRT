@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 15:26:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:30:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	try_ray_trace(void)
 	t_obj	s;
 
 	s = sphere();
-	s.m.color = set_col(1, 0.2, 0.2);
+	s.m.col = set_col(1, 0.2, 0.2);
 	// set_transform(&s, scale_mtrx(0.4, 0.5, 1.1));
 	// set_transform(&s, scale_mtrx(0.5, 1, 1));
 	// set_transform(&s, rotation_x(M_PI / 4) * scale_mtrx(1, 0.3, 1));

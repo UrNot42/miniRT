@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:19:08 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:49:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ t_intrs	intersect(t_obj *sphere, t_ray ray)
 	return (x);
 }
 
-// Sets a single intersection
-t_inter	get_inter(float time, t_obj *obj)
-{
-	return ((t_inter){time, obj, obj != NULL});
-}
-
 // Creates a concatenation of intersections
 t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])
 {
@@ -61,25 +55,6 @@ t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])
 	return (x);
 }
 
-void	printarray(t_intrs xs)
-{
-	t_unt	i;
-	float	f;
-
-	f = 0.2 * 456;
-	i = 0;
-	printf("[");
-	while (i < xs.count)
-	{
-		printf("%f", xs.i[i].t);
-		if (i + 1 < xs.count)
-			printf(", ");
-		i++;
-	}
-	f /= 7;
-	printf("]\n");
-}
-
 t_inter	find_hit(t_intrs inters)
 {
 	t_unt	id;
@@ -89,7 +64,6 @@ t_inter	find_hit(t_intrs inters)
 	hit.obj = NULL;
 	hit.def = false;
 	id = 0;
-	printarray(inters);
 	while (id < inters.count)
 	{
 		if (inters.i[id].t >= 0 && (!hit.obj || inters.i[id].t < hit.t))
@@ -119,7 +93,6 @@ t_intrs	intersect_world(t_scene	world, t_ray r)
 	while (obj_counter < world.obj_size.use)
 	{
 		tmp_inters = intersect(&world.objects[obj_counter++], r);
-		printarray(tmp_inters);
 		tmp_id = 0;
 		while (tmp_id < tmp_inters.count)
 		{
@@ -132,3 +105,22 @@ t_intrs	intersect_world(t_scene	world, t_ray r)
 	inters.count = id;
 	return (inters);
 }
+
+// void	printarray(t_intrs xs)
+// {
+// 	t_unt	i;
+// 	float	f;
+
+// 	f = 0.2 * 456;
+// 	i = 0;
+// 	printf("[");
+// 	while (i < xs.count)
+// 	{
+// 		printf("%f", xs.i[i].t);
+// 		if (i + 1 < xs.count)
+// 			printf(", ");
+// 		i++;
+// 	}
+// 	f /= 7;
+// 	printf("]\n");
+// }

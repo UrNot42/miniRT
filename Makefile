@@ -68,6 +68,7 @@ SRC_ENGINE	:=	ray.c \
 				normal.c \
 				light.c \
 				sort.c \
+				view.c \
 				pre_compute.c \
 
 SRC_SHAPES	:=	world.c \
@@ -87,6 +88,7 @@ SRC_TEST	:=	tuples.c \
 				lights.c \
 				world.c \
 				precompute.c \
+				camera.c \
 				ray_trace.c \
 
 ############

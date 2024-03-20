@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:13:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:49:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_obj	point_light(t_tuple pos, t_color intensity)
 
 	light.defined = true;
 	light.pos = pos;
-	light.col = intensity;
+	light.m.col = intensity;
 	return (light);
 }
 
@@ -38,7 +38,7 @@ t_mater	material(void)
 {
 	t_mater	m;
 
-	m.color = set_col(1, 1, 1);
+	m.col = set_col(1, 1, 1);
 	m.ambient = 0.1;
 	m.diffuse = 0.9;
 	m.specular = 0.9;
@@ -51,4 +51,10 @@ void	set_transform(t_obj *o, t_4mtrx m)
 	o->transform = m;
 	o->inverse = inverse_4mtrx(m);
 	o->trans_inv = transpose(o->inverse);
+}
+
+// Sets a single intersection
+t_inter	get_inter(float time, t_obj *obj)
+{
+	return ((t_inter){time, obj, obj != NULL});
 }

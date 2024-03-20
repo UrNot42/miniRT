@@ -6,15 +6,15 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:02:38 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 10:45:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:46:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	swap(float *a, float *b)
+static void	swap(t_inter *a, t_inter *b)
 {
-	float	t;
+	t_inter	t;
 
 	t = *a;
 	*a = *b;
@@ -35,11 +35,11 @@ static int	partition(t_intrs *array, int low, int high)
 		if (array->i[j].t <= pivot)
 		{
 			i++;
-			swap(&array->i[i].t, &array->i[j].t);
+			swap(&array->i[i], &array->i[j]);
 		}
 		j++;
 	}
-	swap(&array->i[i + 1].t, &array->i[high].t);
+	swap(&array->i[i + 1], &array->i[high]);
 	return (i + 1);
 }
 

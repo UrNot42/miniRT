@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 15:56:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:18:42 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_4mtrx	shearing(t_shear rel);
 t_4mtrx	rotation_x(float r);
 t_4mtrx	rotation_y(float r);
 t_4mtrx	rotation_z(float r);
+t_4mtrx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* ================ Objects ================*/
 bool	add_light(t_scene	*world, t_obj light);

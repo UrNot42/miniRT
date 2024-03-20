@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:42:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:28:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	parse_object(t_obj *object, t_unt id, char *line,
 	if (id == OBJ_CAMERA
 		&& set_int((int *)&object->fov, line, pos))
 		return (p_error(ERR_FOV), true);
-	if (id != OBJ_CAMERA && parse_color(&object->col, line, pos))
+	if (id != OBJ_CAMERA && parse_color(&object->m.col, line, pos))
 		return (p_error(ERR_COLOR), true);
 	object->type = id;
 	return (false);

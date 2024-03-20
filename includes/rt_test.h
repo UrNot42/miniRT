@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:04:06 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:34:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,17 @@ t_unt	test_hit_inoutside(void);
 t_unt	test_shading_w_precomps(void);
 t_unt	test_color_at(void);
 t_unt	test_color_behind(void);
+
+//view
+t_unt	launch_view_test(void);
+t_unt	test_view_default(void);
+t_unt	test_view_z_positive(void);
+t_unt	test_view_moves_world(void);
+t_unt	test_view_transfrom(void);
+t_unt	test_cam_constructing(void);
+t_unt	test_cam_pix_size(void);
+t_unt	test_cam_ray_construction(void);
+t_unt	test_cam_rendering(void);
 
 #endif
 

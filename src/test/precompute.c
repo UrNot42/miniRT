@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:09:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:27:27 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ t_unt	test_color_behind(void)
 {
 	t_scene	w;
 	t_ray	r;
-	t_obj	outer;
-	t_obj	inner;
+	t_obj	*outer;
+	t_obj	*inner;
 	t_color	c;
 	t_unt	err;
 
@@ -168,20 +168,18 @@ t_unt	test_color_behind(void)
 	given("w ← default_world()", 0);
 	w = default_world();
 	given("outer ← the first object in w", 1);
-	outer = w.objects[0];
+	outer = &w.objects[0];
 	given("outer.material.ambient ← 1", 2);
-	outer.m.ambient = 1;
+	outer->m.ambient = 1;
 	given("inner ← the second object in w", 3);
-	inner = w.objects[1];
+	inner = &w.objects[1];
 	given("inner.material.ambient ← 1", 4);
-	inner.m.ambient = 1;
+	inner->m.ambient = 1;
 	given("r ← ray(point(0, 0, 0.75), vector(0, 0, -1))", 5);
 	r = ray(set_point(0, 0, 0.75), set_vec(0, 0, -1));
 	when("c ← color_at(w, r)", 0);
 	c = color_at(w, r);
-	printf("r: %f g: %f b: %f\n", c.red, c.green, c.blue);
-	printf("r: %f g: %f b: %f\n", inner.m.color.red, inner.m.color.green, inner.m.color.blue);
-	err = then("c = inner.material.color", is_same_col(c, inner.m.color), 0);
+	err = then("c = inner.material.color", is_same_col(c, inner->m.col), 0);
 	scenario_end(err);
 	return (err);
 }

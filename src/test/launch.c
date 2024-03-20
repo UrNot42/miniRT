@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:04:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:35:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_unt	launch_tests(void)
 	err += launch_normal_test();
 	err += launch_world_test();
 	err += launch_compute_test();
+	err += launch_view_test();
 	ft_printf("===> All tests finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
@@ -40,6 +41,27 @@ t_unt	launch_tests(void)
 			ft_printf(" "LAUNCH_TEST_KO);
 		}
 	}
+	return (err);
+}
+
+t_unt	launch_view_test(void)
+{
+	t_unt	err;
+
+	tests_start("View Transformation", 1);
+	err = test_view_default();
+	err += test_view_z_positive();
+	err += test_view_moves_world();
+	err += test_view_transfrom();
+	err += test_cam_constructing();
+	err += test_cam_pix_size();
+	err += test_cam_ray_construction();
+	err += test_cam_rendering();
+	tests_end("View Transformation", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
 	return (err);
 }
 

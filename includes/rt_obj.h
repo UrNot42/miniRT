@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 10:27:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:45:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,21 @@ struct s_obj
 	float		ratio;
 	float		diameter;
 	float		height;
-	t_uchar		fov;
-	t_color		col;
 	t_size		*size;
+	float		fov;
 	t_mater		m;
 	t_4mtrx		transform;
 	t_4mtrx		inverse;
 	t_4mtrx		trans_inv;
 	bool		defined;
+};
+
+struct s_cam
+{
+	t_obj	o;
+	t_unt	hz_size;
+	t_unt	v_size;
+	float	pxl_size;
 };
 
 struct s_scene

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 11:23:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:40:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_color		t_color;
 typedef struct s_size		t_size;
 typedef struct s_bound		t_bound;
 typedef struct s_obj		t_obj;
+typedef struct s_cam		t_cam;
 typedef struct s_scene		t_scene;
 
 struct s_color
@@ -63,7 +64,7 @@ struct s_intrs
 
 struct s_mater
 {
-	t_color	color;
+	t_color	col;
 	float	ambient;
 	float	diffuse;
 	float	specular;
