@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 11:34:55 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:46:04 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_scene	default_world(void)
 	s1.m.diffuse = 0.7;
 	s1.m.specular = 0.2;
 	s2 = sphere();
-	s2.transform = scale_mtrx(0.5, 0.5, 0.5);
+	set_transform(&s2, scale_mtrx(0.5, 0.5, 0.5));
 	if (add_obj(&world, s1))
 		return ((t_scene){0});
 	if (add_obj(&world, s2))

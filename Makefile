@@ -45,7 +45,6 @@ SRC_MATH	=	tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				vector_operation.c \
-				color_operation.c \
 				basics.c \
 				$(addprefix $(MATRIX_DIR), $(SRC_MATRIX)) \
 
@@ -62,12 +61,14 @@ SRC_GRAPH	:=	canvas.c \
 				window.c \
 				pixel.c \
 				printing.c \
+				color_operation.c \
 
 SRC_ENGINE	:=	ray.c \
 				intersection.c \
 				normal.c \
 				light.c \
 				sort.c \
+				pre_compute.c \
 
 SRC_SHAPES	:=	world.c \
 				size.c \
@@ -85,7 +86,8 @@ SRC_TEST	:=	tuples.c \
 				normals.c \
 				lights.c \
 				world.c \
-				ray_cast_sphere.c \
+				precompute.c \
+				ray_trace.c \
 
 ############
 # INCLUDED #

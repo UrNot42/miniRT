@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_cast_sphere.c                                  :+:      :+:    :+:   */
+/*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:22:41 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:26:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,16 @@ int	main(void)
 #define HALF SIZE / 2
 #define WALL_POS 10
 
-int	main(void)
+void	ray_trace(t_obj s)
 {
 	t_inter		hit;
 	t_ray		r;
 	t_tuple		point;
 	t_tuple		position;
 	t_tuple		world;
-	t_obj		s = sphere();
 	t_canvas	screen = canvas(SIZE, SIZE);
 	t_obj		light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 
-	// set_transform(&s, scale_mtrx(0.4, 0.5, 1.1));
-	// set_transform(&s, scale_mtrx(0.5, 1, 1));
-	// set_transform(&s, rotation_x(M_PI / 4) * scale_mtrx(1, 0.3, 1));
-	set_transform(&s, shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(0.5, 1, 1));
-	s.m.color = set_col(0.1, 0.2, 0.5);
 	world.z = WALL_POS;
 	for (int y = 0; y < SIZE ; y++)
 	{
@@ -89,7 +83,19 @@ int	main(void)
 	}
 	printf("Done!\n");
 	print_canvas(screen);
-	usleep(200005000);
+	usleep(2000050);
 	close_canvas(screen);
 }
 
+void	try_ray_trace(void)
+{
+	t_obj	s;
+
+	s = sphere();
+	s.m.color = set_col(1, 0.2, 0.2);
+	// set_transform(&s, scale_mtrx(0.4, 0.5, 1.1));
+	// set_transform(&s, scale_mtrx(0.5, 1, 1));
+	// set_transform(&s, rotation_x(M_PI / 4) * scale_mtrx(1, 0.3, 1));
+	// set_transform(&s, shearing((t_shear){1, 0, 0, 0, 0, 0}) * scale_mtrx(1, 1, 1));
+	ray_trace(s);
+}

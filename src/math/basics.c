@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:43:45 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 11:44:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:47:09 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_tuple	origin(void)
 {
-	return ((t_tuple){0, 0, 0, 1});
+	return (set_point(0, 0, 0));
 }

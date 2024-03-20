@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 18:14:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:31:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ bool	opening_window(void)
 	return (0);
 }
 
-/* int	main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_scene	scene;
-
 	if (ac != 2)
 		return (launch_tests());
-		// return (p_error(ERR_NO_PROMPT), EXIT_FAILURE);
-	scene = (t_scene){0};
-	if (read_file(av[1], &scene))
-		return (scene_free(&scene), EXIT_FAILURE);
-	scene_free(&scene);
-	printf("Code ran acordingly\n");
-	return (opening_window());
-} */
+	if (ac == 2 && ft_toupper(av[1][0]) == 'R')
+		try_ray_trace();
+	// scene = (t_scene){0};
+	// if (read_file(av[1], &scene))
+	// 	return (scene_free(&scene), EXIT_FAILURE);
+	// scene_free(&scene);
+	// printf("Code ran acordingly\n");
+	// return (opening_window());
+	return (EXIT_SUCCESS);
+}

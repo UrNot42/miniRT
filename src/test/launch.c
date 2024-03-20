@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:48:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:04:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_unt	launch_tests(void)
 	err += launch_rays_test();
 	err += launch_normal_test();
 	err += launch_world_test();
+	err += launch_compute_test();
 	ft_printf("===> All tests finished");
 	if (!err)
 		ft_printf(" [OK]\n\nCongratulations\n");
@@ -39,6 +40,24 @@ t_unt	launch_tests(void)
 			ft_printf(" "LAUNCH_TEST_KO);
 		}
 	}
+	return (err);
+}
+
+t_unt	launch_compute_test(void)
+{
+	t_unt	err;
+
+	tests_start("Pre Computation Structure", 1);
+	err = test_precomputation();
+	err += test_hit_inoutside();
+	err += test_shading_w_precomps();
+	err += test_color_at();
+	err += test_color_behind();
+	tests_end("Pre Computation Structure", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
 	return (err);
 }
 

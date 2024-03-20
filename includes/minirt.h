@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 10:30:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:39:21 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
 void	print_scene(t_scene *scene); // TODO RM
+void	try_ray_trace(void);
+
 #endif

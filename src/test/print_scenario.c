@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/16 18:49:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:32:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	tests_start(char *tests_name, t_unt a)
 {
 	if (a)
 		ft_printf(">");
-	ft_printf("Starting %s tests \\/\n", tests_name);
+	ft_printf("Starting %s tests \\/\n\n", tests_name);
 }
 
 void	tests_end(char *name, t_unt err)

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 11:57:14 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:23:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef float				t_tuple	__attribute__((ext_vector_type(4)));
 typedef struct s_inter		t_inter;
 typedef struct s_intrs		t_intrs;
 typedef struct s_mater		t_mater;
+typedef struct s_comps		t_comps;
 
 typedef struct s_ray		t_ray;
 typedef struct s_color		t_color;
@@ -67,6 +68,16 @@ struct s_mater
 	float	diffuse;
 	float	specular;
 	float	shininess;
+};
+
+struct s_comps
+{
+	float	t;
+	t_obj	*obj;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	bool	inside;
 };
 
 #endif

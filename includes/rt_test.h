@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:48:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:04:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,14 @@ t_unt	test_world(void);
 t_unt	test_world_default(void);
 t_unt	test_inter_world(void);
 
+// Precompute
+t_unt	launch_compute_test(void);
+t_unt	test_precomputation(void);
+t_unt	test_hit_inoutside(void);
+t_unt	test_shading_w_precomps(void);
+t_unt	test_color_at(void);
+t_unt	test_color_behind(void);
+
 #endif
 
 /* t_unt	test_(void)
@@ -156,6 +164,28 @@ t_unt	test_inter_world(void);
 	given("", 1);
 	when("", 0);
 	err = then("", 0, 0);
+	err += then("", 0, 1);
 	scenario_end(err);
 	return (err);
+} */
+
+/* t_unt	test_(void)
+{
+	t_unt	err[2];
+
+	scenario_start("");
+	given("", 0);
+	given("", 1);
+	when("", 0);
+	err[0] = then("", 0, 0);
+	err[0] += then("", 0, 1);
+	scenario_end(err[0]);
+	scenario_start("");
+	given("", 0);
+	given("", 1);
+	when("", 0);
+	err[1] = then("", 0, 0);
+	err[1] += then("", 0, 1);
+	scenario_end(err[1]);
+	return (err[0] + err[1]);
 } */

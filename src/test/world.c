@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:26:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 17:51:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:58:36 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ t_unt	test_world_default(void)
 	scenario_start("The default world");
 	given("light ← point_light(point(-10, 10, -10), color(1, 1, 1))", 0);
 	light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
-	given("s1 ← sphere() with:\n| material.color    | (0.8, 1.0, 0.6) |\n\
-| material.diffuse  | 0.7             |\n\
-| material.specular | 0.2             |", 1);
+	given("s1 ← sphere() with:\n| material.color    |        (0.8, 1.0, 0.6) |\n\
+| material.diffuse  |                    0.7 |\n\
+| material.specular |                    0.2 |", 1);
 	s1 = sphere();
 	s1 = (t_obj){.m.color = set_col(0.8, 1.0, 0.6), .m.diffuse = 0.7,
 		.m.specular = 0.2};
-	given("s2 ← sphere() with:\n| transform         |\n\
-scaling(0.5, 0.5, 0.5) |", 2);
+	given("s2 ← sphere() with:\n| transform         | scaling(0.5, 0.5, 0.5) |",
+		2);
 	s2 = sphere();
 	s2 = (t_obj){.transform = scale_mtrx(0.5, 0.5, 0.5)};
 	w = default_world();
