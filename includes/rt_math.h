@@ -6,14 +6,14 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:18:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:57:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_MATH_H
 # define RT_MATH_H
 
-# define EPSILON 0.0001
+# define EPSILON 0.0035
 # define M_PI 3.14159265358979323846
 
 typedef float			t_i2mtr[4];
@@ -99,7 +99,6 @@ t_4mtrx	shearing(t_shear rel);
 t_4mtrx	rotation_x(float r);
 t_4mtrx	rotation_y(float r);
 t_4mtrx	rotation_z(float r);
-t_4mtrx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* ================ Objects ================*/
 bool	add_light(t_scene	*world, t_obj light);

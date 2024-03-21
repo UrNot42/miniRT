@@ -60,7 +60,6 @@ SRC_GRAPH	:=	canvas.c \
 				image.c \
 				window.c \
 				pixel.c \
-				printing.c \
 				color_operation.c \
 
 SRC_ENGINE	:=	ray.c \

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:39:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:39:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:34:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ void	close_canvas(t_canvas screen)
 	if (screen.ptr && screen.win)
 		mlx_destroy_display(screen.ptr);
 	free(screen.ptr);
+}
+
+void	print_canvas(t_canvas screen)
+{
+	mlx_put_image_to_window(screen.ptr, screen.win, screen.picture->img, 0, 0);
 }

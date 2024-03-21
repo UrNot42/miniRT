@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 12:57:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 15:25:38 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:46:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float	uchar_to_float(t_uchar color)
 {
 	float	new_color;
 
-	new_color = (float)(color / COL_SCALE);
+	new_color = (float)((float)(color) / COL_SCALE);
 	return (new_color);
 }
 

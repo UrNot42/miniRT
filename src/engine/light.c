@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 18:26:40 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:11:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	t_color	color;
 	t_color	tmp;
 
+	if (!world.li_size.use)
+		return (printf("No light source!\n"), set_col(0, 0, 0)); // Do we keep that?
 	color = lighting(computes.obj->m, world.light[0], computes.point,
 			(t_ray){computes.eyev, computes.normalv});
 	if (world.li_size.use == 1)

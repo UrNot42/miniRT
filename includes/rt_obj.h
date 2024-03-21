@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:45:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:59:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ struct s_cam
 	t_unt	hz_size;
 	t_unt	v_size;
 	float	pxl_size;
+	float	half_width;
+	float	half_height;
 };
 
 struct s_scene

@@ -6,14 +6,14 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:32:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_GRAPHIC_H
 # define RT_GRAPHIC_H
 
-# define WINDOW_NAME  "Mini Roaaaaaaaaaad Trip"
+# define WINDOW_NAME  "MiniRT"
 
 # define HEX_RED_OFFS 16
 # define HEX_GREEN_OFFS 8
@@ -65,5 +65,12 @@ t_color		pixel_at(t_canvas screen, t_unt x, t_unt y);
 void		pixel_put(t_data *pic, int x, int y, t_hxcol color);
 void		write_pixel(t_data *pic, int x, int y, t_color color);
 void		safe_pixel(t_data *pic, int x, int y, t_color color);
+
+// Camera
+t_cam		camera(t_unt hsize, t_unt vsize, float field_of_view);
+t_4mtrx		view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_ray		ray_for_pixel(t_cam view, t_unt	x, t_unt y);
+t_ray		ray_for_pixel(t_cam view, t_unt	x, t_unt y);
+t_canvas	*render(t_cam camera, t_scene world);
 
 #endif

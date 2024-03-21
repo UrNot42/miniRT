@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 20:01:08 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:53:07 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ t_unt	test_cam_constructing(void)
 	err = then("c.hsize = 160", c.hz_size == 160, 0);
 	err += then("c.vsize = 120", c.v_size == 120, 1);
 	err += then("c.field_of_view = π/2", f_eq(c.o.fov, field_of_view), 2);
-	err += then("c.transform = identity_matrix", 0, 3);
+	err += then("c.transform = identity_matrix",
+			matr_4_eq(c.o.transform, get_id4mtrx()), 3);
 	scenario_end(err);
 	return (err);
 }
@@ -198,26 +199,27 @@ t_unt	test_cam_rendering(void)
 	t_tuple		to;
 	t_tuple		up;
 	t_cam		c;
-	t_canvas	image;
+	t_canvas	*image;
 
 	scenario_start("Rendering a world with a camera");
 	given("w ← default_world()", 0);
 	w = default_world();
-	given("c ← camera(11, 11, π/2)", 1);
+	given("c ← camera(110, 110, π/2)", 1);
 	c = camera(11, 11, M_PI / 2);
 	given("from ← point(0, 0, -5)", 2);
 	given("to ← point(0, 0, 0)", 3);
 	given("up ← vector(0, 1, 0)", 4);
 	from = set_point(0, 0, -5);
-	to = origin();
+	to = set_point(0, 0, 0);
 	up = set_vec(0, 1, 0);
 	given("c.transform ← view_transform(from, to, up)", 5);
 	set_transform(&c.o, view_transform(from, to, up));
 	when("image ← render(c, w)", 0);
 	image = render(c, w);
-	err = then("pixel_at(image, 5, 5) = color(0.38066, 0.47583, 0.2855)",
-			is_same_col(pixel_at(image, 5, 5),
+	err = then("pixel_at(image, 50, 50) = color(0.38066, 0.47583, 0.2855)",
+			is_same_col(pixel_at(*image, 5, 5),
 				set_col(0.38066, 0.47583, 0.2855)), 0);
+	close_canvas(*image);
 	scenario_end(err);
 	return (err);
 }
