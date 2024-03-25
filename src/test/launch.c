@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 11:15:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:14:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_unt	launch_tests(void)
 	err += launch_compute_test();
 	err += launch_view_test();
 	err += launch_shadow_test();
+	err += launch_shape_test();
 	ft_printf("===> All tests finished");
 	if (err)
 	{
@@ -40,6 +41,21 @@ t_unt	launch_tests(void)
 	}
 	else
 		ft_printf(" [OK]\n\nCongratulations\n");
+	return (err);
+}
+
+t_unt	launch_shape_test(void)
+{
+	t_unt	err;
+
+	tests_start("Shapes", 1);
+	err = test_cube_inters();
+	err += test_cube_normal();
+	tests_end("Shapes", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
 	return (err);
 }
 

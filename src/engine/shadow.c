@@ -15,27 +15,6 @@
 bool	is_shadowed(t_scene world, t_tuple point)
 {
 	float	distance;
-	t_tuple	vec;
-	t_tuple	direction;
-	t_ray	r;
-	t_intrs	inters;
-
-	vec = world.light[0].pos - point;
-	distance = vec_magn(vec);
-	direction = vec_norm(vec);
-
-	r = ray(point, direction);
-	inters = intersect_world(world, r);
-	inters.i[0] = find_hit(inters);
-	if (inters.i[0].def && inters.i[0].t < distance)
-		return (true);
-	return (false);
-}
-
-/* The multiple shadow version
-bool	is_shadowed(t_scene world, t_tuple point)
-{
-	float	distance;
 	t_tuple	vec[2];
 	t_ray	r;
 	t_intrs	inters;
@@ -48,7 +27,6 @@ bool	is_shadowed(t_scene world, t_tuple point)
 		vec[0] = world.light[i[0]].pos - point;
 		distance = vec_magn(vec[0]);
 		vec[1] = vec_norm(vec[0]);
-
 		r = ray(point, vec[1]);
 		inters = intersect_world(world, r);
 		inters.i[0] = find_hit(inters);
@@ -57,4 +35,4 @@ bool	is_shadowed(t_scene world, t_tuple point)
 		i[0]++;
 	}
 	return (i[1]);
-}*/
+}

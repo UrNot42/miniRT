@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 20:29:21 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:13:35 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,11 @@ t_unt	test_cam_constructing(void);
 t_unt	test_cam_pix_size(void);
 t_unt	test_cam_ray_construction(void);
 t_unt	test_cam_rendering(void);
+
+// Shapes
+t_unt	launch_shape_test(void);
+t_unt	test_cube_inters(void);
+t_unt	test_cube_normal(void);
 
 #endif
 

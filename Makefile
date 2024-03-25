@@ -96,6 +96,7 @@ SRC_TEST	:=	tuples.c \
 				camera.c \
 				ray_trace.c \
 				scenes.c \
+				shapes.c \
 
 ############
 # INCLUDED #

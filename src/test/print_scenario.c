@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scenario.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 20:29:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 15:37:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	ex(char *state, bool test)
 		ft_printf(" [OK]\n", state);
 	else
 		ft_printf(" [KO]\n", state);
-	return (test);
+	return (!test);
 }
 
 void	given(char *state, t_unt a)

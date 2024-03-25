@@ -40,7 +40,7 @@ t_scene	scene_cube(t_color backdrop)
 	s.m.col = set_col(0.1, 0.6, 0.6);
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
-	// set_transform(&s, translation_mtrx(-0.5, 1.6, 0.65) * scale_mtrx(1.5, 1.5, 2));
+	set_transform(&s, translation_mtrx(-0.5, 1.6, 0.65) * scale_mtrx(1, 5, 1));
 	add_obj(&world, s);
 	return (world);
 }

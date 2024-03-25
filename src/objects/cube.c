@@ -74,21 +74,20 @@ t_intrs cube_intersect(t_obj *cube, t_ray r)
 	return (x);
 }
 
-
 t_tuple	cube_normal_at(t_obj cube, t_tuple point)
 {
-	t_tuple	direction;
 	t_tuple	vector;
 	float	maxc;
 
-	(void)cube;
-	maxc = fmaxf(fmaxf(point.x, point.y), point.z);
-	vector = set_vec(point.x, 0, 0);
-	if (maxc == fabs(point.y))
+	point = tup_mtrx(cube.inverse, point);
+	maxc = fmaxf(fmaxf(fabs(point.x), fabs(point.y)), fabs(point.z));
+	if (maxc == fabs(point.x))
+		vector = set_vec(point.x, 0, 0);
+	else if (maxc == fabs(point.y))
 		vector = set_vec(0, point.y, 0);
-	else if (maxc == fabs(point.z))
+	else
 		vector = set_vec(0, 0, point.z);
-	direction = tup_mtrx(cube.inverse, vector);
-	direction.w = 0;
-	return (vec_norm(direction));
+	vector = tup_mtrx(cube.trans_inv, vector);
+	vector.w = 0;
+	return (vec_norm(vector));
 }
