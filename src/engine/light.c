@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 17:50:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:44:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	while (i < world.li_size.use)
 	{
 		tmp = lighting((t_lgting){computes.obj->m, world.light[i], computes.point,
-				computes.eyev, computes.normalv, is_shadowed(world, computes.over_point)});
+				computes.eyev, computes.normalv,
+					is_shadowed(world, computes.over_point, world.light[i])});
 		color.tuple = color.tuple + tmp.tuple;
 		i++;
 	}

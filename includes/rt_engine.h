@@ -59,7 +59,7 @@ t_intrs cube_intersect(t_obj *cube, t_ray r);
 /* ============== Rays ================*/
 // Initialising
 t_color	lighting(t_lgting l);
-bool	is_shadowed(t_scene world, t_tuple point);
+bool	is_shadowed(t_scene world, t_tuple point, t_obj	light);
 t_ray	ray(t_tuple origin, t_tuple direction);
 t_tuple	ray_pos(t_ray beam, float time);
 t_ray	ray_transform(t_ray r, t_4mtrx m);

@@ -27,7 +27,7 @@ t_unt	test_cube_inters(void)
 	then("xs.count = 2", 1, 0);
 	then("xs[0].t = <t1>", 1, 1);
 	then("xs[1].t = <t2>", 1, 2);
-	printf("Examples:\n |			| origin			| direction			| t1 | t2 |\n");
+	printf("Examples:\n |		| origin		| direction		| t1 | t2 |\n");
 	r = ray(set_point(5, 0.5, 0), set_vec(-1, 0, 0));
 	xs = cube_intersect(&c, r);
 	err = ex(" |  +x		| point(5, 0.5, 0)	| vector(-1, 0, 0)	|  4 |  6 |",

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 17:58:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:05:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RT_MATH_H
 
 # define EPSILON 0.0035
-# define AA_RATIO 0.1
+# define AA_RATIO 0.2
 # define M_PI 3.14159265358979323846
 
 typedef float			t_i2mtr[4];
