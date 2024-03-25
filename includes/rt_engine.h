@@ -66,6 +66,7 @@ t_ray	ray_transform(t_ray r, t_4mtrx m);
 void	set_transform(t_obj *o, t_4mtrx m);
 t_color	shade_hit(t_scene world, t_comps computes);
 t_color	color_at(t_scene world, t_ray ray);
+t_color	anti_alias(t_scene world, t_unt	x, t_unt y, t_cam camera);
 
 // Intersections
 t_inter	get_inter(float time, t_obj *obj);

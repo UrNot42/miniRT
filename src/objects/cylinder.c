@@ -30,7 +30,7 @@ t_intrs cy_intersect(t_obj *cylinder, t_ray r)
 	float	a;
 	float	b;
 	float	c;
-	float	t[2];
+	float	y[2];
 	t_intrs	x;
 
 	r = ray_transform(r, cylinder->inverse);
@@ -43,11 +43,21 @@ t_intrs cy_intersect(t_obj *cylinder, t_ray r)
 	c = b * b - 4 * a * c;
 	if (a < 0)
 		return (x);
-	t[0] = (-b - sqrtf(c)) / (2 * a);
-	t[1] = (-b + sqrtf(c)) / (2 * a);
-	x.i[0] = get_inter(t[0], cylinder);
-	x.i[1] = get_inter(t[1], cylinder);
+	x.i[0] = get_inter((-b - sqrtf(c)) / (2 * a), cylinder);
+	x.i[1] = get_inter((-b + sqrtf(c)) / (2 * a), cylinder);
 	x.count = 2;
+
+	if (x.i[0].t > x.i[1].t)
+		fswap(&x.i[0].t, &x.i[1].t);
+
+	y[0] = r.origin.y + x.i[0].t * r.direction.y;
+
+	if (cylinder.minimum < y0 and y0 < cylinder.maximum)
+		add intersection(t0, cylinder) to xs
+	// y1 ← ray.origin.y + t1 * ray.direction.y
+
+	// if cylinder.minimum < y1 and y1 < cylinder.maximum
+	// 	add intersection(t1, cylinder) to xs
 	return (x);
 }
 

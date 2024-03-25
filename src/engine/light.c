@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 11:41:16 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 17:50:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color	lighting(t_lgting l)
 	float	dot_normal;
 
 	if (l.in_shadow)
-		return (tup_col(l.light.m.col.tuple * 0.1));
+		return (tup_col(l.mater.col.tuple * 0.1));
 	ambient.tuple = l.mater.col.tuple * l.light.m.col.tuple;
 	lightv = vec_norm(l.light.pos - l.point);
 	dot_normal = vec_dot(lightv, l.normalv);
@@ -87,4 +87,32 @@ t_color	color_at(t_scene world, t_ray ray)
 		return (set_col(0, 0, 0));
 	computes = prepare_computations(hit_point, ray);
 	return (shade_hit(world, computes));
+}
+
+t_color	anti_alias(t_scene world, t_unt	x, t_unt y, t_cam camera)
+{
+	t_color	average[9];
+	t_ray	r;
+	t_unt	i;
+	t_unt	j;
+	float	d;
+
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 3)
+		{
+			r = ray_for_pixel(camera, x - 1 + i, y - 1 + j);
+			average[i * 3 + j] = color_at(world, r);
+			j++;
+		}
+		i++;
+	}
+	d = (1 - AA_RATIO) / 8;
+	return (tup_col(average[0].tuple * d + average[1].tuple * d
+			+ average[2].tuple * d + average[3].tuple * d
+			+ average[4].tuple * d + average[5].tuple * AA_RATIO
+			+ average[6].tuple * d + average[7].tuple * d
+			+ average[8].tuple * d));
 }

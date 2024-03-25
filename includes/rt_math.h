@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 19:18:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 17:58:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_MATH_H
 
 # define EPSILON 0.0035
+# define AA_RATIO 0.1
 # define M_PI 3.14159265358979323846
 
 typedef float			t_i2mtr[4];
@@ -36,6 +37,7 @@ typedef float			t_tpmtx	__attribute__((matrix_type(4, 1)));
 /* float */
 float	my_fabs(float a);
 bool	f_eq(float a, float b);
+void	fswap(float *a, float *b);
 
 /* Tuples */
 t_tuple	set_tuple(float x, float y, float z, float w);
