@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/21 21:08:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:23:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include "rt_math_obj.h"
 # include "rt_math.h"
 # include "rt_obj.h"
+# include "rt_engine.h"
 # include "rt_parsing.h"
 # include "rt_test.h"
 # include "rt_graphic.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:37:24 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:35:41 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 11:15:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ t_unt	launch_tests(void)
 	err += launch_matrix_transform_test();
 	err += launch_rays_test();
 	err += launch_normal_test();
+	err += launch_light_test();
 	err += launch_world_test();
 	err += launch_compute_test();
 	err += launch_view_test();
+	err += launch_shadow_test();
 	ft_printf("===> All tests finished");
-	if (!err)
-		ft_printf(" [OK]\n\nCongratulations\n");
-	else
+	if (err)
 	{
-		if (err)
-		{
-			ft_printf(": %d Error", err);
-			if (err > 1)
-				ft_printf("s");
-			ft_printf(" "LAUNCH_TEST_KO);
-		}
+		ft_printf(": %d Error", err);
+		if (err > 1)
+			ft_printf("s");
+		ft_printf(" "LAUNCH_TEST_KO);
 	}
+	else
+		ft_printf(" [OK]\n\nCongratulations\n");
 	return (err);
 }
 
@@ -99,6 +98,41 @@ t_unt	launch_world_test(void)
 	return (err);
 }
 
+t_unt	launch_shadow_test(void)
+{
+	t_unt	err;
+
+	tests_start("Shadow", 1);
+	err = test_shadow_light_surface();
+	err += test_shadow_point_between();
+	err += test_shade_hit_inter_shadowed();
+	err += test_hit_offset_point();
+	tests_end("Shadow", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
+	return (err);
+}
+
+t_unt	launch_light_test(void)
+{
+	t_unt	err;
+
+	tests_start("Light", 1);
+	err = test_light_eye_between();
+	err += test_light_eye_between_ofst_45();
+	err += test_light_eye_opposite_ofst_45();
+	err += test_light_eye_in_path();
+	err += test_light_behind_surface();
+	tests_end("Light", err);
+	if (!err)
+		ft_printf(LAUNCH_TEST_OK);
+	else
+		ft_printf(LAUNCH_TEST_KO);
+	return (err);
+}
+
 t_unt	launch_normal_test(void)
 {
 	t_unt	err;
@@ -111,11 +145,6 @@ t_unt	launch_normal_test(void)
 	err += test_reflect_slanted();
 	err += test_material();
 	err += test_default_mater();
-	err += test_light_eye_between();
-	err += test_light_eye_between_ofst_45();
-	err += test_light_eye_opposite_ofst_45();
-	err += test_light_eye_in_path();
-	err += test_light_behind_surface();
 	tests_end("Normal", err);
 	if (!err)
 		ft_printf(LAUNCH_TEST_OK);

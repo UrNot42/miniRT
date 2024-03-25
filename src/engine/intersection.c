@@ -3,40 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 18:49:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:24:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // Creates an intersection Array with a sphere
-t_intrs	intersect(t_obj *sphere, t_ray ray)
+t_intrs	intersect(t_obj *object, t_ray ray)
 {
-	t_intrs	x;
-	t_tuple	sphere_to_ray;
-	float	a;
-	float	b;
-	float	c;
+	t_intrs	intersections;
 
-	ray = ray_transform(ray, sphere->inverse);
-	sphere_to_ray = ray.origin - origin();
-	a = vec_dot(ray.direction, ray.direction);
-	b = 2 * vec_dot(ray.direction, sphere_to_ray);
-	c = vec_dot(sphere_to_ray, sphere_to_ray) - 1;
-	c = (b * b) - 4 * a * c;
-	if (c >= 0)
-	{
-		x.i[0] = get_inter((-b - sqrtf(c)) / (2 * a), sphere);
-		x.i[1] = get_inter((-b + sqrtf(c)) / (2 * a), sphere);
-		x.count = 2;
-	}
-	else
-		x.count = 0;
-	return (x);
+	intersections.count = 0;
+	if (object->type == OBJ_SPHERE)
+		intersections = sp_intersect(object, ray);
+	else if (object->type == OBJ_PLANE)
+		intersections = pl_intersect(object, ray);
+	else if (object->type == OBJ_CYLINDER)
+		intersections = cy_intersect(object, ray);
+	else if (object->type == OBJ_CUBE)
+		intersections = cube_intersect(object, ray);
+	return (intersections);
 }
+
 
 // Creates a concatenation of intersections
 t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])

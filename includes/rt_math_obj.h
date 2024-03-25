@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_math_obj.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:40:46 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 11:30:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef float				t_tuple	__attribute__((ext_vector_type(4)));
 typedef struct s_inter		t_inter;
 typedef struct s_intrs		t_intrs;
 typedef struct s_mater		t_mater;
+typedef struct s_lgting		t_lgting;
 typedef struct s_comps		t_comps;
 
 typedef struct s_ray		t_ray;
@@ -76,6 +77,7 @@ struct s_comps
 	float	t;
 	t_obj	*obj;
 	t_tuple	point;
+	t_tuple	over_point;
 	t_tuple	eyev;
 	t_tuple	normalv;
 	bool	inside;

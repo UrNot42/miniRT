@@ -47,3 +47,10 @@ t_4mtrx	shearing(t_shear rel)
 	translate[2][1] = rel[5];
 	return (translate);
 }
+
+void	set_transform(t_obj *o, t_4mtrx m)
+{
+	o->transform = m;
+	o->inverse = inverse_4mtrx(m);
+	o->trans_inv = transpose(o->inverse);
+}

@@ -66,6 +66,7 @@ SRC_ENGINE	:=	ray.c \
 				intersection.c \
 				normal.c \
 				light.c \
+				shadow.c \
 				sort.c \
 				view.c \
 				pre_compute.c \
@@ -73,6 +74,10 @@ SRC_ENGINE	:=	ray.c \
 SRC_SHAPES	:=	world.c \
 				size.c \
 				initializing.c \
+				sphere.c \
+				plane.c \
+				cylinder.c \
+				cube.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \
@@ -84,11 +89,13 @@ SRC_TEST	:=	tuples.c \
 				transform.c \
 				ray.c \
 				normals.c \
+				shadows.c \
 				lights.c \
 				world.c \
 				precompute.c \
 				camera.c \
 				ray_trace.c \
+				scenes.c \
 
 ############
 # INCLUDED #

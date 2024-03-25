@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scenario.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:36:21 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 11:32:26 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:29:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ t_unt	scenario_end(t_unt errors)
 	else
 		ft_printf("=> Validated Scenario\n\n");
 	return (errors);
+}
+
+bool	ex(char *state, bool test)
+{
+	ft_printf("%s", state);
+	if (test)
+		ft_printf(" [OK]\n", state);
+	else
+		ft_printf(" [KO]\n", state);
+	return (test);
 }
 
 void	given(char *state, t_unt a)

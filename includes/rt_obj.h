@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_obj.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/21 19:59:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:48:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define ID_SPHERE "sp"
 # define ID_PLANE "pl"
 # define ID_CYLINDER "cy"
+# define ID_CUBE "cb"
 
 # define O_SIZE_SET 2
 # define O_SIZE_MAX 8096
@@ -31,7 +32,8 @@ enum e_objects
 	OBJ_SRC_LIGHT,
 	OBJ_SPHERE,
 	OBJ_PLANE,
-	OBJ_CYLINDER
+	OBJ_CYLINDER,
+	OBJ_CUBE
 };
 
 /* use for dynamic filling of elements */

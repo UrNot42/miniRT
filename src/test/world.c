@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:26:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 17:30:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:29:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ t_unt	test_world_default(void)
 	given("s2 ← sphere() with:\n| transform         | scaling(0.5, 0.5, 0.5) |",
 		2);
 	s2 = sphere();
-	s2 = (t_obj){.transform = scale_mtrx(0.5, 0.5, 0.5)};
+	set_transform(&s2, scale_mtrx(0.5, 0.5, 0.5));
 	w = default_world();
 	when("w ← default_world()", 0);
 	err = then("w.light = light", is_same_tuple(w.light[0].pos,
 				light.pos) && is_same_tuple(w.light[0].m.col.tuple,
 				light.m.col.tuple), 0);
-	err += then("w contains s1", w.objects[0].defined, 1);
-	err += then("w contains s2", w.objects[1].defined, 2);
+	err += then("w contains s1", is_same_col(w.objects[0].m.col, s1.m.col), 1);
+	err += then("w contains s2", matr_4_eq(w.objects[1].transform, s2.transform), 2);
 	scenario_end(err);
 	return (err);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_compute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:10:05 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 16:49:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:43:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ t_comps	prepare_computations(t_inter i, t_ray ray)
 		computations.inside = true;
 		computations.normalv = -computations.normalv;
 	}
+	computations.over_point = computations.point + computations.normalv * EPSILON;
 	return (computations);
 }

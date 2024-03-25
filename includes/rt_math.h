@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/21 20:57:41 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:18:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,35 +99,5 @@ t_4mtrx	shearing(t_shear rel);
 t_4mtrx	rotation_x(float r);
 t_4mtrx	rotation_y(float r);
 t_4mtrx	rotation_z(float r);
-
-/* ================ Objects ================*/
-bool	add_light(t_scene	*world, t_obj light);
-bool	add_obj(t_scene	*world, t_obj obj);
-t_scene	default_world(void);
-t_obj	sphere(void);
-t_obj	point_light(t_tuple pos, t_color intensity);
-t_mater	material(void);
-
-/* ============== Rays ================*/
-// Initialising
-t_ray	ray(t_tuple origin, t_tuple direction);
-t_tuple	ray_pos(t_ray beam, float time);
-t_ray	ray_transform(t_ray r, t_4mtrx m);
-void	set_transform(t_obj *o, t_4mtrx m);
-t_color	lighting(t_mater m, t_obj o, t_tuple p, t_ray v);
-t_color	shade_hit(t_scene world, t_comps computes);
-t_color	color_at(t_scene world, t_ray ray);
-
-// Intersections
-t_intrs	intersect(t_obj *sphere, t_ray ray);
-t_inter	get_inter(float time, t_obj *obj);
-t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX]);
-t_inter	find_hit(t_intrs inters);
-bool	is_same_inter(t_inter a, t_inter b);
-t_tuple	normal_at(t_obj o, t_tuple point);
-t_tuple	reflect(t_tuple v, t_tuple reflex);
-t_intrs	intersect_world(t_scene	world, t_ray r);
-void	quicksort(t_intrs *array, int low, int high);
-t_comps	prepare_computations(t_inter i, t_ray ray);
 
 #endif

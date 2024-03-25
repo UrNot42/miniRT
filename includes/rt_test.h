@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:34:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:29:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	when(char *state, t_unt count);
 bool	then(char *test_name, bool status, t_unt count);
 void	tests_start(char *tests_name, t_unt a);
 void	tests_end(char *name, t_unt err);
+bool	ex(char *state, bool test);
 
 // prints
 void	print_m(t_4mtrx a, char name);
@@ -31,6 +32,11 @@ void	print_tup(t_tuple a, bool tab);
 
 // Cucumber tests
 t_unt	launch_tests(void);
+
+// Scenes
+t_scene	scene_hex(t_color backdrop);
+t_scene	scene_studio(t_color backdrop);
+t_scene	scene_cube(t_color backdrop);
 
 // Tuples
 t_unt	launch_tuple_test(void);
@@ -133,11 +139,21 @@ t_unt	test_reflect_slanted(void);
 t_unt	test_point_init(void);
 t_unt	test_material(void);
 t_unt	test_default_mater(void);
+
+// Light
+t_unt	launch_light_test(void);
 t_unt	test_light_eye_between(void);
 t_unt	test_light_eye_between_ofst_45(void);
 t_unt	test_light_eye_opposite_ofst_45(void);
 t_unt	test_light_eye_in_path(void);
 t_unt	test_light_behind_surface(void);
+
+// Shadow
+t_unt	launch_shadow_test(void);
+t_unt	test_shadow_light_surface(void);
+t_unt	test_shadow_point_between(void);
+t_unt	test_shade_hit_inter_shadowed(void);
+t_unt	test_hit_offset_point(void);
 
 // World
 t_unt	launch_world_test(void);

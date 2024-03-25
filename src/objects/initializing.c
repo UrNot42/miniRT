@@ -3,31 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   initializing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 18:49:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:42:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_obj	sphere(void)
-{
-	t_obj	sphere;
-
-	sphere.defined = true;
-	sphere.diameter = 1;
-	sphere.pos = origin();
-	set_transform(&sphere, get_id4mtrx());
-	sphere.m = material();
-	return (sphere);
-}
-
 t_obj	point_light(t_tuple pos, t_color intensity)
 {
 	t_obj	light;
 
+	light.type = OBJ_SRC_LIGHT;
 	light.defined = true;
 	light.pos = pos;
 	light.m.col = intensity;
@@ -44,13 +33,6 @@ t_mater	material(void)
 	m.specular = 0.9;
 	m.shininess = 200.0;
 	return (m);
-}
-
-void	set_transform(t_obj *o, t_4mtrx m)
-{
-	o->transform = m;
-	o->inverse = inverse_4mtrx(m);
-	o->trans_inv = transpose(o->inverse);
 }
 
 // Sets a single intersection
