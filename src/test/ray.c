@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:09:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:47:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:29:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ t_unt	test_agregating_inter(void)
 	given("i ← intersection(2, s)", 1);
 	i[1] = get_inter(2, &s);
 	when("xs ← intersections(i1, i2)", 0);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	err = then("xs.count = 2", xs.count == 2, 0);
 	err += then("xs[0].t = 1", f_eq(xs.i[0].t, 1), 1);
 	err += then("xs[1].t = 2", f_eq(xs.i[1].t, 2), 2);
@@ -233,7 +233,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(2, s)", 2);
 	i[1] = get_inter(2, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[0] = then("i = i1", is_same_inter(hit, i[0]), 0);
@@ -246,7 +246,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(1, s)", 2);
 	i[1] = get_inter(1, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[1] = then("i = i2", is_same_inter(hit, i[1]), 0);
@@ -259,7 +259,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(-1, s)", 2);
 	i[1] = get_inter(-1, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[2] = then("i is nothing", !hit.def, 0);
@@ -276,7 +276,7 @@ t_unt	test_hits(void)
 	given("i4 ← intersection(2, s)", 2);
 	i[3] = get_inter(2, &s);
 	given("xs ← intersections(i1, i2, i3, i4)", 3);
-	xs = intersections(4, (t_inter[4]){i[0], i[1], i[2], i[3]});
+	xs = add_inters(4, (t_inter[4]){i[0], i[1], i[2], i[3]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[3] = then("i = i4", hit.t == i[3].t, 0);

@@ -70,7 +70,7 @@ t_color	anti_alias(t_scene world, t_unt	x, t_unt y, t_cam camera);
 
 // Intersections
 t_inter	get_inter(float time, t_obj *obj);
-t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX]);
+t_intrs	add_inters(t_unt count, t_inter inters[INTER_MAX]);
 t_inter	find_hit(t_intrs inters);
 bool	is_same_inter(t_inter a, t_inter b);
 t_tuple	reflect(t_tuple v, t_tuple reflex);

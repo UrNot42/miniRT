@@ -3,20 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:25:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 19:24:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:57:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief Wrapper function wich pipes to the correct local normal function
+ *
+ * @param object
+ * @param point
+ * @return the correct normal
+ * - if the object is undefined returns a vector(0, 0, 0)
+ */
 t_tuple	normal_at(t_obj object, t_tuple point)
 {
 	t_tuple	normal;
 
-	normal = origin();
+	normal = set_vec(0, 0, 0);
 	if (object.type == OBJ_SPHERE)
 		normal = sp_normal_at(object, point);
 	else if (object.type == OBJ_PLANE)
@@ -28,6 +36,13 @@ t_tuple	normal_at(t_obj object, t_tuple point)
 	return (normal);
 }
 
+/**
+ * @brief basic reflection equation
+ *
+ * @param in
+ * @param normal
+ * @return the actual reflected vector
+ */
 t_tuple	reflect(t_tuple in, t_tuple normal)
 {
 	return (in - normal * 2 * vec_dot(in, normal));

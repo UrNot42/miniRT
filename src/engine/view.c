@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:16:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 20:05:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:03:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ t_ray	ray_for_pixel(t_cam view, t_unt	px, t_unt py)
 	return (r);
 }
 
+/**
+ * @brief Allocates a new canvas to render images to
+ *
+ * @param camera
+ * @param world
+ * @return a pointer to the newly allocated canvas
+ */
 t_canvas	*render(t_cam camera, t_scene world)
 {
 	t_unt		x;
