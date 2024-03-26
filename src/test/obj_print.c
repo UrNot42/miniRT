@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:25:38 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 19:45:04 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:08:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,25 @@ void	print_col(t_color	*col, bool tab)
 
 void	print_obj(t_obj *obj)
 {
-	printf("Type: %c(%u)\n", obj->type, obj->type);
-	print_tup(obj->pos, 1);
-	print_tup(obj->norm, 1);
-	printf("ratio: %lf\n", obj->ratio);
-	printf("diameter: %lf\n", obj->diameter);
-	printf("height: %lf\n", obj->height);
-	printf("fov: %f\n", obj->fov);
-	print_col(&obj->m.col, 1);
+	printf("OBJECT\n type: %u\n", obj->type);
+	printf("pos: ");
+	print_tup(obj->pos, false);
+	printf("norm: ");
+	print_tup(obj->norm, false);
+	printf("ratio: %f\n", obj->ratio);
+	printf("diameter: %f\n", obj->diameter);
+	printf("height: %f\n", obj->height);
+	printf("size: %p\n", obj->size);
+	printf("ratio: %f\n", obj->fov);
+	printf("matter col: ");
+	print_tup(obj->m.col.tuple, false);
+	printf("matter: \n\t ambiant: %f\n\t diffuse: %f\n\t specular: %f\n\t\
+ shininess: %f\n", obj->m.ambient, obj->m.diffuse,
+		obj->m.specular, obj->m.shininess);
+	print_m(obj->transform, 'T');
+	print_m(obj->inverse, 'I');
+	print_m(obj->trans_inv, 'i');
+	printf("defined: %s\n", obj->defined ? "yes" : "no");
 }
 
 void	print_scene(t_scene *scene)
@@ -64,3 +75,4 @@ void	print_scene(t_scene *scene)
 	}
 	// TODO print objects
 }
+

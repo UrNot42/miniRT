@@ -16,6 +16,7 @@ t_obj	plane(void)
 {
 	t_obj	plane;
 
+	plane = (t_obj){0};
 	plane.type = OBJ_PLANE;
 	plane.defined = true;
 	plane.pos = origin();
@@ -25,7 +26,7 @@ t_obj	plane(void)
 	return (plane);
 }
 
-t_intrs pl_intersect(t_obj *plane, t_ray r)
+t_intrs	pl_intersect(t_obj *plane, t_ray r)
 {
 	float	t;
 	t_intrs	x;

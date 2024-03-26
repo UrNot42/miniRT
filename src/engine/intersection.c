@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 16:08:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:01:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_intrs	intersect(t_obj *object, t_ray ray)
 		intersections = cube_intersect(object, ray);
 	return (intersections);
 }
-
 
 // Creates a concatenation of intersections
 t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])

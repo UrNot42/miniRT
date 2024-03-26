@@ -40,13 +40,13 @@ t_intrs	sp_intersect(t_obj *sphere, t_ray ray);
 
 // Plane
 t_obj	plane(void);
-t_intrs pl_intersect(t_obj *plane, t_ray r);
+t_intrs	pl_intersect(t_obj *plane, t_ray r);
 t_tuple	pl_normal_at(t_obj plane, t_tuple point);
 
 // Cylinder
 t_obj	cylinder(void);
 t_tuple	cy_normal_at(t_obj cy, t_tuple point);
-t_intrs cy_intersect(t_obj *cylinder, t_ray r);
+t_intrs	cy_intersect(t_obj *cylinder, t_ray r);
 
 // Light
 t_obj	point_light(t_tuple pos, t_color intensity);
@@ -54,7 +54,7 @@ t_obj	point_light(t_tuple pos, t_color intensity);
 // Cube
 t_obj	cube(void);
 t_tuple	cube_normal_at(t_obj cy, t_tuple point);
-t_intrs cube_intersect(t_obj *cube, t_ray r);
+t_intrs	cube_intersect(t_obj *cube, t_ray r);
 
 /* ============== Rays ================*/
 // Initialising

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_obj.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 15:48:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/26 11:19:03 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ struct s_obj
 	float		ratio;
 	float		diameter;
 	float		height;
-	t_size		*size;
 	float		fov;
+	t_size		*size;
 	t_mater		m;
 	t_4mtrx		transform;
 	t_4mtrx		inverse;

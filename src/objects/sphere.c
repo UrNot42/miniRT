@@ -16,6 +16,7 @@ t_obj	sphere(void)
 {
 	t_obj	sphere;
 
+	sphere = (t_obj){0};
 	sphere.type = OBJ_SPHERE;
 	sphere.defined = true;
 	sphere.diameter = 1;

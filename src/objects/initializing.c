@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/23 11:42:37 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/26 09:56:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_obj	point_light(t_tuple pos, t_color intensity)
 {
 	t_obj	light;
 
+	light = (t_obj){0};
 	light.type = OBJ_SRC_LIGHT;
 	light.defined = true;
 	light.pos = pos;

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:54:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/21 21:10:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:34:44 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ bool	sz_add(t_size *elemt)
 void	copy_element(t_obj *obj_1, t_obj obj_2)
 {
 	*obj_1 = (t_obj){obj_2.type,
-		(t_tuple){obj_2.pos.x, obj_2.pos.y, obj_2.pos.z},
-		(t_tuple){obj_2.norm.x, obj_2.norm.y, obj_2.norm.z},
+		(t_tuple){obj_2.pos.x, obj_2.pos.y, obj_2.pos.z, obj_2.pos.w},
+		(t_tuple){obj_2.norm.x, obj_2.norm.y, obj_2.norm.z, obj_2.norm.w},
 		obj_2.ratio,
 		obj_2.diameter,
 		obj_2.height,
-		obj_2.size,
 		obj_2.fov,
-		obj_2.m,
+		obj_2.size,
+		(t_mater){set_col(obj_2.m.col.red, obj_2.m.col.green, obj_2.m.col.blue),
+		obj_2.m.ambient, obj_2.m.diffuse, obj_2.m.specular, obj_2.m.shininess},
 		obj_2.transform, obj_2.inverse, obj_2.trans_inv,
 		obj_2.defined};
 }

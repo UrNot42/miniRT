@@ -16,6 +16,7 @@ t_obj	cube(void)
 {
 	t_obj	cube;
 
+	cube = (t_obj){0};
 	cube.type = OBJ_CUBE;
 	cube.defined = true;
 	cube.pos = origin();
@@ -24,25 +25,25 @@ t_obj	cube(void)
 	return (cube);
 }
 
-void	check_axis(float origin, float direction, float min_max[][2])
+void	check_axis(float origin, float direction, float min_max[2])
 {
 	float	tmp;
 
 	if (fabs(direction) >= EPSILON)
 	{
-		(*min_max)[0] = (-1 - origin) / direction;
-		(*min_max)[1] = (1 - origin) / direction;
+		min_max[0] = (-1 - origin) / direction;
+		min_max[1] = (1 - origin) / direction;
 	}
 	else
 	{
-		(*min_max)[0] = (-1 - origin) * INFINITY;
-		(*min_max)[1] = (1 - origin) * INFINITY;
+		min_max[0] = (-1 - origin) * INFINITY;
+		min_max[1] = (1 - origin) * INFINITY;
 	}
-	if ((*min_max)[0] > (*min_max)[1])
+	if (min_max[0] > min_max[1])
 	{
-		tmp = (*min_max)[0];
-		(*min_max)[0] = (*min_max)[1];
-		(*min_max)[1] = tmp;
+		tmp = min_max[0];
+		min_max[0] = min_max[1];
+		min_max[1] = tmp;
 	}
 }
 
@@ -51,7 +52,7 @@ void	check_axis(float origin, float direction, float min_max[][2])
  * - [0] indicates minimum
  * - [1] indicates maximum
 */
-t_intrs cube_intersect(t_obj *cube, t_ray r)
+t_intrs	cube_intersect(t_obj *cube, t_ray r)
 {
 	float	xt[2];
 	float	yt[2];
@@ -61,9 +62,9 @@ t_intrs cube_intersect(t_obj *cube, t_ray r)
 
 	x.count = 0;
 	r = ray_transform(r, cube->inverse);
-	check_axis(r.origin.x, r.direction.x, &xt);
-	check_axis(r.origin.y, r.direction.y, &yt);
-	check_axis(r.origin.z, r.direction.z, &zt);
+	check_axis(r.origin.x, r.direction.x, xt);
+	check_axis(r.origin.y, r.direction.y, yt);
+	check_axis(r.origin.z, r.direction.z, zt);
 	t[0] = fmaxf(fmaxf(xt[0], yt[0]), zt[0]);
 	t[1] = fminf(fminf(xt[1], yt[1]), zt[1]);
 	if (t[0] > t[1])

@@ -37,7 +37,6 @@ SRC_PARSING	:=	file_management.c \
 				scene_fill.c \
 				scene_management.c \
 				parsing.c \
-				obj_print.c \
 				obj_setters.c \
 				num_setters.c \
 
@@ -80,6 +79,7 @@ SRC_SHAPES	:=	world.c \
 				cube.c \
 
 SRC_TEST	:=	tuples.c \
+				obj_print.c \
 				print_scenario.c \
 				launch.c \
 				vectors.c \
