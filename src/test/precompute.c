@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 10:52:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:27:13 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ t_unt	test_shading_w_precomps(void)
 	err[1] = then("c = color(0.90498, 0.90498, 0.90498)",
 			is_same_col(c, set_col(0.90498, 0.90498, 0.90498)), 0);
 	scenario_end(err[1]);
+	scene_free(&w);
 	return (err[0] + err[1]);
 }
 
@@ -152,6 +153,7 @@ t_unt	test_color_at(void)
 	err[1] = then("c = color(0.38066, 0.47583, 0.2855)",
 			is_same_col(c, set_col(0.38066, 0.47583, 0.2855)), 0);
 	scenario_end(err[1]);
+	scene_free(&w);
 	return (err[0] + err[1]);
 }
 
@@ -181,5 +183,6 @@ t_unt	test_color_behind(void)
 	c = color_at(w, r);
 	err = then("c = inner.material.color", is_same_tuple(c.tuple, inner->m.col.tuple * 0.1), 0);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }

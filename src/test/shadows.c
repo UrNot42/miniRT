@@ -69,6 +69,7 @@ t_unt	test_shadow_point_between(void)
 	p = set_point(-2, 2, -2);
 	err[3] = then("is_shadowed(w, p) is false", !is_shadowed(w, p, w.light[0]), 0);
 	scenario_end(err[3]);
+	scene_free(&w);
 	return (err[0] + err[1] + err[2] + err[3]);
 }
 
@@ -107,6 +108,7 @@ t_unt	test_shade_hit_inter_shadowed(void)
 	c = shade_hit(w, comps);
 	err = then("c = color(0.1, 0.1, 0.1)", is_same_col(c, set_col(0.1, 0.1, 0.1)), 0);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }
 

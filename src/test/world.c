@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:26:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/23 11:29:25 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:25:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_unt	test_world_default(void)
 	err += then("w contains s1", is_same_col(w.objects[0].m.col, s1.m.col), 1);
 	err += then("w contains s2", matr_4_eq(w.objects[1].transform, s2.transform), 2);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }
 
@@ -79,5 +80,6 @@ t_unt	test_inter_world(void)
 	err += then("xs[2].t = 5.5", f_eq(xs.i[2].t, 5.5), 3);
 	err += then("xs[3].t = 6", f_eq(xs.i[3].t, 6), 4);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }
