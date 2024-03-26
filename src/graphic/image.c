@@ -6,12 +6,21 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:14:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 16:34:44 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:34:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief Create a image object allocating and setting its specific contents
+ *
+ * @param picture
+ * @param size
+ * @param data_ptr
+ * @return true if malloc error
+ * @return false
+ */
 bool	create_image(t_data **picture, t_dim size, void *data_ptr)
 {
 	(*picture) = malloc(sizeof(t_data));
@@ -29,6 +38,11 @@ bool	create_image(t_data **picture, t_dim size, void *data_ptr)
 	return (false);
 }
 
+/**
+ * @brief Set the image object to basically all 0
+ *
+ * @param screen
+ */
 void	set_image(t_canvas screen)
 {
 	t_unt	x;

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:23:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:50:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void		print_canvas(t_canvas screen);
 
 // Creation
 bool		init_canvas(t_canvas *screen);
+bool		open_canvas(t_canvas *screen);
 void		close_canvas(t_canvas screen);
 bool		open_window(t_canvas *screen);
 bool		close_window(t_canvas screen);
@@ -64,7 +65,7 @@ void		set_image(t_canvas screen);
 t_color		pixel_at(t_canvas screen, t_unt x, t_unt y);
 void		pixel_put(t_data *pic, int x, int y, t_hxcol color);
 void		write_pixel(t_data *pic, int x, int y, t_color color);
-void		safe_pixel(t_data *pic, int x, int y, t_color color);
+bool		safe_pixel(t_data *pic, int x, int y, t_color color);
 
 // Camera
 t_cam		camera(t_unt hsize, t_unt vsize, float field_of_view);

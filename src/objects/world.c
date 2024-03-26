@@ -6,12 +6,20 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/20 17:29:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:32:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief adds a new light to the scene, if necessary will realloc
+ *
+ * @param world
+ * @param light
+ * @return true
+ * @return false
+ */
 bool	add_light(t_scene	*world, t_obj light)
 {
 	if (add_obj_sz(&world->light, &world->li_size))
@@ -20,6 +28,14 @@ bool	add_light(t_scene	*world, t_obj light)
 	return (false);
 }
 
+/**
+ * @brief adds a new object to the scene, if necessary will realloc
+ *
+ * @param world
+ * @param obj
+ * @return true
+ * @return false
+ */
 bool	add_obj(t_scene	*world, t_obj obj)
 {
 	if (add_obj_sz(&world->objects, &world->obj_size))
@@ -28,6 +44,11 @@ bool	add_obj(t_scene	*world, t_obj obj)
 	return (false);
 }
 
+/**
+ * @brief default world for simple testing
+ *
+ * @return t_scene
+ */
 t_scene	default_world(void)
 {
 	t_scene	world;

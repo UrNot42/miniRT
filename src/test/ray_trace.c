@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:22:47 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:38:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ray_trace(t_obj s)
 	close_canvas(screen);
 } */
 
-#define SIZE 500
+#define SIZE 100
 
 void	ray_trace_2(void)
 {
@@ -99,12 +99,15 @@ void	ray_trace_2(void)
 	cam = camera(SIZE, SIZE, M_PI / 2);
 	// set_transform(&cam.o, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
 	set_transform(&cam.o, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
-	world = scene_sphere(set_col(0.9, 0.8, 0.7));
+	world = scene_cube(set_col(0.9, 0.8, 0.7));
 	screen = render(cam, world);
-	printf("Done!\n");
+	open_canvas(screen);
 	print_canvas(*screen);
-	usleep(10000500);
+	usleep(20000500);
+	printf("Done!\n");
 	close_canvas(*screen);
+	free(screen);
+	scene_free(&world);
 }
 
 void	test_debug_shade_hit(void)

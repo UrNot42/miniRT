@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:08:33 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/09 15:57:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:26:58 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ bool	open_window(t_canvas *screen)
 
 bool	close_window(t_canvas screen)
 {
-	if (screen.ptr && screen.picture && screen.picture->img)
-		mlx_destroy_image(screen.ptr, screen.picture->img);
-	if (screen.picture)
-		free(screen.picture);
 	if (!screen.ptr || !screen.win)
 		return (true);
 	mlx_clear_window(screen.ptr, screen.win);

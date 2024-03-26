@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:39:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:29:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:37:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_canvas	canvas(t_unt width, t_unt height)
 	screen.width = width;
 	screen.height = height;
 	if (init_canvas(&screen))
-		return (screen);
-	if (open_window(&screen))
 		return (screen);
 	if (create_image(&screen.picture, (t_dim){width, height}, screen.ptr))
 		return (screen);
@@ -62,9 +60,9 @@ bool	init_canvas(t_canvas *screen)
  * @return true if malloc failed
  * @return false
  */
-bool	open_canvas(t_canvas screen)
+bool	open_canvas(t_canvas *screen)
 {
-	if (open_window(&screen))
+	if (open_window(screen))
 		return (true);
 	return (false);
 }
@@ -78,7 +76,11 @@ void	close_canvas(t_canvas screen)
 {
 	if (screen.win)
 		close_window(screen);
-	if (screen.ptr && screen.win)
+	if (screen.ptr && screen.picture && screen.picture->img)
+		mlx_destroy_image(screen.ptr, screen.picture->img);
+	if (screen.picture)
+		free(screen.picture);
+	if (screen.ptr)
 		mlx_destroy_display(screen.ptr);
 	free(screen.ptr);
 }
@@ -94,5 +96,5 @@ void	print_canvas(t_canvas screen)
 		mlx_put_image_to_window(screen.ptr,
 			screen.win, screen.picture->img, 0, 0);
 	else
-		ft_printf("Canvas not opened");
+		ft_printf("Canvas not opened\n");
 }
