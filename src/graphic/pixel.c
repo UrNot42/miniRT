@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:11:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 19:57:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 07:14:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_color	pixel_at(t_canvas screen, t_unt x, t_unt y)
  * @brief Puts a pixel on a screen
  * checking prior if it fits inside the screen rage
  *
- * @param pic
+ * @param pic from the canvas structure
  * @param x pos
  * @param y pos
  * @param color
