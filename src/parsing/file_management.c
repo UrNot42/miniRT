@@ -29,7 +29,6 @@ bool	read_file(char *file, t_scene *scene)
 		return (p_error(ERR_OPEN), true);
 	if (scene_fill(scene, fd))
 		return (true);
-	print_scene(scene);
 	if (close(fd))
 		return (p_error(ERR_CLOSE), true);
 	return (false);

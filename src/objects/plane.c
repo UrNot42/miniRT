@@ -12,36 +12,45 @@
 
 #include "minirt.h"
 
-t_obj	plane(void)
+t_plane	plane(void)
 {
-	t_obj	plane;
+	t_plane	plane;
 
-	plane = (t_obj){0};
-	plane.type = OBJ_PLANE;
-	plane.defined = true;
+	plane = (t_plane){0};
+	plane.def = true;
 	plane.pos = origin();
-	set_transform(&plane, get_id4mtrx());
 	plane.m = material();
 	plane.m.specular = 0;
+	set_transform(&plane.mtx, get_id4mtrx());
 	return (plane);
 }
 
-t_intrs	pl_intersect(t_obj *plane, t_ray r)
+t_obj	o_plane(void)
+{
+	t_obj	obj;
+
+	obj = (t_obj){0};
+	obj.plane = plane();
+	obj.kind = OBJ_PLANE;
+	return (obj);
+}
+
+t_intrs	pl_intersect(t_obj *obj, t_ray r)
 {
 	float	t;
 	t_intrs	x;
 
 	x.count = 0;
-	r = ray_transform(r, plane->inverse);
+	r = ray_transform(r, obj->plane.inverse);
 	if (fabs(r.direction.y) < EPSILON)
 		return (x);
 	t = -r.origin.y / r.direction.y;
-	x.i[0] = get_inter(t, plane);
+	x.i[0] = get_inter(t, obj);
 	x.count = 1;
 	return (x);
 }
 
-t_tuple	pl_normal_at(t_obj plane, t_tuple point)
+t_tuple	pl_normal_at(t_plane plane, t_tuple point)
 {
 	t_tuple	vector;
 

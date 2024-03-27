@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:36:32 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 12:40:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:08:49 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_4mtrx	shearing(t_shear rel)
 	return (translate);
 }
 
-void	set_transform(t_obj *o, t_4mtrx m)
+void	set_transform(t_o_mtrx *mtrx, t_4mtrx m)
 {
-	o->transform = m;
-	o->inverse = inverse_4mtrx(m);
-	o->trans_inv = transpose(o->inverse);
+	mtrx->transform = m;
+	mtrx->inverse = inverse_4mtrx(m);
+	mtrx->trans_inv = transpose(mtrx->inverse);
 }

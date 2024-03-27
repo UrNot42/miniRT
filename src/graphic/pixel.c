@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:11:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 07:14:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:44:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_color	pixel_at(t_canvas screen, t_unt x, t_unt y)
  * @return true
  * @return false
  */
-bool	safe_pixel(t_data *pic, int x, int y, t_color color)
+bool	safe_pixel(t_image *pic, int x, int y, t_color color)
 {
 	if (ft_inr(x, 0, pic->width) && ft_inr(y, 0, pic->height))
 		return (write_pixel(pic, x, y, color), false);
@@ -63,7 +63,7 @@ bool	safe_pixel(t_data *pic, int x, int y, t_color color)
  * @param y
  * @param color
  */
-void	write_pixel(t_data *pic, int x, int y, t_color color)
+void	write_pixel(t_image *pic, int x, int y, t_color color)
 {
 	t_hxcol	pixel_col;
 
@@ -81,7 +81,7 @@ void	write_pixel(t_data *pic, int x, int y, t_color color)
  * @param y
  * @param color
  */
-void	pixel_put(t_data *pic, int x, int y, t_hxcol color)
+void	pixel_put(t_image *pic, int x, int y, t_hxcol color)
 {
 	char	*pixel;
 

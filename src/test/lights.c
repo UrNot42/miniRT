@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:52:18 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 10:44:14 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/27 10:42:17 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_unt	test_point_init(void)
 	given("position ← point(0, 0, 0)", 1);
 	position = origin();
 	when("light ← point_light(position, intensity)", 0);
-	light = point_light(position, intensity);
+	light = o_light(position, intensity);
 	err = then("light.position = position",
 			is_same_tuple(light.pos, position), 0);
 	err += then("light.intensity = intensity",
@@ -96,7 +96,7 @@ t_unt	test_default_mater(void)
 	t_mater	m;
 	t_unt	err[2];
 
-	s = sphere();
+	s = o_sphere();
 	scenario_start("A sphere has a default material");
 	given("s ← sphere()", 0);
 	when("m ← s.material", 0);
@@ -137,7 +137,7 @@ t_unt	test_light_eye_between(void)
 	given("normalv ← vector(0, 0, -1)", 1);
 	normalv = set_vec(0, 0, -1);
 	given("light ← point_light(point(0, 0, -10), color(1, 1, 1))", 2);
-	light = point_light(set_point(0, 0, -10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
 	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
 	err = then("result = color(1.9, 1.9, 1.9)",
@@ -166,7 +166,7 @@ t_unt	test_light_eye_between_ofst_45(void)
 	given("normalv ← vector(0, 0, -1)", 1);
 	normalv = set_vec(0, 0, -1);
 	given("light ← point_light(point(0, 0, -10), color(1, 1, 1))", 2);
-	light = point_light(set_point(0, 0, -10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
 	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
 	err = then("result = color(1.0, 1.0, 1.0)",
@@ -195,7 +195,7 @@ t_unt	test_light_eye_opposite_ofst_45(void)
 	given("normalv ← vector(0, 0, -1)", 1);
 	normalv = set_vec(0, 0, -1);
 	given("light ← point_light(point(0, 10, -10), color(1, 1, 1))", 2);
-	light = point_light(set_point(0, 10, -10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 10, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
 	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
 	err = then("result = color(0.7364, 0.7364, 0.7364)",
@@ -224,7 +224,7 @@ t_unt	test_light_eye_in_path(void)
 	given("normalv ← vector(0, 0, -1)", 1);
 	normalv = set_vec(0, 0, -1);
 	given("light ← point_light(point(0, 10, -10), color(1, 1, 1))", 2);
-	light = point_light(set_point(0, 10, -10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 10, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
 	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
 	err = then("result = color(1.6364, 1.6364, 1.6364)",
@@ -253,7 +253,7 @@ t_unt	test_light_behind_surface(void)
 	given("normalv ← vector(0, 0, -1)", 1);
 	normalv = set_vec(0, 0, -1);
 	given("light ← point_light(point(0, 0, 10), color(1, 1, 1))", 2);
-	light = point_light(set_point(0, 0, 10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 0, 10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
 	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
 	err = then("result = color(0.1, 0.1, 0.1)",

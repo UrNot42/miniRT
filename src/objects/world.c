@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 19:32:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:36:05 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ t_scene	default_world(void)
 	t_obj	light;
 
 	world = scene_init();
-	light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
+	light = o_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 	if (add_light(&world, light))
 		return ((t_scene){0});
-	s1 = sphere();
+	s1 = o_sphere();
 	s1.m.col = set_col(0.8, 1.0, 0.6);
 	s1.m.diffuse = 0.7;
 	s1.m.specular = 0.2;
-	s2 = sphere();
-	set_transform(&s2, scale_mtrx(0.5, 0.5, 0.5));
+	s2 = o_sphere();
+	set_transform(&s2.sphere.mtx, scale_mtrx(0.5, 0.5, 0.5));
 	if (add_obj(&world, s1))
 		return ((t_scene){0});
 	if (add_obj(&world, s2))

@@ -12,22 +12,31 @@
 
 #include "minirt.h"
 
-t_obj	sphere(void)
+t_sphere	sphere(void)
 {
-	t_obj	sphere;
+	t_sphere	sphere;
 
-	sphere = (t_obj){0};
-	sphere.type = OBJ_SPHERE;
-	sphere.defined = true;
-	sphere.diameter = 1;
+	sphere = (t_sphere){0};
 	sphere.pos = origin();
-	set_transform(&sphere, get_id4mtrx());
 	sphere.m = material();
+	sphere.diameter = 1;
+	set_transform(&sphere.mtx, get_id4mtrx());
 	return (sphere);
 }
 
+t_obj	o_sphere(void)
+{
+	t_obj	obj;
+
+	obj = (t_obj){0};
+	obj.sphere = sphere();
+	obj.kind = OBJ_SPHERE;
+	obj.defined = true;
+	return (obj);
+}
+
 // Creates an intersection Array with a sphere
-t_intrs	sp_intersect(t_obj *sphere, t_ray ray)
+t_intrs	sp_intersect(t_obj *obj, t_ray ray)
 {
 	t_intrs	x;
 	t_tuple	sphere_to_ray;
@@ -35,7 +44,7 @@ t_intrs	sp_intersect(t_obj *sphere, t_ray ray)
 	float	b;
 	float	c;
 
-	ray = ray_transform(ray, sphere->inverse);
+	ray = ray_transform(ray, obj->sphere.inverse);
 	sphere_to_ray = ray.origin - origin();
 	a = vec_dot(ray.direction, ray.direction);
 	b = 2 * vec_dot(ray.direction, sphere_to_ray);
@@ -43,8 +52,8 @@ t_intrs	sp_intersect(t_obj *sphere, t_ray ray)
 	c = (b * b) - 4 * a * c;
 	if (c >= 0)
 	{
-		x.i[0] = get_inter((-b - sqrtf(c)) / (2 * a), sphere);
-		x.i[1] = get_inter((-b + sqrtf(c)) / (2 * a), sphere);
+		x.i[0] = get_inter((-b - sqrtf(c)) / (2 * a), obj);
+		x.i[1] = get_inter((-b + sqrtf(c)) / (2 * a), obj);
 		x.count = 2;
 	}
 	else
@@ -52,7 +61,7 @@ t_intrs	sp_intersect(t_obj *sphere, t_ray ray)
 	return (x);
 }
 
-t_tuple	sp_normal_at(t_obj sphere, t_tuple point)
+t_tuple	sp_normal_at(t_sphere sphere, t_tuple point)
 {
 	t_ray	object;
 	t_ray	world;

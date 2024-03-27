@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:14:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 19:34:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:09:45 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
  * @return true if malloc error
  * @return false
  */
-bool	create_image(t_data **picture, t_dim size, void *data_ptr)
+bool	create_image(t_image **picture, t_dim size, void *data_ptr)
 {
-	(*picture) = malloc(sizeof(t_data));
+	(*picture) = malloc(sizeof(t_image));
 	if (!(*picture))
 		return (true);
 	(*picture)->width = size.x;

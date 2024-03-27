@@ -12,23 +12,32 @@
 
 #include "minirt.h"
 
-t_obj	cylinder(void)
+t_cylinder	cylinder(void)
 {
-	t_obj	cylinder;
+	t_cylinder	cylinder;
 
-	cylinder = (t_obj){0};
-	cylinder.type = OBJ_CYLINDER;
-	cylinder.defined = true;
-	cylinder.diameter = 1;
+	cylinder = (t_cylinder){0};
+	cylinder.def = true;
+	cylinder.width = 1;
 	cylinder.pos = origin();
-	cylinder.ratio = -INFINITY;
-	cylinder.fov = INFINITY;
-	set_transform(&cylinder, get_id4mtrx());
+	cylinder.minimum = -INFINITY;
+	cylinder.maximum = INFINITY;
+	set_transform(&cylinder.mtx, get_id4mtrx());
 	cylinder.m = material();
 	return (cylinder);
 }
 
-t_intrs	cy_get_inters(float t1, float t2, t_obj *cylinder, t_ray r)
+t_obj	o_cylinder(void)
+{
+	t_obj	obj;
+
+	obj = (t_obj){0};
+	obj.cylinder = cylinder();
+	obj.kind = OBJ_CYLINDER;
+	return (obj);
+}
+
+t_intrs	cy_get_inters(float t1, float t2, t_obj *obj, t_ray r)
 {
 	t_intrs	x;
 	float	y[2];
@@ -37,15 +46,15 @@ t_intrs	cy_get_inters(float t1, float t2, t_obj *cylinder, t_ray r)
 	if (t1 > t2)
 		fswap(&t1, &t2);
 	y[0] = r.origin.y + t1 * r.direction.y;
-	if (cylinder->ratio < y[0] && y[0] < cylinder->fov)
-		x.i[x.count++] = get_inter(t1, cylinder);
+	if (obj->cylinder.minimum < y[0] && y[0] < obj->cylinder.maximum)
+		x.i[x.count++] = get_inter(t1, obj);
 	y[1] = r.origin.y + t2 * r.direction.y;
-	if (cylinder->ratio < y[1] && y[1] < cylinder->fov)
-		x.i[x.count++] = get_inter(t2, cylinder);
+	if (obj->cylinder.minimum < y[1] && y[1] < obj->cylinder.maximum)
+		x.i[x.count++] = get_inter(t2, obj);
 	return (x);
 }
 
-t_intrs	cy_intersect(t_obj *cylinder, t_ray r)
+t_intrs	cy_intersect(t_obj *obj, t_ray r)
 {
 	float	a;
 	float	b;
@@ -53,7 +62,7 @@ t_intrs	cy_intersect(t_obj *cylinder, t_ray r)
 	t_intrs	x;
 
 	x.count = 0;
-	r = ray_transform(r, cylinder->inverse);
+	r = ray_transform(r, obj->cylinder.inverse);
 	a = (r.direction.x * r.direction.x) + (r.direction.z * r.direction.z);
 	if (f_eq(a, 0))
 		return (x);
@@ -63,11 +72,11 @@ t_intrs	cy_intersect(t_obj *cylinder, t_ray r)
 	if (a < 0)
 		return (x);
 	x = cy_get_inters((-b - sqrtf(c)) / (2 * a), (-b + sqrtf(c)) / (2 * a),
-			cylinder, r);
+			obj, r);
 	return (x);
 }
 
-t_tuple	cy_normal_at(t_obj cy, t_tuple point)
+t_tuple	cy_normal_at(t_cylinder cy, t_tuple point)
 {
 	t_ray	object;
 	t_ray	world;

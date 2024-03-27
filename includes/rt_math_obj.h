@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 13:35:01 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:56:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ typedef struct s_intrs		t_intrs;
 typedef struct s_mater		t_mater;
 typedef struct s_lgting		t_lgting;
 typedef struct s_comps		t_comps;
+typedef struct s_size		t_size;
+typedef struct s_bound		t_bound;
 
 typedef struct s_ray		t_ray;
 typedef struct s_color		t_color;
-typedef struct s_size		t_size;
-typedef struct s_bound		t_bound;
 typedef struct s_obj		t_obj;
-typedef struct s_cam		t_cam;
 typedef struct s_scene		t_scene;
 
 struct s_color
@@ -81,6 +80,20 @@ struct s_comps
 	t_tuple	eyev;
 	t_tuple	normalv;
 	bool	inside;
+};
+
+/* Used for dynamic filling of elements */
+struct s_size
+{
+	t_unt	max;
+	t_unt	use;
+};
+
+struct s_bound
+{
+	bool	set;
+	float	left;
+	float	right;
 };
 
 #endif

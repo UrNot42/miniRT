@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:26:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:25:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:43:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ t_unt	test_world_default(void)
 	(void)w;
 	scenario_start("The default world");
 	given("light ← point_light(point(-10, 10, -10), color(1, 1, 1))", 0);
-	light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
+	light = o_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 	given("s1 ← sphere() with:\n| material.color    |        (0.8, 1.0, 0.6) |\n\
 | material.diffuse  |                    0.7 |\n\
 | material.specular |                    0.2 |", 1);
-	s1 = sphere();
+	s1 = o_sphere();
 	s1 = (t_obj){.m.col = set_col(0.8, 1.0, 0.6), .m.diffuse = 0.7,
 		.m.specular = 0.2};
 	given("s2 ← sphere() with:\n| transform         | scaling(0.5, 0.5, 0.5) |",
 		2);
-	s2 = sphere();
-	set_transform(&s2, scale_mtrx(0.5, 0.5, 0.5));
+	s2 = o_sphere();
+	set_transform(&s2.sphere.mtx, scale_mtrx(0.5, 0.5, 0.5));
 	w = default_world();
 	when("w ← default_world()", 0);
 	err = then("w.light = light", is_same_tuple(w.light[0].pos,
 				light.pos) && is_same_tuple(w.light[0].m.col.tuple,
 				light.m.col.tuple), 0);
 	err += then("w contains s1", is_same_col(w.objects[0].m.col, s1.m.col), 1);
-	err += then("w contains s2", matr_4_eq(w.objects[1].transform, s2.transform), 2);
+	err += then("w contains s2", matr_4_eq(w.objects[1].sphere.transform, s2.sphere.transform), 2);
 	scenario_end(err);
 	scene_free(&w);
 	return (err);

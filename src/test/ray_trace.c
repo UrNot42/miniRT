@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 19:38:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:44:56 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ray_trace(t_obj s)
 	t_tuple		position;
 	t_tuple		world;
 	t_canvas	screen = canvas(SIZE, SIZE);
-	t_obj		light = point_light(set_point(-10, 10, -10), set_col(1, 1, 1));
+	t_obj		light = o_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 
 	world.z = WALL_POS;
 	for (int y = 0; y < SIZE ; y++)
@@ -97,8 +97,8 @@ void	ray_trace_2(void)
 	t_cam		cam;
 
 	cam = camera(SIZE, SIZE, M_PI / 2);
-	// set_transform(&cam.o, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
-	set_transform(&cam.o, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
+	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
+	set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
 	world = scene_cube(set_col(0.9, 0.8, 0.7));
 	screen = render(cam, world);
 	open_canvas(screen);
@@ -119,7 +119,7 @@ void	test_debug_shade_hit(void)
 
 	world = scene_studio(set_col(0.9, 0.8, 0.7));
 	cam = camera(400, 400, M_PI / 2);
-	set_transform(&cam.o, view_transform(
+	set_transform(&cam.mtx, view_transform(
 			set_point(0, 1.5, -5),
 			set_point(-0.2, 1.5, 0),
 			set_vec(0, 1, 0)));

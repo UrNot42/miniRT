@@ -79,7 +79,6 @@ SRC_SHAPES	:=	world.c \
 				cube.c \
 
 SRC_TEST	:=	tuples.c \
-				obj_print.c \
 				print_scenario.c \
 				launch.c \
 				vectors.c \
@@ -111,7 +110,8 @@ HEADER_LIST	:=	minirt.h \
 				rt_graphic.h \
 				rt_math_obj.h \
 				rt_math.h \
-				rt_obj.h \
+				rt_obj_struct.h \
+				rt_obj_method.h \
 				rt_parsing.h \
 				rt_test.h \
 
