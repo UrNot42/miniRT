@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:36:05 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:12:52 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @return true
  * @return false
  */
-bool	add_light(t_scene	*world, t_obj light)
+bool	add_light(t_scene *world, t_obj light)
 {
 	if (add_obj_sz(&world->light, &world->li_size))
 		return (true);
@@ -71,4 +71,32 @@ t_scene	default_world(void)
 	if (add_obj(&world, s2))
 		return ((t_scene){0});
 	return (world);
+}
+
+void	regularize_light(t_scene *world)
+{
+	t_color	total;
+	t_color	divide;
+	t_unt	i;
+
+	total = set_col(0, 0, 0);
+	i = 0;
+	while (i < world->li_size.use)
+	{
+		total.tuple += world->light[i].color.tuple;
+		i++;
+	}
+	divide = total;
+	if (divide.red < 1)
+		divide.red = 1;
+	if (divide.green < 1)
+		divide.green = 1;
+	if (divide.blue < 1)
+		divide.blue = 1;
+	i = 0;
+	while (i < world->li_size.use)
+	{
+		world->light[i].color.tuple /= divide.tuple;
+		i++;
+	}
 }

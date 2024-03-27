@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 09:12:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:06:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 		return (p_error(ERR_FOV), true);
 	if (obj->kind != OBJ_CAMERA && parse_color(&obj->m.col, line, pos))
 		return (p_error(ERR_COLOR), true);
-	obj->kind = obj->kind; // TODO
 	return (false);
 }
 

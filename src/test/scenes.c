@@ -166,9 +166,10 @@ t_scene	scene_cylinder(t_color backdrop)
 
 	// Init
 	world = scene_init();
-	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 0, 0)));
+	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 1, 1)));
 	add_light(&world, o_light(set_point(-15, 10, -15), set_col(0, 1, 0)));
 	add_light(&world, o_light(set_point(-8, 10, -7), set_col(0, 0, 1)));
+	regularize_light(&world);
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -190,7 +191,7 @@ t_scene	scene_cylinder(t_color backdrop)
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
 	s.cylinder.maximum = 1;
-	s.cylinder.minimum = 0;
+	// s.cylinder.minimum = -1;
 	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_y(M_PI / 4) * rotation_x(M_PI / 2) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
 	return (world);

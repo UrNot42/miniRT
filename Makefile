@@ -1,6 +1,6 @@
-##########
-# BASICS #
-##########
+# ######## #
+#  BASICS  #
+# ######## #
 
 NAME		:=	minirt
 
@@ -24,9 +24,9 @@ MAKE_SUB	:=	make --no-print-directory -s -C
 
 QUIET		:=	 > /dev/null 2>&1
 
-#########
-# FILES #
-#########
+# ####### #
+#  FILES  #
+# ####### #
 
 SRC_LIST	:=	main.c \
 
@@ -75,7 +75,8 @@ SRC_SHAPES	:=	world.c \
 				initializing.c \
 				sphere.c \
 				plane.c \
-				cylinder.c \
+				cylinder_init.c \
+				cylinder_method.c \
 				cube.c \
 
 SRC_TEST	:=	tuples.c \
@@ -97,9 +98,9 @@ SRC_TEST	:=	tuples.c \
 				scenes.c \
 				shapes.c \
 
-############
-# INCLUDED #
-############
+# ########## #
+#  INCLUDED  #
+# ########## #
 
 INCLUDE		=	-I$(INCLUDE_DIR)
 
@@ -119,9 +120,9 @@ HEADER_LIST	:=	minirt.h \
 
 DEPS		=	$(INCLUDE_DIR) Makefile
 
-###########
-# SOURCES #
-###########
+# ######### #
+#  SOURCES  #
+# ######### #
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_ALL))
 
@@ -150,9 +151,9 @@ SRCL_SHAPES	=	$(addprefix $(SHAPES_DIR), $(SRC_SHAPES))
 
 OBJS		=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
-###############
-# DIRECTORIES #
-###############
+# ############# #
+#  DIRECTORIES  #
+# ############# #
 
 SRC_DIR		:=	src/
 
@@ -182,9 +183,9 @@ OBJ_DIR		:=	.build/
 
 MLX_DIR		=	minilibx-linux/
 
-#############
-# LIBRARIES #
-#############
+# ########### #
+#  LIBRARIES  #
+# ########### #
 
 LIBS		=	$(MY_LIBS) $(addprefix $(LIB_DIR), $(WRAPPED_LIB))
 
@@ -196,9 +197,9 @@ SRC_LIB		:=	libft/libft.a \
 
 WRAPPED_LIB	=	$(MLX_DIR)libmlx.a
 
-#########
-# RULES #
-#########
+# ####### #
+#  RULES  #
+# ####### #
 
 all:	$(NAME)
 
@@ -277,9 +278,9 @@ bonus:			all
 
 .PHONY:			all clean fclean re debug bonus no-flags
 
-################################
-#            COLORS            #
-################################
+# ###################### #
+#         COLORS         #
+# ###################### #
 
 _GREY			=	\x1b[30m
 _RED			=	\x1b[31m

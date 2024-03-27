@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:44:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:56:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ray_trace(t_obj s)
 	close_canvas(screen);
 } */
 
-#define SIZE 100
+#define SIZE 500
 
 void	ray_trace_2(void)
 {
@@ -99,7 +99,7 @@ void	ray_trace_2(void)
 	cam = camera(SIZE, SIZE, M_PI / 2);
 	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
 	set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
-	world = scene_cube(set_col(0.9, 0.8, 0.7));
+	world = scene_cylinder(set_col(0.9, 0.8, 0.7));
 	screen = render(cam, world);
 	open_canvas(screen);
 	print_canvas(*screen);
@@ -107,28 +107,6 @@ void	ray_trace_2(void)
 	printf("Done!\n");
 	close_canvas(*screen);
 	free(screen);
-	scene_free(&world);
-}
-
-void	test_debug_shade_hit(void)
-{
-	t_scene	world;
-	t_ray	r;
-	t_cam	cam;
-	t_color	color;
-
-	world = scene_studio(set_col(0.9, 0.8, 0.7));
-	cam = camera(400, 400, M_PI / 2);
-	set_transform(&cam.mtx, view_transform(
-			set_point(0, 1.5, -5),
-			set_point(-0.2, 1.5, 0),
-			set_vec(0, 1, 0)));
-	// r = ray_for_pixel(cam, 200, 200);
-	// color = color_at(world, r);
-	// r = ray_for_pixel(cam, 5, 200);
-	// color = color_at(world, r);
-	r = ray_for_pixel(cam, 250, 300);
-	color = color_at(world, r);
 	scene_free(&world);
 }
 
