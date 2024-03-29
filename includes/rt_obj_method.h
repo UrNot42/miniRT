@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 08:38:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 11:12:56 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:46:32 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ t_cylinder	cylinder(void);
 t_obj		o_cylinder(void);
 t_intrs		cy_intersect(t_obj *cylinder, t_ray r);
 t_tuple		cy_normal_at(t_cylinder cy, t_tuple point);
+void		cy_intersect_caps(t_obj *obj, t_ray r, t_intrs *xs);
+
+// Cone
+t_cone		cone(void);
+t_obj		o_cone(void);
+t_intrs		cone_intersect(t_obj *obj, t_ray r);
+t_tuple		cone_normal_at(t_cone co, t_tuple point);
 
 // Cube
 t_cube		cube(void);

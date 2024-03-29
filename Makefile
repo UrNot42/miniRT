@@ -78,6 +78,8 @@ SRC_SHAPES	:=	world.c \
 				cylinder_init.c \
 				cylinder_method.c \
 				cube.c \
+				cone.c \
+				cone_inter.c \
 
 SRC_TEST	:=	tuples.c \
 				print_scenario.c \

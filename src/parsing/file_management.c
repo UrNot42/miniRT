@@ -12,9 +12,6 @@
 
 #include "minirt.h"
 
-// TODO RM
-void	print_scene(t_scene *scene);
-
 bool	read_file(char *file, t_scene *scene)
 {
 	int	fd;

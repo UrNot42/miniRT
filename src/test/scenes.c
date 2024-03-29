@@ -47,9 +47,9 @@ t_scene	scene_cube(t_color backdrop)
 
 	// Init
 	world = scene_init();
-	add_light(&world, o_light(set_point(-5, 11, -9), set_col(1, 1, 0)));
-	add_light(&world, o_light(set_point(0, 11, -14), set_col(0, 1, 1)));
-	add_light(&world, o_light(set_point(5, 11, -6), set_col(1, 0, 1)));
+	add_light(&world, o_light(set_point(-5, 11, -9), set_col(1, 1, 1)));
+	// add_light(&world, o_light(set_point(0, 11, -14), set_col(0, 1, 1)));
+	// add_light(&world, o_light(set_point(5, 11, -6), set_col(1, 0, 1)));
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -63,6 +63,9 @@ t_scene	scene_cube(t_color backdrop)
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
 	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_z(-M_PI / 6.1) * rotation_y(M_PI / 4) * rotation_x(M_PI / 4) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	s = o_sphere();
+	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 4, -2) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
 	return (world);
 }
@@ -190,9 +193,40 @@ t_scene	scene_cylinder(t_color backdrop)
 	s.m.col = set_col(0.1, 0.6, 0.6);
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
-	s.cylinder.maximum = 1;
-	// s.cylinder.minimum = -1;
-	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_y(M_PI / 4) * rotation_x(M_PI / 2) * scale_mtrx(1, 1, 1));
+	s.cone.minimum = 0;
+	set_transform(&s.cone.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_y(M_PI / 6) * rotation_x(M_PI / 3) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	return (world);
+}
+
+t_scene	scene_cone(t_color backdrop)
+{
+	t_scene	world;
+	t_obj	s;
+
+	// Init
+	world = scene_init();
+	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 1, 1)));
+	// Floor
+	s = o_plane();
+	s.m.col = backdrop;
+	s.m.specular = 0;
+	set_transform(&s.sphere.mtx, translation_mtrx(0, -2, 0));
+	add_obj(&world, s);
+	// Cone
+	s = o_cone();
+	s.m = material();
+	s.color = set_col(0.1, 0.6, 0.6);
+	s.m.diffuse = 0.7;
+	s.m.specular = 0.3;
+	s.cone.maximum = -3;
+	s.cone.min_caped = true;
+	s.cone.max_caped = true;
+	set_transform(&s.cone.mtx, translation_mtrx(0, 3, 2) * scale_mtrx(0.5, 1, 0.5));
+	add_obj(&world, s);
+	s = o_sphere();
+	s.color = set_col(1, 0.4, 0.4);
+	set_transform(&s.cone.mtx, translation_mtrx(0, 1.9, 2) * scale_mtrx(2, 2, 2));
 	add_obj(&world, s);
 	return (world);
 }

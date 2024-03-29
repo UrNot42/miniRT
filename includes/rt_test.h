@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:26:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:16:34 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_scene	scene_hex(t_color backdrop);
 t_scene	scene_studio(t_color backdrop);
 t_scene	scene_cube(t_color backdrop);
 t_scene	scene_cylinder(t_color backdrop);
+t_scene	scene_cone(t_color backdrop);
 t_scene	scene_sphere(t_color backdrop);
 
 // Tuples

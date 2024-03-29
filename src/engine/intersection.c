@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 09:12:23 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:45:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_intrs	intersect(t_obj *object, t_ray ray)
 		intersections = cy_intersect(object, ray);
 	else if (object->kind == OBJ_CUBE)
 		intersections = cube_intersect(object, ray);
+	else if (object->kind == OBJ_CONE)
+		intersections = cone_intersect(object, ray);
 	return (intersections);
 }
 

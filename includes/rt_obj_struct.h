@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:22:27 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:19:18 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_o_mtrx		t_o_mtrx;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
+typedef struct s_cone		t_cone;
 typedef struct s_cube		t_cube;
 typedef struct s_cam		t_cam;
 typedef struct s_light		t_light;
@@ -44,7 +45,8 @@ enum e_obj_kind
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
-	OBJ_CUBE
+	OBJ_CUBE,
+	OBJ_CONE
 };
 
 struct s_o_base
@@ -106,6 +108,34 @@ struct s_plane
 };
 
 struct s_cylinder
+{
+	union {
+		t_color		color;
+		struct {
+			t_mater	m;
+			t_tuple	pos;
+			bool	def;
+		};
+		t_o_base	base;
+	};
+	union {
+		struct {
+			t_4mtrx		transform;
+			t_4mtrx		inverse;
+			t_4mtrx		trans_inv;
+		};
+		t_o_mtrx	mtx;
+	};
+	t_tuple			normal;
+	float			width;
+	float			height;
+	float			minimum;
+	float			maximum;
+	bool			min_caped;
+	bool			max_caped;
+};
+
+struct s_cone
 {
 	union {
 		t_color		color;
@@ -218,6 +248,7 @@ struct s_obj
 		t_sphere		sphere;
 		t_plane			plane;
 		t_cylinder		cylinder;
+		t_cone			cone;
 		t_cube			cube;
 		t_light			light;
 		t_alght			alght;

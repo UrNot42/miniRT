@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:25:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:09:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:46:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_tuple	normal_at(t_obj object, t_tuple point)
 		normal = cy_normal_at(object.cylinder, point);
 	else if (object.kind == OBJ_CUBE)
 		normal = cube_normal_at(object.cube, point);
+	else if (object.kind == OBJ_CONE)
+		normal = cone_normal_at(object.cone, point);
 	return (normal);
 }
 

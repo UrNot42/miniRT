@@ -69,22 +69,10 @@ t_intrs	cy_intersect(t_obj *obj, t_ray r)
 	b = 2 * r.origin.x * r.direction.x + 2 * r.origin.z * r.direction.z;
 	c = r.origin.x * r.origin.x + r.origin.z * r.origin.z - 1;
 	c = b * b - 4 * a * c;
-	if (a < 0)
+	if (c < 0)
 		return (x);
 	x = cy_get_inters((-b - sqrtf(c)) / (2 * a), (-b + sqrtf(c)) / (2 * a),
 			obj, r);
+	cy_intersect_caps(obj, r, &x);
 	return (x);
-}
-
-t_tuple	cy_normal_at(t_cylinder cy, t_tuple point)
-{
-	t_ray	object;
-	t_ray	world;
-
-	world.origin = point;
-	object.origin = tup_mtrx(cy.inverse, world.origin);
-	object.direction = set_vec(object.origin.x, 0, object.origin.z);
-	world.direction = tup_mtrx(cy.trans_inv, object.direction);
-	world.direction.w = 0;
-	return (vec_norm(world.direction));
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 11:06:41 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:04:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ L	Pos{-2,0,-7}					Ratio[0.7]					Col(255,255,255)
 sp	Pos{0,-0.9,-2}									Diam(0.2)	Col( 87, 42,  5)
 pl	Pos{0,-1,0}			Norm[0,0,1]								Col(110, 37,152)
 cy	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45)
+co	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45) // TODO
+cu	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			size {x y z}	Col(142, 36, 45) // TODO
 */
 bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 {
