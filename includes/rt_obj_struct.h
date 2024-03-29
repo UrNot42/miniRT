@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 17:19:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:09:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ID_PLANE "pl"
 # define ID_CYLINDER "cy"
 # define ID_CUBE "cb"
+# define ID_CONE "co"
 
 # define O_SIZE_SET 2
 # define O_SIZE_MAX 8096

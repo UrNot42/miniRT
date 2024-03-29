@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 19:04:00 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:22:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,18 @@ t_unt	check_for_identifier(char *possible_id, t_unt *pos)
 t_obj	*get_obj(t_scene *scene, char id)
 {
 	if ((id == OBJ_CYLINDER || id == OBJ_SPHERE || id == OBJ_PLANE
-			|| id == OBJ_CUBE)
-		&& scene->obj_size.use)
+			|| id == OBJ_CUBE))
+	{
+		add_obj(scene, (t_obj){.kind = OBJ_UNDEF});
 		return (&scene->objects[scene->obj_size.use - 1]);
+	}
 	else if (id == OBJ_CAMERA)
 		return (&scene->camera);
-	else if (id == OBJ_SRC_LIGHT && scene->li_size.use)
+	else if (id == OBJ_SRC_LIGHT)
+	{
+		add_light(scene, o_light(origin(), set_col(0, 0, 0)));
 		return (&scene->light[scene->li_size.use - 1]);
+	}
 	else if (id == OBJ_AMB_LIGHT)
 		return (&scene->ambient_light);
 	else if (id == OBJ_UNDEF)
@@ -55,7 +60,7 @@ sp	Pos{0,-0.9,-2}									Diam(0.2)	Col( 87, 42,  5)
 pl	Pos{0,-1,0}			Norm[0,0,1]								Col(110, 37,152)
 cy	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45)
 co	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			W(1.75) H(0.2)	Col(142, 36, 45) // TODO
-cu	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			size {x y z}	Col(142, 36, 45) // TODO
+cb	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			size {x y z}	Col(142, 36, 45) // TODO ??
 */
 bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 {
