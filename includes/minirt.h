@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 09:09:33 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/30 07:36:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@
 # define PREV_LN "\033[A"
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
-void	print_scene(t_scene *scene); // TODO RM
 void	try_ray_trace(void);
 
 #endif

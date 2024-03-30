@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_parsing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 10:09:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/30 07:04:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool	set_float(float *num, char *line, t_unt *idx);
 bool	set_int(int *num, char *line, t_unt *idx);
 bool	parse_obj(t_scene *scene, int id);
 
+void	scene_translate_matrix(t_scene	world);
 bool	scene_fill(t_scene *scene, int fd);
 t_scene	scene_init(void);
 bool	scene_free(t_scene *scene);

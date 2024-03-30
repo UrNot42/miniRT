@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 19:05:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/30 07:36:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ bool	opening_window(void)
 
 int	main(int ac, char **av)
 {
-	t_scene	world;
+	t_scene		world;
+	t_canvas	*screen;
+	t_cam		cam;
 
 	if (ac != 2)
 		return (launch_tests());
@@ -46,8 +48,12 @@ int	main(int ac, char **av)
 	world = (t_scene){0};
 	if (read_file(av[1], &world))
 		return (scene_free(&world), EXIT_FAILURE);
+	cam = camera(300, 300, M_PI / 2);
+	set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
+	screen = render(cam, world);
+	open_canvas(screen);
+	print_canvas(*screen);
+	usleep(20000500);
 	scene_free(&world);
-	printf("Code ran acordingly\n");
-	return (opening_window());
 	return (EXIT_SUCCESS);
 }

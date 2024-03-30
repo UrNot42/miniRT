@@ -47,16 +47,9 @@ t_scene	scene_cube(t_color backdrop)
 
 	// Init
 	world = scene_init();
-<<<<<<< HEAD
-	add_light(&world, point_light(set_point(-10, 10, -10), set_col(0.5, 0.5, 0)));
-	add_light(&world, point_light(set_point(-15, 10, -15), set_col(0.5, 0, 0.5)));
-	// add_light(&world, point_light(set_point(0, 10, -10), set_col(0, 1, 0)));
-	// add_light(&world, point_light(set_point(-10, 10, 0), set_col(1, 1, 1)));
-=======
 	add_light(&world, o_light(set_point(-5, 11, -9), set_col(1, 1, 1)));
 	// add_light(&world, o_light(set_point(0, 11, -14), set_col(0, 1, 1)));
 	// add_light(&world, o_light(set_point(5, 11, -6), set_col(1, 0, 1)));
->>>>>>> 7e7e0618afa13857522a22b99ad802d262584336
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -64,23 +57,15 @@ t_scene	scene_cube(t_color backdrop)
 	set_transform(&s.sphere.mtx, translation_mtrx(0, -2, 0));
 	add_obj(&world, s);
 	// Cube
-<<<<<<< HEAD
-	s = cylinder();
-=======
 	s = o_cube();
->>>>>>> 7e7e0618afa13857522a22b99ad802d262584336
 	s.m = material();
 	s.m.col = set_col(0.1, 0.6, 0.6);
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
-<<<<<<< HEAD
-	set_transform(&s, translation_mtrx(-0.5, 1.6, 0.65) * rotation_y(M_PI / 2) * rotation_x(M_PI / 4) * scale_mtrx(1, 1, 1));
-=======
 	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_z(-M_PI / 6.1) * rotation_y(M_PI / 4) * rotation_x(M_PI / 4) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
 	s = o_sphere();
 	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 4, -2) * scale_mtrx(1, 1, 1));
->>>>>>> 7e7e0618afa13857522a22b99ad802d262584336
 	add_obj(&world, s);
 	return (world);
 }
@@ -242,6 +227,70 @@ t_scene	scene_cone(t_color backdrop)
 	s = o_sphere();
 	s.color = set_col(1, 0.4, 0.4);
 	set_transform(&s.cone.mtx, translation_mtrx(0, 1.9, 2) * scale_mtrx(2, 2, 2));
+	add_obj(&world, s);
+	return (world);
+}
+
+t_scene	scene_cooloon(t_color backdrop)
+{
+	t_scene	world;
+	t_obj	s;
+
+	// Init
+	world = scene_init();
+	add_light(&world, o_light(set_point(1+ -9, 7, -11), set_col(0.5, 0.5, 0.5)));
+	add_light(&world, o_light(set_point(1 + 9, 7, -11), set_col(0.5, 0.5, 0.5)));
+	// add_light(&world, point_light(set_point(0, 10, -10), set_col(0, 1, 0)));
+	// add_light(&world, point_light(set_point(-10, 10, 0), set_col(1, 1, 1)));
+	// Floor
+	s = o_plane();
+	s.color = backdrop;
+	s.m.specular = 0;
+	set_transform(&s.sphere.mtx, translation_mtrx(0, 1, 0));
+	add_obj(&world, s);
+	// Ceiling
+	set_transform(&s.sphere.mtx, translation_mtrx(0, 8, 0));
+	add_obj(&world, s);
+	// Back wall
+	s.color = set_col(0.3, 0.3, 0.8);
+	set_transform(&s.sphere.mtx, translation_mtrx(0, 0, 14.5) * rotation_x(M_PI / 2));
+	add_obj(&world, s);
+	// Red sphere
+	s = o_sphere();
+	s.m = material();
+	s.m.col = set_col(1, 0, 0);
+	s.m.diffuse = 1;
+	s.m.specular = 1;
+	set_transform(&s.sphere.mtx, translation_mtrx(1, 2, -2) * scale_mtrx(0.5, 0.5, 0.5));
+	add_obj(&world, s);
+	// Columns
+	s.m.shininess = 16;
+	s.color = set_col(0.7, 0.7, 0.7);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 1, -2) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 1, -2) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 1, 7) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 1, 7) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 8, -2) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 8, -2) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 8, 7) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 8, 7) * scale_mtrx(1.5, 1.5, 1.5));
+	add_obj(&world, s);
+	s.color = set_col(0.6, 0.6, 0.6);
+	s = o_cylinder();
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 1.5, -2) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 1.5, -2) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 1.5, 7) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 1.5, 7) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
 	return (world);
 }

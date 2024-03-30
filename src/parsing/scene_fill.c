@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:18:29 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:38:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/30 07:30:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ bool	scene_fill(t_scene *scene, int fd)
 	}
 	if (!count)
 		return (p_error(ERR_EMPTY), true);
+	scene_translate_matrix(*scene);
 	return (false);
 }

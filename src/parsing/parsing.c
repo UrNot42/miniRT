@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 19:22:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/30 07:39:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 	if (obj->kind == OBJ_CAMERA
 		&& set_int((int *)&obj->camera.fov, line, pos))
 		return (p_error(ERR_FOV), true);
-	if (obj->kind != OBJ_CAMERA && parse_color(&obj->m.col, line, pos))
+	if (obj->kind != OBJ_CAMERA && parse_color(&obj->color, line, pos))
 		return (p_error(ERR_COLOR), true);
 	return (false);
 }
