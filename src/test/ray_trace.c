@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 20:06:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:03:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ray_trace(t_obj s)
 	close_canvas(screen);
 } */
 
-#define SIZE 500
+#define SIZE 800
 
 void	ray_trace_2(void)
 {
@@ -96,14 +96,15 @@ void	ray_trace_2(void)
 	t_scene		world;
 	t_cam		cam;
 
-	cam = camera(SIZE, SIZE, M_PI / 2);
+	cam = camera(SIZE, SIZE, M_PI / 4);
 	// set_transform(&cam.o, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
-	set_transform(&cam.o, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
-	world = scene_cube(set_col(0.9, 0.8, 0.7));
+	// set_transform(&cam.o, view_transform(set_point(0, 1.5, -8), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
+	set_transform(&cam.o, view_transform(set_point(1, 5, -13), set_point(1, 5, 1), set_vec(0, 1, 1)));
+	world = scene_cooloon(set_col(0.9, 0.8, 0.7));
 	screen = render(cam, world);
-	printf("Done!\n");
 	print_canvas(*screen);
-	usleep(20000500);
+	printf("Done!\n");
+	usleep(2000050000);
 	close_canvas(*screen);
 }
 

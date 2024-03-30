@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 16:13:35 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/25 23:48:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_unt	launch_tests(void);
 t_scene	scene_hex(t_color backdrop);
 t_scene	scene_studio(t_color backdrop);
 t_scene	scene_cube(t_color backdrop);
+t_scene	scene_cooloon(t_color backdrop);
 
 // Tuples
 t_unt	launch_tuple_test(void);
