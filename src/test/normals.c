@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:26:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/13 17:53:30 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:41:31 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_unt	test_sphere_normal(void)
 	t_tuple	n;
 	t_unt	err[4];
 
-	s = sphere();
+	s = o_sphere();
 	scenario_start("The normal on a sphere at a point on the x axis");
 	given("s ← sphere()", 0);
 	when("n ← normal_at(s, point(1, 0, 0))", 0);
@@ -58,7 +58,7 @@ t_unt	test_norm_normal_vec(void)
 
 	scenario_start("The normal is a normalized vector");
 	given("s ← sphere()", 0);
-	s = sphere();
+	s = o_sphere();
 	when("n ← normal_at(s, point(√3/3, √3/3, √3/3))", 0);
 	n = normal_at(s, set_point(sqrtf(3) / 3, sqrtf(3) / 3, sqrtf(3) / 3));
 	err = then("n = normalize(n)", is_same_tuple(n, vec_norm(n)), 0);
@@ -75,9 +75,9 @@ t_unt	test_normal_on_transformed(void)
 
 	scenario_start("Computing the normal on a translated sphere");
 	given("s ← sphere()", 0);
-	s = sphere();
+	s = o_sphere();
 	given("set_transform(s, translation(0, 1, 0))", 1);
-	set_transform(&s, translation_mtrx(0, 1, 0));
+	set_transform(&s.sphere.mtx, translation_mtrx(0, 1, 0));
 	when("n ← normal_at(s, point(0, 1.70711, -0.70711))", 0);
 	n = normal_at(s, set_point(0, 1.70711, -0.70711));
 	err[0] = then("n = vector(0, 0.70711, -0.70711)",
@@ -89,7 +89,7 @@ t_unt	test_normal_on_transformed(void)
 	given("m ← scaling(1, 0.5, 1) * rotation_z(π/5)", 1);
 	m = scale_mtrx(1, 0.5, 1) * rotation_z(M_PI / 5);
 	given("set_transform(s, m)", 2);
-	set_transform(&s, m);
+	set_transform(&s.sphere.mtx, m);
 	when("n ← normal_at(s, point(0, √2/2, -√2/2))", 0);
 	n = normal_at(s, set_point(0, sqrtf(2) / 2, -sqrtf(2) / 2));
 	err[1] = then("n = vector(0, 0.97014, -0.24254)",

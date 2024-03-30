@@ -29,7 +29,7 @@ t_unt	test_shadow_light_surface(void)
 	given("in_shadow ← true", 3);
 	eyev = set_vec(0, 0, -1);
 	normalv = set_vec(0, 0, -1);
-	light = point_light(set_point(0, 0, -10), set_col(1, 1, 1));
+	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	in_shadow = true;
 	when("result ← lighting(m, light, position, eyev, normalv, in_shadow)", 0);
 	result = lighting((t_lgting){material(), light, origin(), eyev, normalv, in_shadow});
@@ -69,6 +69,7 @@ t_unt	test_shadow_point_between(void)
 	p = set_point(-2, 2, -2);
 	err[3] = then("is_shadowed(w, p) is false", !is_shadowed(w, p, w.light[0]), 0);
 	scenario_end(err[3]);
+	scene_free(&w);
 	return (err[0] + err[1] + err[2] + err[3]);
 }
 
@@ -87,15 +88,15 @@ t_unt	test_shade_hit_inter_shadowed(void)
 	given("w ← world()", 0);
 	given("w.light ← point_light(point(0, 0, -10), color(1, 1, 1))", 1);
 	w = scene_init();
-	add_light(&w, point_light(set_point(0, 0, -10), set_col(1, 1, 1)));
+	add_light(&w, o_light(set_point(0, 0, -10), set_col(1, 1, 1)));
 	given("s1 ← sphere()", 2);
 	given("s1 is added to w", 3);
-	s1 = sphere();
+	s1 = o_sphere();
 	add_obj(&w, s1);
 	given("s2 ← sphere() with:\n\t| transform | translation(0, 0, 10) |", 4);
 	given("s2 is added to w", 5);
-	s2 = sphere();
-	set_transform(&s2, translation_mtrx(0, 0, 10));
+	s2 = o_sphere();
+	set_transform(&s2.sphere.mtx, translation_mtrx(0, 0, 10));
 	add_obj(&w, s2);
 	given("r ← ray(point(0, 0, 5), vector(0, 0, 1))", 6);
 	r = ray(set_point(0, 0, 5), set_vec(0, 0, 1));
@@ -107,6 +108,7 @@ t_unt	test_shade_hit_inter_shadowed(void)
 	c = shade_hit(w, comps);
 	err = then("c = color(0.1, 0.1, 0.1)", is_same_col(c, set_col(0.1, 0.1, 0.1)), 0);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }
 
@@ -122,8 +124,8 @@ t_unt	test_hit_offset_point(void)
 	given("r ← ray(point(0, 0,-5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0,-5), set_vec(0, 0, 1));
 	given("shape ← sphere() with:\n\t| transform | translation(0, 0, 1) |", 1);
-	shape = sphere();
-	set_transform(&shape, translation_mtrx(0, 0, 1));
+	shape = o_sphere();
+	set_transform(&shape.sphere.mtx, translation_mtrx(0, 0, 1));
 	given("i ← intersection(5, shape)", 2);
 	i = get_inter(5, &shape);
 	when("comps ← prepare_computations(i, r)", 0);

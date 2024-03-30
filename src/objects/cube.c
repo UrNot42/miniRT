@@ -12,37 +12,47 @@
 
 #include "minirt.h"
 
-t_obj	cube(void)
+t_cube	cube(void)
 {
-	t_obj	cube;
+	t_cube	cube;
 
-	cube.type = OBJ_CUBE;
-	cube.defined = true;
+	cube = (t_cube){0};
 	cube.pos = origin();
 	cube.m = material();
-	set_transform(&cube, get_id4mtrx());
+	cube.def = true;
+	set_transform(&cube.mtx, get_id4mtrx());
 	return (cube);
 }
 
-void	check_axis(float origin, float direction, float min_max[][2])
+t_obj	o_cube(void)
+{
+	t_obj	obj;
+
+	obj = (t_obj){0};
+	obj.cube = cube();
+	obj.kind = OBJ_CUBE;
+	return (obj);
+}
+
+void	check_axis(float origin, float direction, float min_max[2])
 {
 	float	tmp;
 
 	if (fabs(direction) >= EPSILON)
 	{
-		(*min_max)[0] = (-1 - origin) / direction;
-		(*min_max)[1] = (1 - origin) / direction;
+		min_max[0] = (-1 - origin) / direction;
+		min_max[1] = (1 - origin) / direction;
 	}
 	else
 	{
-		(*min_max)[0] = (-1 - origin) * INFINITY;
-		(*min_max)[1] = (1 - origin) * INFINITY;
+		min_max[0] = (-1 - origin) * INFINITY;
+		min_max[1] = (1 - origin) * INFINITY;
 	}
-	if ((*min_max)[0] > (*min_max)[1])
+	if (min_max[0] > min_max[1])
 	{
-		tmp = (*min_max)[0];
-		(*min_max)[0] = (*min_max)[1];
-		(*min_max)[1] = tmp;
+		tmp = min_max[0];
+		min_max[0] = min_max[1];
+		min_max[1] = tmp;
 	}
 }
 
@@ -51,7 +61,7 @@ void	check_axis(float origin, float direction, float min_max[][2])
  * - [0] indicates minimum
  * - [1] indicates maximum
 */
-t_intrs cube_intersect(t_obj *cube, t_ray r)
+t_intrs	cube_intersect(t_obj *obj, t_ray r)
 {
 	float	xt[2];
 	float	yt[2];
@@ -60,21 +70,21 @@ t_intrs cube_intersect(t_obj *cube, t_ray r)
 	t_intrs	x;
 
 	x.count = 0;
-	r = ray_transform(r, cube->inverse);
-	check_axis(r.origin.x, r.direction.x, &xt);
-	check_axis(r.origin.y, r.direction.y, &yt);
-	check_axis(r.origin.z, r.direction.z, &zt);
+	r = ray_transform(r, obj->cube.inverse);
+	check_axis(r.origin.x, r.direction.x, xt);
+	check_axis(r.origin.y, r.direction.y, yt);
+	check_axis(r.origin.z, r.direction.z, zt);
 	t[0] = fmaxf(fmaxf(xt[0], yt[0]), zt[0]);
 	t[1] = fminf(fminf(xt[1], yt[1]), zt[1]);
 	if (t[0] > t[1])
 		return (x);
-	x.i[0] = get_inter(t[0], cube);
-	x.i[1] = get_inter(t[1], cube);
+	x.i[0] = get_inter(t[0], obj);
+	x.i[1] = get_inter(t[1], obj);
 	x.count = 2;
 	return (x);
 }
 
-t_tuple	cube_normal_at(t_obj cube, t_tuple point)
+t_tuple	cube_normal_at(t_cube cube, t_tuple point)
 {
 	t_tuple	vector;
 	float	maxc;

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 07:03:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:40:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:25:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ bool	scene_free(t_scene *scene)
 {
 	if (scene->obj_size.use)
 		free(scene->objects);
+	if (scene->li_size.use)
+		free(scene->light);
 	return (true);
 }
 

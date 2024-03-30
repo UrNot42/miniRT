@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 10:42:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/29 19:05:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ bool	opening_window(void)
 
 int	main(int ac, char **av)
 {
+	t_scene	world;
+
 	if (ac != 2)
 		return (launch_tests());
-	if (ac == 2 && ft_toupper(av[1][0]) == 'R')
-		try_ray_trace();
-	// scene = (t_scene){0};
-	// if (read_file(av[1], &scene))
-	// 	return (scene_free(&scene), EXIT_FAILURE);
-	// scene_free(&scene);
-	// printf("Code ran acordingly\n");
-	// return (opening_window());
+	if (ac == 2 && ft_toupper(av[1][0]) == 'R') // TODO RM
+		return (try_ray_trace(), EXIT_SUCCESS);
+	world = (t_scene){0};
+	if (read_file(av[1], &world))
+		return (scene_free(&world), EXIT_FAILURE);
+	scene_free(&world);
+	printf("Code ran acordingly\n");
+	return (opening_window());
 	return (EXIT_SUCCESS);
 }

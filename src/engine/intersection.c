@@ -6,32 +6,45 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:04:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 16:08:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:45:19 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// Creates an intersection Array with a sphere
+/**
+ * @brief Creates an intersection with selected object
+ *
+ * @param object object to intersect
+ * @param ray
+ * @return an array of intersections linked with their object
+ */
 t_intrs	intersect(t_obj *object, t_ray ray)
 {
 	t_intrs	intersections;
 
 	intersections.count = 0;
-	if (object->type == OBJ_SPHERE)
+	if (object->kind == OBJ_SPHERE)
 		intersections = sp_intersect(object, ray);
-	else if (object->type == OBJ_PLANE)
+	else if (object->kind == OBJ_PLANE)
 		intersections = pl_intersect(object, ray);
-	else if (object->type == OBJ_CYLINDER)
+	else if (object->kind == OBJ_CYLINDER)
 		intersections = cy_intersect(object, ray);
-	else if (object->type == OBJ_CUBE)
+	else if (object->kind == OBJ_CUBE)
 		intersections = cube_intersect(object, ray);
+	else if (object->kind == OBJ_CONE)
+		intersections = cone_intersect(object, ray);
 	return (intersections);
 }
 
-
-// Creates a concatenation of intersections
-t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])
+/**
+ * @brief Creates a concatenation of intersections
+ *
+ * @param count amount of intersections givent
+ * @param inters
+ * @return Creates
+ */
+t_intrs	add_inters(t_unt count, t_inter inters[INTER_MAX])
 {
 	t_intrs	x;
 	t_unt	id;
@@ -47,6 +60,12 @@ t_intrs	intersections(t_unt count, t_inter inters[INTER_MAX])
 	return (x);
 }
 
+/**
+ * @brief checks inside an array of intersection
+ *
+ * @param inters the given array
+ * @return returns the first positive intersection
+ */
 t_inter	find_hit(t_intrs inters)
 {
 	t_unt	id;
@@ -65,6 +84,14 @@ t_inter	find_hit(t_intrs inters)
 	return (hit);
 }
 
+/**
+ * @brief Boolean check for intersections
+ *
+ * @param a
+ * @param b
+ * @return true if they are stricly identical
+ * @return false
+ */
 bool	is_same_inter(t_inter a, t_inter b)
 {
 	if (a.obj == b.obj && f_eq(a.t, b.t) && a.def == b.def)
@@ -72,6 +99,13 @@ bool	is_same_inter(t_inter a, t_inter b)
 	return (false);
 }
 
+/**
+ * @brief gives a sorted array of interstions with the ray
+ *  and every object on the scene
+ * @param world
+ * @param r
+ * @return t_intrs
+ */
 t_intrs	intersect_world(t_scene	world, t_ray r)
 {
 	t_intrs	inters;
@@ -97,22 +131,3 @@ t_intrs	intersect_world(t_scene	world, t_ray r)
 	inters.count = id;
 	return (inters);
 }
-
-// void	printarray(t_intrs xs)
-// {
-// 	t_unt	i;
-// 	float	f;
-
-// 	f = 0.2 * 456;
-// 	i = 0;
-// 	printf("[");
-// 	while (i < xs.count)
-// 	{
-// 		printf("%f", xs.i[i].t);
-// 		if (i + 1 < xs.count)
-// 			printf(", ");
-// 		i++;
-// 	}
-// 	f /= 7;
-// 	printf("]\n");
-// }

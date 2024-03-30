@@ -12,6 +12,15 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Boolean test checking if a 3d point is hit by 'light' or not
+ *
+ * @param world
+ * @param point
+ * @param light
+ * @return true
+ * @return false
+ */
 bool	is_shadowed(t_scene world, t_tuple point, t_obj light)
 {
 	float	distance;

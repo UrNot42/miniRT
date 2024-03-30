@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:09:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:47:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:40:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_unt	test_intersect_sphere(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, -5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -85,7 +85,7 @@ t_unt	test_sphere_tangent(void)
 	given("r ← ray(point(0, 1, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 1, -5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -106,7 +106,7 @@ t_unt	test_ray_miss_sphere(void)
 	given("r ← ray(point(0, 2, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 2, -5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 0", xs.count == 0, 0);
@@ -125,7 +125,7 @@ t_unt	test_ray_inside_sphere(void)
 	given("r ← ray(point(0, 0, 0), vector(0, 0, 1))", 0);
 	r = ray(origin(), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -146,7 +146,7 @@ t_unt	test_sphere_behind_ray(void)
 	given("r ← ray(point(0, 0, 5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, 5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -164,7 +164,7 @@ t_unt	test_inter_struct(void)
 
 	scenario_start("An intersection encapsulates t and object");
 	given("s ← sphere()", 0);
-	s = sphere();
+	s = o_sphere();
 	when("i ← intersection(3.5, s)", 0);
 	i = get_inter(3.5, &s);
 	err = then("i.t = 3.5", f_eq(i.t, 3.5), 0);
@@ -182,13 +182,13 @@ t_unt	test_agregating_inter(void)
 
 	scenario_start("Aggregating intersections");
 	given("s ← sphere()", 0);
-	s = sphere();
+	s = o_sphere();
 	given("i ← intersection(1, s)", 0);
 	i[0] = get_inter(1, &s);
 	given("i ← intersection(2, s)", 1);
 	i[1] = get_inter(2, &s);
 	when("xs ← intersections(i1, i2)", 0);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	err = then("xs.count = 2", xs.count == 2, 0);
 	err += then("xs[0].t = 1", f_eq(xs.i[0].t, 1), 1);
 	err += then("xs[1].t = 2", f_eq(xs.i[1].t, 2), 2);
@@ -207,7 +207,7 @@ t_unt	test_intersect_obj(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, -5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("xs ← intersect(s, r)", 0);
 	xs = intersect(&s, r);
 	err = then("xs.count = 2", xs.count == 2, 0);
@@ -225,7 +225,7 @@ t_unt	test_hits(void)
 	t_inter	hit;
 	t_unt	err[4];
 
-	s = sphere();
+	s = o_sphere();
 	scenario_start("The hit, when all intersections have positive t");
 	given("s ← sphere()", 0);
 	given("i1 ← intersection(1, s)", 1);
@@ -233,7 +233,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(2, s)", 2);
 	i[1] = get_inter(2, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[0] = then("i = i1", is_same_inter(hit, i[0]), 0);
@@ -246,7 +246,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(1, s)", 2);
 	i[1] = get_inter(1, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[1] = then("i = i2", is_same_inter(hit, i[1]), 0);
@@ -259,7 +259,7 @@ t_unt	test_hits(void)
 	given("i2 ← intersection(-1, s)", 2);
 	i[1] = get_inter(-1, &s);
 	given("xs ← intersections(i2, i1)", 3);
-	xs = intersections(2, (t_inter[2]){i[0], i[1]});
+	xs = add_inters(2, (t_inter[2]){i[0], i[1]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[2] = then("i is nothing", !hit.def, 0);
@@ -276,7 +276,7 @@ t_unt	test_hits(void)
 	given("i4 ← intersection(2, s)", 2);
 	i[3] = get_inter(2, &s);
 	given("xs ← intersections(i1, i2, i3, i4)", 3);
-	xs = intersections(4, (t_inter[4]){i[0], i[1], i[2], i[3]});
+	xs = add_inters(4, (t_inter[4]){i[0], i[1], i[2], i[3]});
 	when("i ← hit(xs)", 0);
 	hit = find_hit(xs);
 	err[3] = then("i = i4", hit.t == i[3].t, 0);
@@ -334,18 +334,18 @@ t_unt	test_sphere_transformation(void)
 
 	scenario_start("A sphere's default transformation");
 	given("s ← sphere()", 0);
-	s = sphere();
+	s = o_sphere();
 	err[0] = then("s.transform = identity_matrix",
-			matr_4_eq(s.transform, get_id4mtrx()), 0);
+			matr_4_eq(s.sphere.transform, get_id4mtrx()), 0);
 	scenario_end(err[0]);
 	scenario_start("Changing a sphere's transformation");
 	given("s ← sphere()", 0);
 	given("t ← translation(2, 3, 4)", 1);
 	t = translation_mtrx(2, 3, 4);
-	s.transform = t;
+	s.sphere.transform = t;
 	when("set_transform(s, t)", 0);
-	set_transform(&s, t);
-	err[1] = then("s.transform = t", matr_4_eq(s.transform, t), 0);
+	set_transform(&s.sphere.mtx, t);
+	err[1] = then("s.transform = t", matr_4_eq(s.sphere.transform, t), 0);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }
@@ -361,9 +361,9 @@ t_unt	test_ray_sphere_transform(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, -5), set_vec(0, 0, 1));
 	given("s ← sphere()", 1);
-	s = sphere();
+	s = o_sphere();
 	when("set_transform(s, scaling(2, 2, 2))", 0);
-	set_transform(&s, scale_mtrx(2, 2, 2));
+	set_transform(&s.sphere.mtx, scale_mtrx(2, 2, 2));
 	when("xs ← intersect(s, r)", 1);
 	xs = intersect(&s, r);
 	err[0] = then("xs.count = 2", xs.count == 2, 0);
@@ -375,7 +375,7 @@ t_unt	test_ray_sphere_transform(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	given("s ← sphere()", 1);
 	when("set_transform(s, translation(5, 0, 0))", 0);
-	set_transform(&s, translation_mtrx(5, 0, 0));
+	set_transform(&s.sphere.mtx, translation_mtrx(5, 0, 0));
 	when("xs ← intersect(s, r)", 1);
 	xs = intersect(&s, r);
 	err[1] = then("xs.count = 0", xs.count == 0, 0);

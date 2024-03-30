@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:48:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 12:18:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:05:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ void	p_err_standard(t_unt error_code)
 		ft_printf(ERM_EMPTY);
 }
 
-/*
-Main print function for this program
-Using rules detailed inside the rt_error.h header file
-
-This function mainly checks for error code ranges and pipes the codes to
-the correct printing function
-
-In this function LR and RR stand for Left Range and Right Range respectively
+/**
+ * @brief ### Main print function for this program
+ * @brief #### perror equivalent
+ *
+ * @brief
+ * Using rules detailed inside the rt_error.h header file
+* This function mainly checks for error code ranges and pipes the codes to
+* the correct printing function
+* In this function LR and RR stand for Left Range and Right Range respectively
 */
 void	p_error(t_unt error_code)
 {

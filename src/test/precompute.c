@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/24 10:52:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/27 10:43:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_unt	test_precomputation(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, -5), set_vec(0, 0, 1));
 	given("shape ← sphere()", 1);
-	shape = sphere();
+	shape = o_sphere();
 	given("i ← intersection(4, shape)", 2);
 	i = get_inter(4, &shape);
 	when("comps ← prepare_computations(i, r)", 0);
@@ -53,7 +53,7 @@ t_unt	test_hit_inoutside(void)
 	given("r ← ray(point(0, 0, -5), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, -5), set_vec(0, 0, 1));
 	given("shape ← sphere()", 1);
-	shape = sphere();
+	shape = o_sphere();
 	given("i ← intersection(4, shape)", 2);
 	i = get_inter(4, &shape);
 	when("comps ← prepare_computations(i, r)", 0);
@@ -64,7 +64,7 @@ t_unt	test_hit_inoutside(void)
 	given("r ← ray(point(0, 0, 0), vector(0, 0, 1))", 0);
 	r = ray(set_point(0, 0, 0), set_vec(0, 0, 1));
 	given("shape ← sphere()", 1);
-	shape = sphere();
+	shape = o_sphere();
 	given("i ← intersection(1, shape)", 2);
 	i = get_inter(1, &shape);
 	when("comps ← prepare_computations(i, r)", 0);
@@ -110,7 +110,7 @@ t_unt	test_shading_w_precomps(void)
 	scenario_start("Shading an intersection from the inside");
 	given("w ← default_world()", 0);
 	given("w.light ← point_light(point(0, 0.25, 0), color(1, 1, 1))", 1);
-	w.light[0] = point_light(set_point(0, 0.25, 0), set_col(1, 1, 1));
+	w.light[0] = o_light(set_point(0, 0.25, 0), set_col(1, 1, 1));
 	given("r ← ray(point(0, 0, 0), vector(0, 0, 1))", 2);
 	r = ray(origin(), set_vec(0, 0, 1));
 	given("shape ← the second object in w", 3);
@@ -124,6 +124,7 @@ t_unt	test_shading_w_precomps(void)
 	err[1] = then("c = color(0.90498, 0.90498, 0.90498)",
 			is_same_col(c, set_col(0.90498, 0.90498, 0.90498)), 0);
 	scenario_end(err[1]);
+	scene_free(&w);
 	return (err[0] + err[1]);
 }
 
@@ -152,6 +153,7 @@ t_unt	test_color_at(void)
 	err[1] = then("c = color(0.38066, 0.47583, 0.2855)",
 			is_same_col(c, set_col(0.38066, 0.47583, 0.2855)), 0);
 	scenario_end(err[1]);
+	scene_free(&w);
 	return (err[0] + err[1]);
 }
 
@@ -181,5 +183,6 @@ t_unt	test_color_behind(void)
 	c = color_at(w, r);
 	err = then("c = inner.material.color", is_same_tuple(c.tuple, inner->m.col.tuple * 0.1), 0);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }

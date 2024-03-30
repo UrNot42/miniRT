@@ -3,24 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   initializing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/23 11:42:37 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/27 10:32:46 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_obj	point_light(t_tuple pos, t_color intensity)
+t_light	light(t_tuple pos, t_color intensity)
 {
-	t_obj	light;
+	t_light	light;
 
-	light.type = OBJ_SRC_LIGHT;
-	light.defined = true;
+	light = (t_light){0};
 	light.pos = pos;
-	light.m.col = intensity;
+	light.def = true;
+	light.color = intensity;
 	return (light);
+}
+
+t_obj	o_light(t_tuple pos, t_color intensity)
+{
+	t_obj	obj;
+
+	obj = (t_obj){0};
+	obj.light = light(pos, intensity);
+	obj.kind = OBJ_SRC_LIGHT;
+	return (obj);
 }
 
 t_mater	material(void)

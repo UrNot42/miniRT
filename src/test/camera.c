@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/21 20:53:07 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:44:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,9 @@ t_unt	test_cam_constructing(void)
 	c = camera(hsize, vsize, field_of_view);
 	err = then("c.hsize = 160", c.hz_size == 160, 0);
 	err += then("c.vsize = 120", c.v_size == 120, 1);
-	err += then("c.field_of_view = π/2", f_eq(c.o.fov, field_of_view), 2);
+	err += then("c.field_of_view = π/2", f_eq(c.fov, field_of_view), 2);
 	err += then("c.transform = identity_matrix",
-			matr_4_eq(c.o.transform, get_id4mtrx()), 3);
+			matr_4_eq(c.transform, get_id4mtrx()), 3);
 	scenario_end(err);
 	return (err);
 }
@@ -180,7 +180,7 @@ t_unt	test_cam_ray_construction(void)
 	scenario_start("Constructing a ray when the camera is transformed");
 	given("c ← camera(201, 101, π/2)", 0);
 	when("c.transform ← rotation_y(π/4) * translation(0, -2, 5)", 0);
-	set_transform(&c.o, rotation_y(M_PI / 4) * translation_mtrx(0, -2, 5));
+	set_transform(&c.mtx, rotation_y(M_PI / 4) * translation_mtrx(0, -2, 5));
 	when("r ← ray_for_pixel(c, 100, 50)", 1);
 	r = ray_for_pixel(c, 100, 50);
 	err[2] = then("r.origin = point(0, 2, -5)",
@@ -213,13 +213,15 @@ t_unt	test_cam_rendering(void)
 	to = set_point(0, 0, 0);
 	up = set_vec(0, 1, 0);
 	given("c.transform ← view_transform(from, to, up)", 5);
-	set_transform(&c.o, view_transform(from, to, up));
+	set_transform(&c.mtx, view_transform(from, to, up));
 	when("image ← render(c, w)", 0);
 	image = render(c, w);
 	err = then("pixel_at(image, 50, 50) = color(0.38066, 0.47583, 0.2855)",
 			is_same_col(pixel_at(*image, 5, 5),
 				set_col(0.38066, 0.47583, 0.2855)), 0);
 	close_canvas(*image);
+	free(image);
 	scenario_end(err);
+	scene_free(&w);
 	return (err);
 }

@@ -6,7 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/03/25 23:48:00 by marvin           ###   ########.fr       */
+=======
+/*   Updated: 2024/03/29 18:16:34 by ulevallo         ###   ########.fr       */
+>>>>>>> 7e7e0618afa13857522a22b99ad802d262584336
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +33,7 @@ bool	ex(char *state, bool test);
 // prints
 void	print_m(t_4mtrx a, char name);
 void	print_tup(t_tuple a, bool tab);
+void	print_obj(t_obj *obj);
 
 // Cucumber tests
 t_unt	launch_tests(void);
@@ -37,7 +42,13 @@ t_unt	launch_tests(void);
 t_scene	scene_hex(t_color backdrop);
 t_scene	scene_studio(t_color backdrop);
 t_scene	scene_cube(t_color backdrop);
+<<<<<<< HEAD
 t_scene	scene_cooloon(t_color backdrop);
+=======
+t_scene	scene_cylinder(t_color backdrop);
+t_scene	scene_cone(t_color backdrop);
+t_scene	scene_sphere(t_color backdrop);
+>>>>>>> 7e7e0618afa13857522a22b99ad802d262584336
 
 // Tuples
 t_unt	launch_tuple_test(void);
