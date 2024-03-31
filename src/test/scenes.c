@@ -332,12 +332,13 @@ t_scene	scene_multi_light(t_color backdrop)
 	// Init
 	world = scene_init();
 	// Cam
-	world.camera.camera = camera(400, 400, M_PI / 2);
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 2);
 	set_transform(&world.camera.camera.mtx, view_transform(set_point(10, 10, -18), set_point(9.4, 9.4, -17), set_vec(0, 1, 0)));
 	// Ligths
 	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 0.5)));
 	add_light(&world, o_light(set_point(5, 5, 0), set_col(0.5, 0, 0)));
 	add_light(&world, o_light(set_point(5, 0, 5), set_col(0, 0.5, 0)));
+	world.ambient_light.alght.color = set_col(0.2, 0.2, 0.2);
 	// Floor
 	s = o_plane();
 	s.m.specular = 0;

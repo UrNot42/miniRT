@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 18:37:37 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:17:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	t_color	color;
 	t_color	tmp;
 
-	color = set_col(0, 0, 0);
+	color = world.ambient_light.alght.color;
 	if (!world.li_size.use)
 		return (color);
 	i = 0;
