@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:16:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:30:50 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:14:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,3 +114,9 @@ t_canvas	*render(t_cam camera, t_scene world)
 	}
 	return (image);
 }
+
+// 360 = 2 * PI
+// 180 = PI
+// 90 = PI / 2
+// 60 = PI / 3
+// (fov / 180) * PI

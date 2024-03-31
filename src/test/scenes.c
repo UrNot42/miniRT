@@ -12,6 +12,8 @@
 
 #include "minirt.h"
 
+#define SIZE 400
+
 t_scene	scene_sphere(t_color backdrop)
 {
 	t_scene	world;
@@ -19,8 +21,9 @@ t_scene	scene_sphere(t_color backdrop)
 
 	// Init
 	world = scene_init();
-	// add_light(&world, o_light(set_point(2 - 1.5, 3, -3), set_col(0.4, 0.4, 0.4)));
-	// add_light(&world, o_light(set_point(2, 3, -3), set_col(0.4, 0.4, 0.4)));
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 4, -6), set_point(-2, 2.5, 1), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(2 + 1.5, 3, -3), set_col(0.9, 0.9, 0.9)));
 	// Floor
 	s = o_plane();
@@ -47,9 +50,12 @@ t_scene	scene_cube(t_color backdrop)
 
 	// Init
 	world = scene_init();
-	add_light(&world, o_light(set_point(-5, 11, -9), set_col(1, 1, 1)));
-	// add_light(&world, o_light(set_point(0, 11, -14), set_col(0, 1, 1)));
-	// add_light(&world, o_light(set_point(5, 11, -6), set_col(1, 0, 1)));
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 3, -5), set_point(0, 1, 0), set_vec(0, 1, 0)));
+	add_light(&world, o_light(set_point(-7, 11, -4), set_col(1, 0, 0)));
+	add_light(&world, o_light(set_point(-4, 11, -4), set_col(0, 1, 0)));
+	add_light(&world, o_light(set_point(-4, 11, -7), set_col(0, 0, 1)));
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -64,9 +70,6 @@ t_scene	scene_cube(t_color backdrop)
 	s.m.specular = 0.3;
 	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_z(-M_PI / 6.1) * rotation_y(M_PI / 4) * rotation_x(M_PI / 4) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
-	s = o_sphere();
-	set_transform(&s.sphere.mtx, translation_mtrx(-0.5, 4, -2) * scale_mtrx(1, 1, 1));
-	add_obj(&world, s);
 	return (world);
 }
 
@@ -77,6 +80,9 @@ t_scene	scene_studio(t_color backdrop)
 
 	// Init
 	world = scene_init();
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 4, -6), set_point(0, 2, 0), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(5, 5, -10), set_col(1, 1, 1)));
 	// Floor
 	s = o_plane();
@@ -130,6 +136,9 @@ t_scene	scene_hex(t_color backdrop)
 
 	// Init
 	world = scene_init();
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(0, 6, 0), set_col(1, 1, 1)));
 	// Floor
 	o = o_plane();
@@ -169,10 +178,10 @@ t_scene	scene_cylinder(t_color backdrop)
 
 	// Init
 	world = scene_init();
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 4, -8), set_point(0, 2, 0), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 1, 1)));
-	add_light(&world, o_light(set_point(-15, 10, -15), set_col(0, 1, 0)));
-	add_light(&world, o_light(set_point(-8, 10, -7), set_col(0, 0, 1)));
-	regularize_light(&world);
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -190,11 +199,22 @@ t_scene	scene_cylinder(t_color backdrop)
 	// Cylinder
 	s = o_cylinder();
 	s.m = material();
-	s.m.col = set_col(0.1, 0.6, 0.6);
 	s.m.diffuse = 0.7;
+	s.m.col = set_col(0.6, 0.1, 0.6);
+	set_transform(&s.cone.mtx, translation_mtrx(-3, 0.5, 1) * rotation_y(-M_PI / 6) * rotation_z(M_PI / 6) * scale_mtrx(1.2, 1.2, 1.2));
+	add_obj(&world, s);
 	s.m.specular = 0.3;
+	s.m.col = set_col(0.1, 0.6, 0.6);
+	s.cone.minimum = 1;
+	s.cone.maximum = 4;
+	set_transform(&s.cone.mtx, translation_mtrx(0, 1.6, 0.65) * rotation_x(M_PI / 3));
+	add_obj(&world, s);
+	s.m.col = set_col(0.6, 0.6, 0.1);
 	s.cone.minimum = 0;
-	set_transform(&s.cone.mtx, translation_mtrx(-0.5, 1.6, 0.65) * rotation_y(M_PI / 6) * rotation_x(M_PI / 3) * scale_mtrx(1, 1, 1));
+	s.cone.maximum = 1;
+	s.cone.min_caped = true;
+	s.cone.max_caped = true;
+	set_transform(&s.cone.mtx, translation_mtrx(3, 1.2, 0.65) * rotation_y(-M_PI / 6) * rotation_x(-M_PI / 4) * scale_mtrx(0.8, 0.8, 0.8));
 	add_obj(&world, s);
 	return (world);
 }
@@ -206,6 +226,9 @@ t_scene	scene_cone(t_color backdrop)
 
 	// Init
 	world = scene_init();
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, -10), set_point(0, 3, 0), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 1, 1)));
 	// Floor
 	s = o_plane();
@@ -238,6 +261,11 @@ t_scene	scene_cooloon(t_color backdrop)
 
 	// Init
 	world = scene_init();
+	// Camera
+	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
+	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, -11), set_point(1, 5, 1), set_vec(0, 1, 1)));
 	add_light(&world, o_light(set_point(1+ -9, 7, -11), set_col(0.5, 0.5, 0.5)));
 	add_light(&world, o_light(set_point(1 + 9, 7, -11), set_col(0.5, 0.5, 0.5)));
 	// add_light(&world, point_light(set_point(0, 10, -10), set_col(0, 1, 0)));
@@ -291,6 +319,47 @@ t_scene	scene_cooloon(t_color backdrop)
 	set_transform(&s.sphere.mtx, translation_mtrx(1 + 4, 1.5, 7) * scale_mtrx(1, 1, 1));
 	add_obj(&world, s);
 	set_transform(&s.sphere.mtx, translation_mtrx(1 + -4, 1.5, 7) * scale_mtrx(1, 1, 1));
+	add_obj(&world, s);
+	return (world);
+}
+
+t_scene	scene_multi_light(t_color backdrop)
+{
+	t_scene	world;
+	t_obj	s;
+
+	(void)backdrop;
+	// Init
+	world = scene_init();
+	// Cam
+	world.camera.camera = camera(400, 400, M_PI / 2);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(10, 10, -18), set_point(9.4, 9.4, -17), set_vec(0, 1, 0)));
+	// Ligths
+	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 0.5)));
+	add_light(&world, o_light(set_point(5, 5, 0), set_col(0.5, 0, 0)));
+	add_light(&world, o_light(set_point(5, 0, 5), set_col(0, 0.5, 0)));
+	// Floor
+	s = o_plane();
+	s.m.specular = 0;
+	s.color = set_col(0.5882, 0.5882, 0.5882);
+	set_transform(&s.sphere.mtx, translation_mtrx(0, -2, 0));
+	add_obj(&world, s);
+	s.color = set_col(0.5882, 0.196, 0.39);
+	set_transform(&s.sphere.mtx, translation_mtrx(-60, -60, 100) * rotation_x(M_PI / 2));
+	add_obj(&world, s);
+	// Spheres
+	s = o_sphere();
+	s.m = material();
+	s.m.col = set_col(1, 1, 1);
+	s.m.diffuse = 1;
+	s.m.specular = 1;
+	set_transform(&s.sphere.mtx, translation_mtrx(10, 0, 0) * scale_mtrx(2, 2, 2));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(-4, 0,-10) * scale_mtrx(2, 2, 2));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(4, 0, -10) * scale_mtrx(2, 2, 2));
+	add_obj(&world, s);
+	set_transform(&s.sphere.mtx, translation_mtrx(0, 0, 0) * scale_mtrx(2, 2, 2));
 	add_obj(&world, s);
 	return (world);
 }

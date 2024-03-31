@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/30 07:50:53 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/31 17:03:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,13 @@ void	ray_trace(t_obj s)
 	close_canvas(screen);
 } */
 
-#define SIZE 800
-
 void	ray_trace_2(void)
 {
 	t_canvas	*screen;
 	t_scene		world;
-	t_cam		cam;
 
-	cam = camera(SIZE, SIZE, M_PI / 3);
-	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -0.21), set_point(0, 0, 0), set_vec(0, 1, 0)));
-	// set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
-	set_transform(&cam.mtx, view_transform(set_point(1, 5, -11), set_point(1, 5, 1), set_vec(0, 1, 1)));
-	world = scene_cooloon(set_col(0.9, 0.8, 0.7));
-	screen = render(cam, world);
+	world = scene_multi_light(set_col(0.9, 0.8, 0.7));
+	screen = render(world.camera.camera, world);
 	open_canvas(screen);
 	print_canvas(*screen);
 	usleep(20000500);
