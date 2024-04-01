@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:16:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:43:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 19:48:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,31 +83,28 @@ t_ray	ray_for_pixel(t_cam view, t_unt	px, t_unt py)
 }
 
 /**
- * @brief Allocates a new canvas to render images to
+ * @brief Creates a new canvas to render images to
  *
  * @param camera
  * @param world
  * @return a pointer to the newly allocated canvas
  */
-t_canvas	*render(t_cam camera, t_scene world)
+t_canvas	render(t_cam camera, t_scene world)
 {
 	t_unt		x;
 	t_unt		y;
 	t_ray		r;
-	t_canvas	*image;
+	t_canvas	image;
 
 	y = 0;
-	image = malloc(sizeof(t_canvas));
-	if (!image)
-		return (p_error(ERR_MEM), NULL);
-	*image = canvas(camera.hz_size, camera.v_size);
+	image = canvas(camera.hz_size, camera.v_size);
 	while (y < camera.v_size - 1)
 	{
 		x = 0;
 		while (x < camera.hz_size - 1)
 		{
 			r = ray_for_pixel(camera, x, y);
-			write_pixel(image->picture, x, y, color_at(world, r));
+			write_pixel(image.picture, x, y, color_at(world, r));
 			x++;
 		}
 		y++;

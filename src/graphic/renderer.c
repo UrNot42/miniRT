@@ -14,14 +14,13 @@
 
 int	render_scene(t_wraper *data)
 {
-	open_canvas(data->screen);
-	printf("Hey %p\n", data->screen);
-	print_canvas(*data->screen);
-	usleep(20000000);
-	// while (displaying)
-	// {
-	// 	;
-	// }
-	free_loop(data);
+	if (data->state == DISPLAYING)
+		return (1);
+	close_canvas(data->screen);
+	data->screen = render(data->scene.camera.camera, data->scene);
+	open_canvas(&data->screen);
+	hook_canvas_controls(data);
+	print_canvas(data->screen);
+	data->state = DISPLAYING;
 	return (0);
 }

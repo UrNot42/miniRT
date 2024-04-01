@@ -12,3 +12,6 @@ Bonus
 1 + Patterns (chill)
 2 + Transparancy (? High tier)
 3 + Reflectivity (? High tier)
+
+
+HIGH PRIORITY FIX RENDER OP

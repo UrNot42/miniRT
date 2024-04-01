@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:44:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:50:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ t_unt	test_cam_rendering(void)
 	t_tuple		to;
 	t_tuple		up;
 	t_cam		c;
-	t_canvas	*image;
+	t_canvas	image;
 
 	scenario_start("Rendering a world with a camera");
 	given("w ← default_world()", 0);
@@ -217,10 +217,9 @@ t_unt	test_cam_rendering(void)
 	when("image ← render(c, w)", 0);
 	image = render(c, w);
 	err = then("pixel_at(image, 50, 50) = color(0.38066, 0.47583, 0.2855)",
-			is_same_col(pixel_at(*image, 5, 5),
+			is_same_col(pixel_at(image, 5, 5),
 				set_col(0.38066, 0.47583, 0.2855)), 0);
-	close_canvas(*image);
-	free(image);
+	close_canvas(image);
 	scenario_end(err);
 	scene_free(&w);
 	return (err);

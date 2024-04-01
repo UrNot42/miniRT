@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:41:39 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:03:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,10 @@ void	ray_trace_2(void)
 {
 	t_wraper	data;
 
+	data.state = CALCULATING;
 	data.scene = scene_sphere(set_col(0.9, 0.8, 0.7));
-	data.screen = render(data.scene.camera.camera, data.scene);
-	open_canvas(data.screen);
-	print_canvas(*data.screen);
-	usleep(20000500);
-	printf("Done!\n");
-	close_canvas(*data.screen);
-	free(data.screen);
+	data.screen = canvas(1, 1);
+	start_loop(&data);
 }
 
 void	try_ray_trace(void)

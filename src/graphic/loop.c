@@ -12,24 +12,26 @@
 
 #include "minirt.h"
 
-
 void	hook_canvas_controls(t_wraper *data)
 {
-	mlx_hook(data->screen->win, KeyPress, KeyPressMask, key_handler, data);
-	mlx_hook(data->screen->win, DestroyNotify, 0, free_loop, data);
+	mlx_hook(data->screen.win, KeyPress, KeyPressMask, key_handler, data);
+	mlx_hook(data->screen.win, DestroyNotify, 0, free_loop, data);
 }
 
 void	start_loop(t_wraper *data)
 {
+	open_canvas(&data->screen);
 	hook_canvas_controls(data);
-	mlx_loop_hook(data->screen->ptr, render_scene, data);
-	mlx_loop(data->screen->ptr);
+	mlx_loop_hook(data->screen.ptr, render_scene, data);
+	mlx_loop(data->screen.ptr);
 }
 
 // TODO DOC
 int	free_loop(t_wraper *data)
 {
-	close_canvas((*data->screen));
+	mlx_loop_end(&data->screen);
+	close_canvas((data->screen));
 	scene_free((&data->scene));
-	return (1);
+	data->state = CLOSING;
+	exit(EXIT_SUCCESS);
 }
