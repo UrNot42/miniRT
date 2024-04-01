@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 12:51:21 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 19:38:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ struct	s_canvas
 struct	s_wraper
 {
 	t_canvas	*screen;
-	t_scene		*scene;
+	t_scene		scene;
 };
 
 // Functions

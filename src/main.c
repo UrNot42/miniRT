@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 03:17:17 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/30 07:36:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 19:40:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,16 @@ bool	opening_window(void)
 
 int	main(int ac, char **av)
 {
-	t_scene		world;
-	t_canvas	*screen;
-	t_cam		cam;
+	t_wraper	data;
 
 	if (ac != 2)
 		return (launch_tests());
 	if (ac == 2 && ft_toupper(av[1][0]) == 'R') // TODO RM
 		return (try_ray_trace(), EXIT_SUCCESS);
-	world = (t_scene){0};
-	if (read_file(av[1], &world))
-		return (scene_free(&world), EXIT_FAILURE);
-	cam = camera(300, 300, M_PI / 2);
-	set_transform(&cam.mtx, view_transform(set_point(0, 1.5, -5), set_point(-0.2, 1.5, 0), set_vec(0, 1, 0)));
-	screen = render(cam, world);
-	open_canvas(screen);
-	print_canvas(*screen);
-	usleep(20000500);
-	scene_free(&world);
+	data.scene = scene_init();
+	if (read_file(av[1], &data.scene))
+		return (scene_free(&data.scene), EXIT_FAILURE);
+	data.screen = render(data.scene.camera.camera, data.scene);
+	start_loop(&data);
 	return (EXIT_SUCCESS);
 }

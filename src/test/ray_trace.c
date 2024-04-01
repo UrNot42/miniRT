@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:20:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 19:41:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,16 @@ void	ray_trace(t_obj s)
 
 void	ray_trace_2(void)
 {
-	t_canvas	*screen;
-	t_scene		world;
+	t_wraper	data;
 
-	world = scene_multi_light(set_col(0.9, 0.8, 0.7));
-	screen = render(world.camera.camera, world);
-	open_canvas(screen);
-	print_canvas(*screen);
+	data.scene = scene_sphere(set_col(0.9, 0.8, 0.7));
+	data.screen = render(data.scene.camera.camera, data.scene);
+	open_canvas(data.screen);
+	print_canvas(*data.screen);
 	usleep(20000500);
 	printf("Done!\n");
-	close_canvas(*screen);
-	free(screen);
-	scene_free(&world);
+	close_canvas(*data.screen);
+	free(data.screen);
 }
 
 void	try_ray_trace(void)
