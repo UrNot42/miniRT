@@ -247,6 +247,16 @@ t_scene	scene_cone(t_color backdrop)
 	s.cone.max_caped = true;
 	set_transform(&s.cone.mtx, translation_mtrx(0, 3, 2) * scale_mtrx(0.5, 1, 0.5));
 	add_obj(&world, s);
+	s.cone.min_caped = false;
+	s.cone.max_caped = false;
+	s.color = set_col(0.4, 0.4, 1);
+	set_transform(&s.cone.mtx, translation_mtrx(6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
+	add_obj(&world, s);
+	s.cone.maximum = INFINITY;
+	s.cone.max_caped = true;
+	s.color = set_col(0.4, 1, 0.4);
+	set_transform(&s.cone.mtx, translation_mtrx(-6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
+	add_obj(&world, s);
 	s = o_sphere();
 	s.color = set_col(1, 0.4, 0.4);
 	set_transform(&s.cone.mtx, translation_mtrx(0, 1.9, 2) * scale_mtrx(2, 2, 2));
