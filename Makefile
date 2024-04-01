@@ -71,6 +71,7 @@ SRC_ENGINE	:=	ray.c \
 				shadow.c \
 				normal.c \
 				pre_compute.c \
+				light_extra.c \
 				intersection.c \
 
 SRC_SHAPES	:=	cone.c \

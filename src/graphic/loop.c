@@ -30,6 +30,6 @@ void	start_loop(t_wraper *data)
 int	free_loop(t_wraper *data)
 {
 	close_canvas((*data->screen));
-	scene_free((*data->scene));
+	scene_free((data->scene));
 	return (1);
 }

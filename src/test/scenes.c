@@ -334,10 +334,10 @@ t_scene	scene_multi_light(t_color backdrop)
 	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 0.5)));
 	add_light(&world, o_light(set_point(5, 5, 0), set_col(0.5, 0, 0)));
 	add_light(&world, o_light(set_point(5, 0, 5), set_col(0, 0.5, 0)));
-	world.ambient_light.alght.color = set_col(0.2, 0.2, 0.2);
+	world.ambient_light.alght.color = set_col(0.02, 0.02, 0.02);
 	// Floor
 	s = o_plane();
-	s.m.specular = 0;
+	s.m.specular = 1;
 	s.color = set_col(0.5882, 0.5882, 0.5882);
 	set_transform(&s.sphere.mtx, translation_mtrx(0, -2, 0));
 	add_obj(&world, s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:43:25 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:00:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ t_unt	test_color_behind(void)
 	r = ray(set_point(0, 0, 0.75), set_vec(0, 0, -1));
 	when("c ← color_at(w, r)", 0);
 	c = color_at(w, r);
-	err = then("c = inner.material.color", is_same_tuple(c.tuple, inner->m.col.tuple * 0.1), 0);
+	err = then("c = inner.material.color", is_same_tuple(c.tuple, inner->m.col.tuple), 0);
 	scenario_end(err);
 	scene_free(&w);
 	return (err);

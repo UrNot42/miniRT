@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/31 17:17:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:56:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
  * @param normal_vector relative to the shape where does the norm expresses
  * @return the color of the pixel
  */
-t_color	lighting(t_lgting l)
+t_color	a_lighting(t_lgting l)
 {
 	t_color	ambient;
 	t_color	diffuse;
@@ -57,6 +57,58 @@ t_color	lighting(t_lgting l)
 	else
 		specular = set_col(0, 0, 0);
 	ambient.tuple *= l.mater.ambient;
+	return (tup_col(ambient.tuple + diffuse.tuple + specular.tuple));
+}
+
+// l.material, light, point, eyev, normalv
+t_color	lighting(t_lgting l)
+{
+	t_color	effective_color;
+	t_tuple	lightv;
+	t_tuple	reflectv;
+	float	reflect_dot_eye;
+	float	light_dot_normal;
+	float	factor;
+	t_color	ambient;
+	t_color	diffuse;
+	t_color	specular;
+
+		// combine the surface color with the light's color/intensity
+	effective_color.tuple = l.mater.col.tuple * l.light.color.tuple;
+		// find the direction to the light source
+		// compute the ambient contribution
+	ambient.tuple = effective_color.tuple * l.mater.ambient;
+	if (l.in_shadow)
+		return (tup_col(ambient.tuple));
+	lightv = vec_norm(l.light.pos - l.point);
+		// light_dot_normal represents the cosine of the angle between the
+		// light vector and the normal vector. A negative number means the
+		// light is on the other side of the surface.
+	light_dot_normal = vec_dot(lightv, l.normalv);
+	if (light_dot_normal >= 0)
+	{
+
+			// compute the diffuse contribution
+		diffuse.tuple = effective_color.tuple * l.mater.diffuse * light_dot_normal;
+			// reflect_dot_eye represents the cosine of the angle between the
+			// reflection vector and the eye vector. A negative number means the
+			// light reflects away from the eye.
+		reflectv = reflect(-lightv, l.normalv);
+		reflect_dot_eye = vec_dot(reflectv, l.eyev);
+		if (reflect_dot_eye > 0)
+		{
+				// compute the specular contribution
+			factor = pow(reflect_dot_eye, l.mater.shininess);
+			specular.tuple = l.light.color.tuple * l.mater.specular * factor;
+ 		}
+		else
+			specular = set_col(0, 0, 0);
+	}
+	else
+	{
+		diffuse = set_col(0, 0, 0);
+ 		specular = set_col(0, 0, 0);
+	}
 	return (tup_col(ambient.tuple + diffuse.tuple + specular.tuple));
 }
 
@@ -86,65 +138,6 @@ t_color	shade_hit(t_scene world, t_comps computes)
 		color.tuple += tmp.tuple;
 		i++;
 	}
-	return (color);
+	return (tup_col(color.tuple + world.ambient_light.color.tuple));
 }
 
-/**
- * @brief Wraps the precomputations and the shade hit function
- *
- * @param world
- * @param ray given ray wich will set pre computations
- * @return t_color
- */
-t_color	color_at(t_scene world, t_ray ray)
-{
-	t_comps	computes;
-	t_inter	hit_point;
-
-	hit_point = find_hit(intersect_world(world, ray));
-	if (!hit_point.def)
-		return (set_col(0, 0, 0));
-	computes = prepare_computations(hit_point, ray);
-	return (shade_hit(world, computes));
-}
-
-/**
- * @brief Work in progress, rather a take on anti-aliasing,
- * very basic and naive approach, give out a blured scene
- *
- * @brief replaces color_at and takes care of the ray
- * @brief /!\ takes 9 times longer to render
- *
- * @param world
- * @param x
- * @param y
- * @param camera
- * @return t_color
- */
-t_color	anti_alias(t_scene world, t_unt	x, t_unt y, t_cam camera)
-{
-	t_color	average[9];
-	t_ray	r;
-	t_unt	i;
-	t_unt	j;
-	float	d;
-
-	i = 0;
-	while (i < 3)
-	{
-		j = 0;
-		while (j < 3)
-		{
-			r = ray_for_pixel(camera, x - 1 + i, y - 1 + j);
-			average[i * 3 + j] = color_at(world, r);
-			j++;
-		}
-		i++;
-	}
-	d = (1 - AA_RATIO) / 8;
-	return (tup_col(average[0].tuple * d + average[1].tuple * d
-			+ average[2].tuple * d + average[3].tuple * d
-			+ average[4].tuple * d + average[5].tuple * AA_RATIO
-			+ average[6].tuple * d + average[7].tuple * d
-			+ average[8].tuple * d));
-}

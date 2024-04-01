@@ -6,14 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/31 17:16:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:16:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_MATH_OBJ_H
 # define RT_MATH_OBJ_H
 
-# define INTER_MAX 50
+# define INTER_MAX 200
 
 typedef unsigned int		t_unt;
 typedef unsigned char		t_uchar;
