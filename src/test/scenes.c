@@ -262,7 +262,7 @@ t_scene	scene_cooloon(t_color backdrop)
 	// Init
 	world = scene_init();
 	// Camera
-	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
+	world.camera.camera = camera(SIZE * 1.5, SIZE * 1.5, M_PI / 3);
 	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, -11), set_point(1, 5, 1), set_vec(0, 1, 1)));
 	add_light(&world, o_light(set_point(1+ -9, 7, -11), set_col(0.5, 0.5, 0.5)));
 	add_light(&world, o_light(set_point(1 + 9, 7, -11), set_col(0.5, 0.5, 0.5)));

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 18:56:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 19:07:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,6 @@
  * @param normal_vector relative to the shape where does the norm expresses
  * @return the color of the pixel
  */
-t_color	a_lighting(t_lgting l)
-{
-	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
-	t_tuple	lightv;
-	float	dot_normal;
-
-	if (l.in_shadow)
-		return (tup_col(l.mater.col.tuple * 0.1));
-	ambient.tuple = l.mater.col.tuple * l.light.m.col.tuple;
-	lightv = vec_norm(l.light.pos - l.point);
-	dot_normal = vec_dot(lightv, l.normalv);
-	if (dot_normal < 0)
-		return (tup_col(ambient.tuple * l.mater.ambient));
-	diffuse.tuple = ambient.tuple * l.mater.diffuse * dot_normal;
-	dot_normal = vec_dot(reflect(-lightv, l.normalv), l.eyev);
-	if (dot_normal > 0)
-		specular.tuple = l.light.m.col.tuple * l.mater.specular
-			* powf(dot_normal, l.mater.shininess);
-	else
-		specular = set_col(0, 0, 0);
-	ambient.tuple *= l.mater.ambient;
-	return (tup_col(ambient.tuple + diffuse.tuple + specular.tuple));
-}
-
-// l.material, light, point, eyev, normalv
 t_color	lighting(t_lgting l)
 {
 	t_color	effective_color;
