@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:37:10 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/31 20:39:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:31:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_scene	scene_cone(t_color backdrop);
 t_scene	scene_sphere(t_color backdrop);
 t_scene	scene_multi_light(t_color backdrop);
 t_scene	scene_example(t_color backdrop);
+t_scene	scene_aura(t_color backdrop);
 
 // Tuples
 t_unt	launch_tuple_test(void);

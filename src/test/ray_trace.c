@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 21:24:47 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:35:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ray_trace_2(void)
 	t_wraper	data;
 
 	data.state = CALCULATING;
-	data.scene = scene_cone(set_col(0.9, 0.8, 0.7));
+	data.scene = scene_aura(set_col(0.9, 0.8, 0.7));
 	data.screen = canvas(1, 1);
 	start_loop(&data);
 }
