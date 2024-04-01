@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/30 07:04:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/01 12:37:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	parse_obj(t_scene *scene, int id);
 void	scene_translate_matrix(t_scene	world);
 bool	scene_fill(t_scene *scene, int fd);
 t_scene	scene_init(void);
-bool	scene_free(t_scene *scene);
+bool	scene_free(t_scene scene);
 
 bool	read_file(char *file, t_scene *scene);
 

@@ -33,72 +33,75 @@ SRC_LIST	:=	main.c \
 SRC_ERROR	:=	error.c \
 				error_display.c
 
-SRC_PARSING	:=	file_management.c \
+SRC_PARSING	:=	parsing.c \
 				scene_fill.c \
-				scene_management.c \
-				parsing.c \
 				obj_setters.c \
 				num_setters.c \
+				file_management.c \
+				scene_management.c \
 
-SRC_MATH	=	tuples_set.c \
+SRC_MATH	=	basics.c \
+				tuples_set.c \
 				bool_tuples.c \
 				float_operation.c \
 				vector_operation.c \
-				basics.c \
 				$(addprefix $(MATRIX_DIR), $(SRC_MATRIX)) \
 
 SRC_MATRIX	:=	matrix.c \
+				rotation.c \
+				transform.c \
 				matrix_set.c \
 				matrix_bool.c \
 				matrix_determinant.c \
 				matrix_minor_and_cofactor.c \
-				transform.c \
-				rotation.c \
 
-SRC_GRAPH	:=	canvas.c \
+SRC_GRAPH	:=	loop.c \
 				image.c \
-				window.c \
+				canvas.c \
 				pixel.c \
+				window.c \
+				handler.c \
+				renderer.c \
 				color_operation.c \
 
 SRC_ENGINE	:=	ray.c \
-				intersection.c \
-				normal.c \
-				light.c \
-				shadow.c \
 				sort.c \
 				view.c \
+				light.c \
+				shadow.c \
+				normal.c \
 				pre_compute.c \
+				intersection.c \
 
-SRC_SHAPES	:=	world.c \
+SRC_SHAPES	:=	cone.c \
 				size.c \
-				initializing.c \
-				sphere.c \
+				cube.c \
 				plane.c \
+				world.c \
+				sphere.c \
+				cone_inter.c \
+				initializing.c \
 				cylinder_init.c \
 				cylinder_method.c \
-				cube.c \
-				cone.c \
-				cone_inter.c \
 
-SRC_TEST	:=	tuples.c \
-				print_scenario.c \
-				launch.c \
-				vectors.c \
+SRC_TEST	:=	ray.c \
+				world.c \
+				tuples.c \
 				colors.c \
+				launch.c \
 				canvas.c \
 				matrix.c \
-				transform.c \
-				ray.c \
-				normals.c \
-				shadows.c \
-				lights.c \
-				world.c \
-				precompute.c \
 				camera.c \
-				ray_trace.c \
 				scenes.c \
 				shapes.c \
+				lights.c \
+				normals.c \
+				vectors.c \
+				shadows.c \
+				ray_trace.c \
+				transform.c \
+				precompute.c \
+				print_scenario.c \
 
 # ########## #
 #  INCLUDED  #

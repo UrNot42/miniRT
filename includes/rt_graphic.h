@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_graphic.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 08:45:34 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:51:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define COL_SCALE 255
 
 typedef struct s_canvas	t_canvas;
+typedef struct s_wraper	t_wraper;
 typedef struct s_image	t_image;
 typedef unsigned int	t_unt;
 typedef t_unt			t_dim	__attribute__((ext_vector_type(2)));
@@ -43,9 +44,16 @@ struct	s_canvas
 	void		*win;
 	char		*name;
 	t_image		*picture;
+	t_scene		*scene;
 	t_unt		height;
 	t_unt		width;
 	bool		defined;
+};
+
+struct	s_wraper
+{
+	t_canvas	*screen;
+	t_scene		*scene;
 };
 
 // Functions
@@ -60,6 +68,8 @@ bool		open_window(t_canvas *screen);
 bool		close_window(t_canvas screen);
 bool		create_image(t_image **picture, t_dim size, void *data_ptr);
 void		set_image(t_canvas screen);
+int			free_loop(t_wraper *data);
+void		start_loop(t_wraper *data);
 
 // Reading
 t_color		pixel_at(t_canvas screen, t_unt x, t_unt y);
@@ -76,5 +86,8 @@ t_mater		material(void);
 // Camera
 t_ray		ray_for_pixel(t_cam view, t_unt	x, t_unt y);
 t_canvas	*render(t_cam camera, t_scene world);
+
+int	key_handler(int key, t_wraper *data);
+int	render_scene(t_wraper *data);
 
 #endif

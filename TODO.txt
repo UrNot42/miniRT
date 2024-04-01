@@ -9,6 +9,6 @@ Saturday 30th TODO
 	- Defining Camera
 
 Bonus
-1 + Transparancy (? High tier)
-2 + Reflectivity (? High tier)
-3 + Patterns (chill)
+1 + Patterns (chill)
+2 + Transparancy (? High tier)
+3 + Reflectivity (? High tier)
