@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:22:30 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:08:31 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:37:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int	main(void)
 	}
 	print_canvas(screen);
 	usleep(100000000);
-	close_canvas(screen);
+	close_canvas(&screen);
 }

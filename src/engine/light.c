@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 10:18:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:15:10 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ t_color	lighting(t_lgting l)
 	t_color	ambient;
 	t_color	effective_color;
 
-	effective_color.tuple = l.mater.col.tuple * l.light.color.tuple;
+	effective_color.tuple = l.mater.col.tuple
+		* l.light.color.tuple * l.light.light.ratio;
 	ambient.tuple = effective_color.tuple * l.mater.ambient;
 	if (l.in_shadow)
 		return (ambient);
@@ -106,7 +107,8 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	t_color	color;
 	t_color	tmp;
 
-	color = world.ambient_light.alght.color;
+	color.tuple = world.ambient_light.color.tuple
+		* world.ambient_light.alght.ratio;
 	if (!world.li_size.use)
 		return (color);
 	i = 0;
@@ -118,5 +120,5 @@ t_color	shade_hit(t_scene world, t_comps computes)
 		color.tuple += tmp.tuple;
 		i++;
 	}
-	return (tup_col(color.tuple + world.ambient_light.color.tuple));
+	return (color);
 }

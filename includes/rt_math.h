@@ -6,14 +6,14 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/25 20:05:03 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:39:16 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_MATH_H
 # define RT_MATH_H
 
-# define EPSILON 0.0035
+# define EPSILON 0.0005
 # define AA_RATIO 0.2
 # define M_PI 3.14159265358979323846
 

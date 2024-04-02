@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 14:34:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:22:51 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:38:02 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_unt	test_create_canvas(void)
 		}
 	}
 	err[0] += then("every pixel of c is color(0, 0, 0)", err[1] == 0, 2);
-	close_canvas(c);
+	close_canvas(&c);
 	scenario_end(err[0]);
 	return (err[0]);
 }
@@ -56,7 +56,7 @@ t_unt	test_write_pixel_to_canvas(void)
 	pixel = pixel_at(c, 2, 3);
 	err = then("pixel_at(c, 2, 3) = red",
 			is_same_tuple(pixel.tuple, red.tuple), 0);
-	close_canvas(c);
+	close_canvas(&c);
 	scenario_end(err);
 
 	return (err);

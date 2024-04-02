@@ -102,6 +102,7 @@ SRC_TEST	:=	ray.c \
 				ray_trace.c \
 				transform.c \
 				precompute.c \
+				print_scene.c \
 				print_scenario.c \
 
 # ########## #

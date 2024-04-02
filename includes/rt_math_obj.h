@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_math_obj.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 18:16:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 10:45:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef unsigned int		t_unt;
 typedef unsigned char		t_uchar;
 typedef float				t_tuple	__attribute__((ext_vector_type(4)));
+typedef t_unt				t_dim	__attribute__((ext_vector_type(2)));
 typedef struct s_inter		t_inter;
 typedef struct s_intrs		t_intrs;
 typedef struct s_mater		t_mater;

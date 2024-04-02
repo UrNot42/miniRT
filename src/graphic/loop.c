@@ -20,7 +20,7 @@ void	hook_canvas_controls(t_wraper *data)
 
 void	start_loop(t_wraper *data)
 {
-	open_canvas(&data->screen);
+	open_window(&data->screen);
 	hook_canvas_controls(data);
 	mlx_loop_hook(data->screen.ptr, render_scene, data);
 	mlx_loop(data->screen.ptr);
@@ -30,8 +30,8 @@ void	start_loop(t_wraper *data)
 int	free_loop(t_wraper *data)
 {
 	mlx_loop_end(&data->screen);
-	close_canvas((data->screen));
-	scene_free((&data->scene));
+	close_canvas(&data->screen);
+	scene_free(&data->scene);
 	data->state = CLOSING;
 	exit(EXIT_SUCCESS);
 }

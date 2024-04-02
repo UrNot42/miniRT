@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:54:43 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/30 07:36:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:42:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@
 # define PREV_LN "\033[A"
 
 /* --==--==--==--==--FUNCTIONS--==--==--==--==-- */
-void	try_ray_trace(void);
+void	ray_trace(t_scene scene_to_render);
+// TODO: NOT TO PUSH TO SCHOOL REPO
+bool	try_ray_trace(char a);
+void	print_scene(t_scene	scene); // TODO RM
 
 #endif

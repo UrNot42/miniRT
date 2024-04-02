@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 08:38:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/29 17:46:32 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:27:00 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ t_4mtrx		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_light		light(t_tuple pos, t_color intensity);
 t_obj		o_light(t_tuple pos, t_color intensity);
 void		regularize_light(t_scene *world);
+
+t_obj		o_get(t_obj_kind type);
 
 #endif

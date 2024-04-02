@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:08:33 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:56:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:35:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,23 @@ bool	open_window(t_canvas *screen)
 	{
 		mlx_destroy_display(screen->ptr);
 		free(screen->picture);
+		screen->picture = NULL;
 		return (true);
 	}
 	return (false);
 }
 
-bool	close_window(t_canvas screen)
+bool	close_window(t_canvas *screen)
 {
-	if (!screen.ptr || !screen.win)
+	if (screen->ptr && screen->picture && screen->picture->img)
+		mlx_destroy_image(screen->ptr, screen->picture->img);
+	if (screen->picture)
+		free(screen->picture);
+	if (!screen->ptr || !screen->win)
 		return (true);
-	mlx_clear_window(screen.ptr, screen.win);
-	mlx_destroy_window(screen.ptr, screen.win);
+	mlx_clear_window(screen->ptr, screen->win);
+	mlx_destroy_window(screen->ptr, screen->win);
+	screen->win = NULL;
 	return (false);
 }
 

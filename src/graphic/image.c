@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:14:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 09:09:45 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:15:30 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@
  */
 bool	create_image(t_image **picture, t_dim size, void *data_ptr)
 {
+	(*picture) = NULL;
+	if (!size.x || !size.y)
+		return (p_error(ERR_MLX_IMG), true);
 	(*picture) = malloc(sizeof(t_image));
 	if (!(*picture))
-		return (true);
+		return (p_error(ERR_MEM), true);
 	(*picture)->width = size.x;
 	(*picture)->height = size.y;
 	(*picture)->img = mlx_new_image(data_ptr,
 			(*picture)->width, (*picture)->height);
 	if (!(*picture)->img)
-		return (true);
+		return (p_error(ERR_MLX_IMG), true);
 	(*picture)->addr = mlx_get_data_addr((*picture)->img,
 			&(*picture)->bits_per_pixel, &(*picture)->line_length,
 			&(*picture)->endian);

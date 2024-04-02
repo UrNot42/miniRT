@@ -52,7 +52,7 @@ t_scene	scene_cube(t_color backdrop)
 	world = scene_init();
 	// Camera
 	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
-	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 3, -5), set_point(0, 1, 0), set_vec(0, 1, 0)));
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 3, -7), set_point(0, 1, 0), set_vec(0, 1, 0)));
 	add_light(&world, o_light(set_point(-7, 11, -4), set_col(1, 0, 0)));
 	add_light(&world, o_light(set_point(-4, 11, -4), set_col(0, 1, 0)));
 	add_light(&world, o_light(set_point(-4, 11, -7), set_col(0, 0, 1)));
@@ -228,8 +228,10 @@ t_scene	scene_cone(t_color backdrop)
 	world = scene_init();
 	// Camera
 	world.camera.camera = camera(SIZE, SIZE, M_PI / 3);
-	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, -10), set_point(0, 3, 0), set_vec(0, 1, 0)));
-	add_light(&world, o_light(set_point(-10, 10, -10), set_col(1, 1, 1)));
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 5, -13), set_point(0, 3, 0), set_vec(0, 1, 0)));
+	add_light(&world, o_light(set_point(-10, 5, -10), set_col(1, 1, 1)));
+	add_light(&world, o_light(set_point(10, 5, -10), set_col(1, 1, 1)));
+	regularize_light(&world);
 	// Floor
 	s = o_plane();
 	s.m.col = backdrop;
@@ -239,28 +241,31 @@ t_scene	scene_cone(t_color backdrop)
 	// Cone
 	s = o_cone();
 	s.m = material();
-	s.color = set_col(0.1, 0.6, 0.6);
+	s.color = set_col(1, 0.4, 0.4);
 	s.m.diffuse = 0.7;
 	s.m.specular = 0.3;
-	s.cone.maximum = -3;
-	s.cone.min_caped = true;
-	s.cone.max_caped = true;
 	set_transform(&s.cone.mtx, translation_mtrx(0, 3, 2) * scale_mtrx(0.5, 1, 0.5));
 	add_obj(&world, s);
-	s.cone.min_caped = false;
-	s.cone.max_caped = false;
 	s.color = set_col(0.4, 0.4, 1);
+	s.cone.min_caped = true;
+	s.cone.minimum = 4;
 	set_transform(&s.cone.mtx, translation_mtrx(6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
 	add_obj(&world, s);
-	s.cone.maximum = INFINITY;
+	s.cone.min_caped = false;
+	s.cone.minimum = -INFINITY;
 	s.cone.max_caped = true;
+	s.cone.maximum = -2;
+	set_transform(&s.cone.mtx, translation_mtrx(6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
+	add_obj(&world, s);
+	s.cone.max_caped = false;
+	s.cone.maximum = -2.5;
 	s.color = set_col(0.4, 1, 0.4);
 	set_transform(&s.cone.mtx, translation_mtrx(-6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
 	add_obj(&world, s);
-	s = o_sphere();
-	s.color = set_col(1, 0.4, 0.4);
-	set_transform(&s.cone.mtx, translation_mtrx(0, 1.9, 2) * scale_mtrx(2, 2, 2));
-	add_obj(&world, s);
+	// s.cone.maximum = 0;
+	// s.color = set_col(0.2, 0.6, 0.4);
+	// set_transform(&s.cone.mtx, translation_mtrx(-6, 3, 2) * scale_mtrx(0.5, 1, 0.5));
+	// add_obj(&world, s);
 	return (world);
 }
 
@@ -329,16 +334,15 @@ t_scene	scene_cooloon(t_color backdrop)
 	return (world);
 }
 
-t_scene	scene_multi_light(t_color backdrop)
+t_scene	scene_multi_light(t_dim size)
 {
 	t_scene	world;
 	t_obj	s;
 
-	(void)backdrop;
 	// Init
 	world = scene_init();
 	// Cam
-	world.camera.camera = camera(SIZE * 2, SIZE * 2, M_PI / 2);
+	world.camera.camera = camera(size.x, size.y, M_PI / 2);
 	set_transform(&world.camera.camera.mtx, view_transform(set_point(10, 10, -18), set_point(9.4, 9.4, -17), set_vec(0, 1, 0)));
 	// Ligths
 	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 0.5)));
@@ -413,28 +417,67 @@ t_scene	scene_example(t_color backdrop)
 	return (world);
 }
 
-t_scene	scene_aura(t_color backdrop)
+t_scene	scene_aura(t_dim size)
 {
 	t_scene	world;
 	t_obj	s;
 
-	(void)backdrop;
 	// Init
 	world = scene_init();
 	// Cam
-	world.camera.camera = camera(SIZE * 2, SIZE * 2, M_PI / 2);
-	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, 8), set_point(1, 5, 0), set_vec(0, 1, 0)));
+	world.camera.camera = camera(size.x, size.y, M_PI / 2);
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 4, 8), set_point(1, 4, 0), set_vec(0, 1, 0)));
 	// Ligths
 	add_light(&world, o_light(set_point(1, 5, 0), set_col(0, 0, 0.5)));
 	add_light(&world, o_light(set_point(3, 6, 0), set_col(0.5, 0, 0)));
 	add_light(&world, o_light(set_point(2, 4, 0), set_col(0, 0.5, 0)));
-	world.ambient_light.alght.color = set_col(0.02, 0.02, 0.02);
+	world.ambient_light = o_light(origin(), set_col(1, 1, 1));
+	world.ambient_light.alght.ratio = 0.2;
 	s = o_cylinder();
 	s.m = material();
 	s.m.col = set_col(1, 1, 1);
 	s.m.diffuse = 1;
 	s.m.specular = 1;
 	set_transform(&s.cylinder.mtx, translation_mtrx(1, 3, 0) * rotation_y(M_PI / 2) * rotation_z(M_PI / 2) * scale_mtrx(4, 4, 4));
+	add_obj(&world, s);
+	return (world);
+}
+
+t_scene	scene_cig(t_dim size)
+{
+	t_scene	world;
+	t_obj	s;
+
+	// Init
+	world = scene_init();
+	// Cam
+	world.camera.camera = camera(size.x, size.y, (float)((70.0 / 180.0) * M_PI));
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(0, 0, 10), set_point(0, 0, 9), set_vec(0, 1, 0)));
+	// Ligths
+	add_light(&world, o_light(set_point(0, 10, -10), set_col(1, 1, 1)));
+	world.light[0].light.ratio = 0.8;
+	world.ambient_light = o_light(origin(), set_col(1, 1, 1));
+	world.ambient_light.alght.ratio = 0.2;
+	s = o_plane();
+	s.color = set_col(125,125,125);
+	s.color.tuple /= COL_SCALE;
+	set_transform(&s.plane.mtx, translation_mtrx(0, -15, 0) * rotation_x(M_PI));
+	add_obj(&world, s);
+	s = o_cylinder();
+	s.m = material();
+	s.m.col = set_col(255, 140, 0);
+	s.color.tuple /= COL_SCALE;
+	s.cylinder.minimum = -10;
+	s.cylinder.maximum = 10;
+	s.cylinder.min_caped = true;
+	s.cylinder.max_caped = true;
+	set_transform(&s.cylinder.mtx, translation_mtrx(-0.5,-5,-33) * scale_mtrx(5, 1, 5));
+	add_obj(&world, s);
+	s.cylinder.minimum = -20;
+	s.cylinder.maximum = 20;
+	s.m.col = set_col(220, 220, 220);
+	s.color.tuple /= COL_SCALE;
+	set_transform(&s.cylinder.mtx, translation_mtrx(-0.5,25,-33) * scale_mtrx(5, 1, 5));
 	add_obj(&world, s);
 	return (world);
 }

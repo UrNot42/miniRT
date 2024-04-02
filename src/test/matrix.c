@@ -6,23 +6,23 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 10:04:53 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:58:11 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_m(t_4mtrx a, char name)
+void	print_m(t_4mtrx a, char *name)
 {
-	printf("Matrix %c:\n", name);
+	printf("Matrix %s:\n", name);
 	for (t_unt i = 0; i < 4; i++)
 	{
 		printf("[");
 		for (t_unt j = 0; j < 4; j++)
 		{
-			printf("%f", a[i][j]);
+			printf("%5f", a[i][j]);
 			if (j < 4 - 1)
-				printf(", ");
+				printf(" ");
 		}
 		printf("]\n");
 	}

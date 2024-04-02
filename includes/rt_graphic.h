@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_graphic.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:18:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 21:06:19 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:43:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RT_GRAPHIC_H
 
 # define WINDOW_NAME  "MiniRT"
+# define BASE_X 500
+# define BASE_Y 500
 
 # define HEX_RED_OFFS 16
 # define HEX_GREEN_OFFS 8
@@ -25,8 +27,6 @@
 typedef struct s_canvas	t_canvas;
 typedef struct s_wraper	t_wraper;
 typedef struct s_image	t_image;
-typedef unsigned int	t_unt;
-typedef t_unt			t_dim	__attribute__((ext_vector_type(2)));
 
 enum e_state {
 	CALCULATING,
@@ -65,14 +65,14 @@ struct	s_wraper
 
 // Functions
 t_canvas	canvas(t_unt width, t_unt height);
+bool		set_default_canvas(t_canvas	*screen, t_unt width, t_unt height);
 void		print_canvas(t_canvas screen);
 
 // Creation
 bool		init_canvas(t_canvas *screen);
-bool		open_canvas(t_canvas *screen);
-void		close_canvas(t_canvas screen);
+void		close_canvas(t_canvas *screen);
 bool		open_window(t_canvas *screen);
-bool		close_window(t_canvas screen);
+bool		close_window(t_canvas *screen);
 bool		create_image(t_image **picture, t_dim size, void *data_ptr);
 void		set_image(t_canvas screen);
 int			free_loop(t_wraper *data);

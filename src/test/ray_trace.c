@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 10:11:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:50:15 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 	printf("Done!\n");
 	print_canvas(screen);
 	usleep(50000000);
-	close_canvas(screen);
+	close_canvas(&screen);
 } */
 
 /*
@@ -85,20 +85,50 @@ void	ray_trace(t_obj s)
 	printf("Done!\n");
 	print_canvas(screen);
 	usleep(2000050);
-	close_canvas(screen);
+	close_canvas(&screen);
 } */
 
-void	ray_trace_2(void)
+void	ray_trace(t_scene scene_to_render)
 {
 	t_wraper	data;
 
 	data.state = CALCULATING;
-	data.scene = scene_multi_light(set_col(0.9, 0.8, 0.7));
+	data.scene = scene_to_render;
 	data.screen = canvas(1, 1);
-	start_loop(&data);
+	if (data.screen.defined)
+		start_loop(&data);
 }
 
-void	try_ray_trace(void)
+bool	try_ray_trace(char a)
 {
-	ray_trace_2();
+	t_scene	world;
+	t_color	color;
+
+	color = set_col(0.9, 0.8, 0.7);
+	world.light = NULL;
+	if (a == 'e' || a == '0')
+		world = scene_example(color);
+	else if (a == '0' || a == '1')
+		world = scene_multi_light((t_dim){500, 500});
+	else if (a == 't' || a == '2')
+		world = scene_studio(color);
+	else if (a == 'a' || a == '3')
+		world = scene_aura((t_dim){500, 500});
+	else if (a == 'c' || a == '4')
+		world = scene_cube(color);
+	else if (a == 'n' || a == '5')
+		world = scene_cone(color);
+	else if (a == 'l' || a == '6')
+		world = scene_cooloon(color);
+	else if (a == 'y' || a == '7')
+		world = scene_cylinder(color);
+	else if (a == 'h' || a == '8')
+		world = scene_hex(color);
+	else if (a == 's' || a == '9')
+		world = scene_sphere(color);
+	else if (a == 'i')
+		world = scene_cig((t_dim){500, 500});
+	if (world.light)
+		return (print_scene(world), ray_trace(world), true);
+	return (false);
 }

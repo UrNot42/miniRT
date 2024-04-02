@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:16:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:48:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 20:41:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,39 +81,3 @@ t_ray	ray_for_pixel(t_cam view, t_unt	px, t_unt py)
 	r = ray(r_origin, vec_norm(pixel - r_origin));
 	return (r);
 }
-
-/**
- * @brief Creates a new canvas to render images to
- *
- * @param camera
- * @param world
- * @return a pointer to the newly allocated canvas
- */
-t_canvas	render(t_cam camera, t_scene world)
-{
-	t_unt		x;
-	t_unt		y;
-	t_ray		r;
-	t_canvas	image;
-
-	y = 0;
-	image = canvas(camera.hz_size, camera.v_size);
-	while (y < camera.v_size - 1)
-	{
-		x = 0;
-		while (x < camera.hz_size - 1)
-		{
-			r = ray_for_pixel(camera, x, y);
-			write_pixel(image.picture, x, y, color_at(world, r));
-			x++;
-		}
-		y++;
-	}
-	return (image);
-}
-
-// 360 = 2 * PI
-// 180 = PI
-// 90 = PI / 2
-// 60 = PI / 3
-// (fov / 180) * PI

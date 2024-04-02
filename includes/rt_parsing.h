@@ -3,18 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   rt_parsing.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 14:51:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 20:20:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_PARSING_H
 # define RT_PARSING_H
 
-typedef unsigned int	t_unt;
-typedef unsigned char	t_uchar;
+typedef struct s_parscene	t_parscene;
+
+struct s_parscene
+{
+	t_obj	camera;
+	t_obj	ambient_light;
+	t_obj	*objects;
+	t_size	obj_size;
+	t_obj	*light;
+	t_size	li_size;
+};
 
 t_unt	parse_line(char *line, t_scene *scene);
 bool	parse_pos(t_tuple *pos, char *line, t_unt *idx);
@@ -27,7 +36,6 @@ bool	set_float(float *num, char *line, t_unt *idx);
 bool	set_int(int *num, char *line, t_unt *idx);
 bool	parse_obj(t_scene *scene, int id);
 
-void	scene_translate_matrix(t_scene	world);
 bool	scene_fill(t_scene *scene, int fd);
 t_scene	scene_init(void);
 bool	scene_free(t_scene *scene);

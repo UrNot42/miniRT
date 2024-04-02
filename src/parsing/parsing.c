@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/30 07:39:49 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 21:53:54 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_obj	*get_obj(t_scene *scene, char id)
 	if ((id == OBJ_CYLINDER || id == OBJ_SPHERE || id == OBJ_PLANE
 			|| id == OBJ_CUBE))
 	{
-		add_obj(scene, (t_obj){.kind = OBJ_UNDEF});
+		add_obj(scene, o_get(id));
 		return (&scene->objects[scene->obj_size.use - 1]);
 	}
 	else if (id == OBJ_CAMERA)
@@ -74,14 +74,14 @@ bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 	if ((obj->kind == OBJ_AMB_LIGHT || obj->kind == OBJ_SRC_LIGHT)
 		&& set_f_wbound(&obj->light.ratio, (t_bound){true, 0, 1}, line, pos))
 		return (p_error(ERR_RATIO), true);
-	if ((obj->kind == OBJ_SPHERE || obj->kind == OBJ_CYLINDER)
-		&& set_float(&obj->sphere.diameter, line, pos))
+	if (obj->kind == OBJ_SPHERE && set_float(&obj->sphere.diameter, line, pos))
 		return (p_error(ERR_DIAMETER), true);
 	if (obj->kind == OBJ_CYLINDER
-		&& set_float(&obj->cylinder.height, line, pos))
+		&& (set_float(&obj->cylinder.width, line, pos)
+			|| set_float(&obj->cylinder.height, line, pos)))
 		return (p_error(ERR_HEIGHT), true);
 	if (obj->kind == OBJ_CAMERA
-		&& set_int((int *)&obj->camera.fov, line, pos))
+		&& set_float(&obj->camera.fov, line, pos))
 		return (p_error(ERR_FOV), true);
 	if (obj->kind != OBJ_CAMERA && parse_color(&obj->color, line, pos))
 		return (p_error(ERR_COLOR), true);
@@ -101,8 +101,6 @@ t_unt	parse_line(char *line, t_scene *scene)
 	identifier = check_for_identifier(&line[pos], &pos);
 	if (!identifier)
 		return (p_error(ERR_IDENTIFIER), 2);
-	if (parse_obj(scene, identifier))
-		return (4);
 	tmp = get_obj(scene, identifier);
 	tmp->kind = identifier;
 	if (parse_object(tmp, line, &pos))
