@@ -3,14 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:07:30 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/02 10:18:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_color	light_specular(t_lgting l, t_tuple lightv)
+{
+	t_color	specular;
+	t_tuple	reflectv;
+	float	reflect_dot_eye;
+
+	reflectv = reflect(-lightv, l.normalv);
+		reflect_dot_eye = vec_dot(reflectv, l.eyev);
+	if (reflect_dot_eye > 0)
+	{
+		specular.tuple = l.light.color.tuple
+			* l.mater.specular
+			* powf(reflect_dot_eye, l.mater.shininess);
+	}
+	else
+		specular = set_col(0, 0, 0);
+	return (specular);
+}
+
+static t_color	light_diffuse(t_lgting l, t_color effective_color)
+{
+	t_color	total;
+	t_color	diffuse;
+	t_tuple	lightv;
+	float	light_dot_normal;
+
+	lightv = vec_norm(l.light.pos - l.point);
+	light_dot_normal = vec_dot(lightv, l.normalv);
+	if (light_dot_normal >= 0)
+	{
+		diffuse.tuple = effective_color.tuple
+			* l.mater.diffuse
+			* light_dot_normal;
+	}
+	else
+	{
+		diffuse = set_col(0, 0, 0);
+	}
+	total = light_specular(l, lightv);
+	total.tuple += diffuse.tuple;
+	return (total);
+}
 
 /**
  * @brief ### Main light algorithm
@@ -33,56 +76,20 @@
  * @param eye_vector expressing where the eye gets the light from
  * @param normal_vector relative to the shape where does the norm expresses
  * @return the color of the pixel
- */
+*/
 t_color	lighting(t_lgting l)
 {
-	t_color	effective_color;
-	t_tuple	lightv;
-	t_tuple	reflectv;
-	float	reflect_dot_eye;
-	float	light_dot_normal;
-	float	factor;
+	t_color	total;
 	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
+	t_color	effective_color;
 
-		// combine the surface color with the light's color/intensity
 	effective_color.tuple = l.mater.col.tuple * l.light.color.tuple;
-		// find the direction to the light source
-		// compute the ambient contribution
 	ambient.tuple = effective_color.tuple * l.mater.ambient;
 	if (l.in_shadow)
-		return (tup_col(ambient.tuple));
-	lightv = vec_norm(l.light.pos - l.point);
-		// light_dot_normal represents the cosine of the angle between the
-		// light vector and the normal vector. A negative number means the
-		// light is on the other side of the surface.
-	light_dot_normal = vec_dot(lightv, l.normalv);
-	if (light_dot_normal >= 0)
-	{
-
-			// compute the diffuse contribution
-		diffuse.tuple = effective_color.tuple * l.mater.diffuse * light_dot_normal;
-			// reflect_dot_eye represents the cosine of the angle between the
-			// reflection vector and the eye vector. A negative number means the
-			// light reflects away from the eye.
-		reflectv = reflect(-lightv, l.normalv);
-		reflect_dot_eye = vec_dot(reflectv, l.eyev);
-		if (reflect_dot_eye > 0)
-		{
-				// compute the specular contribution
-			factor = pow(reflect_dot_eye, l.mater.shininess);
-			specular.tuple = l.light.color.tuple * l.mater.specular * factor;
- 		}
-		else
-			specular = set_col(0, 0, 0);
-	}
-	else
-	{
-		diffuse = set_col(0, 0, 0);
- 		specular = set_col(0, 0, 0);
-	}
-	return (tup_col(ambient.tuple + diffuse.tuple + specular.tuple));
+		return (ambient);
+	total = light_diffuse(l, effective_color);
+	total.tuple += ambient.tuple;
+	return (total);
 }
 
 /**
@@ -113,4 +120,3 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	}
 	return (tup_col(color.tuple + world.ambient_light.color.tuple));
 }
-

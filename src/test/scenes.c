@@ -423,7 +423,7 @@ t_scene	scene_aura(t_color backdrop)
 	world = scene_init();
 	// Cam
 	world.camera.camera = camera(SIZE * 2, SIZE * 2, M_PI / 2);
-	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, -10), set_point(1, 5, 0), set_vec(0, 1, 0)));
+	set_transform(&world.camera.camera.mtx, view_transform(set_point(1, 5, 8), set_point(1, 5, 0), set_vec(0, 1, 0)));
 	// Ligths
 	add_light(&world, o_light(set_point(1, 5, 0), set_col(0, 0, 0.5)));
 	add_light(&world, o_light(set_point(3, 6, 0), set_col(0.5, 0, 0)));
@@ -434,7 +434,6 @@ t_scene	scene_aura(t_color backdrop)
 	s.m.col = set_col(1, 1, 1);
 	s.m.diffuse = 1;
 	s.m.specular = 1;
-	s.cylinder.minimum = -5;
 	set_transform(&s.cylinder.mtx, translation_mtrx(1, 3, 0) * rotation_y(M_PI / 2) * rotation_z(M_PI / 2) * scale_mtrx(4, 4, 4));
 	add_obj(&world, s);
 	return (world);
