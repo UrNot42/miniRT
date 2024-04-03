@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 21:40:37 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 21:46:55 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:44:12 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	print_base(t_o_base base)
 {
 	printf("material:\n");
 	printf("defined: %s\n", base.defined ? "yes" : "no");
-	printf("ambient: %f\n", base.m.ambient);
 	printf("diffuse: %f\n", base.m.diffuse);
 	printf("specular: %f\n", base.m.specular);
 	printf("shininess: %f\n", base.m.shininess);

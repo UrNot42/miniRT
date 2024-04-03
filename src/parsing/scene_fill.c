@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 06:18:29 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 22:12:43 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:24:14 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_tuple	get_scale(t_obj *obj)
 static void	translate_matrix(t_obj *obj, t_size size)
 {
 	t_unt	i;
-	t_tuple	normal;
+	t_4mtrx	orientation;
 	t_tuple	scale;
 
 	i = 0;
@@ -42,17 +42,16 @@ static void	translate_matrix(t_obj *obj, t_size size)
 		if (obj[i].kind == OBJ_PLANE
 			|| obj[i].kind == OBJ_CYLINDER || obj[i].kind == OBJ_CUBE
 			|| obj[i].kind == OBJ_CONE)
-			normal = obj[i].plane.normal;
+			orientation = orientation_matrix(obj[i].plane.normal);
 		else
-			normal = set_vec(0, 1, 0);
+			orientation = get_id4mtrx();
 		scale = get_scale(&obj[i]);
 		if (obj[i].kind == OBJ_SPHERE || obj[i].kind == OBJ_PLANE
 			|| obj[i].kind == OBJ_CYLINDER || obj[i].kind == OBJ_CUBE
 			|| obj[i].kind == OBJ_CONE)
 		{
 			set_transform(&obj[i].sphere.mtx,
-				translation_mtrx(obj[i].pos.x, obj[i].pos.y, obj[i].pos.z)
-				* scale_mtrx(scale.x, scale.y, scale.z));
+				tup_translate_m(obj[i].pos) * orientation * tup_scale_m(scale));
 		}
 		i++;
 	}
@@ -122,7 +121,6 @@ void	scene_translate(t_scene *world)
 {
 	translate_points(world);
 	set_camera(&world->camera.camera);
-	// world->ambient_light.alght.color.tuple *= world->ambient_light.alght.ratio;
 	translate_special_obj(world);
 	translate_matrix(world->objects, world->obj_size);
 }

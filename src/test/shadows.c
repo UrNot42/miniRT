@@ -32,7 +32,8 @@ t_unt	test_shadow_light_surface(void)
 	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	in_shadow = true;
 	when("result ← lighting(m, light, position, eyev, normalv, in_shadow)", 0);
-	result = lighting((t_lgting){material(), light, origin(), eyev, normalv, in_shadow});
+	result = lighting((t_lgting){material(), light, set_vec(0.1, 0.1, 0.1),
+			origin(), eyev, normalv, in_shadow});
 	err = then("result = color(0.1, 0.1, 0.1)", is_same_col(result, set_col(0.1, 0.1, 0.1)), 0);
 	scenario_end(err);
 	return (err);
@@ -105,6 +106,8 @@ t_unt	test_shade_hit_inter_shadowed(void)
 	when("comps ← prepare_computations(i, r)", 0);
 	comps = prepare_computations(i, r);
 	when("c ← shade_hit(w, comps)", 1);
+	w.ambient_light.color = set_col(1, 1, 1);
+	w.ambient_light.alght.ratio = 0.1;
 	c = shade_hit(w, comps);
 	err = then("c = color(0.1, 0.1, 0.1)", is_same_col(c, set_col(0.1, 0.1, 0.1)), 0);
 	scenario_end(err);

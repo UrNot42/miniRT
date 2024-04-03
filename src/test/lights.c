@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:52:18 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:42:17 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:44:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ t_unt	test_material(void)
 	m = material();
 	err = then("m.color = color(1, 1, 1)",
 			is_same_col(m.col, set_col(1, 1, 1)), 0);
-	err += then("m.ambient = 0.1", f_eq(m.ambient, 0.1), 1);
 	err += then("m.diffuse = 0.9", f_eq(m.diffuse, 0.9), 2);
 	err += then("m.specular = 0.9", f_eq(m.specular, 0.9), 3);
 	err += then("m.shininess = 200.0", f_eq(m.shininess, 200.0), 4);
@@ -109,7 +108,6 @@ t_unt	test_default_mater(void)
 	given("m ← material()", 1);
 	m = material();
 	given("m.ambient ← 1", 2);
-	m.ambient = 1;
 	when("s.material ← m", 0);
 	s.m = m;
 	err[1] = then("s.material = m", is_same_mat(s.m, m), 0);
@@ -139,7 +137,9 @@ t_unt	test_light_eye_between(void)
 	given("light ← point_light(point(0, 0, -10), color(1, 1, 1))", 2);
 	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
-	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
+	result = lighting((t_lgting){m, light,
+			set_vec(0.1, 0.1, 0.1),
+			p, eyev, normalv, false});
 	err = then("result = color(1.9, 1.9, 1.9)",
 			is_same_col(result, set_col(1.9, 1.9, 1.9)), 0);
 	scenario_end(err);
@@ -168,7 +168,9 @@ t_unt	test_light_eye_between_ofst_45(void)
 	given("light ← point_light(point(0, 0, -10), color(1, 1, 1))", 2);
 	light = o_light(set_point(0, 0, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
-	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
+	result = lighting((t_lgting){m, light,
+			set_vec(0.1, 0.1, 0.1),
+			p, eyev, normalv, false});
 	err = then("result = color(1.0, 1.0, 1.0)",
 			is_same_col(result, set_col(1, 1, 1)), 0);
 	scenario_end(err);
@@ -197,7 +199,9 @@ t_unt	test_light_eye_opposite_ofst_45(void)
 	given("light ← point_light(point(0, 10, -10), color(1, 1, 1))", 2);
 	light = o_light(set_point(0, 10, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
-	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
+	result = lighting((t_lgting){m, light,
+			set_vec(0.1, 0.1, 0.1),
+			p, eyev, normalv, false});
 	err = then("result = color(0.7364, 0.7364, 0.7364)",
 			is_same_col(result, set_col(0.7364, 0.7364, 0.7364)), 0);
 	scenario_end(err);
@@ -226,7 +230,9 @@ t_unt	test_light_eye_in_path(void)
 	given("light ← point_light(point(0, 10, -10), color(1, 1, 1))", 2);
 	light = o_light(set_point(0, 10, -10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
-	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
+	result = lighting((t_lgting){m, light,
+			set_vec(0.1, 0.1, 0.1),
+			p, eyev, normalv, false});
 	err = then("result = color(1.6364, 1.6364, 1.6364)",
 			is_same_col(result, set_col(1.6364, 1.6364, 1.6364)), 0);
 	scenario_end(err);
@@ -255,7 +261,9 @@ t_unt	test_light_behind_surface(void)
 	given("light ← point_light(point(0, 0, 10), color(1, 1, 1))", 2);
 	light = o_light(set_point(0, 0, 10), set_col(1, 1, 1));
 	when("result ← lighting(m, light, position, eyev, normalv)", 0);
-	result = lighting((t_lgting){m, light, p, eyev, normalv, false});
+	result = lighting((t_lgting){m, light,
+			set_vec(0.1, 0.1, 0.1),
+			p, eyev, normalv, false});
 	err = then("result = color(0.1, 0.1, 0.1)",
 			is_same_col(result, set_col(0.1, 0.1, 0.1)), 0);
 	scenario_end(err);

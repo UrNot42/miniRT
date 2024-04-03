@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:06:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 11:12:52 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:43:55 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_scene	default_world(void)
 	light = o_light(set_point(-10, 10, -10), set_col(1, 1, 1));
 	if (add_light(&world, light))
 		return ((t_scene){0});
+	world.ambient_light.color = set_col(1, 1, 1);
+	world.ambient_light.alght.ratio = 0.1;
 	s1 = o_sphere();
 	s1.m.col = set_col(0.8, 1.0, 0.6);
 	s1.m.diffuse = 0.7;

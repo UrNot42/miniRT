@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:36:32 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 09:08:49 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:24:06 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,19 @@ t_4mtrx	scale_mtrx(float x, float y, float z)
 	return (translate);
 }
 
-t_4mtrx	shearing(t_shear rel)
-{
-	t_4mtrx	translate;
-
-	translate = get_id4mtrx();
-	translate[0][1] = rel[0];
-	translate[0][2] = rel[1];
-	translate[1][0] = rel[2];
-	translate[1][2] = rel[3];
-	translate[2][0] = rel[4];
-	translate[2][1] = rel[5];
-	return (translate);
-}
-
 void	set_transform(t_o_mtrx *mtrx, t_4mtrx m)
 {
 	mtrx->transform = m;
 	mtrx->inverse = inverse_4mtrx(m);
 	mtrx->trans_inv = transpose(mtrx->inverse);
+}
+
+t_4mtrx	tup_scale_m(t_tuple pos)
+{
+	return (scale_mtrx(pos.x, pos.y, pos.z));
+}
+
+t_4mtrx	tup_translate_m(t_tuple pos)
+{
+	return (translation_mtrx(pos.x, pos.y, pos.z));
 }

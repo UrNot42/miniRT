@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 22:15:10 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:48:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_color	lighting(t_lgting l)
 
 	effective_color.tuple = l.mater.col.tuple
 		* l.light.color.tuple * l.light.light.ratio;
-	ambient.tuple = effective_color.tuple * l.mater.ambient;
+	ambient.tuple = effective_color.tuple * l.ambient;
 	if (l.in_shadow)
 		return (ambient);
 	total = light_diffuse(l, effective_color);
@@ -107,15 +107,18 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	t_color	color;
 	t_color	tmp;
 
-	color.tuple = world.ambient_light.color.tuple
-		* world.ambient_light.alght.ratio;
+	color = set_col(0, 0, 0);
+	// world.ambient_light.color.tuple * world.ambient_light.alght.ratio
 	if (!world.li_size.use)
 		return (color);
 	i = 0;
 	while (i < world.li_size.use)
 	{
 		tmp = lighting((t_lgting){computes.obj->m, world.light[i],
-				computes.point, computes.eyev, computes.normalv,
+				world.ambient_light.color.tuple
+				* world.ambient_light.alght.ratio,
+				computes.point, computes.eyev,
+				computes.normalv,
 				is_shadowed(world, computes.over_point, world.light[i])});
 		color.tuple += tmp.tuple;
 		i++;

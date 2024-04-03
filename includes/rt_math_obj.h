@@ -6,14 +6,14 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:08:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 10:45:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:24:50 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_MATH_OBJ_H
 # define RT_MATH_OBJ_H
 
-# define INTER_MAX 200
+# define INTER_MAX 250
 
 typedef unsigned int		t_unt;
 typedef unsigned char		t_uchar;
@@ -66,7 +66,6 @@ struct s_intrs
 struct s_mater
 {
 	t_color	col;
-	float	ambient;
 	float	diffuse;
 	float	specular;
 	float	shininess;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/01 19:00:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/03 09:54:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,16 +172,15 @@ t_unt	test_color_behind(void)
 	given("outer ← the first object in w", 1);
 	outer = &w.objects[0];
 	given("outer.material.ambient ← 1", 2);
-	outer->m.ambient = 1;
 	given("inner ← the second object in w", 3);
 	inner = &w.objects[1];
 	given("inner.material.ambient ← 1", 4);
-	inner->m.ambient = 1;
 	given("r ← ray(point(0, 0, 0.75), vector(0, 0, -1))", 5);
 	r = ray(set_point(0, 0, 0.75), set_vec(0, 0, -1));
 	when("c ← color_at(w, r)", 0);
 	c = color_at(w, r);
-	err = then("c = inner.material.color", is_same_tuple(c.tuple, inner->m.col.tuple), 0);
+	err = then("c = inner.material.color", is_same_tuple(c.tuple,
+				inner->m.col.tuple * w.ambient_light.alght.ratio), 0);
 	scenario_end(err);
 	scene_free(&w);
 	return (err);

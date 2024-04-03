@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:42:08 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 20:27:02 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:24:59 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_mater	material(void)
 	t_mater	m;
 
 	m.col = set_col(1, 1, 1);
-	m.ambient = 0.1;
 	m.diffuse = 0.9;
 	m.specular = 0.9;
 	m.shininess = 200.0;

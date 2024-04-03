@@ -17,6 +17,7 @@ struct s_lgting
 {
 	t_mater	mater;
 	t_obj	light;
+	t_tuple	ambient;
 	t_tuple	point;
 	t_tuple	eyev;
 	t_tuple	normalv;

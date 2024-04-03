@@ -20,7 +20,7 @@ t_plane	plane(void)
 	plane.def = true;
 	plane.pos = origin();
 	plane.m = material();
-	plane.m.specular = 0;
+	plane.m.specular = 1;
 	set_transform(&plane.mtx, get_id4mtrx());
 	return (plane);
 }

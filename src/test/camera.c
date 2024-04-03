@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 15:37:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:53:20 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,9 @@ t_unt	test_cam_rendering(void)
 	set_transform(&c.mtx, view_transform(from, to, up));
 	when("image ← render(c, w)", 0);
 	image = render(c, w);
-	err = then("pixel_at(image, 50, 50) = color(0.38066, 0.47583, 0.2855)",
+	err = then("pixel_at(image, 50, 50) = color(0.380392, 0.474510, 0.282353)",
 			is_same_col(pixel_at(image, 5, 5),
-				set_col(0.38066, 0.47583, 0.2855)), 0);
+				set_col(0.380392, 0.474510, 0.282353)), 0);
 	close_canvas(&image);
 	scenario_end(err);
 	scene_free(&w);

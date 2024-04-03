@@ -345,25 +345,28 @@ t_scene	scene_multi_light(t_dim size)
 	world.camera.camera = camera(size.x, size.y, M_PI / 2);
 	set_transform(&world.camera.camera.mtx, view_transform(set_point(10, 10, -18), set_point(9.4, 9.4, -17), set_vec(0, 1, 0)));
 	// Ligths
-	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 0.5)));
-	add_light(&world, o_light(set_point(5, 5, 0), set_col(0.5, 0, 0)));
-	add_light(&world, o_light(set_point(5, 0, 5), set_col(0, 0.5, 0)));
-	world.ambient_light.alght.color = set_col(0.02, 0.02, 0.02);
+	add_light(&world, o_light(set_point(-5, 5, 0), set_col(0, 0, 1)));
+	world.light[0].light.ratio = 0.5;
+	add_light(&world, o_light(set_point(5, 5, 0), set_col(1, 0, 0)));
+	world.light[1].light.ratio = 0.5;
+	add_light(&world, o_light(set_point(5, 0, 5), set_col(0, 1, 0)));
+	world.light[2].light.ratio = 0.5;
+	world.ambient_light.alght.color = set_col(1, 1, 1);
+	world.ambient_light.alght.ratio = 0.2;
 	// Floor
 	s = o_plane();
-	s.m.specular = 1;
-	s.color = set_col(0.5882, 0.5882, 0.5882);
+	s.color = set_col(150.0 / COL_SCALE, 150.0 / COL_SCALE, 150.0 / COL_SCALE);
 	set_transform(&s.sphere.mtx, translation_mtrx(0, -2, 0));
 	add_obj(&world, s);
-	s.color = set_col(0.5882, 0.196, 0.39);
+	s.color = set_col(150.0 / COL_SCALE, 50.0 / COL_SCALE, 100.0 / COL_SCALE);
 	set_transform(&s.sphere.mtx, translation_mtrx(-60, -60, 100) * rotation_x(M_PI / 2));
 	add_obj(&world, s);
 	// Spheres
 	s = o_sphere();
 	s.m = material();
 	s.m.col = set_col(1, 1, 1);
-	s.m.diffuse = 1;
-	s.m.specular = 1;
+	// s.m.diffuse = 1;
+	// s.m.specular = 1;
 	set_transform(&s.sphere.mtx, translation_mtrx(10, 0, 0) * scale_mtrx(2, 2, 2));
 	add_obj(&world, s);
 	set_transform(&s.sphere.mtx, translation_mtrx(-4, 0,-10) * scale_mtrx(2, 2, 2));

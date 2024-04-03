@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:54:53 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 21:53:54 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:24:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ cb	Pos{0,1.25,-1.1}	Norm[0,1,0.4]			size {x y z}	Col(142, 36, 45) // TODO ??
 */
 bool	parse_object(t_obj *obj, char *line, t_unt *pos)
 {
+	printf("parsing object %d\n", obj->kind);
 	if (!line[*pos])
 		return (p_error(ERR_LINE), true);
 	if (obj->kind != OBJ_AMB_LIGHT && parse_pos(&obj->pos, line, pos))
@@ -95,6 +96,7 @@ t_unt	parse_line(char *line, t_scene *scene)
 	t_obj		*tmp;
 
 	pos = 0;
+	printf("line:\n %s", line);
 	ft_skip_spaces(line, &pos);
 	if (!line[pos])
 		return (1);

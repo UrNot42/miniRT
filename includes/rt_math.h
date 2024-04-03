@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 10:39:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:23:57 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,12 @@ float	cofactor_4mtrx(t_4mtrx a, t_unt i, t_unt j);
 // Transform
 t_4mtrx	translation_mtrx(float x, float y, float z);
 t_4mtrx	scale_mtrx(float x, float y, float z);
+t_4mtrx	tup_scale_m(t_tuple pos);
+t_4mtrx	tup_translate_m(t_tuple pos);
 t_4mtrx	shearing(t_shear rel);
 t_4mtrx	rotation_x(float r);
 t_4mtrx	rotation_y(float r);
 t_4mtrx	rotation_z(float r);
+t_4mtrx	orientation_matrix(t_tuple normalv);
 
 #endif
