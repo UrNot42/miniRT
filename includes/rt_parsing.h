@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:56:40 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 20:20:29 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:39:26 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ bool	set_f_wbound(float *num, t_bound boundary,
 			char *line, t_unt *idx);
 bool	set_float(float *num, char *line, t_unt *idx);
 bool	set_int(int *num, char *line, t_unt *idx);
-bool	parse_obj(t_scene *scene, int id);
 
+// Scene
 bool	scene_fill(t_scene *scene, int fd);
 t_scene	scene_init(void);
 bool	scene_free(t_scene *scene);
+
+// Translate
+void	translate_points(t_scene *world);
+void	translate_set_camera(t_cam *cam);
+void	translate_matrix(t_obj *obj, t_size size);
+void	translate_special_obj(t_scene *world);
 
 bool	read_file(char *file, t_scene *scene);
 

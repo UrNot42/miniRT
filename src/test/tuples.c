@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:29:22 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 16:22:35 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ t_unt	test_point_vec(void)
 	given("p ← point(4, -4, 3)", 0);
 	p = set_point(4, -4, 3);
 	err[0] = then("p = tuple(4, -4, 3, 1)",
-			is_same_tuple(p, (t_tuple){4, -4, 3, 1}), 0);
+			tup_eq(p, (t_tuple){4, -4, 3, 1}), 0);
 	scenario_end(err[0]);
 	scenario_start("vector() creates tuples with w=0");
 	given("v ← vector(4, -4, 3)", 0);
 	v = set_vec(4, -4, 3);
 	err[1] = then("v = tuple(4, -4, 3, 0)",
-			is_same_tuple(v, (t_tuple){4, -4, 3, 0}), 0);
+			tup_eq(v, (t_tuple){4, -4, 3, 0}), 0);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }
@@ -63,7 +63,7 @@ t_unt	test_tuple_add(void)
 	a1 = set_tuple(3, -2, 5, 1);
 	a2 = set_tuple(-2, 3, 1, 0);
 	err = then("a1 + a2 = tuple(1, 1, 6, 1)",
-			is_same_tuple(a1 + a2, (t_tuple){1, 1, 6, 1}), 0);
+			tup_eq(a1 + a2, (t_tuple){1, 1, 6, 1}), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -80,7 +80,7 @@ t_unt	test_sub_pts(void)
 	p1 = set_point(3, 2, 1);
 	p2 = set_point(5, 6, 7);
 	err = then("p1 - p2 = vector(-2, -4, -6)",
-			is_same_tuple(p1 - p2, set_vec(-2, -4, -6)), 0);
+			tup_eq(p1 - p2, set_vec(-2, -4, -6)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -101,7 +101,7 @@ t_unt	test_sub_pt_vec(void)
 	result = p - v;
 	expected = set_point(-2, -4, -6);
 	err = then("p - v = point(-2, -4, -6)",
-			is_same_tuple(result, expected), 0);
+			tup_eq(result, expected), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -122,7 +122,7 @@ t_unt	test_sub_vects(void)
 	result = v1 - v2;
 	expected = set_vec(-2, -4, -6);
 	err = then("v1 - v2 = vector(-2, -4, -6)",
-			is_same_tuple(result, expected), 0);
+			tup_eq(result, expected), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -143,7 +143,7 @@ t_unt	test_sub_zero_vec(void)
 	result = zero - v;
 	expected = set_vec(-1, 2, -3);
 	err = then("zero - v = vector(-1, 2, -3)",
-			is_same_tuple(result, expected), 0);
+			tup_eq(result, expected), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -161,7 +161,7 @@ t_unt	test_neg_tuple(void)
 	expected = set_tuple(-1, 2, -3, 4);
 	result = -a;
 	err = then("-a = tuple(-1, 2, -3, 4)",
-			is_same_tuple(result, expected), 0);
+			tup_eq(result, expected), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -177,14 +177,14 @@ t_unt	test_multiply_tuple(void)
 	a = set_tuple(1, -2, 3, -4);
 	result = a * 3.5;
 	err[0] = then("a * 3.5 = tuple(3.5, -7, 10.5, -14)",
-			is_same_tuple(result, (t_tuple){3.5, -7, 10.5, -14}), 0);
+			tup_eq(result, (t_tuple){3.5, -7, 10.5, -14}), 0);
 	scenario_end(err[0]);
 	scenario_start("Multiplying a tuple by a fraction");
 	given("a ← tuple(1, -2, 3, -4)", 0);
 	a = set_tuple(1, -2, 3, -4);
 	result = a * 0.5;
 	err[1] = then("a * 0.5 = tuple(0.5, -1, 1.5, -2)",
-			is_same_tuple(result, (t_tuple){0.5, -1, 1.5, -2}), 0);
+			tup_eq(result, (t_tuple){0.5, -1, 1.5, -2}), 0);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }
@@ -200,7 +200,7 @@ t_unt	test_divide_tuple(void)
 	a = set_tuple(1, -2, 3, -4);
 	result = a / 2;
 	err = then("a / 2 = tuple(0.5, -1, 1.5, -2)",
-			is_same_tuple(result, (t_tuple){0.5, -1, 1.5, -2}), 0);
+			tup_eq(result, (t_tuple){0.5, -1, 1.5, -2}), 0);
 	scenario_end(err);
 	return (err);
 }

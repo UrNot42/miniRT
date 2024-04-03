@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:16:11 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 20:41:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:32:24 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ t_4mtrx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	forward = vec_norm(to - from);
 	upn = vec_norm(up);
 	left = vec_cross(forward, upn);
+	if (tup_eq(left, set_vec(0, 0, 0)))
+	{
+		left = vec_cross(forward, set_vec(0, 0, 1));
+		if (tup_eq(left, set_vec(0, 0, 0)))
+			left = vec_cross(forward, set_vec(1, 0, 0));
+	}
 	true_up = vec_cross(left, forward);
 	orientation = set_4mtrx((t_i4mtr){left.x, left.y, left.z, 0,
 			true_up.x, true_up.y, true_up.z, 0,

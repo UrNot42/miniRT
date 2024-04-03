@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:13 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 20:50:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:56:40 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,6 @@ bool	try_ray_trace(char a)
 	else if (a == 'i')
 		world = scene_cig((t_dim){500, 500});
 	if (world.light)
-		return (print_scene(world), ray_trace(world), true);
+		return (ray_trace(world), true);
 	return (false);
 }

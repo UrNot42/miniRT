@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:26:49 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:43:15 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_unt	test_world_default(void)
 	set_transform(&s2.sphere.mtx, scale_mtrx(0.5, 0.5, 0.5));
 	w = default_world();
 	when("w ← default_world()", 0);
-	err = then("w.light = light", is_same_tuple(w.light[0].pos,
-				light.pos) && is_same_tuple(w.light[0].m.col.tuple,
+	err = then("w.light = light", tup_eq(w.light[0].pos,
+				light.pos) && tup_eq(w.light[0].m.col.tuple,
 				light.m.col.tuple), 0);
 	err += then("w contains s1", is_same_col(w.objects[0].m.col, s1.m.col), 1);
 	err += then("w contains s2", matr_4_eq(w.objects[1].sphere.transform, s2.sphere.transform), 2);

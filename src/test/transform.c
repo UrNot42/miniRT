@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:50:39 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/11 18:07:42 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_unt	test_translation_multiplication(void)
 	given("p ← point(-3, 4, 5)", 1);
 	p = set_point(-3, 4, 5);
 	err = then("transform * p = point(2, 1, 7)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(2, 1, 7)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(2, 1, 7)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -43,7 +43,7 @@ t_unt	test_translation_inverse(void)
 	given("p ← point(-3, 4, 5)", 2);
 	p = set_point(-3, 4, 5);
 	err = then("inv * p = point(-8, 7, 3)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(-8, 7, 3)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(-8, 7, 3)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -60,7 +60,7 @@ t_unt	test_translation_vector(void)
 	given("v ← vector(-3, 4, 5)", 1);
 	v = set_vec(-3, 4, 5);
 	err = then("transform * v = v",
-			is_same_tuple(tup_mtrx(transform, v), v), 0);
+			tup_eq(tup_mtrx(transform, v), v), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -77,7 +77,7 @@ t_unt	test_scaling_matrix_point(void)
 	given("p ← point(-4, 6, 8)", 1);
 	p = set_point(-4, 6, 8);
 	err = then("transform * p = point(-8, 18, 32)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(-8, 18, 32)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(-8, 18, 32)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -94,7 +94,7 @@ t_unt	test_scaling_matrix_vect(void)
 	given("v ← vector(-4, 6, 8)", 1);
 	v = set_vec(-4, 6, 8);
 	err = then("transform * v = vector(-8, 18, 32)",
-			is_same_tuple(tup_mtrx(transform, v), set_vec(-8, 18, 32)), 0);
+			tup_eq(tup_mtrx(transform, v), set_vec(-8, 18, 32)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -113,7 +113,7 @@ t_unt	test_scaling_matrix_inv_vect(void)
 	given("v ← vector(-4, 6, 8)", 2);
 	v = set_vec(-4, 6, 8);
 	err = then("inv * v = vector(-2, 2, 2)",
-			is_same_tuple(tup_mtrx(transform, v), set_vec(-2, 2, 2)), 0);
+			tup_eq(tup_mtrx(transform, v), set_vec(-2, 2, 2)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -130,7 +130,7 @@ t_unt	test_reflection_point(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(-2, 3, 4)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(-2, 3, 4)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(-2, 3, 4)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -161,10 +161,10 @@ t_unt	test_rotation_x(void)
 	given("full_quarter ← rotation_x(π / 2)", 2);
 	full_quarter = rotation_x(M_PI / 2);
 	err = then("half_quarter * p = point(0, √2/2, √2/2)",
-			is_same_tuple(tup_mtrx(half_quarter, p),
+			tup_eq(tup_mtrx(half_quarter, p),
 				set_point(0, sqrtf(2) / 2, sqrtf(2) / 2)), 0);
 	err += then("full_quarter * p = point(0, 0, 1)",
-			is_same_tuple(tup_mtrx(full_quarter, p), set_point(0, 0, 1)), 1);
+			tup_eq(tup_mtrx(full_quarter, p), set_point(0, 0, 1)), 1);
 	scenario_end(err);
 	return (err);
 }
@@ -184,7 +184,7 @@ t_unt	test_rotation_x_inv(void)
 	given("inv ← inverse(half_quarter)", 2);
 	half_quarter = inverse_4mtrx(half_quarter);
 	err = then("inv * p = point(0, √2/2, -√2/2)",
-			is_same_tuple(tup_mtrx(half_quarter, p),
+			tup_eq(tup_mtrx(half_quarter, p),
 				set_point(0, sqrtf(2) / 2, -sqrtf(2) / 2)), 0);
 	scenario_end(err);
 	return (err);
@@ -205,10 +205,10 @@ t_unt	test_rotation_y(void)
 	given("full_quarter ← rotation_y(π / 2)", 2);
 	full_quarter = rotation_y(M_PI / 2);
 	err = then("half_quarter * p = point(√2/2, 0, √2/2)",
-			is_same_tuple(tup_mtrx(half_quarter, p),
+			tup_eq(tup_mtrx(half_quarter, p),
 				set_point(sqrtf(2) / 2, 0, sqrtf(2) / 2)), 0);
 	err += then("full_quarter * p = point(1, 0, 0)",
-			is_same_tuple(tup_mtrx(full_quarter, p), set_point(1, 0, 0)), 1);
+			tup_eq(tup_mtrx(full_quarter, p), set_point(1, 0, 0)), 1);
 	scenario_end(err);
 	return (err);
 }
@@ -228,10 +228,10 @@ t_unt	test_rotation_z(void)
 	given("full_quarter ← rotation_z(π / 2)", 2);
 	full_quarter = rotation_z(M_PI / 2);
 	err = then("half_quarter * p = point(-√2/2, √2/2, 0)",
-			is_same_tuple(tup_mtrx(half_quarter, p),
+			tup_eq(tup_mtrx(half_quarter, p),
 				set_point(-sqrtf(2) / 2, sqrtf(2) / 2, 0)), 0);
 	err += then("full_quarter * p = point(-1, 0, 0)",
-			is_same_tuple(tup_mtrx(full_quarter, p), set_point(-1, 0, 0)), 1);
+			tup_eq(tup_mtrx(full_quarter, p), set_point(-1, 0, 0)), 1);
 	scenario_end(err);
 	return (err);
 }
@@ -248,7 +248,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(5, 3, 4)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(5, 3, 4)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(5, 3, 4)), 0);
 	scenario_end(err);
 
 	scenario_start("A shearing transformation moves x in proportion to z");
@@ -257,7 +257,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(6, 3, 4)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(6, 3, 4)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(6, 3, 4)), 0);
 	scenario_end(err);
 
 	scenario_start("A shearing transformation moves y in proportion to x");
@@ -266,7 +266,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(2, 5, 4)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(2, 5, 4)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(2, 5, 4)), 0);
 	scenario_end(err);
 
 	scenario_start("A shearing transformation moves y in proportion to z");
@@ -275,7 +275,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(2, 7, 4)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(2, 7, 4)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(2, 7, 4)), 0);
 	scenario_end(err);
 
 	scenario_start("A shearing transformation moves z in proportion to x");
@@ -284,7 +284,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(2, 3, 6)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(2, 3, 6)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(2, 3, 6)), 0);
 	scenario_end(err);
 
 	scenario_start("A shearing transformation moves z in proportion to y");
@@ -293,7 +293,7 @@ t_unt	test_shearing(void)
 	given("p ← point(2, 3, 4)", 1);
 	p = set_point(2, 3, 4);
 	err = then("transform * p = point(2, 3, 7)",
-			is_same_tuple(tup_mtrx(transform, p), set_point(2, 3, 7)), 0);
+			tup_eq(tup_mtrx(transform, p), set_point(2, 3, 7)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -318,15 +318,15 @@ t_unt	test_sequence_transformations(void)
 	when("p2 ← A * p", 0);
 	p[1] = tup_mtrx(a, p[0]);
 	err = then("p2 = point(1, -1, 0)",
-			is_same_tuple(p[1], set_point(1, -1, 0)), 0);
+			tup_eq(p[1], set_point(1, -1, 0)), 0);
 	when("p3 ← B * p2", 0);
 	p[2] = tup_mtrx(b, p[1]);
 	err += then("p3 = point(5, -5, 0)",
-			is_same_tuple(p[2], set_point(5, -5, 0)), 0);
+			tup_eq(p[2], set_point(5, -5, 0)), 0);
 	when("p4 ← C * p3", 0);
 	p[3] = tup_mtrx(c, p[2]);
 	err += then("p4 = point(15, 0, 7)",
-			is_same_tuple(p[3], set_point(15, 0, 7)), 0);
+			tup_eq(p[3], set_point(15, 0, 7)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -351,7 +351,7 @@ t_unt	test_rev_sequence_transformations(void)
 	when("T ← C * B * A", 0);
 	a = c * b * a;
 	err = then("T * p = point(15, 0, 7)",
-			is_same_tuple(tup_mtrx(a, p), set_point(15, 0, 7)), 0);
+			tup_eq(tup_mtrx(a, p), set_point(15, 0, 7)), 0);
 	scenario_end(err);
 	return (err);
 }

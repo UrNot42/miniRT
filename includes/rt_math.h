@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:49:41 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:23:57 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_tuple	set_vec(float x, float y, float z);
 t_color	set_col(float r, float g, float b);
 bool	is_point(t_tuple a);
 bool	is_vec(t_tuple a);
-bool	is_same_tuple(t_tuple a, t_tuple b);
+bool	tup_eq(t_tuple a, t_tuple b);
 bool	is_same_col(t_color a, t_color b);
 bool	is_same_mat(t_mater a, t_mater b);
 t_tuple	origin(void);

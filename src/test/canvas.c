@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 14:34:23 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 15:38:02 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_unt	test_write_pixel_to_canvas(void)
 	write_pixel(c.picture, 2, 3, red);
 	pixel = pixel_at(c, 2, 3);
 	err = then("pixel_at(c, 2, 3) = red",
-			is_same_tuple(pixel.tuple, red.tuple), 0);
+			tup_eq(pixel.tuple, red.tuple), 0);
 	close_canvas(&c);
 	scenario_end(err);
 

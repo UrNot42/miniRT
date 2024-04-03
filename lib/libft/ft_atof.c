@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:03:09 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/06 14:27:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:04:28 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static float	get_result(char *str, unsigned int *pos)
 		}
 		else
 		{
-			if (str[*pos] == '.')
+			if (str[*pos] == '.' && !decimal)
 				decimal++;
 			else
 				result = result * 10 + (str[*pos] - '0');

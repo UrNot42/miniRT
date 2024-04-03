@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:52:18 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:44:39 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_unt	test_reflect_45(void)
 	n = set_vec(0, 1, 0);
 	when("r ← reflect(v, n)", 0);
 	r = reflect(v, n);
-	err = then("r = vector(1, 1, 0)", is_same_tuple(r, set_vec(1, 1, 0)), 0);
+	err = then("r = vector(1, 1, 0)", tup_eq(r, set_vec(1, 1, 0)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -45,7 +45,7 @@ t_unt	test_reflect_slanted(void)
 	n = set_vec(sqrtf(2) / 2, sqrtf(2) / 2, 0);
 	when("r ← reflect(v, n)", 0);
 	r = reflect(v, n);
-	err = then("r = vector(1, 0, 0)", is_same_tuple(r, set_vec(1, 0, 0)), 0);
+	err = then("r = vector(1, 0, 0)", tup_eq(r, set_vec(1, 0, 0)), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -65,9 +65,9 @@ t_unt	test_point_init(void)
 	when("light ← point_light(position, intensity)", 0);
 	light = o_light(position, intensity);
 	err = then("light.position = position",
-			is_same_tuple(light.pos, position), 0);
+			tup_eq(light.pos, position), 0);
 	err += then("light.intensity = intensity",
-			is_same_tuple(light.m.col.tuple, intensity.tuple), 0);
+			tup_eq(light.m.col.tuple, intensity.tuple), 0);
 	scenario_end(err);
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:39:57 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/10 16:23:58 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_unt	test_vector_normalization(void)
 	v = set_vec(4, 0, 0);
 	norm = vec_norm(v);
 	err[0] = then("normalize(v) = vector(1, 0, 0)",
-			is_same_tuple(norm, set_vec(1, 0, 0)), 0);
+			tup_eq(norm, set_vec(1, 0, 0)), 0);
 	scenario_end(err[0]);
 
 	scenario_start("Normalizing vector(1, 2, 3)");
@@ -83,7 +83,7 @@ t_unt	test_vector_normalization(void)
 	norm = vec_norm(v);
 	err[1] = then("normalize(v) = approximately vector(0.26726,\
  0.53452, 0.80178)",
-			is_same_tuple(norm, set_vec(0.26726, 0.53452, 0.801780)), 0);
+			tup_eq(norm, set_vec(0.26726, 0.53452, 0.801780)), 0);
 	scenario_end(err[1]);
 
 	scenario_start("The magnitude of a normalized vector");
@@ -130,10 +130,10 @@ t_unt	test_cross_product(void)
 	b = set_vec(2, 3, 4);
 	result[0] = vec_cross(a, b);
 	err = then("cross(a, b) = vector(-1, 2, -1)",
-			is_same_tuple(result[0], set_vec(-1, 2, -1)), 0);
+			tup_eq(result[0], set_vec(-1, 2, -1)), 0);
 	result[1] = vec_cross(b, a);
 	err += then("cross(b, a) = vector(1, -2, 1)",
-			is_same_tuple(result[1], set_vec(1, -2, 1)), 0);
+			tup_eq(result[1], set_vec(1, -2, 1)), 0);
 	scenario_end(err);
 
 	return (err);

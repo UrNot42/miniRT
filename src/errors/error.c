@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:48:59 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:05:16 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:50:25 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	p_err_standard(t_unt error_code)
 		ft_printf(ERM_UNSET);
 	else if (error_code == ERR_EMPTY)
 		ft_printf(ERM_EMPTY);
+	else if (error_code == ERR_BAD_PROMPT)
+		ft_printf(ERM_BAD_PROMPT);
+}
+
+void	p_err_parsing_rest(unsigned int error_code)
+{
+	if (error_code == ERR_LIGHT)
+		ft_printf(ERM_LIGHT);
+	else if (error_code == ERR_SIZE)
+		ft_printf(ERM_SIZE);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:09:04 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/27 10:40:28 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_unt	test_creating_ray(void)
 	direction = set_vec(4, 5, 6);
 	when("r ← ray(origin, direction)", 0);
 	r = ray(origin, direction);
-	err = then("r.origin = origin", is_same_tuple(r.origin, origin), 0);
+	err = then("r.origin = origin", tup_eq(r.origin, origin), 0);
 	err += then("r.direction = direction",
-			is_same_tuple(r.direction, direction), 1);
+			tup_eq(r.direction, direction), 1);
 	scenario_end(err);
 	return (err);
 }
@@ -42,13 +42,13 @@ t_unt	test_position_ray(void)
 	given("r ← ray(point(2, 3, 4), vector(1, 0, 0))", 0);
 	r = ray(set_point(2, 3, 4), set_vec(1, 0, 0));
 	err = then("position(r, 0) = point(2, 3, 4)",
-			is_same_tuple(ray_pos(r, 0), set_point(2, 3, 4)), 0);
+			tup_eq(ray_pos(r, 0), set_point(2, 3, 4)), 0);
 	err += then("position(r, 1) = point(3, 3, 4)",
-			is_same_tuple(ray_pos(r, 1), set_point(3, 3, 4)), 1);
+			tup_eq(ray_pos(r, 1), set_point(3, 3, 4)), 1);
 	err += then("position(r, -1) = point(1, 3, 4)",
-			is_same_tuple(ray_pos(r, -1), set_point(1, 3, 4)), 2);
+			tup_eq(ray_pos(r, -1), set_point(1, 3, 4)), 2);
 	err += then("position(r, 2.5) = point(4.5, 3, 4)",
-			is_same_tuple(ray_pos(r, 2.5), set_point(4.5, 3, 4)), 2);
+			tup_eq(ray_pos(r, 2.5), set_point(4.5, 3, 4)), 2);
 	scenario_end(err);
 	return (err);
 }
@@ -307,9 +307,9 @@ t_unt	test_translate_ray(void)
 	when("r2 ← transform(r, m)", 0);
 	r[1] = ray_transform(r[0], m);
 	err[0] = then("r2.origin = point(4, 6, 8)",
-			is_same_tuple(r[1].origin, set_point(4, 6, 8)), 0);
+			tup_eq(r[1].origin, set_point(4, 6, 8)), 0);
 	err[0] += then("r2.direction = vector(0, 1, 0)",
-			is_same_tuple(r[1].direction, set_vec(0, 1, 0)), 1);
+			tup_eq(r[1].direction, set_vec(0, 1, 0)), 1);
 	scenario_end(err[0]);
 
 	scenario_start("Scaling a ray");
@@ -319,9 +319,9 @@ t_unt	test_translate_ray(void)
 	when("r2 ← transform(r, m)", 0);
 	r[1] = ray_transform(r[0], m);
 	err[1] = then("r2.origin = point(2, 6, 12)",
-			is_same_tuple(r[1].origin, set_point(2, 6, 12)), 0);
+			tup_eq(r[1].origin, set_point(2, 6, 12)), 0);
 	err[1] += then("r2.direction = vector(0, 3, 0)",
-			is_same_tuple(r[1].direction, set_vec(0, 3, 0)), 1);
+			tup_eq(r[1].direction, set_vec(0, 3, 0)), 1);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }

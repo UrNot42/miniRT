@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:27:51 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:25:19 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	is_vec(t_tuple a)
 		return (false);
 }
 
-bool	is_same_tuple(t_tuple a, t_tuple b)
+bool	tup_eq(t_tuple a, t_tuple b)
 {
 	if (f_eq(a.x, b.x) && f_eq(a.y, b.y) && f_eq(a.z, b.z) && f_eq(a.w, b.w))
 		return (true);

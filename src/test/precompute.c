@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:59:14 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:54:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_unt	test_precomputation(void)
 	err = then("comps.t = i.t", f_eq(comps.t, i.t), 0);
 	err += then("comps.object = i.object", comps.obj == i.obj, 1);
 	err += then("comps.point = point(0, 0, -1)",
-			is_same_tuple(comps.point, set_point(0, 0, -1)), 2);
+			tup_eq(comps.point, set_point(0, 0, -1)), 2);
 	err += then("comps.eyev = vector(0, 0, -1)",
-			is_same_tuple(comps.eyev, set_vec(0, 0, -1)), 3);
+			tup_eq(comps.eyev, set_vec(0, 0, -1)), 3);
 	err += then("comps.normalv = vector(0, 0, -1)",
-			is_same_tuple(comps.normalv, set_vec(0, 0, -1)), 4);
+			tup_eq(comps.normalv, set_vec(0, 0, -1)), 4);
 	scenario_end(err);
 	return (err);
 }
@@ -70,12 +70,12 @@ t_unt	test_hit_inoutside(void)
 	when("comps ← prepare_computations(i, r)", 0);
 	comps = prepare_computations(i, r);
 	err[1] = then("comps.point = point(0, 0, 1)",
-			is_same_tuple(comps.point, set_point(0, 0, 1)), 0);
+			tup_eq(comps.point, set_point(0, 0, 1)), 0);
 	err[1] += then("comps.eyev = vector(0, 0, -1)",
-			is_same_tuple(comps.eyev, set_vec(0, 0, -1)), 1);
+			tup_eq(comps.eyev, set_vec(0, 0, -1)), 1);
 	err[1] += then("comps.inside = true", comps.inside == true, 2);
 	err[1] += then("comps.normalv = vector(0, 0, -1)",
-			is_same_tuple(comps.normalv, set_vec(0, 0, -1)), 3);
+			tup_eq(comps.normalv, set_vec(0, 0, -1)), 3);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }
@@ -179,7 +179,7 @@ t_unt	test_color_behind(void)
 	r = ray(set_point(0, 0, 0.75), set_vec(0, 0, -1));
 	when("c ← color_at(w, r)", 0);
 	c = color_at(w, r);
-	err = then("c = inner.material.color", is_same_tuple(c.tuple,
+	err = then("c = inner.material.color", tup_eq(c.tuple,
 				inner->m.col.tuple * w.ambient_light.alght.ratio), 0);
 	scenario_end(err);
 	scene_free(&w);

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:03:47 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 14:50:48 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:15:51 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	p_err_crit(t_unt error_code)
 {
 	if (error_code == ERR_MEM)
 		ft_fprintf(2, ERM_MEM);
-	if (error_code == ERR_OPEN)
+	else if (error_code == ERR_OPEN)
 		ft_fprintf(2, ERM_OPEN);
-	if (error_code == ERR_CLOSE)
+	else if (error_code == ERR_CLOSE)
 		ft_fprintf(2, ERM_CLOSE);
-	if (error_code == ERR_FORK)
+	else if (error_code == ERR_FORK)
 		ft_fprintf(2, ERM_FORK);
-	if (error_code == ERR_READ)
+	else if (error_code == ERR_READ)
 		ft_fprintf(2, ERM_READ);
 }
 
@@ -30,9 +30,9 @@ void	p_err_minilibx(t_unt error_code)
 {
 	if (error_code == ERR_MLX_INIT)
 		ft_fprintf(2, ERM_MLX_INIT);
-	if (error_code == ERR_MLX_IMG)
+	else if (error_code == ERR_MLX_IMG)
 		ft_fprintf(2, ERM_MLX_IMG);
-	if (error_code == ERR_MLX_WIN)
+	else if (error_code == ERR_MLX_WIN)
 		ft_fprintf(2, ERM_MLX_WIN);
 }
 
@@ -40,31 +40,36 @@ void	p_err_parsing(t_unt error_code)
 {
 	if (error_code == ERR_LINE)
 		ft_fprintf(2, ERM_LINE);
-	if (error_code == ERR_NUMBER)
+	else if (error_code == ERR_NUMBER)
 		ft_fprintf(2, ERM_NUMBER);
-	if (error_code == ERR_COLOR)
+	else if (error_code == ERR_COLOR)
 		ft_fprintf(2, ERM_COLOR);
-	if (error_code == ERR_IDENTIFIER)
+	else if (error_code == ERR_IDENTIFIER)
 		ft_fprintf(2, ERM_IDENTIFIER);
-	if (error_code == ERR_POS)
+	else if (error_code == ERR_POS)
 		ft_fprintf(2, ERM_POS);
-	if (error_code == ERR_FOV)
+	else if (error_code == ERR_FOV)
 		ft_fprintf(2, ERM_FOV);
-	if (error_code == ERR_RATIO)
+	else if (error_code == ERR_RATIO)
 		ft_fprintf(2, ERM_RATIO);
-	if (error_code == ERR_HEIGHT)
+	else if (error_code == ERR_HEIGHT)
 		ft_fprintf(2, ERM_HEIGHT);
-	if (error_code == ERR_DIAMETER)
+	else if (error_code == ERR_DIAMETER)
 		ft_fprintf(2, ERM_DIAMETER);
-	if (error_code == ERR_NORM)
+	else if (error_code == ERR_NORM)
 		ft_fprintf(2, ERM_NORM);
+	else if (error_code == ERR_AMB_LIGHT)
+		ft_fprintf(2, ERM_AMB_LIGHT);
+	else if (error_code == ERR_CAMERA)
+		ft_fprintf(2, ERM_CAMERA);
+	p_err_parsing_rest(error_code);
 }
 
 void	p_err_engine(t_unt error_code)
 {
 	if (error_code == ERR_ENGX)
 		ft_fprintf(2, ERM_ENGX);
-	if (error_code == ERR_OBJ_MAX_SZ)
+	else if (error_code == ERR_OBJ_MAX_SZ)
 		ft_fprintf(2, ERM_OBJ_MAX_SZ);
 }
 
@@ -72,20 +77,20 @@ void	p_err_debug(t_unt error_code)
 {
 	if (error_code == DB_START)
 		ft_fprintf(2, DBM_START);
-	if (error_code == DB_END)
+	else if (error_code == DB_END)
 		ft_fprintf(2, DBM_END);
-	if (error_code == DB_VAL)
+	else if (error_code == DB_VAL)
 		ft_fprintf(2, DBM_VAL);
-	if (error_code == DB_FCALL)
+	else if (error_code == DB_FCALL)
 		ft_fprintf(2, DBM_FCALL);
-	if (error_code == DB_HI)
+	else if (error_code == DB_HI)
 		ft_fprintf(2, DBM_HI);
-	if (error_code == DB_C1)
+	else if (error_code == DB_C1)
 		ft_fprintf(2, DBM_C1);
-	if (error_code == DB_C2)
+	else if (error_code == DB_C2)
 		ft_fprintf(2, DBM_C2);
-	if (error_code == DB_C3)
+	else if (error_code == DB_C3)
 		ft_fprintf(2, DBM_C3);
-	if (error_code == DB_FREE)
+	else if (error_code == DB_FREE)
 		ft_fprintf(2, DBM_FREE);
 }

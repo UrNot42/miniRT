@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:34:03 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:48:24 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:01:39 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ t_color	shade_hit(t_scene world, t_comps computes)
 	t_color	tmp;
 
 	color = set_col(0, 0, 0);
-	// world.ambient_light.color.tuple * world.ambient_light.alght.ratio
 	if (!world.li_size.use)
 		return (color);
 	i = 0;

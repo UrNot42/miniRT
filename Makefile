@@ -34,8 +34,9 @@ SRC_ERROR	:=	error.c \
 				error_display.c
 
 SRC_PARSING	:=	parsing.c \
-				scene_fill.c \
-				obj_setters.c \
+				translate.c\
+				scene_fill.c\
+				obj_setters.c\
 				num_setters.c \
 				file_management.c \
 				scene_management.c \
@@ -47,7 +48,7 @@ SRC_MATH	=	basics.c \
 				vector_operation.c \
 				$(addprefix $(MATRIX_DIR), $(SRC_MATRIX)) \
 
-SRC_MATRIX	:=	matrix.c \
+SRC_MATRIX	:=	matrix.c  \
 				rotation.c \
 				transform.c \
 				matrix_set.c \
@@ -55,51 +56,51 @@ SRC_MATRIX	:=	matrix.c \
 				matrix_determinant.c \
 				matrix_minor_and_cofactor.c \
 
-SRC_GRAPH	:=	loop.c \
-				image.c \
-				canvas.c \
+SRC_GRAPH	:=	loop.c\
+				image.c\
+				canvas.c\
 				pixel.c \
 				window.c \
 				handler.c \
 				renderer.c \
 				color_operation.c \
 
-SRC_ENGINE	:=	ray.c \
-				sort.c \
+SRC_ENGINE	:=	ray.c\
+				sort.c\
 				view.c \
 				light.c \
 				shadow.c \
 				normal.c \
-				pre_compute.c \
+				pre_compute.c\
 				light_extra.c \
 				intersection.c \
 
-SRC_SHAPES	:=	cone.c \
+SRC_SHAPES	:=	cone.c\
 				size.c \
-				cube.c \
-				plane.c \
+				cube.c\
+				plane.c\
 				world.c \
 				sphere.c \
 				cone_inter.c \
 				initializing.c \
 				cylinder_init.c \
-				cylinder_method.c \
+				cylinder_method.c\
 
 SRC_TEST	:=	ray.c \
-				world.c \
-				tuples.c \
+				world.c\
+				tuples.c\
 				colors.c \
-				launch.c \
+				launch.c\
 				canvas.c \
-				matrix.c \
+				matrix.c\
 				camera.c \
-				scenes.c \
+				scenes.c\
 				shapes.c \
-				lights.c \
-				normals.c \
-				vectors.c \
+				lights.c  \
+				normals.c  \
+				vectors.c\
 				shadows.c \
-				ray_trace.c \
+				ray_trace.c\
 				transform.c \
 				precompute.c \
 				print_scene.c \
@@ -217,10 +218,10 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
 
 $(LIBS):
 				@for lib in $(LIBS); do \
-					$(ECHO) "$(_CYAN)..making $(_UNDER)$$lib$(_END)"; \
+					$(ECHO) "$(_BLUE)..making $(_UNDER)$$lib$(_END)"; \
 					$(MAKE_SUB) $$(dirname $$lib) $(QUIET); \
 					if [ -f "$$lib" ]; then \
-						$(ECHO) "$(_CYAN)$(_BOLD)Built $(_UNDER)$$lib$(_END)"; \
+						$(ECHO) "$(_BLUE)$(_BOLD)Built $(_UNDER)$$lib$(_END)"; \
 					else \
 						$(ECHO) "$(_RED)$(_BOLD)Failed to build $(_UNDER)$$lib$(_END)"; \
 					fi \
@@ -251,33 +252,33 @@ $(NAME):		$(OBJS) $(LIBS) $(HEADERS) $(DEPS)
 				fi
 
 clean:
-				@$(RM) $(OBJ_DIR)
-				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_GREEN)$(_BOLD)Successfuly removed OBJECT files!$(_END)"; \
-				else \
-					$(ECHO) "$(_RED)$(_BOLD)Failed to remove OBJECT files!$(_END)"; \
-				fi
 				@for lib in $(LIBS); do \
-					$(ECHO) "$(_CYAN)..cleaning $(_UNDER)$$lib$(_END)"; \
+					$(ECHO) "$(_RED)..cleaning $(_UNDER)$$lib$(_END)"; \
 					$(MAKE_SUB) $$(dirname $$lib) clean $(QUIET); \
 					$(MAKE_SUB) $$(dirname $$lib) fclean $(QUIET); \
 					if [ -f "$$lib" ]; then \
-						$(ECHO) "$(_RED)$(_BOLD) Failed to clean $(_UNDER)$$lib$(_END)"; \
+						$(ECHO) "$(_PURPLE) Failed to clean $(_UNDER)$$lib$(_END)"; \
 					else \
-						$(ECHO) "$(_CYAN)$(_BOLD) Cleaned $(_UNDER)$$lib$(_END)"; \
+						$(ECHO) "$(_RED) Cleaned $(_UNDER)$$lib$(_END)"; \
 					fi \
 				done
+				@$(RM) $(OBJ_DIR)
+				@if [ ! -d $(OBJ_DIR) ]; then \
+					$(ECHO) "$(_RED)$(_BOLD)Successfuly removed OBJECT files!$(_END)"; \
+				else \
+					$(ECHO) "$(_RED)$(_BOLD)Failed to remove OBJECT files!$(_END)"; \
+				fi
 
 fclean:			clean
 				@$(RM) $(NAME)
 				@if [ ! -d $(OBJ_DIR) ]; then \
-					$(ECHO) "$(_IBLUE)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)"; \
+					$(ECHO) "$(_IRED)$(_BOLD)Removed $(_UNDER)$(NAME)$(_END)"; \
 				else \
 					$(ECHO) "$(_IPURPLE)$(_BOLD)Failed to remove $(_UNDER)$(NAME)$(_END)"; \
 				fi
-				@$(ECHO) "$(_GREEN)$(_BOLD)====================$(_END)"
-				@$(ECHO) "$(_GREEN)$(_BOLD)Full Clean complete!$(_END)"
-				@$(ECHO) "$(_GREEN)$(_BOLD)====================$(_END)"; \
+				@$(ECHO) "$(_RED)$(_BOLD)====================$(_END)"
+				@$(ECHO) "$(_RED)$(_BOLD)Full Clean complete!$(_END)"
+				@$(ECHO) "$(_RED)$(_BOLD)====================$(_END)"; \
 
 re:				fclean all
 

@@ -78,42 +78,42 @@ t_unt	test_cube_normal(void)
 	p = set_point(1,  0.5, -0.8);
 	normal = normal_at(c, p);
 	err = ex(" | point( 1,  0.5, -0.8)	| vector(1,  0,  0)	|",
-			is_same_tuple(normal, set_vec(1,  0,  0)));
+			tup_eq(normal, set_vec(1,  0,  0)));
 
 	p = set_point(-1, -0.2,  0.9);
 	normal = normal_at(c, p);
 	err += ex(" | point(-1, -0.2,  0.9)	| vector(-1, 0,  0)	|",
-			is_same_tuple(normal, set_vec(-1, 0,  0)));
+			tup_eq(normal, set_vec(-1, 0,  0)));
 
 	p = set_point(-0.4,  1, -0.1);
 	normal = normal_at(c, p);
 	err += ex(" | point(-0.4,  1, -0.1)	| vector(0,  1,  0)	|",
-			is_same_tuple(normal, set_vec(0,  1,  0)));
+			tup_eq(normal, set_vec(0,  1,  0)));
 
 	p = set_point( 0.3, -1, -0.7);
 	normal = normal_at(c, p);
 	err += ex(" | point( 0.3, -1, -0.7)	| vector(0, -1,  0)	|",
-			is_same_tuple(normal, set_vec(0, -1,  0)));
+			tup_eq(normal, set_vec(0, -1,  0)));
 
 	p = set_point(-0.6, 0.3,   1);
 	normal = normal_at(c, p);
 	err += ex(" | point(-0.6, 0.3,   1)	| vector(0,  0,  1)	|",
-			is_same_tuple(normal, set_vec(0,  0,  1)));
+			tup_eq(normal, set_vec(0,  0,  1)));
 
 	p = set_point(0.4,  0.4,  -1);
 	normal = normal_at(c, p);
 	err += ex(" | point(0.4,  0.4,  -1)	| vector(0,  0, -1)	|",
-			is_same_tuple(normal, set_vec(0,  0, -1)));
+			tup_eq(normal, set_vec(0,  0, -1)));
 
 	p = set_point(  1,    1,   1);
 	normal = normal_at(c, p);
 	err += ex(" | point(  1,    1,   1)	| vector(1,  0,  0)	|",
-			is_same_tuple(normal, set_vec(1,  0,  0)));
+			tup_eq(normal, set_vec(1,  0,  0)));
 
 	p = set_point( -1,   -1,  -1);
 	normal = normal_at(c, p);
 	err += ex(" | point( -1,   -1,  -1)	| vector(-1, 0,  0)	|",
-			is_same_tuple(normal, set_vec(-1, 0,  0)));
+			tup_eq(normal, set_vec(-1, 0,  0)));
 
 	scenario_end(err);
 	return (err);

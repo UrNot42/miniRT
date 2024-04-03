@@ -17,6 +17,7 @@ bool	read_file(char *file, t_scene *scene)
 	int	fd;
 	int	len;
 
+	*scene = scene_init();
 	len = ft_strlen(file);
 	if (len < EXT_SIZE || ft_strncmp(&file[len - EXT_SIZE], EXTENSION,
 			EXT_SIZE))

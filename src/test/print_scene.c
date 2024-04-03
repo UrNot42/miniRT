@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 21:40:37 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:44:12 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:41:47 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	print_scene(t_scene	scene)
 	printf("half height: %f\n", scene.camera.camera.half_height);
 	printf("field of view: %f\n", scene.camera.camera.fov);
 	printf("-------\n");
-	printf("amb light:\n");
+	/* printf("amb light:\n");
 	print_base(scene.ambient_light.base);
 	printf("ratio: %f\n", scene.ambient_light.alght.ratio);
 	printf("-------\n\n");
@@ -91,5 +91,5 @@ void	print_scene(t_scene	scene)
 			print_mtx(obj.sphere.mtx);
 		print_obj_details(obj);
 		printf("-------\n");
-	}
+	} */
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:47:50 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/03 09:53:20 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,18 +164,18 @@ t_unt	test_cam_ray_construction(void)
 	when("r ← ray_for_pixel(c, 100, 50)", 0);
 	r = ray_for_pixel(c, 100, 50);
 	err[0] = then("r.origin = point(0, 0, 0)",
-			is_same_tuple(r.origin, origin()), 0);
+			tup_eq(r.origin, origin()), 0);
 	err[0] += then("r.direction = vector(0, 0, -1)",
-			is_same_tuple(r.direction, set_vec(0, 0, -1)), 1);
+			tup_eq(r.direction, set_vec(0, 0, -1)), 1);
 	scenario_end(err[0]);
 	scenario_start("Constructing a ray through a corner of the canvas");
 	given("c ← camera(201, 101, π/2)", 0);
 	when("r ← ray_for_pixel(c, 0, 0)", 0);
 	r = ray_for_pixel(c, 0, 0);
 	err[1] = then("r.origin = point(0, 0, 0)",
-			is_same_tuple(r.origin, origin()), 0);
+			tup_eq(r.origin, origin()), 0);
 	err[1] += then("r.direction = vector(0.66519, 0.33259, -0.66851)",
-			is_same_tuple(r.direction, set_vec(0.66519, 0.33259, -0.66851)), 1);
+			tup_eq(r.direction, set_vec(0.66519, 0.33259, -0.66851)), 1);
 	scenario_end(err[1]);
 	scenario_start("Constructing a ray when the camera is transformed");
 	given("c ← camera(201, 101, π/2)", 0);
@@ -184,9 +184,9 @@ t_unt	test_cam_ray_construction(void)
 	when("r ← ray_for_pixel(c, 100, 50)", 1);
 	r = ray_for_pixel(c, 100, 50);
 	err[2] = then("r.origin = point(0, 2, -5)",
-			is_same_tuple(r.origin, set_point(0, 2, -5)), 0);
+			tup_eq(r.origin, set_point(0, 2, -5)), 0);
 	err[2] += then("r.direction = vector(√2/2, 0, -√2/2)",
-			is_same_tuple(r.direction, set_vec(sqrtf(2) / 2, 0, -sqrtf(2) / 2)), 1);
+			tup_eq(r.direction, set_vec(sqrtf(2) / 2, 0, -sqrtf(2) / 2)), 1);
 	scenario_end(err[2]);
 	return (err[0] + err[1] + err[2]);
 }

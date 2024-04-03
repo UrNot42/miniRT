@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:46:35 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/03/07 15:12:18 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:46:41 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,9 @@
 > Standard
 ( Normal prompts for the use of the program )
 
-11 - 20 :
+11 - 30 :
 > MiniLibX Errors
 ( Graphical Library call Errors )
-
-21 - 30 :
-> Parsing Errors
-( Badly provided user information )
-
 
 31 - 40 :
 > Engine Errors
@@ -44,6 +39,10 @@
 > Critical Errors
 ( Such as syscall failures, memory allocations etc )
 
+71 - 90 :
+> Parsing Errors
+( Bad information provided by user )
+
 */
 
 #ifndef RT_ERROR_H
@@ -59,15 +58,17 @@ enum e_rr_standard
 {
 	ERR_NO_PROMPT = 1,
 	ERR_UNSET,
-	ERR_EMPTY
+	ERR_EMPTY,
+	ERR_BAD_PROMPT
 };
 
 # define ERM_NO_PROMPT "Error: No file provided, please give a [name].rt file\n"
 # define ERM_UNSET "Error: Unset or NULL Value\n"
 # define ERM_EMPTY "Error: Empty file\n"
+# define ERM_BAD_PROMPT "Error: Too many files provided"
 
 # define ERR_MLX_LR 11
-# define ERR_MLX_RR 20
+# define ERR_MLX_RR 30
 
 enum e_rr_minilibx
 {
@@ -80,12 +81,12 @@ enum e_rr_minilibx
 # define ERM_MLX_IMG "MinilibX Error: Couldn't create image\n"
 # define ERM_MLX_WIN "MinilibX Error: Window allocation fail\n"
 
-# define ERR_PARS_LR 21
-# define ERR_PARS_RR 30
+# define ERR_PARS_LR 71
+# define ERR_PARS_RR 90
 
 enum e_rr_parsing
 {
-	ERR_LINE = 21,
+	ERR_LINE = 71,
 	ERR_NUMBER,
 	ERR_IDENTIFIER,
 	ERR_COLOR,
@@ -95,6 +96,10 @@ enum e_rr_parsing
 	ERR_HEIGHT,
 	ERR_DIAMETER,
 	ERR_FOV,
+	ERR_CAMERA,
+	ERR_AMB_LIGHT,
+	ERR_LIGHT,
+	ERR_SIZE
 };
 
 # define ERM_LINE "Error Parsing File: Bad line format in file\n"
@@ -107,6 +112,10 @@ enum e_rr_parsing
 # define ERM_HEIGHT "Error Parsing Object: Height couldn't be set\n"
 # define ERM_DIAMETER "Error Parsing Object: Diameter couldn't be set\n"
 # define ERM_FOV "Error Parsing Object: Fov couldn't be defined\n"
+# define ERM_CAMERA "Error Parsing: Camera Missing or redefined\n"
+# define ERM_SIZE "Error Parsing Object: Cube size not set\n"
+# define ERM_AMB_LIGHT "Error Parsing: Ambient light Missing or redefined\n"
+# define ERM_LIGHT "Error Parsing: No light source\n"
 
 # define ERR_ENGN_LR 31
 # define ERR_ENGN_RR 40
@@ -188,6 +197,7 @@ enum e_rr_
 void	p_err_standard(unsigned int error_code);
 void	p_err_minilibx(unsigned int error_code);
 void	p_err_parsing(unsigned int error_code);
+void	p_err_parsing_rest(unsigned int error_code);
 void	p_err_engine(unsigned int error_code);
 void	p_err_debug(unsigned int error_code);
 void	p_err_crit(unsigned int error_code);

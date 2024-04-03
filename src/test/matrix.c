@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:02:07 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 20:58:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:29:01 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ t_unt	test_matrix_by_tuple(void)
 	expected = set_tuple(18, 24, 33, 1);
 	result = tup_mtrx(a, b);
 	err = then("A * b = tuple(18, 24, 33, 1)",
-			is_same_tuple(result, expected), 0);
+			tup_eq(result, expected), 0);
 	scenario_end(err);
 	return (err);
 }
@@ -168,7 +168,7 @@ t_unt	test_matrix_identity(void)
 	given("a ← tuple(1, 2, 3, 4)", 0);
 	a_t = set_tuple(1, 2, 3, 4);
 	err[1] = then("identity_matrix * a = a",
-			is_same_tuple(tup_mtrx(identity_matrix, a_t), a_t), 0);
+			tup_eq(tup_mtrx(identity_matrix, a_t), a_t), 0);
 	scenario_end(err[1]);
 	return (err[0] + err[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: ulevallo <ulevallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 04:32:28 by ulevallo          #+#    #+#             */
-/*   Updated: 2024/04/02 19:59:11 by ulevallo         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:44:29 by ulevallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ struct s_cube
 		t_o_mtrx	mtx;
 	};
 	t_tuple			normal;
+	t_tuple			size;
 };
 
 struct s_light

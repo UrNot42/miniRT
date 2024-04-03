@@ -1,11 +1,7 @@
-April 1st TODO
-1 - Parsing actually making correct scene (Intense Debug)
-	- Putting position and orientation inside matrix objects
-	- Defining Camera
-2 - make the US capitol
-2 - Debug Parsing with edge case maps
-3 - Disambiguate t_scene with proper t_cam and t_alight instead of t_obj
-4 - Check ambient Light
+April 3rd TODO
+1 - Debug Parsing with edge case maps
+2 - Disambiguate t_scene with proper t_cam and t_alight instead of t_obj
+3 - Check ambient Light
 
 Bonus
 1 + Patterns (chill)
